@@ -7,7 +7,9 @@
 
 
 # Domonkos Ádám
-
+- Specifikáció kidolgozása közösen
+- Supplier alkalmazás inicializálása
+- Supplier alkalmazás tervének elkészítése Balsamiq-ban
 
 
 # Raisz Olivér
