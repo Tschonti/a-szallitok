@@ -17,3 +17,7 @@
 
 
 # Farkasházi Levente
+## 4. hét
+- Discord szerver elkészítése
+- Specifikáció kidolgozása közösen
+- Frontend oldalak tervének elkészítése Balsamiq-ban Samuval
