@@ -29,13 +29,11 @@
 - Kocsi felvétele
   - max méret
   - max súly
-  - felvétel határidő: -tól,-ig
-  - leadás határidő: -tól,-ig
   - telephely
   - mennyiért
 - profil beállítások alapján készít egy tervet, a lehető legnagyobb profit - eléréséhez vállalt munkákkal
 - Fuvar státusz adminisztrálás: Elvállal/Folyamatban/Befejezte
-- esetleg: Értékelés- a megrendelőt a fuvar után
+- esetleg: Értékeli a megrendelőt a fuvar után
 - Lehetőségek szűrése
 - Listázza a lehetséges munkákat
 - Munkák megjelenítése térképen

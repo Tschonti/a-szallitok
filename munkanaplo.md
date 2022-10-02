@@ -7,7 +7,9 @@
 
 
 # Domonkos Ádám
-
+- Specifikáció kidolgozása közösen
+- Supplier alkalmazás inicializálása
+- Supplier alkalmazás tervének elkészítése Balsamiq-ban
 
 
 # Raisz Olivér
@@ -15,3 +17,7 @@
 
 
 # Farkasházi Levente
+## 4. hét
+- Discord szerver elkészítése
+- Specifikáció kidolgozása közösen
+- Frontend oldalak tervének elkészítése Balsamiq-ban Samuval
