@@ -13,7 +13,10 @@
 
 
 # Raisz Olivér
-
+## 4. hét
+- Specifikáció kidolgozása közösen
+- Git repó klónozása
+- Mockup elkészítése az ügyfelek alkalmazásához
 
 
 # Farkasházi Levente
