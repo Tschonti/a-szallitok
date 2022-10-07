@@ -3,6 +3,7 @@ CREATE TABLE `User` (
   `firstName` varchar(255),
   `lastName` varchar(255),
   `googleToken` varchar(255),
+  `email` varchar(255),
   `phoneNumber` varchar(255),
   `vehicleId` int,
   `isAdmin` boolean,
@@ -60,10 +61,7 @@ CREATE TABLE `Vehicle` (
   `plateNumber` varchar(255),
   `type` varchar(255),
   `yearOfManufacturing` int,
-  `maxWeight` int,
-  `maxHeight` int,
-  `maxLength` int,
-  `maxWidth` int,
+  `capacityId` int,
   `location` varchar(255),
   `pictureUrl` varchar(255)
 );
@@ -81,6 +79,8 @@ ALTER TABLE `Rating` ADD FOREIGN KEY (`raterUserID`) REFERENCES `User` (`id`);
 ALTER TABLE `Rating` ADD FOREIGN KEY (`ratedUserId`) REFERENCES `User` (`id`);
 
 ALTER TABLE `Delivery` ADD FOREIGN KEY (`capacityId`) REFERENCES `Capacity` (`id`);
+
+ALTER TABLE `Vehicle` ADD FOREIGN KEY (`capacityId`) REFERENCES `Capacity` (`id`);
 
 ALTER TABLE `Delivery` ADD FOREIGN KEY (`sourceCoordId`) REFERENCES `Coordinate` (`id`);
 

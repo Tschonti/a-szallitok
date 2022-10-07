@@ -14,7 +14,7 @@ externalDocs:
   url: TODO
 servers:
   - url: TODO
-  
+
 tags:
   - name: user
     description: Informations about the users
@@ -32,6 +32,28 @@ tags:
     description: Informations about deliverytousers
 paths:
   /user:
+    get:
+      tags:
+        - user
+      summary: Get all users
+      description: Get all users
+      operationId: getUsers
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+      security:
+        - petstore_auth:
+            - write:User
+            - read:User
     post:
       tags:
         - user
@@ -57,52 +79,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'          
+                $ref: '#/components/schemas/User'
             application/xml:
               schema:
                 $ref: '#/components/schemas/User'
-        '405':
-          description: Invalid input
+        '400':
+          description: Bad Request
       security:
         - petstore_auth:
             - write:User
             - read:User
-    put:
-      tags:
-        - user
-      summary: Update an existing users' profile
-      description: Update an existing users' profile by UID
-      operationId: updateUser
-      requestBody:
-        description: Update an existent user in the database
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/User'
-        required: true
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/User'
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - write:User
-            - read:User
-            
   /user/{ID}:
     get:
       tags:
@@ -124,7 +110,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'          
+                $ref: '#/components/schemas/User'
             application/xml:
               schema:
                 $ref: '#/components/schemas/User'
@@ -137,7 +123,50 @@ paths:
         - petstore_auth:
             - write:User
             - read:User
-            
+    put:
+      tags:
+        - user
+      summary: Update an existing users' profile
+      description: Update an existing users' profile by UID
+      operationId: updateUser
+      parameters:
+        - name: ID
+          in: path
+          description: ID of user to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Update an existent user in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - write:User
+            - read:User
+
   /vehicle:
     post:
       tags:
@@ -164,7 +193,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Vehicle'          
+                $ref: '#/components/schemas/Vehicle'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Vehicle'
@@ -174,7 +203,7 @@ paths:
         - petstore_auth:
             - write:Vehicle
             - read:Vehicle
-            
+
     put:
       tags:
         - vehicle
@@ -200,7 +229,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Vehicle'          
+                $ref: '#/components/schemas/Vehicle'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Vehicle'
@@ -210,7 +239,7 @@ paths:
         - petstore_auth:
             - write:Vehicle
             - read:Vehicle
-            
+
   /vehicle/{ID}:
     get:
       tags:
@@ -232,7 +261,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Vehicle'          
+                $ref: '#/components/schemas/Vehicle'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Vehicle'
@@ -245,7 +274,7 @@ paths:
         - petstore_auth:
             - write:Vehicle
             - read:Vehicle
-            
+
   /delivery:
     post:
       tags:
@@ -272,7 +301,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Delivery'          
+                $ref: '#/components/schemas/Delivery'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Delivery'
@@ -282,7 +311,7 @@ paths:
         - petstore_auth:
             - write:Delivery
             - read:Delivery
-            
+
     put:
       tags:
         - delivery
@@ -308,7 +337,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Delivery'          
+                $ref: '#/components/schemas/Delivery'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Delivery'
@@ -318,7 +347,7 @@ paths:
         - petstore_auth:
             - write:Delivery
             - read:Delivery
-            
+
   /delivery/{ID}:
     get:
       tags:
@@ -340,7 +369,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Delivery'          
+                $ref: '#/components/schemas/Delivery'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Delivery'
@@ -353,7 +382,7 @@ paths:
         - petstore_auth:
             - write:Delivery
             - read:Delivery
-            
+
   /rating:
     post:
       tags:
@@ -380,7 +409,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Rating'          
+                $ref: '#/components/schemas/Rating'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Rating'
@@ -415,7 +444,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Rating'          
+                $ref: '#/components/schemas/Rating'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Rating'
@@ -425,7 +454,7 @@ paths:
         - petstore_auth:
             - write:Rating
             - read:Rating
-            
+
   /rating/{ID}:
     get:
       tags:
@@ -447,7 +476,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Rating'          
+                $ref: '#/components/schemas/Rating'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Rating'
@@ -460,7 +489,7 @@ paths:
         - petstore_auth:
             - write:Rating
             - read:Rating
-            
+
   /coordinate:
     post:
       tags:
@@ -487,7 +516,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Coordinate'          
+                $ref: '#/components/schemas/Coordinate'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Coordinate'
@@ -522,7 +551,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Coordinate'          
+                $ref: '#/components/schemas/Coordinate'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Coordinate'
@@ -532,7 +561,7 @@ paths:
         - petstore_auth:
             - write:Coordinate
             - read:Coordinate
-            
+
   /coordinate/{ID}:
     get:
       tags:
@@ -554,7 +583,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Coordinate'          
+                $ref: '#/components/schemas/Coordinate'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Coordinate'
@@ -567,7 +596,7 @@ paths:
         - petstore_auth:
             - write:Coordinate
             - read:Coordinate
-            
+
   /capacity:
     post:
       tags:
@@ -594,7 +623,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Capacity'          
+                $ref: '#/components/schemas/Capacity'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Capacity'
@@ -629,7 +658,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Capacity'          
+                $ref: '#/components/schemas/Capacity'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Capacity'
@@ -639,7 +668,7 @@ paths:
         - petstore_auth:
             - write:Capacity
             - read:Capacity
-            
+
   /capacity/{ID}:
     get:
       tags:
@@ -661,7 +690,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Capacity'          
+                $ref: '#/components/schemas/Capacity'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Capacity'
@@ -674,8 +703,8 @@ paths:
         - petstore_auth:
             - write:Capacity
             - read:Capacity
-            
-            
+
+
   /deliverytouser:
     post:
       tags:
@@ -702,7 +731,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeliveryToUser'          
+                $ref: '#/components/schemas/DeliveryToUser'
             application/xml:
               schema:
                 $ref: '#/components/schemas/DeliveryToUser'
@@ -737,7 +766,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeliveryToUser'          
+                $ref: '#/components/schemas/DeliveryToUser'
             application/xml:
               schema:
                 $ref: '#/components/schemas/DeliveryToUser'
@@ -747,7 +776,7 @@ paths:
         - petstore_auth:
             - write:DeliveryToUser
             - read:DeliveryToUser
-            
+
   /deliverytouser/{ID}:
     get:
       tags:
@@ -769,7 +798,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeliveryToUser'          
+                $ref: '#/components/schemas/DeliveryToUser'
             application/xml:
               schema:
                 $ref: '#/components/schemas/DeliveryToUser'
@@ -847,7 +876,7 @@ components:
         pictureUrl:
           type: string
           example: "file:///defaultImage.png"
-    
+
     Delivery:
       type: object
       properties:
@@ -899,7 +928,7 @@ components:
           type: object
           format: dateTime
           example: "2022.10.20"
-          
+
     DeliveryToUser:
       type: object
       properties:
@@ -919,7 +948,7 @@ components:
           type: object
           format: dateTime
           example: "2022.10.20"
-          
+
     Capacity:
       type: object
       properties:
@@ -943,7 +972,7 @@ components:
           type: integer
           format: int64
           example: 2
-          
+
     Coordinate:
       type: object
       properties:
@@ -959,7 +988,7 @@ components:
           type: number
           format: float
           example: 2.12
-          
+
     Rating:
       type: object
       properties:
@@ -983,8 +1012,8 @@ components:
           type: object
           format: dateTime
           example: "2022.10.10"
-        
-  
+
+
     ApiResponse:
       type: object
       properties:

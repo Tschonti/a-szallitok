@@ -8,6 +8,7 @@ Table User {
   firstName varchar
   lastName  varchar
   googleToken varchar
+  email varchar
   phoneNumber varchar
   vehicleId int
   isAdmin boolean
@@ -65,10 +66,7 @@ Table Vehicle {
   plateNumber varchar
   type varchar
   yearOfManufacturing int
-  maxWeight int
-  maxHeight int
-  maxLength int
-  maxWidth int
+  capacityId int
   location varchar
   pictureUrl varchar
  }
@@ -84,5 +82,6 @@ Ref: Delivery.id < Rating.deliveryId
 Ref: User.id < Rating.raterUserID
 Ref: User.id < Rating.ratedUserId
 Ref: Capacity.id - Delivery.capacityId
+Ref: Capacity.id - Vehicle.capacityId
 Ref: Coordinate.id - Delivery.sourceCoordId
 Ref: Coordinate.id - Delivery.destinationCoordId
