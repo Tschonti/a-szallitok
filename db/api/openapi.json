@@ -69,13 +69,99 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/User"
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 10
+                      },
+                      "firstName": {
+                        "type": "string",
+                        "example": "John"
+                      },
+                      "lastName": {
+                        "type": "string",
+                        "example": "James"
+                      },
+                      "email": {
+                        "type": "string",
+                        "example": "john@email.com"
+                      },
+                      "googletoken": {
+                        "type": "string",
+                        "example": "U2314251234234"
+                      },
+                      "phoneNumber": {
+                        "type": "string",
+                        "example": "12345"
+                      },
+                      "vehicleId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 4
+                      },
+                      "isAdmin": {
+                        "type": "boolean",
+                        "example": false
+                      },
+                      "profilePictureUrl": {
+                        "type": "string",
+                        "example": "files:///defaultImage.png"
+                      }
+                    },
+                    "xml": {
+                      "name": "user"
+                    }
                   }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "firstName": {
+                      "type": "string",
+                      "example": "John"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "example": "James"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "john@email.com"
+                    },
+                    "googletoken": {
+                      "type": "string",
+                      "example": "U2314251234234"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "example": "12345"
+                    },
+                    "vehicleId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "isAdmin": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "profilePictureUrl": {
+                      "type": "string",
+                      "example": "files:///defaultImage.png"
+                    }
+                  },
+                  "xml": {
+                    "name": "user"
+                  }
                 }
               }
             }
@@ -102,17 +188,146 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/User"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "example": "John"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "James"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john@email.com"
+                  },
+                  "googletoken": {
+                    "type": "string",
+                    "example": "U2314251234234"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "vehicleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "isAdmin": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "profilePictureUrl": {
+                    "type": "string",
+                    "example": "files:///defaultImage.png"
+                  }
+                },
+                "xml": {
+                  "name": "user"
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/User"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "example": "John"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "James"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john@email.com"
+                  },
+                  "googletoken": {
+                    "type": "string",
+                    "example": "U2314251234234"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "vehicleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "isAdmin": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "profilePictureUrl": {
+                    "type": "string",
+                    "example": "files:///defaultImage.png"
+                  }
+                },
+                "xml": {
+                  "name": "user"
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/User"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "example": "John"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "James"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john@email.com"
+                  },
+                  "googletoken": {
+                    "type": "string",
+                    "example": "U2314251234234"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "vehicleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "isAdmin": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "profilePictureUrl": {
+                    "type": "string",
+                    "example": "files:///defaultImage.png"
+                  }
+                },
+                "xml": {
+                  "name": "user"
+                }
               }
             }
           },
@@ -124,12 +339,98 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "firstName": {
+                      "type": "string",
+                      "example": "John"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "example": "James"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "john@email.com"
+                    },
+                    "googletoken": {
+                      "type": "string",
+                      "example": "U2314251234234"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "example": "12345"
+                    },
+                    "vehicleId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "isAdmin": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "profilePictureUrl": {
+                      "type": "string",
+                      "example": "files:///defaultImage.png"
+                    }
+                  },
+                  "xml": {
+                    "name": "user"
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "firstName": {
+                      "type": "string",
+                      "example": "John"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "example": "James"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "john@email.com"
+                    },
+                    "googletoken": {
+                      "type": "string",
+                      "example": "U2314251234234"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "example": "12345"
+                    },
+                    "vehicleId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "isAdmin": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "profilePictureUrl": {
+                      "type": "string",
+                      "example": "files:///defaultImage.png"
+                    }
+                  },
+                  "xml": {
+                    "name": "user"
+                  }
                 }
               }
             }
@@ -174,12 +475,98 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "firstName": {
+                      "type": "string",
+                      "example": "John"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "example": "James"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "john@email.com"
+                    },
+                    "googletoken": {
+                      "type": "string",
+                      "example": "U2314251234234"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "example": "12345"
+                    },
+                    "vehicleId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "isAdmin": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "profilePictureUrl": {
+                      "type": "string",
+                      "example": "files:///defaultImage.png"
+                    }
+                  },
+                  "xml": {
+                    "name": "user"
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "firstName": {
+                      "type": "string",
+                      "example": "John"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "example": "James"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "john@email.com"
+                    },
+                    "googletoken": {
+                      "type": "string",
+                      "example": "U2314251234234"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "example": "12345"
+                    },
+                    "vehicleId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "isAdmin": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "profilePictureUrl": {
+                      "type": "string",
+                      "example": "files:///defaultImage.png"
+                    }
+                  },
+                  "xml": {
+                    "name": "user"
+                  }
                 }
               }
             }
@@ -227,17 +614,146 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/User"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "example": "John"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "James"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john@email.com"
+                  },
+                  "googletoken": {
+                    "type": "string",
+                    "example": "U2314251234234"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "vehicleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "isAdmin": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "profilePictureUrl": {
+                    "type": "string",
+                    "example": "files:///defaultImage.png"
+                  }
+                },
+                "xml": {
+                  "name": "user"
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/User"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "example": "John"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "James"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john@email.com"
+                  },
+                  "googletoken": {
+                    "type": "string",
+                    "example": "U2314251234234"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "vehicleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "isAdmin": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "profilePictureUrl": {
+                    "type": "string",
+                    "example": "files:///defaultImage.png"
+                  }
+                },
+                "xml": {
+                  "name": "user"
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/User"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "example": "John"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "James"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john@email.com"
+                  },
+                  "googletoken": {
+                    "type": "string",
+                    "example": "U2314251234234"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "vehicleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "isAdmin": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "profilePictureUrl": {
+                    "type": "string",
+                    "example": "files:///defaultImage.png"
+                  }
+                },
+                "xml": {
+                  "name": "user"
+                }
               }
             }
           },
@@ -249,12 +765,98 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "firstName": {
+                      "type": "string",
+                      "example": "John"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "example": "James"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "john@email.com"
+                    },
+                    "googletoken": {
+                      "type": "string",
+                      "example": "U2314251234234"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "example": "12345"
+                    },
+                    "vehicleId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "isAdmin": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "profilePictureUrl": {
+                      "type": "string",
+                      "example": "files:///defaultImage.png"
+                    }
+                  },
+                  "xml": {
+                    "name": "user"
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "firstName": {
+                      "type": "string",
+                      "example": "John"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "example": "James"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "john@email.com"
+                    },
+                    "googletoken": {
+                      "type": "string",
+                      "example": "U2314251234234"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "example": "12345"
+                    },
+                    "vehicleId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "isAdmin": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "profilePictureUrl": {
+                      "type": "string",
+                      "example": "files:///defaultImage.png"
+                    }
+                  },
+                  "xml": {
+                    "name": "user"
+                  }
                 }
               }
             }
@@ -286,17 +888,119 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Vehicle"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "plateNumber": {
+                    "type": "string",
+                    "example": "AD0000"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "Volkswagen Transporter"
+                  },
+                  "yearOfManufacturing": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2008
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "locationId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Vehicle"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "plateNumber": {
+                    "type": "string",
+                    "example": "AD0000"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "Volkswagen Transporter"
+                  },
+                  "yearOfManufacturing": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2008
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "locationId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Vehicle"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "plateNumber": {
+                    "type": "string",
+                    "example": "AD0000"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "Volkswagen Transporter"
+                  },
+                  "yearOfManufacturing": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2008
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "locationId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  }
+                }
               }
             }
           },
@@ -308,12 +1012,80 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Vehicle"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "plateNumber": {
+                      "type": "string",
+                      "example": "AD0000"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "Volkswagen Transporter"
+                    },
+                    "yearOfManufacturing": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2008
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "locationId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Vehicle"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "plateNumber": {
+                      "type": "string",
+                      "example": "AD0000"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "Volkswagen Transporter"
+                    },
+                    "yearOfManufacturing": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2008
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "locationId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    }
+                  }
                 }
               }
             }
@@ -343,17 +1115,119 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Vehicle"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "plateNumber": {
+                    "type": "string",
+                    "example": "AD0000"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "Volkswagen Transporter"
+                  },
+                  "yearOfManufacturing": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2008
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "locationId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Vehicle"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "plateNumber": {
+                    "type": "string",
+                    "example": "AD0000"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "Volkswagen Transporter"
+                  },
+                  "yearOfManufacturing": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2008
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "locationId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Vehicle"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "plateNumber": {
+                    "type": "string",
+                    "example": "AD0000"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "Volkswagen Transporter"
+                  },
+                  "yearOfManufacturing": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2008
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "locationId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  }
+                }
               }
             }
           },
@@ -365,12 +1239,80 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Vehicle"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "plateNumber": {
+                      "type": "string",
+                      "example": "AD0000"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "Volkswagen Transporter"
+                    },
+                    "yearOfManufacturing": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2008
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "locationId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Vehicle"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "plateNumber": {
+                      "type": "string",
+                      "example": "AD0000"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "Volkswagen Transporter"
+                    },
+                    "yearOfManufacturing": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2008
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "locationId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    }
+                  }
                 }
               }
             }
@@ -415,12 +1357,80 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Vehicle"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "plateNumber": {
+                      "type": "string",
+                      "example": "AD0000"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "Volkswagen Transporter"
+                    },
+                    "yearOfManufacturing": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2008
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "locationId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Vehicle"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 10
+                    },
+                    "plateNumber": {
+                      "type": "string",
+                      "example": "AD0000"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "Volkswagen Transporter"
+                    },
+                    "yearOfManufacturing": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2008
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "locationId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    }
+                  }
                 }
               }
             }
@@ -458,17 +1468,206 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Delivery"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Brick delivery"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Please deliver it!"
+                  },
+                  "sourceCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "destinationCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "pickUpFrom": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "pickUpUntil": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  },
+                  "price": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 10000
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 4
+                  },
+                  "status": {
+                    "type": "object",
+                    "format": "DeliveryStatus"
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "updatedAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Delivery"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Brick delivery"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Please deliver it!"
+                  },
+                  "sourceCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "destinationCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "pickUpFrom": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "pickUpUntil": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  },
+                  "price": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 10000
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 4
+                  },
+                  "status": {
+                    "type": "object",
+                    "format": "DeliveryStatus"
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "updatedAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Delivery"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Brick delivery"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Please deliver it!"
+                  },
+                  "sourceCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "destinationCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "pickUpFrom": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "pickUpUntil": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  },
+                  "price": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 10000
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 4
+                  },
+                  "status": {
+                    "type": "object",
+                    "format": "DeliveryStatus"
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "updatedAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             }
           },
@@ -480,12 +1679,138 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Delivery"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Brick delivery"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Please deliver it!"
+                    },
+                    "sourceCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "destinationCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "pickUpFrom": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "pickUpUntil": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    },
+                    "price": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 10000
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 4
+                    },
+                    "status": {
+                      "type": "object",
+                      "format": "DeliveryStatus"
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "updatedAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Delivery"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Brick delivery"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Please deliver it!"
+                    },
+                    "sourceCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "destinationCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "pickUpFrom": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "pickUpUntil": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    },
+                    "price": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 10000
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 4
+                    },
+                    "status": {
+                      "type": "object",
+                      "format": "DeliveryStatus"
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "updatedAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               }
             }
@@ -515,17 +1840,206 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Delivery"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Brick delivery"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Please deliver it!"
+                  },
+                  "sourceCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "destinationCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "pickUpFrom": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "pickUpUntil": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  },
+                  "price": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 10000
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 4
+                  },
+                  "status": {
+                    "type": "object",
+                    "format": "DeliveryStatus"
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "updatedAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Delivery"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Brick delivery"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Please deliver it!"
+                  },
+                  "sourceCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "destinationCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "pickUpFrom": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "pickUpUntil": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  },
+                  "price": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 10000
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 4
+                  },
+                  "status": {
+                    "type": "object",
+                    "format": "DeliveryStatus"
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "updatedAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Delivery"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Brick delivery"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Please deliver it!"
+                  },
+                  "sourceCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "destinationCoordId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "pickUpFrom": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "pickUpUntil": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  },
+                  "price": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 10000
+                  },
+                  "capacityId": {
+                    "type": "integer",
+                    "format": "int6",
+                    "example": 4
+                  },
+                  "status": {
+                    "type": "object",
+                    "format": "DeliveryStatus"
+                  },
+                  "pictureUrl": {
+                    "type": "string",
+                    "example": "file:///defaultImage.png"
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  },
+                  "updatedAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             }
           },
@@ -537,12 +2051,138 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Delivery"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Brick delivery"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Please deliver it!"
+                    },
+                    "sourceCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "destinationCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "pickUpFrom": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "pickUpUntil": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    },
+                    "price": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 10000
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 4
+                    },
+                    "status": {
+                      "type": "object",
+                      "format": "DeliveryStatus"
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "updatedAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Delivery"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Brick delivery"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Please deliver it!"
+                    },
+                    "sourceCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "destinationCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "pickUpFrom": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "pickUpUntil": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    },
+                    "price": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 10000
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 4
+                    },
+                    "status": {
+                      "type": "object",
+                      "format": "DeliveryStatus"
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "updatedAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               }
             }
@@ -587,12 +2227,138 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Delivery"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Brick delivery"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Please deliver it!"
+                    },
+                    "sourceCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "destinationCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "pickUpFrom": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "pickUpUntil": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    },
+                    "price": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 10000
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 4
+                    },
+                    "status": {
+                      "type": "object",
+                      "format": "DeliveryStatus"
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "updatedAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Delivery"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Brick delivery"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Please deliver it!"
+                    },
+                    "sourceCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "destinationCoordId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 4
+                    },
+                    "pickUpFrom": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "pickUpUntil": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    },
+                    "price": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 10000
+                    },
+                    "capacityId": {
+                      "type": "integer",
+                      "format": "int6",
+                      "example": 4
+                    },
+                    "status": {
+                      "type": "object",
+                      "format": "DeliveryStatus"
+                    },
+                    "pictureUrl": {
+                      "type": "string",
+                      "example": "file:///defaultImage.png"
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    },
+                    "updatedAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               }
             }
@@ -630,17 +2396,98 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Rating"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "ratedUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "raterUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Rating"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "ratedUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "raterUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Rating"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "ratedUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "raterUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  }
+                }
               }
             }
           },
@@ -652,12 +2499,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Rating"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "ratedUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "raterUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Rating"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "ratedUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "raterUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    }
+                  }
                 }
               }
             }
@@ -687,17 +2588,98 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Rating"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "ratedUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "raterUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Rating"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "ratedUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "raterUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Rating"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "ratedUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "raterUserId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "createdAt": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.10"
+                  }
+                }
               }
             }
           },
@@ -709,12 +2691,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Rating"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "ratedUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "raterUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Rating"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "ratedUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "raterUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    }
+                  }
                 }
               }
             }
@@ -759,12 +2795,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Rating"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "ratedUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "raterUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Rating"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "ratedUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "raterUserId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.10"
+                    }
+                  }
                 }
               }
             }
@@ -802,17 +2892,68 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Coordinate"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 3.32
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 2.12
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Coordinate"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 3.32
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 2.12
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Coordinate"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 3.32
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 2.12
+                  }
+                }
               }
             }
           },
@@ -824,12 +2965,46 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Coordinate"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 3.32
+                    },
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 2.12
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Coordinate"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 3.32
+                    },
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 2.12
+                    }
+                  }
                 }
               }
             }
@@ -859,17 +3034,68 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Coordinate"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 3.32
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 2.12
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Coordinate"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 3.32
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 2.12
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Coordinate"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 3.32
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 2.12
+                  }
+                }
               }
             }
           },
@@ -881,12 +3107,46 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Coordinate"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 3.32
+                    },
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 2.12
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Coordinate"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 3.32
+                    },
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 2.12
+                    }
+                  }
                 }
               }
             }
@@ -931,12 +3191,46 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Coordinate"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 3.32
+                    },
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 2.12
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Coordinate"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 3.32
+                    },
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 2.12
+                    }
+                  }
                 }
               }
             }
@@ -974,17 +3268,98 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Capacity"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "weight": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 20
+                  },
+                  "height": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1
+                  },
+                  "length": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 3
+                  },
+                  "width": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Capacity"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "weight": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 20
+                  },
+                  "height": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1
+                  },
+                  "length": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 3
+                  },
+                  "width": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Capacity"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "weight": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 20
+                  },
+                  "height": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1
+                  },
+                  "length": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 3
+                  },
+                  "width": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  }
+                }
               }
             }
           },
@@ -996,12 +3371,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Capacity"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "weight": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 20
+                    },
+                    "height": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 1
+                    },
+                    "length": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 3
+                    },
+                    "width": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Capacity"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "weight": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 20
+                    },
+                    "height": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 1
+                    },
+                    "length": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 3
+                    },
+                    "width": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    }
+                  }
                 }
               }
             }
@@ -1031,17 +3460,98 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Capacity"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "weight": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 20
+                  },
+                  "height": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1
+                  },
+                  "length": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 3
+                  },
+                  "width": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Capacity"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "weight": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 20
+                  },
+                  "height": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1
+                  },
+                  "length": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 3
+                  },
+                  "width": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Capacity"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "weight": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 20
+                  },
+                  "height": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1
+                  },
+                  "length": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 3
+                  },
+                  "width": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 2
+                  }
+                }
               }
             }
           },
@@ -1053,12 +3563,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Capacity"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "weight": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 20
+                    },
+                    "height": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 1
+                    },
+                    "length": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 3
+                    },
+                    "width": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Capacity"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "weight": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 20
+                    },
+                    "height": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 1
+                    },
+                    "length": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 3
+                    },
+                    "width": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    }
+                  }
                 }
               }
             }
@@ -1103,12 +3667,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Capacity"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "weight": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 20
+                    },
+                    "height": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 1
+                    },
+                    "length": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 3
+                    },
+                    "width": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Capacity"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "weight": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 20
+                    },
+                    "height": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 1
+                    },
+                    "length": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 3
+                    },
+                    "width": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 2
+                    }
+                  }
                 }
               }
             }
@@ -1146,17 +3764,83 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeliveryToUser"
+                "type": "object",
+                "properties": {
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "status": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "updatedTime": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/DeliveryToUser"
+                "type": "object",
+                "properties": {
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "status": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "updatedTime": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/DeliveryToUser"
+                "type": "object",
+                "properties": {
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "status": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "updatedTime": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             }
           },
@@ -1168,12 +3852,56 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeliveryToUser"
+                  "type": "object",
+                  "properties": {
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "updatedTime": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeliveryToUser"
+                  "type": "object",
+                  "properties": {
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "updatedTime": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               }
             }
@@ -1203,17 +3931,83 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeliveryToUser"
+                "type": "object",
+                "properties": {
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "status": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "updatedTime": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/DeliveryToUser"
+                "type": "object",
+                "properties": {
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "status": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "updatedTime": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/DeliveryToUser"
+                "type": "object",
+                "properties": {
+                  "deliveryId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "status": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 5
+                  },
+                  "updatedTime": {
+                    "type": "object",
+                    "format": "dateTime",
+                    "example": "2022.10.20"
+                  }
+                }
               }
             }
           },
@@ -1225,12 +4019,56 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeliveryToUser"
+                  "type": "object",
+                  "properties": {
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "updatedTime": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeliveryToUser"
+                  "type": "object",
+                  "properties": {
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "updatedTime": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               }
             }
@@ -1249,14 +4087,14 @@
         ]
       }
     },
-    "/deliverytouser/{ID}": {
+    "/deliverytouser/bydeliveryid/{ID}": {
       "get": {
         "tags": [
           "deliverytouser"
         ],
-        "summary": "Find deliverytouser by ID",
+        "summary": "Find deliverytouser by delivery ID",
         "description": "Returns a single deliverytouser",
-        "operationId": "getDeliveryToUserById",
+        "operationId": "getDeliveryToUserByDeliveryId",
         "parameters": [
           {
             "name": "ID",
@@ -1275,12 +4113,156 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeliveryToUser"
+                  "type": "object",
+                  "properties": {
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "updatedTime": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeliveryToUser"
+                  "type": "object",
+                  "properties": {
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "updatedTime": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "DeliveryToUser not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "petstore_auth": [
+              "write:DeliveryToUser",
+              "read:DeliveryToUser"
+            ]
+          }
+        ]
+      }
+    },
+    "/deliverytouser/byuserid/{ID}": {
+      "get": {
+        "tags": [
+          "deliverytouser"
+        ],
+        "summary": "Find deliverytouser by user ID",
+        "description": "Returns a single deliverytouser",
+        "operationId": "getDeliveryToUserByUserId",
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID of deliverytouser to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "updatedTime": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 5
+                    },
+                    "updatedTime": {
+                      "type": "object",
+                      "format": "dateTime",
+                      "example": "2022.10.20"
+                    }
+                  }
                 }
               }
             }
@@ -1587,12 +4569,98 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/User"
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 10
+                },
+                "firstName": {
+                  "type": "string",
+                  "example": "John"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "James"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "john@email.com"
+                },
+                "googletoken": {
+                  "type": "string",
+                  "example": "U2314251234234"
+                },
+                "phoneNumber": {
+                  "type": "string",
+                  "example": "12345"
+                },
+                "vehicleId": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 4
+                },
+                "isAdmin": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "profilePictureUrl": {
+                  "type": "string",
+                  "example": "files:///defaultImage.png"
+                }
+              },
+              "xml": {
+                "name": "user"
+              }
             }
           },
           "application/xml": {
             "schema": {
-              "$ref": "#/components/schemas/User"
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 10
+                },
+                "firstName": {
+                  "type": "string",
+                  "example": "John"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "James"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "john@email.com"
+                },
+                "googletoken": {
+                  "type": "string",
+                  "example": "U2314251234234"
+                },
+                "phoneNumber": {
+                  "type": "string",
+                  "example": "12345"
+                },
+                "vehicleId": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 4
+                },
+                "isAdmin": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "profilePictureUrl": {
+                  "type": "string",
+                  "example": "files:///defaultImage.png"
+                }
+              },
+              "xml": {
+                "name": "user"
+              }
             }
           }
         }
@@ -1604,7 +4672,50 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/User"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 10
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "example": "John"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "James"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john@email.com"
+                  },
+                  "googletoken": {
+                    "type": "string",
+                    "example": "U2314251234234"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "vehicleId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 4
+                  },
+                  "isAdmin": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "profilePictureUrl": {
+                    "type": "string",
+                    "example": "files:///defaultImage.png"
+                  }
+                },
+                "xml": {
+                  "name": "user"
+                }
               }
             }
           }

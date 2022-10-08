@@ -14,7 +14,6 @@ externalDocs:
   url: TODO
 servers:
   - url: TODO
-
 tags:
   - name: user
     description: Informations about the users
@@ -46,10 +45,74 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/User'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 10
+                    firstName:
+                      type: string
+                      example: John
+                    lastName:
+                      type: string
+                      example: James
+                    email:
+                      type: string
+                      example: john@email.com
+                    googletoken:
+                      type: string
+                      example: U2314251234234
+                    phoneNumber:
+                      type: string
+                      example: '12345'
+                    vehicleId:
+                      type: integer
+                      format: int64
+                      example: 4
+                    isAdmin:
+                      type: boolean
+                      example: false
+                    profilePictureUrl:
+                      type: string
+                      example: files:///defaultImage.png
+                  xml:
+                    name: user
             application/xml:
               schema:
-                $ref: '#/components/schemas/User'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  firstName:
+                    type: string
+                    example: John
+                  lastName:
+                    type: string
+                    example: James
+                  email:
+                    type: string
+                    example: john@email.com
+                  googletoken:
+                    type: string
+                    example: U2314251234234
+                  phoneNumber:
+                    type: string
+                    example: '12345'
+                  vehicleId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  isAdmin:
+                    type: boolean
+                    example: false
+                  profilePictureUrl:
+                    type: string
+                    example: files:///defaultImage.png
+                xml:
+                  name: user
       security:
         - petstore_auth:
             - write:User
@@ -65,13 +128,109 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                firstName:
+                  type: string
+                  example: John
+                lastName:
+                  type: string
+                  example: James
+                email:
+                  type: string
+                  example: john@email.com
+                googletoken:
+                  type: string
+                  example: U2314251234234
+                phoneNumber:
+                  type: string
+                  example: '12345'
+                vehicleId:
+                  type: integer
+                  format: int64
+                  example: 4
+                isAdmin:
+                  type: boolean
+                  example: false
+                profilePictureUrl:
+                  type: string
+                  example: files:///defaultImage.png
+              xml:
+                name: user
           application/xml:
             schema:
-              $ref: '#/components/schemas/User'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                firstName:
+                  type: string
+                  example: John
+                lastName:
+                  type: string
+                  example: James
+                email:
+                  type: string
+                  example: john@email.com
+                googletoken:
+                  type: string
+                  example: U2314251234234
+                phoneNumber:
+                  type: string
+                  example: '12345'
+                vehicleId:
+                  type: integer
+                  format: int64
+                  example: 4
+                isAdmin:
+                  type: boolean
+                  example: false
+                profilePictureUrl:
+                  type: string
+                  example: files:///defaultImage.png
+              xml:
+                name: user
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/User'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                firstName:
+                  type: string
+                  example: John
+                lastName:
+                  type: string
+                  example: James
+                email:
+                  type: string
+                  example: john@email.com
+                googletoken:
+                  type: string
+                  example: U2314251234234
+                phoneNumber:
+                  type: string
+                  example: '12345'
+                vehicleId:
+                  type: integer
+                  format: int64
+                  example: 4
+                isAdmin:
+                  type: boolean
+                  example: false
+                profilePictureUrl:
+                  type: string
+                  example: files:///defaultImage.png
+              xml:
+                name: user
         required: true
       responses:
         '200':
@@ -79,10 +238,74 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  firstName:
+                    type: string
+                    example: John
+                  lastName:
+                    type: string
+                    example: James
+                  email:
+                    type: string
+                    example: john@email.com
+                  googletoken:
+                    type: string
+                    example: U2314251234234
+                  phoneNumber:
+                    type: string
+                    example: '12345'
+                  vehicleId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  isAdmin:
+                    type: boolean
+                    example: false
+                  profilePictureUrl:
+                    type: string
+                    example: files:///defaultImage.png
+                xml:
+                  name: user
             application/xml:
               schema:
-                $ref: '#/components/schemas/User'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  firstName:
+                    type: string
+                    example: John
+                  lastName:
+                    type: string
+                    example: James
+                  email:
+                    type: string
+                    example: john@email.com
+                  googletoken:
+                    type: string
+                    example: U2314251234234
+                  phoneNumber:
+                    type: string
+                    example: '12345'
+                  vehicleId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  isAdmin:
+                    type: boolean
+                    example: false
+                  profilePictureUrl:
+                    type: string
+                    example: files:///defaultImage.png
+                xml:
+                  name: user
         '400':
           description: Bad Request
       security:
@@ -110,10 +333,74 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  firstName:
+                    type: string
+                    example: John
+                  lastName:
+                    type: string
+                    example: James
+                  email:
+                    type: string
+                    example: john@email.com
+                  googletoken:
+                    type: string
+                    example: U2314251234234
+                  phoneNumber:
+                    type: string
+                    example: '12345'
+                  vehicleId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  isAdmin:
+                    type: boolean
+                    example: false
+                  profilePictureUrl:
+                    type: string
+                    example: files:///defaultImage.png
+                xml:
+                  name: user
             application/xml:
               schema:
-                $ref: '#/components/schemas/User'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  firstName:
+                    type: string
+                    example: John
+                  lastName:
+                    type: string
+                    example: James
+                  email:
+                    type: string
+                    example: john@email.com
+                  googletoken:
+                    type: string
+                    example: U2314251234234
+                  phoneNumber:
+                    type: string
+                    example: '12345'
+                  vehicleId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  isAdmin:
+                    type: boolean
+                    example: false
+                  profilePictureUrl:
+                    type: string
+                    example: files:///defaultImage.png
+                xml:
+                  name: user
         '400':
           description: Invalid ID supplied
         '404':
@@ -142,13 +429,109 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                firstName:
+                  type: string
+                  example: John
+                lastName:
+                  type: string
+                  example: James
+                email:
+                  type: string
+                  example: john@email.com
+                googletoken:
+                  type: string
+                  example: U2314251234234
+                phoneNumber:
+                  type: string
+                  example: '12345'
+                vehicleId:
+                  type: integer
+                  format: int64
+                  example: 4
+                isAdmin:
+                  type: boolean
+                  example: false
+                profilePictureUrl:
+                  type: string
+                  example: files:///defaultImage.png
+              xml:
+                name: user
           application/xml:
             schema:
-              $ref: '#/components/schemas/User'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                firstName:
+                  type: string
+                  example: John
+                lastName:
+                  type: string
+                  example: James
+                email:
+                  type: string
+                  example: john@email.com
+                googletoken:
+                  type: string
+                  example: U2314251234234
+                phoneNumber:
+                  type: string
+                  example: '12345'
+                vehicleId:
+                  type: integer
+                  format: int64
+                  example: 4
+                isAdmin:
+                  type: boolean
+                  example: false
+                profilePictureUrl:
+                  type: string
+                  example: files:///defaultImage.png
+              xml:
+                name: user
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/User'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                firstName:
+                  type: string
+                  example: John
+                lastName:
+                  type: string
+                  example: James
+                email:
+                  type: string
+                  example: john@email.com
+                googletoken:
+                  type: string
+                  example: U2314251234234
+                phoneNumber:
+                  type: string
+                  example: '12345'
+                vehicleId:
+                  type: integer
+                  format: int64
+                  example: 4
+                isAdmin:
+                  type: boolean
+                  example: false
+                profilePictureUrl:
+                  type: string
+                  example: files:///defaultImage.png
+              xml:
+                name: user
         required: true
       responses:
         '200':
@@ -156,17 +539,80 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  firstName:
+                    type: string
+                    example: John
+                  lastName:
+                    type: string
+                    example: James
+                  email:
+                    type: string
+                    example: john@email.com
+                  googletoken:
+                    type: string
+                    example: U2314251234234
+                  phoneNumber:
+                    type: string
+                    example: '12345'
+                  vehicleId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  isAdmin:
+                    type: boolean
+                    example: false
+                  profilePictureUrl:
+                    type: string
+                    example: files:///defaultImage.png
+                xml:
+                  name: user
             application/xml:
               schema:
-                $ref: '#/components/schemas/User'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  firstName:
+                    type: string
+                    example: John
+                  lastName:
+                    type: string
+                    example: James
+                  email:
+                    type: string
+                    example: john@email.com
+                  googletoken:
+                    type: string
+                    example: U2314251234234
+                  phoneNumber:
+                    type: string
+                    example: '12345'
+                  vehicleId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  isAdmin:
+                    type: boolean
+                    example: false
+                  profilePictureUrl:
+                    type: string
+                    example: files:///defaultImage.png
+                xml:
+                  name: user
         '405':
           description: Invalid input
       security:
         - petstore_auth:
             - write:User
             - read:User
-
   /vehicle:
     post:
       tags:
@@ -179,13 +625,91 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Vehicle'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                plateNumber:
+                  type: string
+                  example: AD0000
+                type:
+                  type: string
+                  example: Volkswagen Transporter
+                yearOfManufacturing:
+                  type: integer
+                  format: int64
+                  example: 2008
+                capacityId:
+                  type: integer
+                  format: int64
+                  example: 2
+                locationId:
+                  type: integer
+                  format: int64
+                  example: 2
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
           application/xml:
             schema:
-              $ref: '#/components/schemas/Vehicle'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                plateNumber:
+                  type: string
+                  example: AD0000
+                type:
+                  type: string
+                  example: Volkswagen Transporter
+                yearOfManufacturing:
+                  type: integer
+                  format: int64
+                  example: 2008
+                capacityId:
+                  type: integer
+                  format: int64
+                  example: 2
+                locationId:
+                  type: integer
+                  format: int64
+                  example: 2
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Vehicle'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                plateNumber:
+                  type: string
+                  example: AD0000
+                type:
+                  type: string
+                  example: Volkswagen Transporter
+                yearOfManufacturing:
+                  type: integer
+                  format: int64
+                  example: 2008
+                capacityId:
+                  type: integer
+                  format: int64
+                  example: 2
+                locationId:
+                  type: integer
+                  format: int64
+                  example: 2
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
         required: true
       responses:
         '200':
@@ -193,17 +717,68 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Vehicle'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  plateNumber:
+                    type: string
+                    example: AD0000
+                  type:
+                    type: string
+                    example: Volkswagen Transporter
+                  yearOfManufacturing:
+                    type: integer
+                    format: int64
+                    example: 2008
+                  capacityId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  locationId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
             application/xml:
               schema:
-                $ref: '#/components/schemas/Vehicle'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  plateNumber:
+                    type: string
+                    example: AD0000
+                  type:
+                    type: string
+                    example: Volkswagen Transporter
+                  yearOfManufacturing:
+                    type: integer
+                    format: int64
+                    example: 2008
+                  capacityId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  locationId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
         '405':
           description: Invalid input
       security:
         - petstore_auth:
             - write:Vehicle
             - read:Vehicle
-
     put:
       tags:
         - vehicle
@@ -215,13 +790,91 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Vehicle'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                plateNumber:
+                  type: string
+                  example: AD0000
+                type:
+                  type: string
+                  example: Volkswagen Transporter
+                yearOfManufacturing:
+                  type: integer
+                  format: int64
+                  example: 2008
+                capacityId:
+                  type: integer
+                  format: int64
+                  example: 2
+                locationId:
+                  type: integer
+                  format: int64
+                  example: 2
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
           application/xml:
             schema:
-              $ref: '#/components/schemas/Vehicle'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                plateNumber:
+                  type: string
+                  example: AD0000
+                type:
+                  type: string
+                  example: Volkswagen Transporter
+                yearOfManufacturing:
+                  type: integer
+                  format: int64
+                  example: 2008
+                capacityId:
+                  type: integer
+                  format: int64
+                  example: 2
+                locationId:
+                  type: integer
+                  format: int64
+                  example: 2
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Vehicle'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                plateNumber:
+                  type: string
+                  example: AD0000
+                type:
+                  type: string
+                  example: Volkswagen Transporter
+                yearOfManufacturing:
+                  type: integer
+                  format: int64
+                  example: 2008
+                capacityId:
+                  type: integer
+                  format: int64
+                  example: 2
+                locationId:
+                  type: integer
+                  format: int64
+                  example: 2
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
         required: true
       responses:
         '200':
@@ -229,17 +882,68 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Vehicle'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  plateNumber:
+                    type: string
+                    example: AD0000
+                  type:
+                    type: string
+                    example: Volkswagen Transporter
+                  yearOfManufacturing:
+                    type: integer
+                    format: int64
+                    example: 2008
+                  capacityId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  locationId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
             application/xml:
               schema:
-                $ref: '#/components/schemas/Vehicle'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  plateNumber:
+                    type: string
+                    example: AD0000
+                  type:
+                    type: string
+                    example: Volkswagen Transporter
+                  yearOfManufacturing:
+                    type: integer
+                    format: int64
+                    example: 2008
+                  capacityId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  locationId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
         '405':
           description: Invalid input
       security:
         - petstore_auth:
             - write:Vehicle
             - read:Vehicle
-
   /vehicle/{ID}:
     get:
       tags:
@@ -261,10 +965,62 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Vehicle'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  plateNumber:
+                    type: string
+                    example: AD0000
+                  type:
+                    type: string
+                    example: Volkswagen Transporter
+                  yearOfManufacturing:
+                    type: integer
+                    format: int64
+                    example: 2008
+                  capacityId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  locationId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
             application/xml:
               schema:
-                $ref: '#/components/schemas/Vehicle'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  plateNumber:
+                    type: string
+                    example: AD0000
+                  type:
+                    type: string
+                    example: Volkswagen Transporter
+                  yearOfManufacturing:
+                    type: integer
+                    format: int64
+                    example: 2008
+                  capacityId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  locationId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
         '400':
           description: Invalid ID supplied
         '404':
@@ -274,7 +1030,6 @@ paths:
         - petstore_auth:
             - write:Vehicle
             - read:Vehicle
-
   /delivery:
     post:
       tags:
@@ -287,13 +1042,160 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Delivery'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                title:
+                  type: string
+                  example: Brick delivery
+                description:
+                  type: string
+                  example: Please deliver it!
+                sourceCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                destinationCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                pickUpFrom:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                pickUpUntil:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
+                price:
+                  type: integer
+                  format: int6
+                  example: 10000
+                capacityId:
+                  type: integer
+                  format: int6
+                  example: 4
+                status:
+                  type: object
+                  format: DeliveryStatus
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                updatedAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
           application/xml:
             schema:
-              $ref: '#/components/schemas/Delivery'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                title:
+                  type: string
+                  example: Brick delivery
+                description:
+                  type: string
+                  example: Please deliver it!
+                sourceCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                destinationCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                pickUpFrom:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                pickUpUntil:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
+                price:
+                  type: integer
+                  format: int6
+                  example: 10000
+                capacityId:
+                  type: integer
+                  format: int6
+                  example: 4
+                status:
+                  type: object
+                  format: DeliveryStatus
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                updatedAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Delivery'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                title:
+                  type: string
+                  example: Brick delivery
+                description:
+                  type: string
+                  example: Please deliver it!
+                sourceCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                destinationCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                pickUpFrom:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                pickUpUntil:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
+                price:
+                  type: integer
+                  format: int6
+                  example: 10000
+                capacityId:
+                  type: integer
+                  format: int6
+                  example: 4
+                status:
+                  type: object
+                  format: DeliveryStatus
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                updatedAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
         required: true
       responses:
         '200':
@@ -301,17 +1203,114 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Delivery'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  title:
+                    type: string
+                    example: Brick delivery
+                  description:
+                    type: string
+                    example: Please deliver it!
+                  sourceCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  destinationCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  pickUpFrom:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  pickUpUntil:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
+                  price:
+                    type: integer
+                    format: int6
+                    example: 10000
+                  capacityId:
+                    type: integer
+                    format: int6
+                    example: 4
+                  status:
+                    type: object
+                    format: DeliveryStatus
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  updatedAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
             application/xml:
               schema:
-                $ref: '#/components/schemas/Delivery'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  title:
+                    type: string
+                    example: Brick delivery
+                  description:
+                    type: string
+                    example: Please deliver it!
+                  sourceCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  destinationCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  pickUpFrom:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  pickUpUntil:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
+                  price:
+                    type: integer
+                    format: int6
+                    example: 10000
+                  capacityId:
+                    type: integer
+                    format: int6
+                    example: 4
+                  status:
+                    type: object
+                    format: DeliveryStatus
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  updatedAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
         '405':
           description: Invalid input
       security:
         - petstore_auth:
             - write:Delivery
             - read:Delivery
-
     put:
       tags:
         - delivery
@@ -323,13 +1322,160 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Delivery'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                title:
+                  type: string
+                  example: Brick delivery
+                description:
+                  type: string
+                  example: Please deliver it!
+                sourceCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                destinationCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                pickUpFrom:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                pickUpUntil:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
+                price:
+                  type: integer
+                  format: int6
+                  example: 10000
+                capacityId:
+                  type: integer
+                  format: int6
+                  example: 4
+                status:
+                  type: object
+                  format: DeliveryStatus
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                updatedAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
           application/xml:
             schema:
-              $ref: '#/components/schemas/Delivery'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                title:
+                  type: string
+                  example: Brick delivery
+                description:
+                  type: string
+                  example: Please deliver it!
+                sourceCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                destinationCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                pickUpFrom:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                pickUpUntil:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
+                price:
+                  type: integer
+                  format: int6
+                  example: 10000
+                capacityId:
+                  type: integer
+                  format: int6
+                  example: 4
+                status:
+                  type: object
+                  format: DeliveryStatus
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                updatedAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Delivery'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                title:
+                  type: string
+                  example: Brick delivery
+                description:
+                  type: string
+                  example: Please deliver it!
+                sourceCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                destinationCoordId:
+                  type: integer
+                  format: int64
+                  example: 4
+                pickUpFrom:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                pickUpUntil:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
+                price:
+                  type: integer
+                  format: int6
+                  example: 10000
+                capacityId:
+                  type: integer
+                  format: int6
+                  example: 4
+                status:
+                  type: object
+                  format: DeliveryStatus
+                pictureUrl:
+                  type: string
+                  example: file:///defaultImage.png
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
+                updatedAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
         required: true
       responses:
         '200':
@@ -337,17 +1483,114 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Delivery'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  title:
+                    type: string
+                    example: Brick delivery
+                  description:
+                    type: string
+                    example: Please deliver it!
+                  sourceCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  destinationCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  pickUpFrom:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  pickUpUntil:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
+                  price:
+                    type: integer
+                    format: int6
+                    example: 10000
+                  capacityId:
+                    type: integer
+                    format: int6
+                    example: 4
+                  status:
+                    type: object
+                    format: DeliveryStatus
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  updatedAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
             application/xml:
               schema:
-                $ref: '#/components/schemas/Delivery'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  title:
+                    type: string
+                    example: Brick delivery
+                  description:
+                    type: string
+                    example: Please deliver it!
+                  sourceCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  destinationCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  pickUpFrom:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  pickUpUntil:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
+                  price:
+                    type: integer
+                    format: int6
+                    example: 10000
+                  capacityId:
+                    type: integer
+                    format: int6
+                    example: 4
+                  status:
+                    type: object
+                    format: DeliveryStatus
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  updatedAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
         '405':
           description: Invalid input
       security:
         - petstore_auth:
             - write:Delivery
             - read:Delivery
-
   /delivery/{ID}:
     get:
       tags:
@@ -369,10 +1612,108 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Delivery'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  title:
+                    type: string
+                    example: Brick delivery
+                  description:
+                    type: string
+                    example: Please deliver it!
+                  sourceCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  destinationCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  pickUpFrom:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  pickUpUntil:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
+                  price:
+                    type: integer
+                    format: int6
+                    example: 10000
+                  capacityId:
+                    type: integer
+                    format: int6
+                    example: 4
+                  status:
+                    type: object
+                    format: DeliveryStatus
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  updatedAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
             application/xml:
               schema:
-                $ref: '#/components/schemas/Delivery'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  title:
+                    type: string
+                    example: Brick delivery
+                  description:
+                    type: string
+                    example: Please deliver it!
+                  sourceCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  destinationCoordId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  pickUpFrom:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  pickUpUntil:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
+                  price:
+                    type: integer
+                    format: int6
+                    example: 10000
+                  capacityId:
+                    type: integer
+                    format: int6
+                    example: 4
+                  status:
+                    type: object
+                    format: DeliveryStatus
+                  pictureUrl:
+                    type: string
+                    example: file:///defaultImage.png
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
+                  updatedAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
         '400':
           description: Invalid ID supplied
         '404':
@@ -382,7 +1723,6 @@ paths:
         - petstore_auth:
             - write:Delivery
             - read:Delivery
-
   /rating:
     post:
       tags:
@@ -395,13 +1735,76 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Rating'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 2
+                ratedUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                raterUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
           application/xml:
             schema:
-              $ref: '#/components/schemas/Rating'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 2
+                ratedUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                raterUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Rating'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 2
+                ratedUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                raterUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
         required: true
       responses:
         '200':
@@ -409,10 +1812,52 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Rating'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  ratedUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  raterUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
             application/xml:
               schema:
-                $ref: '#/components/schemas/Rating'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  ratedUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  raterUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
         '405':
           description: Invalid input
       security:
@@ -430,13 +1875,76 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Rating'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 2
+                ratedUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                raterUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
           application/xml:
             schema:
-              $ref: '#/components/schemas/Rating'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 2
+                ratedUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                raterUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Rating'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 2
+                ratedUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                raterUserId:
+                  type: integer
+                  format: int64
+                  example: 2
+                createdAt:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.10
         required: true
       responses:
         '200':
@@ -444,17 +1952,58 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Rating'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  ratedUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  raterUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
             application/xml:
               schema:
-                $ref: '#/components/schemas/Rating'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  ratedUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  raterUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
         '405':
           description: Invalid input
       security:
         - petstore_auth:
             - write:Rating
             - read:Rating
-
   /rating/{ID}:
     get:
       tags:
@@ -476,10 +2025,52 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Rating'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  ratedUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  raterUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
             application/xml:
               schema:
-                $ref: '#/components/schemas/Rating'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  ratedUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  raterUserId:
+                    type: integer
+                    format: int64
+                    example: 2
+                  createdAt:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.10
         '400':
           description: Invalid ID supplied
         '404':
@@ -489,7 +2080,6 @@ paths:
         - petstore_auth:
             - write:Rating
             - read:Rating
-
   /coordinate:
     post:
       tags:
@@ -502,13 +2092,52 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Coordinate'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                longitude:
+                  type: number
+                  format: float
+                  example: 3.32
+                latitude:
+                  type: number
+                  format: float
+                  example: 2.12
           application/xml:
             schema:
-              $ref: '#/components/schemas/Coordinate'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                longitude:
+                  type: number
+                  format: float
+                  example: 3.32
+                latitude:
+                  type: number
+                  format: float
+                  example: 2.12
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Coordinate'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                longitude:
+                  type: number
+                  format: float
+                  example: 3.32
+                latitude:
+                  type: number
+                  format: float
+                  example: 2.12
         required: true
       responses:
         '200':
@@ -516,10 +2145,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Coordinate'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  longitude:
+                    type: number
+                    format: float
+                    example: 3.32
+                  latitude:
+                    type: number
+                    format: float
+                    example: 2.12
             application/xml:
               schema:
-                $ref: '#/components/schemas/Coordinate'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  longitude:
+                    type: number
+                    format: float
+                    example: 3.32
+                  latitude:
+                    type: number
+                    format: float
+                    example: 2.12
         '405':
           description: Invalid input
       security:
@@ -537,13 +2192,52 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Coordinate'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                longitude:
+                  type: number
+                  format: float
+                  example: 3.32
+                latitude:
+                  type: number
+                  format: float
+                  example: 2.12
           application/xml:
             schema:
-              $ref: '#/components/schemas/Coordinate'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                longitude:
+                  type: number
+                  format: float
+                  example: 3.32
+                latitude:
+                  type: number
+                  format: float
+                  example: 2.12
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Coordinate'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 2
+                longitude:
+                  type: number
+                  format: float
+                  example: 3.32
+                latitude:
+                  type: number
+                  format: float
+                  example: 2.12
         required: true
       responses:
         '200':
@@ -551,17 +2245,42 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Coordinate'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  longitude:
+                    type: number
+                    format: float
+                    example: 3.32
+                  latitude:
+                    type: number
+                    format: float
+                    example: 2.12
             application/xml:
               schema:
-                $ref: '#/components/schemas/Coordinate'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  longitude:
+                    type: number
+                    format: float
+                    example: 3.32
+                  latitude:
+                    type: number
+                    format: float
+                    example: 2.12
         '405':
           description: Invalid input
       security:
         - petstore_auth:
             - write:Coordinate
             - read:Coordinate
-
   /coordinate/{ID}:
     get:
       tags:
@@ -583,10 +2302,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Coordinate'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  longitude:
+                    type: number
+                    format: float
+                    example: 3.32
+                  latitude:
+                    type: number
+                    format: float
+                    example: 2.12
             application/xml:
               schema:
-                $ref: '#/components/schemas/Coordinate'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 2
+                  longitude:
+                    type: number
+                    format: float
+                    example: 3.32
+                  latitude:
+                    type: number
+                    format: float
+                    example: 2.12
         '400':
           description: Invalid ID supplied
         '404':
@@ -596,7 +2341,6 @@ paths:
         - petstore_auth:
             - write:Coordinate
             - read:Coordinate
-
   /capacity:
     post:
       tags:
@@ -609,13 +2353,76 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Capacity'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 5
+                weight:
+                  type: integer
+                  format: int64
+                  example: 20
+                height:
+                  type: integer
+                  format: int64
+                  example: 1
+                length:
+                  type: integer
+                  format: int64
+                  example: 3
+                width:
+                  type: integer
+                  format: int64
+                  example: 2
           application/xml:
             schema:
-              $ref: '#/components/schemas/Capacity'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 5
+                weight:
+                  type: integer
+                  format: int64
+                  example: 20
+                height:
+                  type: integer
+                  format: int64
+                  example: 1
+                length:
+                  type: integer
+                  format: int64
+                  example: 3
+                width:
+                  type: integer
+                  format: int64
+                  example: 2
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Capacity'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 5
+                weight:
+                  type: integer
+                  format: int64
+                  example: 20
+                height:
+                  type: integer
+                  format: int64
+                  example: 1
+                length:
+                  type: integer
+                  format: int64
+                  example: 3
+                width:
+                  type: integer
+                  format: int64
+                  example: 2
         required: true
       responses:
         '200':
@@ -623,10 +2430,52 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Capacity'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 5
+                  weight:
+                    type: integer
+                    format: int64
+                    example: 20
+                  height:
+                    type: integer
+                    format: int64
+                    example: 1
+                  length:
+                    type: integer
+                    format: int64
+                    example: 3
+                  width:
+                    type: integer
+                    format: int64
+                    example: 2
             application/xml:
               schema:
-                $ref: '#/components/schemas/Capacity'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 5
+                  weight:
+                    type: integer
+                    format: int64
+                    example: 20
+                  height:
+                    type: integer
+                    format: int64
+                    example: 1
+                  length:
+                    type: integer
+                    format: int64
+                    example: 3
+                  width:
+                    type: integer
+                    format: int64
+                    example: 2
         '405':
           description: Invalid input
       security:
@@ -644,13 +2493,76 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Capacity'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 5
+                weight:
+                  type: integer
+                  format: int64
+                  example: 20
+                height:
+                  type: integer
+                  format: int64
+                  example: 1
+                length:
+                  type: integer
+                  format: int64
+                  example: 3
+                width:
+                  type: integer
+                  format: int64
+                  example: 2
           application/xml:
             schema:
-              $ref: '#/components/schemas/Capacity'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 5
+                weight:
+                  type: integer
+                  format: int64
+                  example: 20
+                height:
+                  type: integer
+                  format: int64
+                  example: 1
+                length:
+                  type: integer
+                  format: int64
+                  example: 3
+                width:
+                  type: integer
+                  format: int64
+                  example: 2
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Capacity'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 5
+                weight:
+                  type: integer
+                  format: int64
+                  example: 20
+                height:
+                  type: integer
+                  format: int64
+                  example: 1
+                length:
+                  type: integer
+                  format: int64
+                  example: 3
+                width:
+                  type: integer
+                  format: int64
+                  example: 2
         required: true
       responses:
         '200':
@@ -658,17 +2570,58 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Capacity'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 5
+                  weight:
+                    type: integer
+                    format: int64
+                    example: 20
+                  height:
+                    type: integer
+                    format: int64
+                    example: 1
+                  length:
+                    type: integer
+                    format: int64
+                    example: 3
+                  width:
+                    type: integer
+                    format: int64
+                    example: 2
             application/xml:
               schema:
-                $ref: '#/components/schemas/Capacity'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 5
+                  weight:
+                    type: integer
+                    format: int64
+                    example: 20
+                  height:
+                    type: integer
+                    format: int64
+                    example: 1
+                  length:
+                    type: integer
+                    format: int64
+                    example: 3
+                  width:
+                    type: integer
+                    format: int64
+                    example: 2
         '405':
           description: Invalid input
       security:
         - petstore_auth:
             - write:Capacity
             - read:Capacity
-
   /capacity/{ID}:
     get:
       tags:
@@ -690,10 +2643,52 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Capacity'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 5
+                  weight:
+                    type: integer
+                    format: int64
+                    example: 20
+                  height:
+                    type: integer
+                    format: int64
+                    example: 1
+                  length:
+                    type: integer
+                    format: int64
+                    example: 3
+                  width:
+                    type: integer
+                    format: int64
+                    example: 2
             application/xml:
               schema:
-                $ref: '#/components/schemas/Capacity'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 5
+                  weight:
+                    type: integer
+                    format: int64
+                    example: 20
+                  height:
+                    type: integer
+                    format: int64
+                    example: 1
+                  length:
+                    type: integer
+                    format: int64
+                    example: 3
+                  width:
+                    type: integer
+                    format: int64
+                    example: 2
         '400':
           description: Invalid ID supplied
         '404':
@@ -703,8 +2698,6 @@ paths:
         - petstore_auth:
             - write:Capacity
             - read:Capacity
-
-
   /deliverytouser:
     post:
       tags:
@@ -717,13 +2710,64 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DeliveryToUser'
+              type: object
+              properties:
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 5
+                userId:
+                  type: integer
+                  format: int64
+                  example: 5
+                status:
+                  type: integer
+                  format: int64
+                  example: 5
+                updatedTime:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
           application/xml:
             schema:
-              $ref: '#/components/schemas/DeliveryToUser'
+              type: object
+              properties:
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 5
+                userId:
+                  type: integer
+                  format: int64
+                  example: 5
+                status:
+                  type: integer
+                  format: int64
+                  example: 5
+                updatedTime:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/DeliveryToUser'
+              type: object
+              properties:
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 5
+                userId:
+                  type: integer
+                  format: int64
+                  example: 5
+                status:
+                  type: integer
+                  format: int64
+                  example: 5
+                updatedTime:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
         required: true
       responses:
         '200':
@@ -731,10 +2775,44 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeliveryToUser'
+                type: object
+                properties:
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  userId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  status:
+                    type: integer
+                    format: int64
+                    example: 5
+                  updatedTime:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
             application/xml:
               schema:
-                $ref: '#/components/schemas/DeliveryToUser'
+                type: object
+                properties:
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  userId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  status:
+                    type: integer
+                    format: int64
+                    example: 5
+                  updatedTime:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
         '405':
           description: Invalid input
       security:
@@ -752,13 +2830,64 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DeliveryToUser'
+              type: object
+              properties:
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 5
+                userId:
+                  type: integer
+                  format: int64
+                  example: 5
+                status:
+                  type: integer
+                  format: int64
+                  example: 5
+                updatedTime:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
           application/xml:
             schema:
-              $ref: '#/components/schemas/DeliveryToUser'
+              type: object
+              properties:
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 5
+                userId:
+                  type: integer
+                  format: int64
+                  example: 5
+                status:
+                  type: integer
+                  format: int64
+                  example: 5
+                updatedTime:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/DeliveryToUser'
+              type: object
+              properties:
+                deliveryId:
+                  type: integer
+                  format: int64
+                  example: 5
+                userId:
+                  type: integer
+                  format: int64
+                  example: 5
+                status:
+                  type: integer
+                  format: int64
+                  example: 5
+                updatedTime:
+                  type: object
+                  format: dateTime
+                  example: 2022.10.20
         required: true
       responses:
         '200':
@@ -766,24 +2895,57 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeliveryToUser'
+                type: object
+                properties:
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  userId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  status:
+                    type: integer
+                    format: int64
+                    example: 5
+                  updatedTime:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
             application/xml:
               schema:
-                $ref: '#/components/schemas/DeliveryToUser'
+                type: object
+                properties:
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  userId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  status:
+                    type: integer
+                    format: int64
+                    example: 5
+                  updatedTime:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
         '405':
           description: Invalid input
       security:
         - petstore_auth:
             - write:DeliveryToUser
             - read:DeliveryToUser
-
-  /deliverytouser/{ID}:
+  /deliverytouser/bydeliveryid/{ID}:
     get:
       tags:
         - deliverytouser
-      summary: Find deliverytouser by ID
+      summary: Find deliverytouser by delivery ID
       description: Returns a single deliverytouser
-      operationId: getDeliveryToUserById
+      operationId: getDeliveryToUserByDeliveryId
       parameters:
         - name: ID
           in: path
@@ -798,10 +2960,44 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeliveryToUser'
+                type: object
+                properties:
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  userId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  status:
+                    type: integer
+                    format: int64
+                    example: 5
+                  updatedTime:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
             application/xml:
               schema:
-                $ref: '#/components/schemas/DeliveryToUser'
+                type: object
+                properties:
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  userId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  status:
+                    type: integer
+                    format: int64
+                    example: 5
+                  updatedTime:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
         '400':
           description: Invalid ID supplied
         '404':
@@ -811,7 +3007,74 @@ paths:
         - petstore_auth:
             - write:DeliveryToUser
             - read:DeliveryToUser
-
+  /deliverytouser/byuserid/{ID}:
+    get:
+      tags:
+        - deliverytouser
+      summary: Find deliverytouser by user ID
+      description: Returns a single deliverytouser
+      operationId: getDeliveryToUserByUserId
+      parameters:
+        - name: ID
+          in: path
+          description: ID of deliverytouser to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  userId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  status:
+                    type: integer
+                    format: int64
+                    example: 5
+                  updatedTime:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  deliveryId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  userId:
+                    type: integer
+                    format: int64
+                    example: 5
+                  status:
+                    type: integer
+                    format: int64
+                    example: 5
+                  updatedTime:
+                    type: object
+                    format: dateTime
+                    example: 2022.10.20
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: DeliveryToUser not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:DeliveryToUser
+            - read:DeliveryToUser
 components:
   schemas:
     User:
@@ -832,7 +3095,7 @@ components:
           example: john@email.com
         googletoken:
           type: string
-          example: "U2314251234234"
+          example: U2314251234234
         phoneNumber:
           type: string
           example: '12345'
@@ -845,7 +3108,7 @@ components:
           example: false
         profilePictureUrl:
           type: string
-          example: "files:///defaultImage.png"
+          example: files:///defaultImage.png
       xml:
         name: user
     Vehicle:
@@ -857,10 +3120,10 @@ components:
           example: 10
         plateNumber:
           type: string
-          example: "AD0000"
+          example: AD0000
         type:
           type: string
-          example: "Volkswagen Transporter"
+          example: Volkswagen Transporter
         yearOfManufacturing:
           type: integer
           format: int64
@@ -875,8 +3138,7 @@ components:
           example: 2
         pictureUrl:
           type: string
-          example: "file:///defaultImage.png"
-
+          example: file:///defaultImage.png
     Delivery:
       type: object
       properties:
@@ -886,10 +3148,10 @@ components:
           example: 2
         title:
           type: string
-          example: "Brick delivery"
+          example: Brick delivery
         description:
           type: string
-          example: "Please deliver it!"
+          example: Please deliver it!
         sourceCoordId:
           type: integer
           format: int64
@@ -901,11 +3163,11 @@ components:
         pickUpFrom:
           type: object
           format: dateTime
-          example: "2022.10.10"
+          example: 2022.10.10
         pickUpUntil:
           type: object
           format: dateTime
-          example: "2022.10.20"
+          example: 2022.10.20
         price:
           type: integer
           format: int6
@@ -919,16 +3181,15 @@ components:
           format: DeliveryStatus
         pictureUrl:
           type: string
-          example: "file:///defaultImage.png"
+          example: file:///defaultImage.png
         createdAt:
           type: object
           format: dateTime
-          example: "2022.10.10"
+          example: 2022.10.10
         updatedAt:
           type: object
           format: dateTime
-          example: "2022.10.20"
-
+          example: 2022.10.20
     DeliveryToUser:
       type: object
       properties:
@@ -947,8 +3208,7 @@ components:
         updatedTime:
           type: object
           format: dateTime
-          example: "2022.10.20"
-
+          example: 2022.10.20
     Capacity:
       type: object
       properties:
@@ -972,7 +3232,6 @@ components:
           type: integer
           format: int64
           example: 2
-
     Coordinate:
       type: object
       properties:
@@ -988,7 +3247,6 @@ components:
           type: number
           format: float
           example: 2.12
-
     Rating:
       type: object
       properties:
@@ -1011,9 +3269,7 @@ components:
         createdAt:
           type: object
           format: dateTime
-          example: "2022.10.10"
-
-
+          example: 2022.10.10
     ApiResponse:
       type: object
       properties:
@@ -1032,10 +3288,74 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/User'
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+                example: 10
+              firstName:
+                type: string
+                example: John
+              lastName:
+                type: string
+                example: James
+              email:
+                type: string
+                example: john@email.com
+              googletoken:
+                type: string
+                example: U2314251234234
+              phoneNumber:
+                type: string
+                example: '12345'
+              vehicleId:
+                type: integer
+                format: int64
+                example: 4
+              isAdmin:
+                type: boolean
+                example: false
+              profilePictureUrl:
+                type: string
+                example: files:///defaultImage.png
+            xml:
+              name: user
         application/xml:
           schema:
-            $ref: '#/components/schemas/User'
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+                example: 10
+              firstName:
+                type: string
+                example: John
+              lastName:
+                type: string
+                example: James
+              email:
+                type: string
+                example: john@email.com
+              googletoken:
+                type: string
+                example: U2314251234234
+              phoneNumber:
+                type: string
+                example: '12345'
+              vehicleId:
+                type: integer
+                format: int64
+                example: 4
+              isAdmin:
+                type: boolean
+                example: false
+              profilePictureUrl:
+                type: string
+                example: files:///defaultImage.png
+            xml:
+              name: user
     UserArray:
       description: List of user object
       content:
@@ -1043,7 +3363,39 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/User'
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 10
+                firstName:
+                  type: string
+                  example: John
+                lastName:
+                  type: string
+                  example: James
+                email:
+                  type: string
+                  example: john@email.com
+                googletoken:
+                  type: string
+                  example: U2314251234234
+                phoneNumber:
+                  type: string
+                  example: '12345'
+                vehicleId:
+                  type: integer
+                  format: int64
+                  example: 4
+                isAdmin:
+                  type: boolean
+                  example: false
+                profilePictureUrl:
+                  type: string
+                  example: files:///defaultImage.png
+              xml:
+                name: user
   securitySchemes:
     petstore_auth:
       type: oauth2
