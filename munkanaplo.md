@@ -7,10 +7,14 @@
 
 
 # Domonkos Ádám
+## 4. hét
 - Specifikáció kidolgozása közösen
 - Supplier alkalmazás inicializálása
 - Supplier alkalmazás tervének elkészítése Balsamiq-ban
 
+## 5. hét
+- adatbázis sémájának elkészítése közösen
+- API interfészeinek megírása
 
 # Raisz Olivér
 ## 4. hét
