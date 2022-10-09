@@ -5,6 +5,9 @@
 - Specifikáció kidolgozása közösen
 - Frontend oldalak tervének elkészítése Balsamiq-ban Levivel
 
+## 5. hét
+- adatbázis sémájának elkészítése közösen
+- webes admin felülethez az endpointok megtervezése Levivel
 
 # Domonkos Ádám
 ## 4. hét
@@ -14,7 +17,7 @@
 
 ## 5. hét
 - adatbázis sémájának elkészítése közösen
-- API interfészeinek megírása
+- API interfészeinek megírása a Supplier alkalmazáshoz
 
 # Raisz Olivér
 ## 4. hét
@@ -22,9 +25,16 @@
 - Git repó klónozása
 - Mockup elkészítése az ügyfelek alkalmazásához
 
+## 5. hét
+- adatbázis sémájának elkészítése közösen
+- API interfészeinek megírása az ügyfelek alkalmazásához
 
 # Farkasházi Levente
 ## 4. hét
 - Discord szerver elkészítése
 - Specifikáció kidolgozása közösen
 - Frontend oldalak tervének elkészítése Balsamiq-ban Samuval
+
+## 5. hét
+- adatbázis sémájának elkészítése közösen
+- webes admin felülethez az endpointok megtervezése Samuval
