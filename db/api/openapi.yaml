@@ -78,41 +78,6 @@ paths:
                       example: files:///defaultImage.png
                   xml:
                     name: user
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 10
-                  firstName:
-                    type: string
-                    example: John
-                  lastName:
-                    type: string
-                    example: James
-                  email:
-                    type: string
-                    example: john@email.com
-                  googletoken:
-                    type: string
-                    example: U2314251234234
-                  phoneNumber:
-                    type: string
-                    example: '12345'
-                  vehicleId:
-                    type: integer
-                    format: int64
-                    example: 4
-                  isAdmin:
-                    type: boolean
-                    example: false
-                  profilePictureUrl:
-                    type: string
-                    example: files:///defaultImage.png
-                xml:
-                  name: user
       security:
         - petstore_auth:
             - write:User
@@ -127,41 +92,6 @@ paths:
         description: Add a new users' profile to the database
         content:
           application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 10
-                firstName:
-                  type: string
-                  example: John
-                lastName:
-                  type: string
-                  example: James
-                email:
-                  type: string
-                  example: john@email.com
-                googletoken:
-                  type: string
-                  example: U2314251234234
-                phoneNumber:
-                  type: string
-                  example: '12345'
-                vehicleId:
-                  type: integer
-                  format: int64
-                  example: 4
-                isAdmin:
-                  type: boolean
-                  example: false
-                profilePictureUrl:
-                  type: string
-                  example: files:///defaultImage.png
-              xml:
-                name: user
-          application/xml:
             schema:
               type: object
               properties:
@@ -271,41 +201,6 @@ paths:
                     example: files:///defaultImage.png
                 xml:
                   name: user
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 10
-                  firstName:
-                    type: string
-                    example: John
-                  lastName:
-                    type: string
-                    example: James
-                  email:
-                    type: string
-                    example: john@email.com
-                  googletoken:
-                    type: string
-                    example: U2314251234234
-                  phoneNumber:
-                    type: string
-                    example: '12345'
-                  vehicleId:
-                    type: integer
-                    format: int64
-                    example: 4
-                  isAdmin:
-                    type: boolean
-                    example: false
-                  profilePictureUrl:
-                    type: string
-                    example: files:///defaultImage.png
-                xml:
-                  name: user
         '400':
           description: Bad Request
       security:
@@ -332,41 +227,6 @@ paths:
           description: successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 10
-                  firstName:
-                    type: string
-                    example: John
-                  lastName:
-                    type: string
-                    example: James
-                  email:
-                    type: string
-                    example: john@email.com
-                  googletoken:
-                    type: string
-                    example: U2314251234234
-                  phoneNumber:
-                    type: string
-                    example: '12345'
-                  vehicleId:
-                    type: integer
-                    format: int64
-                    example: 4
-                  isAdmin:
-                    type: boolean
-                    example: false
-                  profilePictureUrl:
-                    type: string
-                    example: files:///defaultImage.png
-                xml:
-                  name: user
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -462,41 +322,6 @@ paths:
                   example: files:///defaultImage.png
               xml:
                 name: user
-          application/xml:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 10
-                firstName:
-                  type: string
-                  example: John
-                lastName:
-                  type: string
-                  example: James
-                email:
-                  type: string
-                  example: john@email.com
-                googletoken:
-                  type: string
-                  example: U2314251234234
-                phoneNumber:
-                  type: string
-                  example: '12345'
-                vehicleId:
-                  type: integer
-                  format: int64
-                  example: 4
-                isAdmin:
-                  type: boolean
-                  example: false
-                profilePictureUrl:
-                  type: string
-                  example: files:///defaultImage.png
-              xml:
-                name: user
           application/x-www-form-urlencoded:
             schema:
               type: object
@@ -538,41 +363,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 10
-                  firstName:
-                    type: string
-                    example: John
-                  lastName:
-                    type: string
-                    example: James
-                  email:
-                    type: string
-                    example: john@email.com
-                  googletoken:
-                    type: string
-                    example: U2314251234234
-                  phoneNumber:
-                    type: string
-                    example: '12345'
-                  vehicleId:
-                    type: integer
-                    format: int64
-                    example: 4
-                  isAdmin:
-                    type: boolean
-                    example: false
-                  profilePictureUrl:
-                    type: string
-                    example: files:///defaultImage.png
-                xml:
-                  name: user
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -613,6 +403,170 @@ paths:
         - petstore_auth:
             - write:User
             - read:User
+    delete:
+      tags:
+        - user
+      summary: Delete user by ID
+      description: Delete a single user
+      operationId: delUserById
+      parameters:
+        - name: ID
+          in: path
+          description: ID of user to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  firstName:
+                    type: string
+                    example: John
+                  lastName:
+                    type: string
+                    example: James
+                  email:
+                    type: string
+                    example: john@email.com
+                  googletoken:
+                    type: string
+                    example: U2314251234234
+                  phoneNumber:
+                    type: string
+                    example: '12345'
+                  vehicleId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  isAdmin:
+                    type: boolean
+                    example: false
+                  profilePictureUrl:
+                    type: string
+                    example: files:///defaultImage.png
+                xml:
+                  name: user
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:User
+            - read:User
+  /user/{ID}/promote:
+    post:
+      tags:
+        - user
+      summary: Promote user by id
+      description: Promote user to admin role
+      operationId: promUserById
+      parameters:
+        - name: ID
+          in: path
+          description: ID of user to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 10
+                  firstName:
+                    type: string
+                    example: John
+                  lastName:
+                    type: string
+                    example: James
+                  email:
+                    type: string
+                    example: john@email.com
+                  googletoken:
+                    type: string
+                    example: U2314251234234
+                  phoneNumber:
+                    type: string
+                    example: '12345'
+                  vehicleId:
+                    type: integer
+                    format: int64
+                    example: 4
+                  isAdmin:
+                    type: boolean
+                    example: false
+                  profilePictureUrl:
+                    type: string
+                    example: files:///defaultImage.png
+                xml:
+                  name: user
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:User
+            - read:User
+  /user/toplist:
+    get:
+      tags:
+        - user
+      summary: Find user by ID
+      description: Returns a single user
+      operationId: getUserToplist
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 10
+                    firstName:
+                      type: string
+                      example: John
+                    lastName:
+                      type: string
+                      example: James
+                    deliveriesCompleted:
+                      type: number
+                      example: 10
+                    moneyEarned:
+                      type: number
+                      example: 100000
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:User
+            - read:User
+          
   /vehicle:
     post:
       tags:
@@ -624,35 +578,6 @@ paths:
         description: Add a new vehicle to the database
         content:
           application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 10
-                plateNumber:
-                  type: string
-                  example: AD0000
-                type:
-                  type: string
-                  example: Volkswagen Transporter
-                yearOfManufacturing:
-                  type: integer
-                  format: int64
-                  example: 2008
-                capacityId:
-                  type: integer
-                  format: int64
-                  example: 2
-                locationId:
-                  type: integer
-                  format: int64
-                  example: 2
-                pictureUrl:
-                  type: string
-                  example: file:///defaultImage.png
-          application/xml:
             schema:
               type: object
               properties:
@@ -716,35 +641,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 10
-                  plateNumber:
-                    type: string
-                    example: AD0000
-                  type:
-                    type: string
-                    example: Volkswagen Transporter
-                  yearOfManufacturing:
-                    type: integer
-                    format: int64
-                    example: 2008
-                  capacityId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  locationId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  pictureUrl:
-                    type: string
-                    example: file:///defaultImage.png
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -817,35 +713,6 @@ paths:
                 pictureUrl:
                   type: string
                   example: file:///defaultImage.png
-          application/xml:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 10
-                plateNumber:
-                  type: string
-                  example: AD0000
-                type:
-                  type: string
-                  example: Volkswagen Transporter
-                yearOfManufacturing:
-                  type: integer
-                  format: int64
-                  example: 2008
-                capacityId:
-                  type: integer
-                  format: int64
-                  example: 2
-                locationId:
-                  type: integer
-                  format: int64
-                  example: 2
-                pictureUrl:
-                  type: string
-                  example: file:///defaultImage.png
           application/x-www-form-urlencoded:
             schema:
               type: object
@@ -881,35 +748,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 10
-                  plateNumber:
-                    type: string
-                    example: AD0000
-                  type:
-                    type: string
-                    example: Volkswagen Transporter
-                  yearOfManufacturing:
-                    type: integer
-                    format: int64
-                    example: 2008
-                  capacityId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  locationId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  pictureUrl:
-                    type: string
-                    example: file:///defaultImage.png
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -992,35 +830,6 @@ paths:
                   pictureUrl:
                     type: string
                     example: file:///defaultImage.png
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 10
-                  plateNumber:
-                    type: string
-                    example: AD0000
-                  type:
-                    type: string
-                    example: Volkswagen Transporter
-                  yearOfManufacturing:
-                    type: integer
-                    format: int64
-                    example: 2008
-                  capacityId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  locationId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  pictureUrl:
-                    type: string
-                    example: file:///defaultImage.png
         '400':
           description: Invalid ID supplied
         '404':
@@ -1030,7 +839,87 @@ paths:
         - petstore_auth:
             - write:Vehicle
             - read:Vehicle
+  
   /delivery:
+    get:
+      tags:
+        - delivery
+      summary: Get all deliveries
+      description: Returns all deliveries
+      operationId: getDelivery
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 2
+                    title:
+                      type: string
+                      example: Brick delivery
+                    description:
+                      type: string
+                      example: Please deliver it!
+                    sourceCoord:
+                      type: object
+                      properties:
+                        longitude:
+                          type: number
+                          example: 14.45529
+                        latitude:
+                          type: number
+                          example: -19.47381
+                    destinationCoord:
+                      type: object
+                      properties:
+                        longitude:
+                          type: number
+                          example: -19.47381
+                        latitude:
+                          type: number
+                          example: 14.45529
+                    pickUpFrom:
+                      type: object
+                      format: dateTime
+                      example: 2022.10.10
+                    pickUpUntil:
+                      type: object
+                      format: dateTime
+                      example: 2022.10.20
+                    price:
+                      type: integer
+                      format: int6
+                      example: 10000
+                    capacityId:
+                      type: integer
+                      format: int6
+                      example: 4
+                    status:
+                      type: object
+                      format: DeliveryStatus
+                    pictureUrl:
+                      type: string
+                      example: file:///defaultImage.png
+                    createdAt:
+                      type: object
+                      format: dateTime
+                      example: 2022.10.10
+                    updatedAt:
+                      type: object
+                      format: dateTime
+                      example: 2022.10.20
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:Delivery
+            - read:Delivery
     post:
       tags:
         - delivery
@@ -1041,58 +930,6 @@ paths:
         description: Add a new ddelivery to the database
         content:
           application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 2
-                title:
-                  type: string
-                  example: Brick delivery
-                description:
-                  type: string
-                  example: Please deliver it!
-                sourceCoordId:
-                  type: integer
-                  format: int64
-                  example: 4
-                destinationCoordId:
-                  type: integer
-                  format: int64
-                  example: 4
-                pickUpFrom:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.10
-                pickUpUntil:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.20
-                price:
-                  type: integer
-                  format: int6
-                  example: 10000
-                capacityId:
-                  type: integer
-                  format: int6
-                  example: 4
-                status:
-                  type: object
-                  format: DeliveryStatus
-                pictureUrl:
-                  type: string
-                  example: file:///defaultImage.png
-                createdAt:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.10
-                updatedAt:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.20
-          application/xml:
             schema:
               type: object
               properties:
@@ -1202,58 +1039,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 2
-                  title:
-                    type: string
-                    example: Brick delivery
-                  description:
-                    type: string
-                    example: Please deliver it!
-                  sourceCoordId:
-                    type: integer
-                    format: int64
-                    example: 4
-                  destinationCoordId:
-                    type: integer
-                    format: int64
-                    example: 4
-                  pickUpFrom:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.10
-                  pickUpUntil:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.20
-                  price:
-                    type: integer
-                    format: int6
-                    example: 10000
-                  capacityId:
-                    type: integer
-                    format: int6
-                    example: 4
-                  status:
-                    type: object
-                    format: DeliveryStatus
-                  pictureUrl:
-                    type: string
-                    example: file:///defaultImage.png
-                  createdAt:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.10
-                  updatedAt:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.20
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -1372,58 +1157,6 @@ paths:
                   type: object
                   format: dateTime
                   example: 2022.10.20
-          application/xml:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 2
-                title:
-                  type: string
-                  example: Brick delivery
-                description:
-                  type: string
-                  example: Please deliver it!
-                sourceCoordId:
-                  type: integer
-                  format: int64
-                  example: 4
-                destinationCoordId:
-                  type: integer
-                  format: int64
-                  example: 4
-                pickUpFrom:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.10
-                pickUpUntil:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.20
-                price:
-                  type: integer
-                  format: int6
-                  example: 10000
-                capacityId:
-                  type: integer
-                  format: int6
-                  example: 4
-                status:
-                  type: object
-                  format: DeliveryStatus
-                pictureUrl:
-                  type: string
-                  example: file:///defaultImage.png
-                createdAt:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.10
-                updatedAt:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.20
           application/x-www-form-urlencoded:
             schema:
               type: object
@@ -1482,58 +1215,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 2
-                  title:
-                    type: string
-                    example: Brick delivery
-                  description:
-                    type: string
-                    example: Please deliver it!
-                  sourceCoordId:
-                    type: integer
-                    format: int64
-                    example: 4
-                  destinationCoordId:
-                    type: integer
-                    format: int64
-                    example: 4
-                  pickUpFrom:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.10
-                  pickUpUntil:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.20
-                  price:
-                    type: integer
-                    format: int6
-                    example: 10000
-                  capacityId:
-                    type: integer
-                    format: int6
-                    example: 4
-                  status:
-                    type: object
-                    format: DeliveryStatus
-                  pictureUrl:
-                    type: string
-                    example: file:///defaultImage.png
-                  createdAt:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.10
-                  updatedAt:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.20
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -1662,7 +1343,34 @@ paths:
                     type: object
                     format: dateTime
                     example: 2022.10.20
-            application/xml:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Vehicle not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:Delivery
+            - read:Delivery
+    delete:
+      tags:
+          - delivery
+      summary: Delete a delivery by ID
+      description: Delete a single delivery
+      operationId: delDeliveryById
+      parameters:
+        - name: ID
+          in: path
+          description: ID of the delivery to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
               schema:
                 type: object
                 properties:
@@ -1757,30 +1465,6 @@ paths:
                   type: object
                   format: dateTime
                   example: 2022.10.10
-          application/xml:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 2
-                deliveryId:
-                  type: integer
-                  format: int64
-                  example: 2
-                ratedUserId:
-                  type: integer
-                  format: int64
-                  example: 2
-                raterUserId:
-                  type: integer
-                  format: int64
-                  example: 2
-                createdAt:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.10
           application/x-www-form-urlencoded:
             schema:
               type: object
@@ -1811,30 +1495,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 2
-                  deliveryId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  ratedUserId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  raterUserId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  createdAt:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.10
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -1897,30 +1557,6 @@ paths:
                   type: object
                   format: dateTime
                   example: 2022.10.10
-          application/xml:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 2
-                deliveryId:
-                  type: integer
-                  format: int64
-                  example: 2
-                ratedUserId:
-                  type: integer
-                  format: int64
-                  example: 2
-                raterUserId:
-                  type: integer
-                  format: int64
-                  example: 2
-                createdAt:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.10
           application/x-www-form-urlencoded:
             schema:
               type: object
@@ -1951,30 +1587,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 2
-                  deliveryId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  ratedUserId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  raterUserId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  createdAt:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.10
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -2047,30 +1659,6 @@ paths:
                     type: object
                     format: dateTime
                     example: 2022.10.10
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 2
-                  deliveryId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  ratedUserId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  raterUserId:
-                    type: integer
-                    format: int64
-                    example: 2
-                  createdAt:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.10
         '400':
           description: Invalid ID supplied
         '404':
@@ -2091,22 +1679,6 @@ paths:
         description: Add a new coordinate to the database
         content:
           application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 2
-                longitude:
-                  type: number
-                  format: float
-                  example: 3.32
-                latitude:
-                  type: number
-                  format: float
-                  example: 2.12
-          application/xml:
             schema:
               type: object
               properties:
@@ -2144,22 +1716,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 2
-                  longitude:
-                    type: number
-                    format: float
-                    example: 3.32
-                  latitude:
-                    type: number
-                    format: float
-                    example: 2.12
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -2206,22 +1762,6 @@ paths:
                   type: number
                   format: float
                   example: 2.12
-          application/xml:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 2
-                longitude:
-                  type: number
-                  format: float
-                  example: 3.32
-                latitude:
-                  type: number
-                  format: float
-                  example: 2.12
           application/x-www-form-urlencoded:
             schema:
               type: object
@@ -2244,22 +1784,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 2
-                  longitude:
-                    type: number
-                    format: float
-                    example: 3.32
-                  latitude:
-                    type: number
-                    format: float
-                    example: 2.12
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -2301,22 +1825,6 @@ paths:
           description: successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 2
-                  longitude:
-                    type: number
-                    format: float
-                    example: 3.32
-                  latitude:
-                    type: number
-                    format: float
-                    example: 2.12
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -2375,30 +1883,6 @@ paths:
                   type: integer
                   format: int64
                   example: 2
-          application/xml:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 5
-                weight:
-                  type: integer
-                  format: int64
-                  example: 20
-                height:
-                  type: integer
-                  format: int64
-                  example: 1
-                length:
-                  type: integer
-                  format: int64
-                  example: 3
-                width:
-                  type: integer
-                  format: int64
-                  example: 2
           application/x-www-form-urlencoded:
             schema:
               type: object
@@ -2429,30 +1913,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 5
-                  weight:
-                    type: integer
-                    format: int64
-                    example: 20
-                  height:
-                    type: integer
-                    format: int64
-                    example: 1
-                  length:
-                    type: integer
-                    format: int64
-                    example: 3
-                  width:
-                    type: integer
-                    format: int64
-                    example: 2
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -2515,30 +1975,6 @@ paths:
                   type: integer
                   format: int64
                   example: 2
-          application/xml:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                  example: 5
-                weight:
-                  type: integer
-                  format: int64
-                  example: 20
-                height:
-                  type: integer
-                  format: int64
-                  example: 1
-                length:
-                  type: integer
-                  format: int64
-                  example: 3
-                width:
-                  type: integer
-                  format: int64
-                  example: 2
           application/x-www-form-urlencoded:
             schema:
               type: object
@@ -2569,30 +2005,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 5
-                  weight:
-                    type: integer
-                    format: int64
-                    example: 20
-                  height:
-                    type: integer
-                    format: int64
-                    example: 1
-                  length:
-                    type: integer
-                    format: int64
-                    example: 3
-                  width:
-                    type: integer
-                    format: int64
-                    example: 2
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -2665,30 +2077,6 @@ paths:
                     type: integer
                     format: int64
                     example: 2
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 5
-                  weight:
-                    type: integer
-                    format: int64
-                    example: 20
-                  height:
-                    type: integer
-                    format: int64
-                    example: 1
-                  length:
-                    type: integer
-                    format: int64
-                    example: 3
-                  width:
-                    type: integer
-                    format: int64
-                    example: 2
         '400':
           description: Invalid ID supplied
         '404':
@@ -2709,26 +2097,6 @@ paths:
         description: Add a new capacity to the deliverytouser
         content:
           application/json:
-            schema:
-              type: object
-              properties:
-                deliveryId:
-                  type: integer
-                  format: int64
-                  example: 5
-                userId:
-                  type: integer
-                  format: int64
-                  example: 5
-                status:
-                  type: integer
-                  format: int64
-                  example: 5
-                updatedTime:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.20
-          application/xml:
             schema:
               type: object
               properties:
@@ -2774,26 +2142,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  deliveryId:
-                    type: integer
-                    format: int64
-                    example: 5
-                  userId:
-                    type: integer
-                    format: int64
-                    example: 5
-                  status:
-                    type: integer
-                    format: int64
-                    example: 5
-                  updatedTime:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.20
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -2848,26 +2196,6 @@ paths:
                   type: object
                   format: dateTime
                   example: 2022.10.20
-          application/xml:
-            schema:
-              type: object
-              properties:
-                deliveryId:
-                  type: integer
-                  format: int64
-                  example: 5
-                userId:
-                  type: integer
-                  format: int64
-                  example: 5
-                status:
-                  type: integer
-                  format: int64
-                  example: 5
-                updatedTime:
-                  type: object
-                  format: dateTime
-                  example: 2022.10.20
           application/x-www-form-urlencoded:
             schema:
               type: object
@@ -2894,26 +2222,6 @@ paths:
           description: Successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  deliveryId:
-                    type: integer
-                    format: int64
-                    example: 5
-                  userId:
-                    type: integer
-                    format: int64
-                    example: 5
-                  status:
-                    type: integer
-                    format: int64
-                    example: 5
-                  updatedTime:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.20
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -2978,26 +2286,6 @@ paths:
                     type: object
                     format: dateTime
                     example: 2022.10.20
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  deliveryId:
-                    type: integer
-                    format: int64
-                    example: 5
-                  userId:
-                    type: integer
-                    format: int64
-                    example: 5
-                  status:
-                    type: integer
-                    format: int64
-                    example: 5
-                  updatedTime:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.20
         '400':
           description: Invalid ID supplied
         '404':
@@ -3027,26 +2315,6 @@ paths:
           description: successful operation
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  deliveryId:
-                    type: integer
-                    format: int64
-                    example: 5
-                  userId:
-                    type: integer
-                    format: int64
-                    example: 5
-                  status:
-                    type: integer
-                    format: int64
-                    example: 5
-                  updatedTime:
-                    type: object
-                    format: dateTime
-                    example: 2022.10.20
-            application/xml:
               schema:
                 type: object
                 properties:
@@ -3321,41 +2589,6 @@ components:
                 example: files:///defaultImage.png
             xml:
               name: user
-        application/xml:
-          schema:
-            type: object
-            properties:
-              id:
-                type: integer
-                format: int64
-                example: 10
-              firstName:
-                type: string
-                example: John
-              lastName:
-                type: string
-                example: James
-              email:
-                type: string
-                example: john@email.com
-              googletoken:
-                type: string
-                example: U2314251234234
-              phoneNumber:
-                type: string
-                example: '12345'
-              vehicleId:
-                type: integer
-                format: int64
-                example: 4
-              isAdmin:
-                type: boolean
-                example: false
-              profilePictureUrl:
-                type: string
-                example: files:///defaultImage.png
-            xml:
-              name: user
     UserArray:
       description: List of user object
       content:
@@ -3409,3 +2642,4 @@ components:
       type: apiKey
       name: api_key
       in: header
+      
