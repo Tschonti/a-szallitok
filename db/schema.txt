@@ -29,6 +29,8 @@ Table Delivery {
   description varchar
   sourceCoordId int
   destinationCoordId int
+  clientUserId int
+  transporterUserId int
   pickUpFrom datetime
   pickUpUntil datetime
   price int
@@ -58,6 +60,7 @@ Table Rating {
   deliveryId int
   ratedUserId int
   raterUserID int
+  rating int
   createdAt datetime
  }
  
@@ -85,3 +88,5 @@ Ref: Capacity.id - Delivery.capacityId
 Ref: Capacity.id - Vehicle.capacityId
 Ref: Coordinate.id - Delivery.sourceCoordId
 Ref: Coordinate.id - Delivery.destinationCoordId
+Ref: Delivery.clientUserId < User.id
+Ref: Delivery.transporterUserId < User.id

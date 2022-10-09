@@ -24,6 +24,8 @@ CREATE TABLE `Delivery` (
   `description` varchar(255),
   `sourceCoordId` int,
   `destinationCoordId` int,
+  `clientUserId` int,
+  `transporterUserId` int,
   `pickUpFrom` datetime,
   `pickUpUntil` datetime,
   `price` int,
@@ -53,6 +55,7 @@ CREATE TABLE `Rating` (
   `deliveryId` int,
   `ratedUserId` int,
   `raterUserID` int,
+  `rating` int,
   `createdAt` datetime
 );
 
@@ -85,3 +88,7 @@ ALTER TABLE `Vehicle` ADD FOREIGN KEY (`capacityId`) REFERENCES `Capacity` (`id`
 ALTER TABLE `Delivery` ADD FOREIGN KEY (`sourceCoordId`) REFERENCES `Coordinate` (`id`);
 
 ALTER TABLE `Delivery` ADD FOREIGN KEY (`destinationCoordId`) REFERENCES `Coordinate` (`id`);
+
+ALTER TABLE `User` ADD FOREIGN KEY (`id`) REFERENCES `Delivery` (`clientUserId`);
+
+ALTER TABLE `User` ADD FOREIGN KEY (`id`) REFERENCES `Delivery` (`transporterUserId`);

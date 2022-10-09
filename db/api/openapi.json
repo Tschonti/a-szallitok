@@ -1,27 +1,15 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "A szállítók - OpenAPI 1.0",
-    "description": "TODO",
+    "title": "A szállítók - OpenAPI 3.0",
+    "description": "API documentation for the backend of The Transporters project",
     "termsOfService": "TODO",
-    "contact": {
-      "email": "TODO@TODO.TODO"
-    },
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "version": "1.0.0"
+    "version": "3.0.0"
   },
-  "externalDocs": {
-    "description": "TODO",
-    "url": "TODO"
-  },
-  "servers": [
-    {
-      "url": "TODO"
-    }
-  ],
   "tags": [
     {
       "name": "user",
@@ -118,15 +106,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:User",
-              "read:User"
-            ]
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -139,54 +119,6 @@
           "description": "Add a new users' profile to the database",
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 10
-                  },
-                  "firstName": {
-                    "type": "string",
-                    "example": "John"
-                  },
-                  "lastName": {
-                    "type": "string",
-                    "example": "James"
-                  },
-                  "email": {
-                    "type": "string",
-                    "example": "john@email.com"
-                  },
-                  "googletoken": {
-                    "type": "string",
-                    "example": "U2314251234234"
-                  },
-                  "phoneNumber": {
-                    "type": "string",
-                    "example": "12345"
-                  },
-                  "vehicleId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 4
-                  },
-                  "isAdmin": {
-                    "type": "boolean",
-                    "example": false
-                  },
-                  "profilePictureUrl": {
-                    "type": "string",
-                    "example": "files:///defaultImage.png"
-                  }
-                },
-                "xml": {
-                  "name": "user"
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
               "schema": {
                 "type": "object",
                 "properties": {
@@ -294,15 +226,7 @@
           "400": {
             "description": "Bad Request"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:User",
-              "read:User"
-            ]
-          }
-        ]
+        }
       }
     },
     "/user/{ID}": {
@@ -385,18 +309,7 @@
           "404": {
             "description": "User not found"
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:User",
-              "read:User"
-            ]
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -467,54 +380,6 @@
                   "name": "user"
                 }
               }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 10
-                  },
-                  "firstName": {
-                    "type": "string",
-                    "example": "John"
-                  },
-                  "lastName": {
-                    "type": "string",
-                    "example": "James"
-                  },
-                  "email": {
-                    "type": "string",
-                    "example": "john@email.com"
-                  },
-                  "googletoken": {
-                    "type": "string",
-                    "example": "U2314251234234"
-                  },
-                  "phoneNumber": {
-                    "type": "string",
-                    "example": "12345"
-                  },
-                  "vehicleId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 4
-                  },
-                  "isAdmin": {
-                    "type": "boolean",
-                    "example": false
-                  },
-                  "profilePictureUrl": {
-                    "type": "string",
-                    "example": "files:///defaultImage.png"
-                  }
-                },
-                "xml": {
-                  "name": "user"
-                }
-              }
             }
           },
           "required": true
@@ -576,15 +441,7 @@
           "405": {
             "description": "Invalid input"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:User",
-              "read:User"
-            ]
-          }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -611,50 +468,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 10
-                    },
-                    "firstName": {
-                      "type": "string",
-                      "example": "John"
-                    },
-                    "lastName": {
-                      "type": "string",
-                      "example": "James"
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "john@email.com"
-                    },
-                    "googletoken": {
-                      "type": "string",
-                      "example": "U2314251234234"
-                    },
-                    "phoneNumber": {
-                      "type": "string",
-                      "example": "12345"
-                    },
-                    "vehicleId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 4
-                    },
-                    "isAdmin": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "profilePictureUrl": {
-                      "type": "string",
-                      "example": "files:///defaultImage.png"
-                    }
-                  },
-                  "xml": {
-                    "name": "user"
-                  }
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -665,18 +479,7 @@
           "404": {
             "description": "User not found"
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:User",
-              "read:User"
-            ]
-          }
-        ]
+        }
       }
     },
     "/user/{ID}/promote": {
@@ -705,50 +508,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 10
-                    },
-                    "firstName": {
-                      "type": "string",
-                      "example": "John"
-                    },
-                    "lastName": {
-                      "type": "string",
-                      "example": "James"
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "john@email.com"
-                    },
-                    "googletoken": {
-                      "type": "string",
-                      "example": "U2314251234234"
-                    },
-                    "phoneNumber": {
-                      "type": "string",
-                      "example": "12345"
-                    },
-                    "vehicleId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 4
-                    },
-                    "isAdmin": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "profilePictureUrl": {
-                      "type": "string",
-                      "example": "files:///defaultImage.png"
-                    }
-                  },
-                  "xml": {
-                    "name": "user"
-                  }
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -756,21 +516,13 @@
           "400": {
             "description": "Invalid ID supplied"
           },
+          "403": {
+            "description": "You're not an admin"
+          },
           "404": {
             "description": "User not found"
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:User",
-              "read:User"
-            ]
-          }
-        ]
+        }
       }
     },
     "/user/toplist": {
@@ -789,347 +541,13 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "integer",
-                        "format": "int64",
-                        "example": 10
-                      },
-                      "firstName": {
-                        "type": "string",
-                        "example": "John"
-                      },
-                      "lastName": {
-                        "type": "string",
-                        "example": "James"
-                      },
-                      "deliveriesCompleted": {
-                        "type": "number",
-                        "example": 10
-                      },
-                      "moneyEarned": {
-                        "type": "number",
-                        "example": 100000
-                      }
-                    }
+                    "$ref": "#/components/schemas/UserInToplist"
                   }
                 }
               }
             }
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:User",
-              "read:User"
-            ]
-          }
-        ]
-      }
-    },
-    "/vehicle": {
-      "post": {
-        "tags": [
-          "vehicle"
-        ],
-        "summary": "Add a new vehicle",
-        "description": "Add a new vehicle",
-        "operationId": "addVehicle",
-        "requestBody": {
-          "description": "Add a new vehicle to the database",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 10
-                  },
-                  "plateNumber": {
-                    "type": "string",
-                    "example": "AD0000"
-                  },
-                  "type": {
-                    "type": "string",
-                    "example": "Volkswagen Transporter"
-                  },
-                  "yearOfManufacturing": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2008
-                  },
-                  "capacityId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "locationId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "pictureUrl": {
-                    "type": "string",
-                    "example": "file:///defaultImage.png"
-                  }
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 10
-                  },
-                  "plateNumber": {
-                    "type": "string",
-                    "example": "AD0000"
-                  },
-                  "type": {
-                    "type": "string",
-                    "example": "Volkswagen Transporter"
-                  },
-                  "yearOfManufacturing": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2008
-                  },
-                  "capacityId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "locationId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "pictureUrl": {
-                    "type": "string",
-                    "example": "file:///defaultImage.png"
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 10
-                    },
-                    "plateNumber": {
-                      "type": "string",
-                      "example": "AD0000"
-                    },
-                    "type": {
-                      "type": "string",
-                      "example": "Volkswagen Transporter"
-                    },
-                    "yearOfManufacturing": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2008
-                    },
-                    "capacityId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    },
-                    "locationId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    },
-                    "pictureUrl": {
-                      "type": "string",
-                      "example": "file:///defaultImage.png"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:Vehicle",
-              "read:Vehicle"
-            ]
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "vehicle"
-        ],
-        "summary": "Update an existing vehicle",
-        "description": "Update an existing vehicle",
-        "operationId": "updateVehicle",
-        "requestBody": {
-          "description": "Update an existent vehicle in the database",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 10
-                  },
-                  "plateNumber": {
-                    "type": "string",
-                    "example": "AD0000"
-                  },
-                  "type": {
-                    "type": "string",
-                    "example": "Volkswagen Transporter"
-                  },
-                  "yearOfManufacturing": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2008
-                  },
-                  "capacityId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "locationId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "pictureUrl": {
-                    "type": "string",
-                    "example": "file:///defaultImage.png"
-                  }
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 10
-                  },
-                  "plateNumber": {
-                    "type": "string",
-                    "example": "AD0000"
-                  },
-                  "type": {
-                    "type": "string",
-                    "example": "Volkswagen Transporter"
-                  },
-                  "yearOfManufacturing": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2008
-                  },
-                  "capacityId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "locationId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "pictureUrl": {
-                    "type": "string",
-                    "example": "file:///defaultImage.png"
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 10
-                    },
-                    "plateNumber": {
-                      "type": "string",
-                      "example": "AD0000"
-                    },
-                    "type": {
-                      "type": "string",
-                      "example": "Volkswagen Transporter"
-                    },
-                    "yearOfManufacturing": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2008
-                    },
-                    "capacityId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    },
-                    "locationId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    },
-                    "pictureUrl": {
-                      "type": "string",
-                      "example": "file:///defaultImage.png"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:Vehicle",
-              "read:Vehicle"
-            ]
-          }
-        ]
+        }
       }
     },
     "/vehicle/{ID}": {
@@ -1203,18 +621,89 @@
           "404": {
             "description": "Vehicle not found"
           }
-        },
-        "security": [
+        }
+      },
+      "put": {
+        "tags": [
+          "vehicle"
+        ],
+        "summary": "Update an existing vehicle",
+        "description": "Update an existing vehicle",
+        "operationId": "updateVehicle",
+        "parameters": [
           {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:Vehicle",
-              "read:Vehicle"
-            ]
+            "name": "ID",
+            "in": "path",
+            "description": "ID of the vehicle to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
           }
-        ]
+        ],
+        "requestBody": {
+          "description": "Update an existent vehicle in the database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Vehicle"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/vehicle": {
+      "post": {
+        "tags": [
+          "vehicle"
+        ],
+        "summary": "Add a new vehicle",
+        "description": "Add a new vehicle",
+        "operationId": "addVehicle",
+        "requestBody": {
+          "description": "Add a new vehicle to the database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Vehicle"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
       }
     },
     "/delivery": {
@@ -1233,103 +722,13 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "integer",
-                        "format": "int64",
-                        "example": 2
-                      },
-                      "title": {
-                        "type": "string",
-                        "example": "Brick delivery"
-                      },
-                      "description": {
-                        "type": "string",
-                        "example": "Please deliver it!"
-                      },
-                      "sourceCoord": {
-                        "type": "object",
-                        "properties": {
-                          "longitude": {
-                            "type": "number",
-                            "example": 14.45529
-                          },
-                          "latitude": {
-                            "type": "number",
-                            "example": -19.47381
-                          }
-                        }
-                      },
-                      "destinationCoord": {
-                        "type": "object",
-                        "properties": {
-                          "longitude": {
-                            "type": "number",
-                            "example": -19.47381
-                          },
-                          "latitude": {
-                            "type": "number",
-                            "example": 14.45529
-                          }
-                        }
-                      },
-                      "pickUpFrom": {
-                        "type": "object",
-                        "format": "dateTime",
-                        "example": "2022.10.10"
-                      },
-                      "pickUpUntil": {
-                        "type": "object",
-                        "format": "dateTime",
-                        "example": "2022.10.20"
-                      },
-                      "price": {
-                        "type": "integer",
-                        "format": "int6",
-                        "example": 10000
-                      },
-                      "capacityId": {
-                        "type": "integer",
-                        "format": "int6",
-                        "example": 4
-                      },
-                      "status": {
-                        "type": "object",
-                        "format": "DeliveryStatus"
-                      },
-                      "pictureUrl": {
-                        "type": "string",
-                        "example": "file:///defaultImage.png"
-                      },
-                      "createdAt": {
-                        "type": "object",
-                        "format": "dateTime",
-                        "example": "2022.10.10"
-                      },
-                      "updatedAt": {
-                        "type": "object",
-                        "format": "dateTime",
-                        "example": "2022.10.20"
-                      }
-                    }
+                    "$ref": "#/components/schemas/Delivery"
                   }
                 }
               }
             }
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:Delivery",
-              "read:Delivery"
-            ]
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
@@ -1408,74 +807,6 @@
                   }
                 }
               }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "title": {
-                    "type": "string",
-                    "example": "Brick delivery"
-                  },
-                  "description": {
-                    "type": "string",
-                    "example": "Please deliver it!"
-                  },
-                  "sourceCoordId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 4
-                  },
-                  "destinationCoordId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 4
-                  },
-                  "pickUpFrom": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.10"
-                  },
-                  "pickUpUntil": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.20"
-                  },
-                  "price": {
-                    "type": "integer",
-                    "format": "int6",
-                    "example": 10000
-                  },
-                  "capacityId": {
-                    "type": "integer",
-                    "format": "int6",
-                    "example": 4
-                  },
-                  "status": {
-                    "type": "object",
-                    "format": "DeliveryStatus"
-                  },
-                  "pictureUrl": {
-                    "type": "string",
-                    "example": "file:///defaultImage.png"
-                  },
-                  "createdAt": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.10"
-                  },
-                  "updatedAt": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.20"
-                  }
-                }
-              }
             }
           },
           "required": true
@@ -1554,254 +885,10 @@
               }
             }
           },
-          "405": {
+          "400": {
             "description": "Invalid input"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:Delivery",
-              "read:Delivery"
-            ]
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "delivery"
-        ],
-        "summary": "Update an existing delivery",
-        "description": "Update an existing delivery",
-        "operationId": "updateDelivery",
-        "requestBody": {
-          "description": "Update an existent delivery in the database",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "title": {
-                    "type": "string",
-                    "example": "Brick delivery"
-                  },
-                  "description": {
-                    "type": "string",
-                    "example": "Please deliver it!"
-                  },
-                  "sourceCoordId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 4
-                  },
-                  "destinationCoordId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 4
-                  },
-                  "pickUpFrom": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.10"
-                  },
-                  "pickUpUntil": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.20"
-                  },
-                  "price": {
-                    "type": "integer",
-                    "format": "int6",
-                    "example": 10000
-                  },
-                  "capacityId": {
-                    "type": "integer",
-                    "format": "int6",
-                    "example": 4
-                  },
-                  "status": {
-                    "type": "object",
-                    "format": "DeliveryStatus"
-                  },
-                  "pictureUrl": {
-                    "type": "string",
-                    "example": "file:///defaultImage.png"
-                  },
-                  "createdAt": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.10"
-                  },
-                  "updatedAt": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.20"
-                  }
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "title": {
-                    "type": "string",
-                    "example": "Brick delivery"
-                  },
-                  "description": {
-                    "type": "string",
-                    "example": "Please deliver it!"
-                  },
-                  "sourceCoordId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 4
-                  },
-                  "destinationCoordId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 4
-                  },
-                  "pickUpFrom": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.10"
-                  },
-                  "pickUpUntil": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.20"
-                  },
-                  "price": {
-                    "type": "integer",
-                    "format": "int6",
-                    "example": 10000
-                  },
-                  "capacityId": {
-                    "type": "integer",
-                    "format": "int6",
-                    "example": 4
-                  },
-                  "status": {
-                    "type": "object",
-                    "format": "DeliveryStatus"
-                  },
-                  "pictureUrl": {
-                    "type": "string",
-                    "example": "file:///defaultImage.png"
-                  },
-                  "createdAt": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.10"
-                  },
-                  "updatedAt": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.20"
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    },
-                    "title": {
-                      "type": "string",
-                      "example": "Brick delivery"
-                    },
-                    "description": {
-                      "type": "string",
-                      "example": "Please deliver it!"
-                    },
-                    "sourceCoordId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 4
-                    },
-                    "destinationCoordId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 4
-                    },
-                    "pickUpFrom": {
-                      "type": "object",
-                      "format": "dateTime",
-                      "example": "2022.10.10"
-                    },
-                    "pickUpUntil": {
-                      "type": "object",
-                      "format": "dateTime",
-                      "example": "2022.10.20"
-                    },
-                    "price": {
-                      "type": "integer",
-                      "format": "int6",
-                      "example": 10000
-                    },
-                    "capacityId": {
-                      "type": "integer",
-                      "format": "int6",
-                      "example": 4
-                    },
-                    "status": {
-                      "type": "object",
-                      "format": "DeliveryStatus"
-                    },
-                    "pictureUrl": {
-                      "type": "string",
-                      "example": "file:///defaultImage.png"
-                    },
-                    "createdAt": {
-                      "type": "object",
-                      "format": "dateTime",
-                      "example": "2022.10.10"
-                    },
-                    "updatedAt": {
-                      "type": "object",
-                      "format": "dateTime",
-                      "example": "2022.10.20"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:Delivery",
-              "read:Delivery"
-            ]
-          }
-        ]
+        }
       }
     },
     "/delivery/{ID}": {
@@ -1902,20 +989,55 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "Vehicle not found"
+            "description": "Delivery not found"
           }
-        },
-        "security": [
+        }
+      },
+      "put": {
+        "tags": [
+          "delivery"
+        ],
+        "summary": "Update an existing delivery",
+        "description": "Update an existing delivery",
+        "operationId": "updateDelivery",
+        "parameters": [
           {
-            "api_key": []
+            "name": "ID",
+            "in": "path",
+            "description": "ID of the delivery to edit",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent delivery in the database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Delivery"
+              }
+            }
           },
-          {
-            "petstore_auth": [
-              "write:Delivery",
-              "read:Delivery"
-            ]
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Delivery"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
           }
-        ]
+        }
       },
       "delete": {
         "tags": [
@@ -1942,70 +1064,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    },
-                    "title": {
-                      "type": "string",
-                      "example": "Brick delivery"
-                    },
-                    "description": {
-                      "type": "string",
-                      "example": "Please deliver it!"
-                    },
-                    "sourceCoordId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 4
-                    },
-                    "destinationCoordId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 4
-                    },
-                    "pickUpFrom": {
-                      "type": "object",
-                      "format": "dateTime",
-                      "example": "2022.10.10"
-                    },
-                    "pickUpUntil": {
-                      "type": "object",
-                      "format": "dateTime",
-                      "example": "2022.10.20"
-                    },
-                    "price": {
-                      "type": "integer",
-                      "format": "int6",
-                      "example": 10000
-                    },
-                    "capacityId": {
-                      "type": "integer",
-                      "format": "int6",
-                      "example": 4
-                    },
-                    "status": {
-                      "type": "object",
-                      "format": "DeliveryStatus"
-                    },
-                    "pictureUrl": {
-                      "type": "string",
-                      "example": "file:///defaultImage.png"
-                    },
-                    "createdAt": {
-                      "type": "object",
-                      "format": "dateTime",
-                      "example": "2022.10.10"
-                    },
-                    "updatedAt": {
-                      "type": "object",
-                      "format": "dateTime",
-                      "example": "2022.10.20"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Delivery"
                 }
               }
             }
@@ -2014,20 +1073,9 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "Vehicle not found"
+            "description": "Delivery not found"
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:Delivery",
-              "read:Delivery"
-            ]
-          }
-        ]
+        }
       }
     },
     "/rating": {
@@ -2072,38 +1120,6 @@
                   }
                 }
               }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "deliveryId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "ratedUserId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "raterUserId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "createdAt": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.10"
-                  }
-                }
-              }
             }
           },
           "required": true
@@ -2146,146 +1162,10 @@
               }
             }
           },
-          "405": {
+          "400": {
             "description": "Invalid input"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:Rating",
-              "read:Rating"
-            ]
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "rating"
-        ],
-        "summary": "Update an existing rating",
-        "description": "Update an existing rating",
-        "operationId": "updateRating",
-        "requestBody": {
-          "description": "Update an existent rating in the database",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "deliveryId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "ratedUserId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "raterUserId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "createdAt": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.10"
-                  }
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "deliveryId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "ratedUserId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "raterUserId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "createdAt": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.10"
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    },
-                    "deliveryId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    },
-                    "ratedUserId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    },
-                    "raterUserId": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    },
-                    "createdAt": {
-                      "type": "object",
-                      "format": "dateTime",
-                      "example": "2022.10.10"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:Rating",
-              "read:Rating"
-            ]
-          }
-        ]
+        }
       }
     },
     "/rating/{ID}": {
@@ -2352,18 +1232,53 @@
           "404": {
             "description": "Rating not found"
           }
-        },
-        "security": [
+        }
+      },
+      "put": {
+        "tags": [
+          "rating"
+        ],
+        "summary": "Update an existing rating",
+        "description": "Update an existing rating",
+        "operationId": "updateRating",
+        "parameters": [
           {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:Rating",
-              "read:Rating"
-            ]
+            "name": "ID",
+            "in": "path",
+            "description": "ID of rating to edit",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
           }
-        ]
+        ],
+        "requestBody": {
+          "description": "Update an existent rating in the database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Rating"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rating"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
       }
     },
     "/coordinate": {
@@ -2398,28 +1313,6 @@
                   }
                 }
               }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "longitude": {
-                    "type": "number",
-                    "format": "float",
-                    "example": 3.32
-                  },
-                  "latitude": {
-                    "type": "number",
-                    "format": "float",
-                    "example": 2.12
-                  }
-                }
-              }
             }
           },
           "required": true
@@ -2452,116 +1345,10 @@
               }
             }
           },
-          "405": {
+          "400": {
             "description": "Invalid input"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:Coordinate",
-              "read:Coordinate"
-            ]
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "coordinate"
-        ],
-        "summary": "Update an existing coordinate",
-        "description": "Update an existing coordinate",
-        "operationId": "updateCoordinate",
-        "requestBody": {
-          "description": "Update an existent coordinate in the database",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "longitude": {
-                    "type": "number",
-                    "format": "float",
-                    "example": 3.32
-                  },
-                  "latitude": {
-                    "type": "number",
-                    "format": "float",
-                    "example": 2.12
-                  }
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  },
-                  "longitude": {
-                    "type": "number",
-                    "format": "float",
-                    "example": 3.32
-                  },
-                  "latitude": {
-                    "type": "number",
-                    "format": "float",
-                    "example": 2.12
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    },
-                    "longitude": {
-                      "type": "number",
-                      "format": "float",
-                      "example": 3.32
-                    },
-                    "latitude": {
-                      "type": "number",
-                      "format": "float",
-                      "example": 2.12
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:Coordinate",
-              "read:Coordinate"
-            ]
-          }
-        ]
+        }
       }
     },
     "/coordinate/{ID}": {
@@ -2618,18 +1405,53 @@
           "404": {
             "description": "Coordinate not found"
           }
-        },
-        "security": [
+        }
+      },
+      "put": {
+        "tags": [
+          "coordinate"
+        ],
+        "summary": "Update an existing coordinate",
+        "description": "Update an existing coordinate",
+        "operationId": "updateCoordinate",
+        "parameters": [
           {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:Coordinate",
-              "read:Coordinate"
-            ]
+            "name": "ID",
+            "in": "path",
+            "description": "ID of coordinate to edit",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
           }
-        ]
+        ],
+        "requestBody": {
+          "description": "Update an existent coordinate in the database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Coordinate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Coordinate"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
       }
     },
     "/capacity": {
@@ -2748,146 +1570,10 @@
               }
             }
           },
-          "405": {
+          "400": {
             "description": "Invalid input"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:Capacity",
-              "read:Capacity"
-            ]
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "capacity"
-        ],
-        "summary": "Update an existing capacity",
-        "description": "Update an existing capacity",
-        "operationId": "updateCapacity",
-        "requestBody": {
-          "description": "Update an existent capacity in the database",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 5
-                  },
-                  "weight": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 20
-                  },
-                  "height": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 1
-                  },
-                  "length": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 3
-                  },
-                  "width": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  }
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 5
-                  },
-                  "weight": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 20
-                  },
-                  "height": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 1
-                  },
-                  "length": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 3
-                  },
-                  "width": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 2
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 5
-                    },
-                    "weight": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 20
-                    },
-                    "height": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 1
-                    },
-                    "length": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 3
-                    },
-                    "width": {
-                      "type": "integer",
-                      "format": "int64",
-                      "example": 2
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:Capacity",
-              "read:Capacity"
-            ]
-          }
-        ]
+        }
       }
     },
     "/capacity/{ID}": {
@@ -2954,18 +1640,53 @@
           "404": {
             "description": "Capacity not found"
           }
-        },
-        "security": [
+        }
+      },
+      "put": {
+        "tags": [
+          "capacity"
+        ],
+        "summary": "Update an existing capacity",
+        "description": "Update an existing capacity",
+        "operationId": "updateCapacity",
+        "parameters": [
           {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:Capacity",
-              "read:Capacity"
-            ]
+            "name": "ID",
+            "in": "path",
+            "description": "ID of capacity to edit",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
           }
-        ]
+        ],
+        "requestBody": {
+          "description": "Update an existent capacity in the database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Capacity"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Capacity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
       }
     },
     "/deliverytouser": {
@@ -3005,33 +1726,6 @@
                   }
                 }
               }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "deliveryId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 5
-                  },
-                  "userId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 5
-                  },
-                  "status": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 5
-                  },
-                  "updatedTime": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.20"
-                  }
-                }
-              }
             }
           },
           "required": true
@@ -3069,18 +1763,10 @@
               }
             }
           },
-          "405": {
+          "400": {
             "description": "Invalid input"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:DeliveryToUser",
-              "read:DeliveryToUser"
-            ]
-          }
-        ]
+        }
       },
       "put": {
         "tags": [
@@ -3118,33 +1804,6 @@
                   }
                 }
               }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "deliveryId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 5
-                  },
-                  "userId": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 5
-                  },
-                  "status": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 5
-                  },
-                  "updatedTime": {
-                    "type": "object",
-                    "format": "dateTime",
-                    "example": "2022.10.20"
-                  }
-                }
-              }
             }
           },
           "required": true
@@ -3182,18 +1841,10 @@
               }
             }
           },
-          "405": {
+          "400": {
             "description": "Invalid input"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:DeliveryToUser",
-              "read:DeliveryToUser"
-            ]
-          }
-        ]
+        }
       }
     },
     "/deliverytouser/bydeliveryid/{ID}": {
@@ -3255,18 +1906,7 @@
           "404": {
             "description": "DeliveryToUser not found"
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:DeliveryToUser",
-              "read:DeliveryToUser"
-            ]
-          }
-        ]
+        }
       }
     },
     "/deliverytouser/byuserid/{ID}": {
@@ -3328,18 +1968,7 @@
           "404": {
             "description": "DeliveryToUser not found"
           }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "petstore_auth": [
-              "write:DeliveryToUser",
-              "read:DeliveryToUser"
-            ]
-          }
-        ]
+        }
       }
     }
   },
@@ -3389,6 +2018,32 @@
         },
         "xml": {
           "name": "user"
+        }
+      },
+      "UserInToplist": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 10
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "James"
+          },
+          "deliveriesCompleted": {
+            "type": "number",
+            "example": 10
+          },
+          "moneyEarned": {
+            "type": "number",
+            "example": 100000
+          }
         }
       },
       "Vehicle": {
@@ -3444,15 +2099,31 @@
             "type": "string",
             "example": "Please deliver it!"
           },
-          "sourceCoordId": {
-            "type": "integer",
-            "format": "int64",
-            "example": 4
+          "sourceCoord": {
+            "type": "object",
+            "properties": {
+              "longitude": {
+                "type": "number",
+                "example": 14.45529
+              },
+              "latitude": {
+                "type": "number",
+                "example": -19.47381
+              }
+            }
           },
-          "destinationCoordId": {
-            "type": "integer",
-            "format": "int64",
-            "example": 4
+          "destinationCoord": {
+            "type": "object",
+            "properties": {
+              "longitude": {
+                "type": "number",
+                "example": -19.47381
+              },
+              "latitude": {
+                "type": "number",
+                "example": 14.45529
+              }
+            }
           },
           "pickUpFrom": {
             "type": "object",
@@ -3592,6 +2263,11 @@
             "format": "int64",
             "example": 2
           },
+          "rating": {
+            "type": "number",
+            "format": "int64",
+            "example": 5
+          },
           "createdAt": {
             "type": "object",
             "format": "dateTime",
@@ -3730,23 +2406,16 @@
       }
     },
     "securitySchemes": {
-      "petstore_auth": {
-        "type": "oauth2",
-        "flows": {
-          "implicit": {
-            "authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
-            "scopes": {
-              "write:pets": "modify pets in your account",
-              "read:pets": "read your pets"
-            }
-          }
-        }
-      },
-      "api_key": {
-        "type": "apiKey",
-        "name": "api_key",
-        "in": "header"
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
-  }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
 }
