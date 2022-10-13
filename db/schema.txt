@@ -27,42 +27,34 @@ Table Delivery {
   id int [pk, increment] // auto-increment
   title varchar
   description varchar
-  sourceCoordId int
-  destinationCoordId int
+  sourceLocationId int
+  destinatioLocationId int
   clientUserId int
   transporterUserId int
   pickUpFrom datetime
   pickUpUntil datetime
   price int
-  capacityId int
+  clientRating int
+  transporterRating int
   status DeliveryStatus
   pictureUrl varchar
-  createdAt datetime
-  updatedAt datetime
-}
-
-Table Capacity {
-  id int [pk, increment]
   weight int
   height int
   length int
   width int
-}
-
-Table Coordinate {
-  id int [pk, increment]
-  longitude int
-  latitude int
-}
-
-Table Rating {
-  id int [pk, increment]
-  deliveryId int
-  ratedUserId int
-  raterUserID int
-  rating int
   createdAt datetime
- }
+  updatedAt datetime
+}
+
+Table Location {
+  id int [pk, increment]
+  coordinate GeoJSON
+  country varchar
+  postalCode int
+  city varchar
+  address varchar
+}
+
  
 Table Vehicle {
   id int [pk, increment]
@@ -71,6 +63,10 @@ Table Vehicle {
   yearOfManufacturing int
   capacityId int
   location varchar
+  maxWeight int
+  maxHeight int
+  maxLength int
+  maxWidth int
   pictureUrl varchar
  }
 
@@ -81,12 +77,7 @@ Table Vehicle {
 Ref: Vehicle.id - User.vehicleId
 Ref: User.id < DeliveryToUser.userId
 Ref: Delivery.id < DeliveryToUser.deliveryId
-Ref: Delivery.id < Rating.deliveryId
-Ref: User.id < Rating.raterUserID
-Ref: User.id < Rating.ratedUserId
-Ref: Capacity.id - Delivery.capacityId
-Ref: Capacity.id - Vehicle.capacityId
-Ref: Coordinate.id - Delivery.sourceCoordId
-Ref: Coordinate.id - Delivery.destinationCoordId
+Ref: Location.id - Delivery.sourceLocationId
+Ref: Location.id - Delivery.destinatioLocationId
 Ref: Delivery.clientUserId < User.id
 Ref: Delivery.transporterUserId < User.id
