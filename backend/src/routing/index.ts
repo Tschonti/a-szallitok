@@ -1,12 +1,12 @@
 import { Express, Request, Response } from 'express';
+import delivery from './delivery';
+import user from './user';
 
 export default (app: Express) => {
 
   app.get('/', (req: Request, res: Response) => {
     res.send('A szállítók');
   });
-
-  app.get('/deliveries', (req: Request, res: Response) => {
-    res.send({name: "Első fuvar"});
-  });
+  delivery(app)
+  user(app)
 }
