@@ -174,7 +174,7 @@ paths:
             application/json:
               schema:
                 type: array
-                items: 
+                items:
                   $ref: '#/components/schemas/JobDetails'
         "400":
           description: Invalid ID supplied
@@ -734,16 +734,16 @@ components:
           format: int64
           example: 2
         pickUpFrom:
-          type: object
-          format: dateTime
+          type: string
+          format: date
           example: 2022.10.10
         pickUpUntil:
-          type: object
-          format: dateTime
+          type: string
+          format: date
           example: 2022.10.20
         price:
           type: integer
-          format: int6
+          format: int64
           example: 10000
         clientRating:
           type: integer
@@ -776,12 +776,12 @@ components:
           type: string
           example: file:///defaultImage.png
         createdAt:
-          type: object
-          format: dateTime
+          type: string
+          format: date
           example: 2022.10.10
         updatedAt:
-          type: object
-          format: dateTime
+          type: string
+          format: date
           example: 2022.10.20
       example:
         clientUserId: 2
