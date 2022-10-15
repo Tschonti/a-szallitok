@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">DeliveryApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_text">You have to login with your Google account!</string>
+    <string name="history_job">Jobs earlier</string>
+    <string name="in_progress_job">In progress</string>
+    <string name="map_job">Jobs on map</string>
+    <string name="search_job">Jobs available</string>
+</resources>

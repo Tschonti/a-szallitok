@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_availableJobsFragment"
+            app:destination="@id/availableJobsFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_availableJobsMapFragment"
+            app:destination="@id/availableJobsMapFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_inProgressJobsFragment"
+            app:destination="@id/inProgressJobsFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_historyJobsFragment"
+            app:destination="@id/historyJobsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/availableJobsFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.AvailableJobsFragment"
+        android:label="fragment_available_jobs"
+        tools:layout="@layout/fragment_available_jobs" />
+    <fragment
+        android:id="@+id/availableJobsMapFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.AvailableJobsMapFragment"
+        android:label="fragment_available_jobs_map"
+        tools:layout="@layout/fragment_available_jobs_map" />
+    <fragment
+        android:id="@+id/inProgressJobsFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.InProgressJobsFragment"
+        android:label="fragment_in_progress_jobs"
+        tools:layout="@layout/fragment_in_progress_jobs" />
+    <fragment
+        android:id="@+id/historyJobsFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.HistoryJobsFragment"
+        android:label="fragment_history_jobs"
+        tools:layout="@layout/fragment_history_jobs" />
+</navigation>
