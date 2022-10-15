@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCqBy6rZaM0p_3_MRrKanwmsyl65QVEhVw",    // TODO .env-be
+  apiKey: process.env.GOOGLE_APIKEY,
   authDomain: "a-szallitok-fb.firebaseapp.com",
   projectId: "a-szallitok-fb",
   storageBucket: "a-szallitok-fb.appspot.com",
