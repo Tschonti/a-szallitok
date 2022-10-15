@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.GOOGLE_APIKEY,
@@ -9,4 +10,6 @@ const firebaseConfig = {
   appId: "1:145119984927:web:35808fdd9a6a33786e042a"
 };
 
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
