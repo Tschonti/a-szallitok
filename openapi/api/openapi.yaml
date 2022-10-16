@@ -346,6 +346,12 @@ paths:
             type: string
           description: Filter on price
         - in: query
+          name: transporterId
+          required: false
+          schema:
+            type: integer
+          description: Filter on transporterId
+        - in: query
           name: date
           required: false
           schema:

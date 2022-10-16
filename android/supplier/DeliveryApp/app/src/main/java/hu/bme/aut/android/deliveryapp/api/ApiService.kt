@@ -3,25 +3,32 @@ package hu.bme.aut.android.deliveryapp.api
 import hu.bme.aut.android.deliveryapp.model.*
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Part
-import retrofit2.http.Path
+import retrofit2.Response
+import retrofit2.http.*
 
 
 interface ApiService {
-    @GET("users/{ID}")
-    fun getUserData(@Path("id") id: Int): Call<List<User?>?>?
+    @GET("/user/{ID}")
+    suspend fun getUserData(@Path("ID") ID: Int): Response<User>
 
-    @GET("users/{ID}/history")
-    fun getUserHistory(@Path("id") id: Int): Call<List<JobDetails?>?>?
+    @GET("user/{ID}/history")
+    suspend fun getUserHistory(@Path("ID") ID: Int): Response<List<JobDetails>>
 
     @GET("vehicle/{ID}")
-    fun getVehicleData(@Path("id") id: Int): Call<List<Vehicle?>?>?
+    suspend fun getVehicleData(@Path("ID") ID: Int): Response<List<Vehicle>>
+
+    @GET("delivery/")
+    suspend fun getDeliveries(@Query("status") status: String?,
+                        @Query("sourceCity") sourceCity: String?,
+                        @Query("destinationCity") destinationCity: String?,
+                        @Query("price") price: Int?,
+                        @Query("transporterId") transporterId: Int?,
+                        @Query("date") date: String?
+    ): Response<List<JobDetails>>
 
     @GET("delivery/{ID}")
-    fun getDeliveryData(@Path("id") id: Int): Call<List<Delivery?>?>?
+    suspend fun getDeliveryData(@Path("ID") ID: Int): Response<List<Delivery>>
 
     @GET("delivery/{ID}/jobDetails")
-    fun getJobDetails(@Path("id") id: Int): Call<List<JobDetails?>?>?
+    suspend fun getJobDetails(@Path("ID") ID: Int): Response<List<JobDetails>>
 }
