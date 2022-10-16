@@ -1,8 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.GOOGLE_APIKEY,
+  apiKey: 'AIzaSyCqBy6rZaM0p_3_MRrKanwmsyl65QVEhVw', //TODO kivenni envbe
   authDomain: "a-szallitok-fb.firebaseapp.com",
   projectId: "a-szallitok-fb",
   storageBucket: "a-szallitok-fb.appspot.com",
@@ -10,6 +9,5 @@ const firebaseConfig = {
   appId: "1:145119984927:web:35808fdd9a6a33786e042a"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const app = initializeApp(firebaseConfig);
 
