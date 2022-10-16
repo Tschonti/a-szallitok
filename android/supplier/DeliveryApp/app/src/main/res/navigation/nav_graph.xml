@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="hu.bme.aut.android.deliveryapp.view.LoginFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="hu.bme.aut.android.deliveryapp.view.MenuFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.fragments.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action
@@ -34,22 +34,22 @@
     </fragment>
     <fragment
         android:id="@+id/availableJobsFragment"
-        android:name="hu.bme.aut.android.deliveryapp.view.AvailableJobsFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.fragments.AvailableJobsFragment"
         android:label="fragment_available_jobs"
         tools:layout="@layout/fragment_available_jobs" />
     <fragment
         android:id="@+id/availableJobsMapFragment"
-        android:name="hu.bme.aut.android.deliveryapp.view.AvailableJobsMapFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.fragments.AvailableJobsMapFragment"
         android:label="fragment_available_jobs_map"
         tools:layout="@layout/fragment_available_jobs_map" />
     <fragment
         android:id="@+id/inProgressJobsFragment"
-        android:name="hu.bme.aut.android.deliveryapp.view.InProgressJobsFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.fragments.InProgressJobsFragment"
         android:label="fragment_in_progress_jobs"
         tools:layout="@layout/fragment_in_progress_jobs" />
     <fragment
         android:id="@+id/historyJobsFragment"
-        android:name="hu.bme.aut.android.deliveryapp.view.HistoryJobsFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.fragments.HistoryJobsFragment"
         android:label="fragment_history_jobs"
         tools:layout="@layout/fragment_history_jobs" />
 </navigation>

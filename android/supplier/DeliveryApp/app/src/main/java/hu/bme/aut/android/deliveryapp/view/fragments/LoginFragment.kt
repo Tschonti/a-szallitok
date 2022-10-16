@@ -1,4 +1,4 @@
-package hu.bme.aut.android.deliveryapp.view
+package hu.bme.aut.android.deliveryapp.view.fragments
 
 import android.os.Bundle
 import android.util.Log
