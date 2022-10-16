@@ -9,6 +9,11 @@
 - adatbázis sémájának elkészítése közösen
 - webes admin felülethez az endpointok megtervezése Levivel
 
+## 6. hét
+- Adatbázis sémájának javítása közösen
+- Backend router vázának elkészítése (első pár endpoint mintaként)
+- Google Firebase bejelentkezés kutatás (befejezetlen)
+
 # Domonkos Ádám
 ## 4. hét
 - Specifikáció kidolgozása közösen
@@ -46,3 +51,8 @@
 ## 5. hét
 - adatbázis sémájának elkészítése közösen
 - webes admin felülethez az endpointok megtervezése Samuval
+
+## 6. hét
+- Adatbázis sémájának javítása közösen
+- Backend routerben a maradék endpointok definiálása
+- Minta entitások készítése, amit az endpointok visszaadhatnak amíg nincs adatbázis
