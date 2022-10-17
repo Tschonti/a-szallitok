@@ -1,5 +1,9 @@
 package hu.bme.aut.deliveryappforcustomers.api
 
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
+
 object RetrofitClient {
     val baseUrl = "http://10.0.2.2:8000/"  
 
