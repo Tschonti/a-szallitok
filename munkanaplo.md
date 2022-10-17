@@ -42,6 +42,11 @@
 - adatbázis sémájának elkészítése közösen
 - API interfészeinek megírása az ügyfelek alkalmazásához
 
+## 6. hét
+- Android project létrehozása
+- API interfész átnézése
+- Backendhez szükséges dolgok setupolása
+
 # Farkasházi Levente
 ## 4. hét
 - Discord szerver elkészítése
