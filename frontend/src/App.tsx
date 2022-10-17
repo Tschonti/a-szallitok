@@ -30,7 +30,7 @@ const App = () => {
   }
 
   const sendRequest = () => {
-    axios.get('http://localhost:8000/guarded', {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/guarded`, {
       headers: {
         Authorization: 'Bearer ' + token
       }
