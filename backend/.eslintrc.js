@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
   extends: 'standard-with-typescript',
   overrides: [
@@ -9,18 +9,15 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
     project: './tsconfig.json',
-    sourceType: 'module',
+    sourceType: 'module'
   },
   rules: {
-    'max-len': [2, { code: 120 },],
-    semi: [2, 'always',],
-    'comma-dangle': ['error', {
-      arrays: 'always',
-      objects: 'always-multiline',
-      imports: 'always-multiline',
-      exports: 'never',
-      functions: 'never',
-    },],
+    'max-len': [2, { code: 120 }],
+    semi: [2, 'never'],
     '@typescript-eslint/semi': 'off',
-  },
-};
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
+    '@typescript-eslint/no-misused-promises': 'off'
+  }
+}
