@@ -2,15 +2,15 @@ import { NextFunction, Request, Response } from 'express'
 import { app } from '../config/firebase'
 
 export const decodeToken = async (req: Request, res: Response, next: NextFunction) => {
-  const token = req.headers.authorization?.split(' ')[1]
-  try {
-    const decodeValue = await app.auth().verifyIdToken(token || '')
-    if (decodeValue) {
-      console.log(decodeValue.email)
+  const authHeader = req.headers.authorization
+  if (authHeader) {
+    try {
+      res.locals.user = await app.auth().verifyIdToken(authHeader.split(' ')[1] || '')
       return next()
+    } catch (e) {
+      return res.sendStatus(403)
     }
-    return res.status(401).send('Unauthorized!')
-  } catch (e) {
-    return res.status(500)
+  } else {
+    return res.sendStatus(401)
   }
 }

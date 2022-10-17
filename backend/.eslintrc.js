@@ -4,7 +4,9 @@ module.exports = {
     es2021: true
   },
   extends: 'standard-with-typescript',
-  overrides: [
+  overrides: [{
+    files: ['*.ts']
+  }
   ],
   parserOptions: {
     ecmaVersion: 2018,
