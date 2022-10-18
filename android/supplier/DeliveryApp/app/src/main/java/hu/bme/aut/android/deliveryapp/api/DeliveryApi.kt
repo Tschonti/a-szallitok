@@ -1,5 +1,6 @@
 package hu.bme.aut.android.deliveryapp.api
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.model.JobDetails

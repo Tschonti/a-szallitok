@@ -9,6 +9,6 @@ class InProgressJobsFragmentViewModel : ViewModel() {
     private val apiRepository = ApiRepository()
 
     fun getJobsInProgress(id: Int): LiveData<JobDetailState> {
-        return apiRepository.getAvailableJobs(id)
+        return apiRepository.getJobsInProgress(id)
     }
 }

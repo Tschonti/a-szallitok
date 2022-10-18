@@ -7,16 +7,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentHistoryJobsBinding
+import hu.bme.aut.android.deliveryapp.model.JobDetails
 import hu.bme.aut.android.deliveryapp.view.JobDetailState
 import hu.bme.aut.android.deliveryapp.viewmodel.HistoryJobsFragmentViewModel
 
 
-class HistoryJobsFragment : Fragment() {
+class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener {
 
     private lateinit var binding: FragmentHistoryJobsBinding
 
     private val viewModel: HistoryJobsFragmentViewModel by viewModels()
+
+    private val adapter: JobDetailsAdapter = JobDetailsAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +38,8 @@ class HistoryJobsFragment : Fragment() {
         ) { jobDetailState ->
             render(jobDetailState)
         }
+
+        binding.historyRecyclerView.adapter = adapter
     }
 
     private fun render(state: JobDetailState) {
@@ -42,11 +48,15 @@ class HistoryJobsFragment : Fragment() {
                 Toast.makeText(context, "Loading Data", Toast.LENGTH_SHORT).show()
             }
             is JobDetailState.jobDetailsResponseSuccess -> {
-                binding.tvText.text = state.data.toString()
+                adapter.addJobs(state.data)
             }
             is JobDetailState.jobDetailsResponseError -> {
                 Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onJobSelected(job: JobDetails?) {
+        TODO("Not yet implemented")
     }
 }
