@@ -320,43 +320,6 @@ paths:
     get:
       tags:
       - delivery
-      parameters:
-        - in: query
-          name: status
-          required: false
-          schema:
-            type: string
-          description: Filter on status
-        - in: query
-          name: sourceCity
-          required: false
-          schema:
-            type: string
-          description: Filter on source city
-        - in: query
-          name: destinationCity
-          required: false
-          schema:
-            type: string
-          description: Filter on destination city
-        - in: query
-          name: price
-          required: false
-          schema:
-            type: string
-          description: Filter on price
-        - in: query
-          name: transporterId
-          required: false
-          schema:
-            type: integer
-          description: Filter on transporterId
-        - in: query
-          name: date
-          required: false
-          schema:
-            type: string
-          description: Filter on date; returns deliveries where the pickUpFrom is less and the pickUpUntil is bigger than the input date
       summary: Get all deliveries
       description: Returns all deliveries
       operationId: getDelivery
@@ -393,6 +356,60 @@ paths:
                 $ref: '#/components/schemas/Delivery'
         "400":
           description: Invalid input
+      x-swagger-router-controller: Delivery
+  /delivery/jobDetails:
+    get:
+      tags:
+        - delivery
+      parameters:
+        - in: query
+          name: status
+          required: false
+          schema:
+            type: string
+          description: Filter on status
+        - in: query
+          name: sourceCity
+          required: false
+          schema:
+            type: string
+          description: Filter on source city
+        - in: query
+          name: destinationCity
+          required: false
+          schema:
+            type: string
+          description: Filter on destination city
+        - in: query
+          name: price
+          required: false
+          schema:
+            type: string
+          description: Filter on price
+        - in: query
+          name: transporterId
+          required: false
+          schema:
+            type: integer
+          description: Filter on transporterId
+        - in: query
+          name: date
+          required: false
+          schema:
+            type: string
+      description: Filter on date; returns deliveries where the pickUpFrom is less and the pickUpUntil is bigger than the input date
+      summary: Get all job detials by filters
+      operationId: getJobDetails
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Delivery'
+                x-content-type: application/json
       x-swagger-router-controller: Delivery
   /delivery/{ID}:
     get:
