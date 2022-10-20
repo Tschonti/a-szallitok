@@ -53,11 +53,11 @@ class JobDetailsAdapter(private val listener: OnJobSelectedListener) : RecyclerV
             binding.root.setOnClickListener { listener.onJobSelected(item) }
         }
 
-        fun bind(newJob: JobDetails?) {
+        fun bind(newJob: JobDetails) {
             item = newJob
-            binding.tvLocation.text = "Location"
-            binding.tvDate.text = "Date"
-            binding.tvPrice.text = "Price"
+            binding.tvLocation.text = newJob.deliveryLocation.address
+            binding.tvDate.text = newJob.deliveryDate
+            binding.tvPrice.text = newJob.deliveryCost
         }
     }
 }

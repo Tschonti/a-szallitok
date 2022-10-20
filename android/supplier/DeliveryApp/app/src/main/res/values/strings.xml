@@ -8,4 +8,6 @@
     <string name="map_job">Jobs on map</string>
     <string name="search_job">Jobs available</string>
     <string name="client_id">408596429373-abarp5hbqjns2hdi046fg850a12ic1fh.apps.googleusercontent.com</string>
+    <string name="user_details">User details</string>
+    <string name="job_details">Job details</string>
 </resources>

@@ -1,7 +1,5 @@
 package hu.bme.aut.android.deliveryapp.model
 
-import android.location.Location
-
 data class JobDetails(
     val name: String,
     val imPaths: String,

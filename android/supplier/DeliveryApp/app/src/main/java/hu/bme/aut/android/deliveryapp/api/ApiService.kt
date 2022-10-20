@@ -9,26 +9,30 @@ import retrofit2.http.*
 
 interface ApiService {
     @GET("/user/{ID}")
-    suspend fun getUserData(@Path("ID") ID: Int): Response<User>
+    fun getUserData(@Path("ID") ID: Int): Call<User>
 
     @GET("user/{ID}/history")
-    suspend fun getUserHistory(@Path("ID") ID: Int): Response<List<JobDetails>>
+    fun getUserHistory(@Path("ID") ID: Int): Call<List<JobDetails>>
 
     @GET("vehicle/{ID}")
-    suspend fun getVehicleData(@Path("ID") ID: Int): Response<List<Vehicle>>
+    fun getVehicleData(@Path("ID") ID: Int): Call<List<Vehicle>>
 
-    @GET("delivery/")
-    suspend fun getDeliveries(@Query("status") status: String?,
+    //@GET("delivery/jobDetails/")
+    @GET("delivery/10/jobDetails/")
+    fun getJobDetails(@Query("status") status: String?,
                         @Query("sourceCity") sourceCity: String?,
                         @Query("destinationCity") destinationCity: String?,
                         @Query("price") price: Int?,
                         @Query("transporterId") transporterId: Int?,
                         @Query("date") date: String?
-    ): Response<List<JobDetails>>
+    ): Call<List<JobDetails>>
+
+    @GET("delivery/{ID}/jobDetails/")
+    fun getJobDetail(@Path("ID") ID: Int?): Call<JobDetails>
 
     @GET("delivery/{ID}")
-    suspend fun getDeliveryData(@Path("ID") ID: Int): Response<List<Delivery>>
+    fun getDeliveryData(@Path("ID") ID: Int): Call<Delivery>
 
     @GET("delivery/{ID}/jobDetails")
-    suspend fun getJobDetails(@Path("ID") ID: Int): Response<List<JobDetails>>
+    fun getJobDetails(@Path("ID") ID: Int): Call<List<JobDetails>>
 }

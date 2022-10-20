@@ -11,8 +11,8 @@ class ApiRepository {
         return DeliveryApi.getUserHistory(id)
     }
 
-    fun getAvailableJobs(id: Int): MutableLiveData<JobDetailState> {
-        return DeliveryApi.getAvailableJobs(id)
+    fun getAvailableJobs(status: String?, sourceCity: String?, destinationCity: String?, price: Int?, transporterId: Int?, date: String?): MutableLiveData<JobDetailState> {
+        return DeliveryApi.getAvailableJobs(sourceCity, destinationCity, price, date)
     }
 
     fun getDeliveries (id: Int): MutableLiveData<DeliveryState> {
