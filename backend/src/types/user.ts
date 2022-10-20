@@ -1,10 +1,9 @@
-export interface User {
-  id: number
+export interface IUser {
   firstName: string
   lastName: string
   email: string
-  googletoken: string
-  phoneNumber: string
+  googleToken: string
+  phoneNumber?: string
   vehicleId?: number
   isAdmin: boolean
   profilePictureUrl?: string

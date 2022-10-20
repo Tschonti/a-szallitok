@@ -1,16 +1,31 @@
-import { NextFunction, Request, Response } from "express";
-import { app } from "../config/firebase";
+import { NextFunction, Request, Response } from 'express'
+import { app } from '../config/firebase'
+import { User } from '../model/User'
 
 export const decodeToken = async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization?.split(' ')[1]
+  const authHeader = req.headers.authorization
+  if (authHeader) {
     try {
-        const decodeValue = await app.auth().verifyIdToken(token || '')
-        if (decodeValue) {
-            return next()
-        }
-        return res.status(401).send('Unauthorized!')
-    } catch(e) {
-        return res.status(500)
+      res.locals.user = await app.auth().verifyIdToken(authHeader.split(' ')[1] || '')
+      return next()
+    } catch (e) {
+      console.error(e)
+      return res.sendStatus(403)
     }
+  } else {
+    return res.sendStatus(401)
+  }
+}
 
+export const registerUser = async (req: Request, res: Response, next: NextFunction) => {
+  const newUser = User.build({
+    firstName: 'Én',
+    lastName: 'Vagyok',
+    email: res.locals.user.email,
+    googleToken: res.locals.user.uid,
+    phoneNumber: res.locals.user.phone_number,
+    isAdmin: false
+  })
+  await newUser.save()
+  return res.status(201).send(newUser)
 }
