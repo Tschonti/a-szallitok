@@ -1,22 +1,21 @@
-import { Delivery } from './types/delivery';
-import { JobDetails } from './types/JobDetails';
-import { User } from './types/user';
-import { Vehicle } from './types/vehicle';
-import { Location } from './types/location';
-import { Coordinate } from './types/coordinate';
-import { UserInToplist } from './types/userInToplist';
+import { Delivery } from './types/delivery'
+import { JobDetails } from './types/JobDetails'
+import { IUser } from './types/user'
+import { Vehicle } from './types/vehicle'
+import { Location } from './types/location'
+import { Coordinate } from './types/coordinate'
+import { UserInToplist } from './types/userInToplist'
 
-export const mockUser: User = {
+export const mockUser: IUser = {
   profilePictureUrl: 'files:///defaultImage.png',
   firstName: 'John',
   lastName: 'James',
-  googletoken: 'U2314251234234',
+  googleToken: 'U2314251234234',
   phoneNumber: '12345',
-  id: 10,
   vehicleId: 4,
   isAdmin: true,
-  email: 'john@email.com',
-};
+  email: 'john@email.com'
+}
 
 export const mockJobDetails: JobDetails = {
   name: 'John Doe',
@@ -28,34 +27,34 @@ export const mockJobDetails: JobDetails = {
     country: 'Hungary',
     coordinate: {
       latitude: -19.47381,
-      longitude: 14.45529,
+      longitude: 14.45529
     },
     address: 'Irinyi József utca 42',
     city: 'Budapest',
-    postalCode: 1117,
-  },
-};
+    postalCode: 1117
+  }
+}
 
 export const mockUserInToplist: UserInToplist = {
   firstName: 'John',
   lastName: 'James',
   moneyEarned: 100000,
   deliveriesCompleted: 10,
-  id: 10,
-};
+  id: 10
+}
 
 export const mockCoordinate: Coordinate = {
   latitude: -19.47381,
-  longitude: 14.45529,
-};
+  longitude: 14.45529
+}
 
 export const mockLocation: Location = {
   country: 'Hungary',
   coordinate: mockCoordinate,
   address: 'Irinyi József utca 42',
   city: 'Budapest',
-  postalCode: 1117,
-};
+  postalCode: 1117
+}
 
 export const mockDelivery: Delivery = {
   clientUserId: 2,
@@ -75,19 +74,19 @@ export const mockDelivery: Delivery = {
     country: 'Hungary',
     coordinate: {
       latitude: -19.47381,
-      longitude: 14.45529,
+      longitude: 14.45529
     },
     address: 'Irinyi József utca 42',
     city: 'Budapest',
-    postalCode: 1117,
+    postalCode: 1117
   },
   transporterRating: 2,
   id: 2,
   pickUpFrom: new Date(),
   height: 2,
   status: 'DONE',
-  updatedAt: new Date(),
-};
+  updatedAt: new Date()
+}
 
 export const mockVehicle: Vehicle = {
   maxHeight: 2,
@@ -99,5 +98,5 @@ export const mockVehicle: Vehicle = {
   plateNumber: 'AD0000',
   type: 'Volkswagen Transporter',
   maxLength: 2,
-  maxWidth: 2,
-};
+  maxWidth: 2
+}

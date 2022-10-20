@@ -1,5 +1,4 @@
-export interface Vehicle {
-  id: number
+export interface IVehicle {
   plateNumber: string
   type: string
   yearOfManufacturing: number
