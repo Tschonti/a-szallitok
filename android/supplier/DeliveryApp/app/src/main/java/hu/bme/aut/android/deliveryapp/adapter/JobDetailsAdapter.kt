@@ -33,6 +33,7 @@ class JobDetailsAdapter(private val listener: OnJobSelectedListener) : RecyclerV
     }
 
     fun addJobs(newJobs: List<JobDetails>) {
+        jobs.clear()
         jobs.addAll(newJobs)
         notifyDataSetChanged()
     }

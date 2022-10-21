@@ -68,7 +68,7 @@ class ProfileFragment : Fragment() {
                 loadingDialog.show()
             }
             is UserState.userResponseSuccess -> {
-                binding.tvName.text = "${state.data.firstName} ${state.data.lastName}"
+                binding.tvName.text = "${state.data.name}"
                 binding.tvRating.text = "Rating: TODO"
                 loadingDialog.dismiss()
             }

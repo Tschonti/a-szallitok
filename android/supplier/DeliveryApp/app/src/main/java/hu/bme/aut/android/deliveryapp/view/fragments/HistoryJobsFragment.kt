@@ -75,6 +75,6 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
     }
 
     override fun onJobSelected(job: JobDetails?) {
-        TODO("Not yet implemented")
+        //TODO("Not yet implemented")
     }
 }
