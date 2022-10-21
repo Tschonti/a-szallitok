@@ -1,7 +1,6 @@
 import { Location } from './location'
 
 export interface Delivery {
-  id: number
   title: string
   description: string
   sourceLocation: Location
@@ -13,12 +12,12 @@ export interface Delivery {
   price: number
   clientRating?: number
   transporterRating?: number
-  weight: number
-  height: number
-  length: number
-  width: number
+  capacity: {
+    weight: number
+    height: number
+    length: number
+    width: number
+  }
   status: string
   pictureUrl?: string
-  createdAt: Date
-  updatedAt: Date
 }

@@ -8,8 +8,7 @@ import { UserInToplist } from './types/userInToplist'
 
 export const mockUser: IUser = {
   profilePictureUrl: 'files:///defaultImage.png',
-  firstName: 'John',
-  lastName: 'James',
+  name: 'John James',
   googleToken: 'U2314251234234',
   phoneNumber: '12345',
   vehicleId: 4,
@@ -60,16 +59,12 @@ export const mockDelivery: Delivery = {
   clientUserId: 2,
   transporterUserId: 2,
   pictureUrl: 'file:///defaultImage.png',
-  length: 2,
   description: 'Please deliver it!',
   destinationLocation: mockLocation,
-  weight: 2,
   title: 'Brick delivery',
-  createdAt: new Date(),
   clientRating: 2,
   pickUpUntil: new Date(),
   price: 10000,
-  width: 2,
   sourceLocation: {
     country: 'Hungary',
     coordinate: {
@@ -81,21 +76,27 @@ export const mockDelivery: Delivery = {
     postalCode: 1117
   },
   transporterRating: 2,
-  id: 2,
   pickUpFrom: new Date(),
-  height: 2,
-  status: 'DONE',
-  updatedAt: new Date()
+  capacity: {
+    height: 2,
+    length: 2,
+    weight: 2,
+    width: 2
+  },
+  status: 'DONE'
 }
 
 export const mockVehicle: IVehicle = {
-  maxHeight: 2,
   pictureUrl: 'file:///defaultImage.png',
   yearOfManufacturing: 2008,
   location: 'Telephely',
-  maxWeight: 2,
   plateNumber: 'AD0000',
   type: 'Volkswagen Transporter',
-  maxLength: 2,
-  maxWidth: 2
+  maxCapacity: {
+    length: 2,
+    width: 2,
+    weight: 2,
+    height: 2
+  }
+
 }

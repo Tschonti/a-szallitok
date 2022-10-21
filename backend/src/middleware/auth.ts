@@ -39,8 +39,7 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
       return res.sendStatus(401)
     }
     const newUser = User.build({
-      firstName: 'Én',
-      lastName: 'Vagyok',
+      name: res.locals.name || '',
       email: res.locals.googleUser.email || '',
       googleToken: res.locals.googleUser.uid,
       phoneNumber: res.locals.googleUser.phone_number,
@@ -48,8 +47,8 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
     })
     await newUser.save()
     return res.status(201).send(newUser)
-  } else { // TODO nem firstName
-    console.log(`User with name ${res.locals.dbUser.firstName} already registered.`)
+  } else {
+    console.log(`User with name ${res.locals.dbUser.name} already registered.`)
     return res.status(200).send(res.locals.dbUser)
   }
 }
