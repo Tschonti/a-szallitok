@@ -60,6 +60,9 @@ class LoginFragment : Fragment() {
         if(currentUser != null){
             actionForAuthUser()
         }
+        auth.currentUser?.getIdToken(false)?.addOnSuccessListener {
+            Log.d("TOKEN", it.token.toString())
+        }
 
         googleAuth = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
