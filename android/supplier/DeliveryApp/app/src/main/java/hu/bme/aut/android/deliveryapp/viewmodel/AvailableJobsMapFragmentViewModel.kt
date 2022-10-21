@@ -8,8 +8,8 @@ import hu.bme.aut.android.deliveryapp.view.JobDetailState
 class AvailableJobsMapFragmentViewModel : ViewModel() {
     private val apiRepository = ApiRepository()
 
-    fun getAvailableJobs(id: Int): LiveData<JobDetailState> {
-        return apiRepository.getAvailableJobs(id)
+    fun getAvailableJobs(sourceCity: String?, destinationCity: String?, price: Int?, date: String?): LiveData<JobDetailState> {
+        return apiRepository.getAvailableJobs(sourceCity, destinationCity, price, date)
     }
 
 }

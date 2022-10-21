@@ -15,7 +15,7 @@ interface ApiService {
     fun getUserHistory(@Path("ID") ID: Int): Call<List<JobDetails>>
 
     @GET("vehicle/{ID}")
-    fun getVehicleData(@Path("ID") ID: Int): Call<List<Vehicle>>
+    fun getVehicleData(@Path("ID") ID: Int): Call<Vehicle>
 
     //@GET("delivery/jobDetails/")
     @GET("delivery/10/jobDetails/")

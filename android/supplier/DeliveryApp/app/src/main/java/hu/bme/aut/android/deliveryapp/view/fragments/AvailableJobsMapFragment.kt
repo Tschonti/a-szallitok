@@ -31,7 +31,7 @@ class AvailableJobsMapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getAvailableJobs(10).observe(viewLifecycleOwner
+        viewModel.getAvailableJobs(null, null,null, null).observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
         }

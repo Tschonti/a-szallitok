@@ -1,17 +1,12 @@
 package hu.bme.aut.android.deliveryapp.view.fragments
 
+import android.R
 import android.os.Bundle
-import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentMenuBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlin.concurrent.thread
+
 
 class MenuFragment : Fragment() {
     private lateinit var binding: FragmentMenuBinding
@@ -19,20 +14,32 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.toolbarMenu.inflateMenu(hu.bme.aut.android.deliveryapp.R.menu.main_menu)
+        binding.toolbarMenu.setOnMenuItemClickListener {
+            when (it.itemId) {
+                hu.bme.aut.android.deliveryapp.R.id.profile -> {
+                    findNavController().navigate(hu.bme.aut.android.deliveryapp.R.id.action_menuFragment_to_profileFragment)
+                    true
+                }
+                else ->
+                    true
+            }
+        }
+
         binding.cvSearchJob.setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_availableJobsFragment)
+            findNavController().navigate(hu.bme.aut.android.deliveryapp.R.id.action_menuFragment_to_availableJobsFragment)
         }
 
         binding.cvMapJob.setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_availableJobsMapFragment)
+            findNavController().navigate(hu.bme.aut.android.deliveryapp.R.id.action_menuFragment_to_availableJobsMapFragment)
         }
 
         binding.cvInProgressJob.setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_inProgressJobsFragment)
+            findNavController().navigate(hu.bme.aut.android.deliveryapp.R.id.action_menuFragment_to_inProgressJobsFragment)
         }
 
         binding.cvHistoryJob.setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_historyJobsFragment)
+            findNavController().navigate(hu.bme.aut.android.deliveryapp.R.id.action_menuFragment_to_historyJobsFragment)
         }
     }
 
@@ -44,6 +51,7 @@ class MenuFragment : Fragment() {
         binding = FragmentMenuBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+
 
 
 }

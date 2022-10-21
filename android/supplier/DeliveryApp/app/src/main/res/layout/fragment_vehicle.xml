@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvStorageCapacity" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvMinCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

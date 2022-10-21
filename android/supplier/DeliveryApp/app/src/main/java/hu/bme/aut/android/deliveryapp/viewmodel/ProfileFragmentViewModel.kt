@@ -4,11 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import hu.bme.aut.android.deliveryapp.repository.ApiRepository
 import hu.bme.aut.android.deliveryapp.view.JobDetailState
+import hu.bme.aut.android.deliveryapp.view.UserState
 
-class AvailableJobsFragmentViewModel : ViewModel() {
+class ProfileFragmentViewModel : ViewModel() {
+
     private val apiRepository = ApiRepository()
 
-    fun getAvailableJobs(sourceCity: String?, destinationCity: String?, price: Int?, date: String?): LiveData<JobDetailState> {
-        return apiRepository.getAvailableJobs(sourceCity, destinationCity, price, date)
+    fun getUserData(id: Int): LiveData<UserState> {
+        return apiRepository.getUserData(id)
     }
 }
