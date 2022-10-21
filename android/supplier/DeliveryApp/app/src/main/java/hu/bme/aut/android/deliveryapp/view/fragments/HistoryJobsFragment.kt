@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentHistoryJobsBinding
 import hu.bme.aut.android.deliveryapp.model.JobDetails
@@ -21,6 +22,9 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
     private val viewModel: HistoryJobsFragmentViewModel by viewModels()
 
     private val adapter: JobDetailsAdapter = JobDetailsAdapter(this)
+
+    private lateinit var loadingDialog: LottieProgressDialog
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,18 +43,32 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
             render(jobDetailState)
         }
 
+        loadingDialog = LottieProgressDialog(
+            context = requireContext(),
+            isCancel = true,
+            dialogWidth = null,
+            dialogHeight = null,
+            animationViewWidth = null,
+            animationViewHeight = null,
+            fileName = LottieProgressDialog.SAMPLE_1,
+            title = null,
+            titleVisible = null
+        )
+
         binding.historyRecyclerView.adapter = adapter
     }
 
     private fun render(state: JobDetailState) {
         when (state) {
             is JobDetailState.inProgress -> {
-                Toast.makeText(context, "Loading Data", Toast.LENGTH_SHORT).show()
+                loadingDialog.show()
             }
             is JobDetailState.jobDetailsResponseSuccess -> {
+                loadingDialog.dismiss()
                 adapter.addJobs(state.data)
             }
             is JobDetailState.jobDetailsResponseError -> {
+                loadingDialog.dismiss()
                 Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
             }
         }

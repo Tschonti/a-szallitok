@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import hu.bme.aut.android.deliveryapp.databinding.FragmentProfileBinding
 import hu.bme.aut.android.deliveryapp.databinding.FragmentVehicleBinding
 import hu.bme.aut.android.deliveryapp.view.UserState
@@ -20,6 +21,8 @@ class VehicleFragment : Fragment() {
 
     private val viewModel: VehicleFragmentViewModel by viewModels()
 
+    private lateinit var loadingDialog: LottieProgressDialog
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -27,6 +30,18 @@ class VehicleFragment : Fragment() {
         ) { vehicleData ->
             render(vehicleData)
         }
+
+        loadingDialog = LottieProgressDialog(
+            context = requireContext(),
+            isCancel = true,
+            dialogWidth = null,
+            dialogHeight = null,
+            animationViewWidth = null,
+            animationViewHeight = null,
+            fileName = LottieProgressDialog.SAMPLE_1,
+            title = null,
+            titleVisible = null
+        )
 
     }
 
@@ -42,7 +57,7 @@ class VehicleFragment : Fragment() {
     private fun render(state: VehicleState) {
         when (state) {
             is VehicleState.inProgress -> {
-                Toast.makeText(context, "Loading Data", Toast.LENGTH_SHORT).show()
+                loadingDialog.show()
             }
             is VehicleState.vehicleResponseSuccess -> {
                 binding.tvType.text = state.data.type
@@ -51,9 +66,10 @@ class VehicleFragment : Fragment() {
                 binding.tvStorageCapacity.text = "Capacity"
                 binding.tvParkLocation.text = state.data.location
                 binding.tvMinCost.text = "Min cost"
-
+                loadingDialog.dismiss()
             }
             is VehicleState.vehicleResponseError -> {
+                loadingDialog.dismiss()
                 Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
             }
         }

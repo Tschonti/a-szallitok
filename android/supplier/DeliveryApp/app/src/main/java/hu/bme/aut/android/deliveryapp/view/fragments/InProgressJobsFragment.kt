@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentHistoryJobsBinding
@@ -23,6 +25,8 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
     private val viewModel: InProgressJobsFragmentViewModel by viewModels()
 
     private val adapter: JobDetailsAdapter = JobDetailsAdapter(this)
+
+    private lateinit var loadingDialog: LottieProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,25 +45,39 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
             render(jobDetailState)
         }
 
+        loadingDialog = LottieProgressDialog(
+            context = requireContext(),
+            isCancel = true,
+            dialogWidth = null,
+            dialogHeight = null,
+            animationViewWidth = null,
+            animationViewHeight = null,
+            fileName = LottieProgressDialog.SAMPLE_1,
+            title = null,
+            titleVisible = null
+        )
+
         binding.inProgressJobsRecyclerView.adapter = adapter
     }
 
     private fun render(state: JobDetailState) {
         when (state) {
             is JobDetailState.inProgress -> {
-                Toast.makeText(context, "Loading Data", Toast.LENGTH_SHORT).show()
+                loadingDialog.show()
             }
             is JobDetailState.jobDetailsResponseSuccess -> {
                 adapter.addJobs(state.data)
+                loadingDialog.dismiss()
             }
             is JobDetailState.jobDetailsResponseError -> {
+                loadingDialog.dismiss()
                 Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     override fun onJobSelected(job: JobDetails?) {
-        TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_inProgressJobsFragment_to_inProgressJobsDetailsFragment)
     }
 
 }

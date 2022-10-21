@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentMenuBinding
 import hu.bme.aut.android.deliveryapp.databinding.FragmentProfileBinding
@@ -24,6 +25,8 @@ class ProfileFragment : Fragment() {
 
     private val viewModel: ProfileFragmentViewModel by viewModels()
 
+    private lateinit var loadingDialog: LottieProgressDialog
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -35,6 +38,18 @@ class ProfileFragment : Fragment() {
         binding.btnVehicle.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_vehicleFragment)
         }
+
+        loadingDialog = LottieProgressDialog(
+            context = requireContext(),
+            isCancel = true,
+            dialogWidth = null,
+            dialogHeight = null,
+            animationViewWidth = null,
+            animationViewHeight = null,
+            fileName = LottieProgressDialog.SAMPLE_1,
+            title = null,
+            titleVisible = null
+        )
 
     }
 
@@ -50,13 +65,15 @@ class ProfileFragment : Fragment() {
     private fun render(state: UserState) {
         when (state) {
             is UserState.inProgress -> {
-                Toast.makeText(context, "Loading Data", Toast.LENGTH_SHORT).show()
+                loadingDialog.show()
             }
             is UserState.userResponseSuccess -> {
                 binding.tvName.text = "${state.data.firstName} ${state.data.lastName}"
                 binding.tvRating.text = "Rating: TODO"
+                loadingDialog.dismiss()
             }
             is UserState.userResponseError -> {
+                loadingDialog.dismiss()
                 Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
             }
         }

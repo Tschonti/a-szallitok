@@ -49,7 +49,11 @@
         android:id="@+id/inProgressJobsFragment"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.InProgressJobsFragment"
         android:label="fragment_in_progress_jobs"
-        tools:layout="@layout/fragment_in_progress_jobs" />
+        tools:layout="@layout/fragment_in_progress_jobs" >
+        <action
+            android:id="@+id/action_inProgressJobsFragment_to_inProgressJobsDetailsFragment"
+            app:destination="@id/inProgressJobsDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyJobsFragment"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.HistoryJobsFragment"
@@ -69,4 +73,9 @@
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.VehicleFragment"
         android:label="VehicleFragment"
         tools:layout="@layout/fragment_vehicle" />
+    <fragment
+        android:id="@+id/inProgressJobsDetailsFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.fragments.InProgressJobsDetailsFragment"
+        android:label="InProgressJobsDetailsFragment"
+        tools:layout="@layout/fragment_in_progress_details" />
 </navigation>
