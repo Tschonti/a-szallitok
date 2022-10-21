@@ -15,26 +15,22 @@ const App = () => {
         setUser(userCred)
         userCred.getIdToken().then((token) => {
           setToken(token)
+          axios.get(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+            headers: {
+              Authorization: 'Bearer ' + token
+            }
+          })
         })
       }
     })
   }, [])
 
   const handleLogin = () => {
-    signInWithPopup(getAuth(app), new GoogleAuthProvider()).then((userCred) => {
-      setUser(userCred.user)
-      userCred.user.getIdToken().then((token) => {
-        setToken(token)
-      })
-    })
+    signInWithPopup(getAuth(app), new GoogleAuthProvider())
   }
 
   const sendRequest = () => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/guarded`, {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    })
+
   }
 
   return (

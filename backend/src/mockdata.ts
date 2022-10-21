@@ -1,7 +1,7 @@
 import { Delivery } from './types/delivery'
 import { JobDetails } from './types/JobDetails'
 import { IUser } from './types/user'
-import { Vehicle } from './types/vehicle'
+import { IVehicle } from './types/vehicle'
 import { Location } from './types/location'
 import { Coordinate } from './types/coordinate'
 import { UserInToplist } from './types/userInToplist'
@@ -88,12 +88,11 @@ export const mockDelivery: Delivery = {
   updatedAt: new Date()
 }
 
-export const mockVehicle: Vehicle = {
+export const mockVehicle: IVehicle = {
   maxHeight: 2,
   pictureUrl: 'file:///defaultImage.png',
   yearOfManufacturing: 2008,
   location: 'Telephely',
-  id: 10,
   maxWeight: 2,
   plateNumber: 'AD0000',
   type: 'Volkswagen Transporter',
