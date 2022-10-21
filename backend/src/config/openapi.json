@@ -657,6 +657,15 @@
           },
           {
             "in": "query",
+            "name": "clientId",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Filter on clientId"
+          },
+          {
+            "in": "query",
             "name": "date",
             "required": false,
             "schema": {
@@ -811,6 +820,113 @@
           },
           "400": {
             "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Delivery not found"
+          }
+        },
+        "x-swagger-router-controller": "Delivery"
+      }
+    },
+    "/delivery/{ID}/request": {
+      "post": {
+        "tags": [
+          "delivery"
+        ],
+        "summary": "Request to be the transporter of the delivery",
+        "description": "Request to be the transporter of the delivery",
+        "operationId": "requestTransport",
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID of the delivery to request",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "mongoDbRandomId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Delivery"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Delivery not found"
+          }
+        },
+        "x-swagger-router-controller": "Delivery"
+      }
+    },
+    "/delivery/{ID}/reply": {
+      "put": {
+        "tags": [
+          "delivery"
+        ],
+        "summary": "Accept or decline the transport request",
+        "description": "Accept or decline the transport request",
+        "operationId": "replyToTransporter",
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID of the delivery to edit",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "mongoDbRandomId"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The reply to the request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string",
+                    "example": "mongoDbRandomId"
+                  },
+                  "accept": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Delivery"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "403": {
+            "description": "Only the client can reply to the request"
           },
           "404": {
             "description": "Delivery not found"
