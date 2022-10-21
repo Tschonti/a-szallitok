@@ -67,6 +67,7 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
             }
             is JobDetailState.jobDetailsResponseSuccess -> {
                 loadingDialog.dismiss()
+                Log.i("DATA ARRIVED", state.data.toString())
                 adapter.addJobs(state.data)
             }
             is JobDetailState.jobDetailsResponseError -> {

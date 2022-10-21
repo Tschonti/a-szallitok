@@ -64,6 +64,7 @@ object DeliveryApi {
             }
 
             override fun onFailure(call: Call<List<JobDetails>?>, throwable: Throwable) {
+                Log.i("Error", throwable.message.toString())
                 resultData.postValue(JobDetailState.jobDetailsResponseError("ERROR"))
             }
         })
@@ -89,6 +90,7 @@ object DeliveryApi {
             }
 
             override fun onFailure(call: Call<List<JobDetails>?>, throwable: Throwable) {
+                Log.i("Error", throwable.message.toString())
                 resultData.postValue(JobDetailState.jobDetailsResponseError("ERROR"))
             }
         })

@@ -17,8 +17,7 @@ interface ApiService {
     @GET("vehicle/{ID}")
     fun getVehicleData(@Path("ID") ID: Int): Call<Vehicle>
 
-    //@GET("delivery/jobDetails/")
-    @GET("delivery/10/jobDetails/")
+    @GET("delivery/jobDetails")
     fun getJobDetails(@Query("status") status: String?,
                         @Query("sourceCity") sourceCity: String?,
                         @Query("destinationCity") destinationCity: String?,
@@ -27,12 +26,9 @@ interface ApiService {
                         @Query("date") date: String?
     ): Call<List<JobDetails>>
 
-    @GET("delivery/{ID}/jobDetails/")
+    @GET("delivery/{ID}/jobDetails")
     fun getJobDetail(@Path("ID") ID: Int?): Call<JobDetails>
 
     @GET("delivery/{ID}")
     fun getDeliveryData(@Path("ID") ID: Int): Call<Delivery>
-
-    @GET("delivery/{ID}/jobDetails")
-    fun getJobDetails(@Path("ID") ID: Int): Call<List<JobDetails>>
 }

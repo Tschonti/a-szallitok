@@ -10,6 +10,14 @@ export default (app: Express) => {
     res.send(mockDelivery)
   })
 
+  app.get('/delivery/jobDetails', (req: Request, res: Response) => {
+    res.send([mockJobDetails, mockJobDetails])
+  })
+
+  app.get('/delivery/jobDetails/:id', (req: Request, res: Response) => {
+    res.send(mockJobDetails)
+  })
+
   app.get('/delivery/:id', (req: Request, res: Response) => {
     res.send(mockDelivery)
   })
@@ -28,9 +36,5 @@ export default (app: Express) => {
 
   app.put('/delivery/:id/rateClient', (req: Request, res: Response) => {
     res.send(mockDelivery)
-  })
-
-  app.get('/delivery/:id/jobDetails', (req: Request, res: Response) => {
-    res.send(mockJobDetails)
   })
 }
