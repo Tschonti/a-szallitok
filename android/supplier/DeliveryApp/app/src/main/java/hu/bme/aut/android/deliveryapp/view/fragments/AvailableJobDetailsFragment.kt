@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentAvailableJobDetailsBinding
 import hu.bme.aut.android.deliveryapp.databinding.FragmentJobDetailsBinding
 import hu.bme.aut.android.deliveryapp.model.JobDetails
@@ -13,12 +14,16 @@ class AvailableJobDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentAvailableJobDetailsBinding
 
-    private lateinit var selectedJob: JobDetails
+    private var selectedJob: JobDetails? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        selectedJob = arguments?.get("JOB") as JobDetails
+        selectedJob = arguments?.get("JOB") as JobDetails?
+
+        val fragment: JobDetailsFragment = childFragmentManager.findFragmentById(R.id.jobDetailsFragmentOnAvailableJob) as JobDetailsFragment
+        fragment.initFragment(selectedJob)
+
     }
 
     override fun onCreateView(

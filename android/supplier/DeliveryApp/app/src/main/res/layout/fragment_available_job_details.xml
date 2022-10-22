@@ -15,7 +15,7 @@
         />
 
     <fragment
-        android:id="@+id/jobDetailsFragment"
+        android:id="@+id/jobDetailsFragmentOnAvailableJob"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.JobDetailsFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +33,6 @@
         android:text="Make a contract"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/jobDetailsFragment" />
+        app:layout_constraintTop_toBottomOf="@id/jobDetailsFragmentOnAvailableJob" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

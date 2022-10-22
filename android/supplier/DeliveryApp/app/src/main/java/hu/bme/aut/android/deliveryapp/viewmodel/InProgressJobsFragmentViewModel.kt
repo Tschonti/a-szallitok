@@ -8,7 +8,12 @@ import hu.bme.aut.android.deliveryapp.view.JobDetailState
 class InProgressJobsFragmentViewModel : ViewModel() {
     private val apiRepository = ApiRepository()
 
+    private lateinit var data: LiveData<JobDetailState>
+
     fun getJobsInProgress(id: Int): LiveData<JobDetailState> {
-        return apiRepository.getJobsInProgress(id)
+        if (!::data.isInitialized) {
+            data = apiRepository.getJobsInProgress(id)
+        }
+        return data
     }
 }

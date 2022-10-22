@@ -8,7 +8,12 @@ import hu.bme.aut.android.deliveryapp.view.JobDetailState
 class HistoryJobsFragmentViewModel : ViewModel() {
     private val apiRepository = ApiRepository()
 
+    private lateinit var data: LiveData<JobDetailState>
+
     fun getUserHistory(id: Int): LiveData<JobDetailState> {
-        return apiRepository.getUserHistory(id)
+        if (!::data.isInitialized) {
+            data = apiRepository.getUserHistory(id)
+        }
+        return data
     }
 }

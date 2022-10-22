@@ -79,7 +79,9 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
     }
 
     override fun onJobSelected(job: JobDetails?) {
-        findNavController().navigate(R.id.action_inProgressJobsFragment_to_inProgressJobsDetailsFragment)
+        val b = Bundle()
+        b.putSerializable("JOB", job)
+        findNavController().navigate(R.id.action_inProgressJobsFragment_to_inProgressJobsDetailsFragment, b)
     }
 
 }

@@ -15,7 +15,7 @@
         />
 
     <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/jobDetailsFragmentOnInProgress"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.JobDetailsFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:layout_marginTop="32dp"
         android:text="Status"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment" />
+        app:layout_constraintTop_toBottomOf="@+id/jobDetailsFragmentOnInProgress" />
 
     <Button
         android:id="@+id/btnMarkAsReady"

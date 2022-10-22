@@ -32,6 +32,11 @@
 - MVVM achitektúra kialakítása
 - Retrofit implementálása
 
+## 7. hét
+- Google Auth megvalósítása
+- API hívások véglegesítése
+- Teljes UI elkészítése
+
 # Raisz Olivér
 ## 4. hét
 - Specifikáció kidolgozása közösen

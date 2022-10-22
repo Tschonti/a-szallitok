@@ -58,10 +58,11 @@ class JobDetailsAdapter(private val context: Context, private val listener: OnJo
 
         fun bind(newJob: JobDetails) {
             item = newJob
-            Glide.with(context).load(newJob.imPaths).into(binding.ivImage);
-            binding.tvLocation.text = newJob.deliveryLocation.address
-            binding.tvDate.text = newJob.deliveryDate
-            binding.tvPrice.text = newJob.deliveryCost
+            Glide.with(context).load(newJob.imPaths).into(binding.ivImage)
+            binding.tvTitle.text = newJob.title
+            binding.tvLocation.text = newJob.deliveryLocation?.city
+            binding.tvDate.text = newJob.deliveryDate?.subSequence(0, 10)
+            binding.tvPrice.text = newJob.deliveryCost.toString()
         }
     }
 }

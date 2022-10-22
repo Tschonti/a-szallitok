@@ -3,10 +3,7 @@ package hu.bme.aut.android.deliveryapp.repository
 import androidx.lifecycle.MutableLiveData
 import hu.bme.aut.android.deliveryapp.api.DeliveryApi
 import hu.bme.aut.android.deliveryapp.model.Delivery
-import hu.bme.aut.android.deliveryapp.view.DeliveryState
-import hu.bme.aut.android.deliveryapp.view.JobDetailState
-import hu.bme.aut.android.deliveryapp.view.UserState
-import hu.bme.aut.android.deliveryapp.view.VehicleState
+import hu.bme.aut.android.deliveryapp.view.*
 
 class ApiRepository {
     fun getUserHistory(id: Int): MutableLiveData<JobDetailState> {
@@ -31,5 +28,9 @@ class ApiRepository {
 
     fun getVehicleData(id: Int): MutableLiveData<VehicleState> {
         return DeliveryApi.getVehicleData(id)
+    }
+
+    fun getUserRating(id: Int): MutableLiveData<UserWithRatingState> {
+        return DeliveryApi.getUserRating(id)
     }
 }

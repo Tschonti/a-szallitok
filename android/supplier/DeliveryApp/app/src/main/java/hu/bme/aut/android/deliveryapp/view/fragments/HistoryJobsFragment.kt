@@ -79,6 +79,8 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
     }
 
     override fun onJobSelected(job: JobDetails?) {
-        findNavController().navigate(R.id.action_historyJobsFragment_to_jobDetailsFragment)
+        val b = Bundle()
+        b.putSerializable("JOB", job)
+        findNavController().navigate(R.id.action_historyJobsFragment_to_jobDetailsFragment, b)
     }
 }

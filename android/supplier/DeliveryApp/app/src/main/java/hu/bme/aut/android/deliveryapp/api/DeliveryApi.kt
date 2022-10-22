@@ -2,14 +2,8 @@ package hu.bme.aut.android.deliveryapp.api
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import hu.bme.aut.android.deliveryapp.model.Delivery
-import hu.bme.aut.android.deliveryapp.model.JobDetails
-import hu.bme.aut.android.deliveryapp.model.User
-import hu.bme.aut.android.deliveryapp.model.Vehicle
-import hu.bme.aut.android.deliveryapp.view.DeliveryState
-import hu.bme.aut.android.deliveryapp.view.JobDetailState
-import hu.bme.aut.android.deliveryapp.view.UserState
-import hu.bme.aut.android.deliveryapp.view.VehicleState
+import hu.bme.aut.android.deliveryapp.model.*
+import hu.bme.aut.android.deliveryapp.view.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -168,6 +162,31 @@ object DeliveryApi {
 
             override fun onFailure(call: Call<Vehicle>, throwable: Throwable) {
                 resultData.postValue(VehicleState.vehicleResponseError("ERROR"))
+            }
+        })
+
+        return resultData
+    }
+
+    fun getUserRating(id: Int): MutableLiveData<UserWithRatingState> {
+        val resultData = MutableLiveData<UserWithRatingState>()
+        resultData.value = UserWithRatingState.inProgress
+
+        api.getRating(id).enqueue(object : Callback<UserWithRating> {
+            override fun onResponse(
+                call: Call<UserWithRating>,
+                response: Response<UserWithRating>
+            ) {
+                if (response.isSuccessful) {
+                    resultData.postValue(response.body()
+                        ?.let { UserWithRatingState.userResponseSuccess(it) })
+                } else {
+                    resultData.postValue(UserWithRatingState.userResponseError(response.message()))
+                }
+            }
+
+            override fun onFailure(call: Call<UserWithRating>, throwable: Throwable) {
+                resultData.postValue(UserWithRatingState.userResponseError("ERROR"))
             }
         })
 

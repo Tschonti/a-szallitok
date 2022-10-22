@@ -31,4 +31,7 @@ interface ApiService {
 
     @GET("delivery/{ID}")
     fun getDeliveryData(@Path("ID") ID: Int): Call<Delivery>
+
+    @GET("user/{ID}/rating")
+    fun getRating(@Path("ID") ID: Int): Call<UserWithRating>
 }

@@ -17,6 +17,7 @@ import hu.bme.aut.android.deliveryapp.databinding.FragmentProfileBinding
 import hu.bme.aut.android.deliveryapp.model.User
 import hu.bme.aut.android.deliveryapp.view.JobDetailState
 import hu.bme.aut.android.deliveryapp.view.UserState
+import hu.bme.aut.android.deliveryapp.view.UserWithRatingState
 import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobsFragmentViewModel
 import hu.bme.aut.android.deliveryapp.viewmodel.ProfileFragmentViewModel
 
@@ -32,6 +33,11 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getUserData(10).observe(viewLifecycleOwner
+        ) { userState ->
+            render(userState)
+        }
+
+        viewModel.getUserRating(10).observe(viewLifecycleOwner
         ) { userState ->
             render(userState)
         }
@@ -70,12 +76,24 @@ class ProfileFragment : Fragment() {
             }
             is UserState.userResponseSuccess -> {
                 Glide.with(requireContext()).load(state.data.profilePictureUrl).into(binding.ivProfileImage);
-                binding.tvName.text = "${state.data.name}"
-                binding.tvRating.text = "Rating: TODO"
+                binding.tvName.text = "Name: ${state.data.name}"
                 loadingDialog.dismiss()
             }
             is UserState.userResponseError -> {
                 loadingDialog.dismiss()
+                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun render(state: UserWithRatingState) {
+        when (state) {
+            is UserWithRatingState.inProgress -> {
+            }
+            is UserWithRatingState.userResponseSuccess -> {
+                binding.tvRating.text = "Rating: ${state.data.avgRating}"
+            }
+            is UserWithRatingState.userResponseError -> {
                 Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
             }
         }
