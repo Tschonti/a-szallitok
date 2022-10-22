@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- implementing a basic material design 3 navigation drawer -->
+    <item
+        android:id="@+id/main_item"
+        android:title="@string/appname">
+        <menu>
+            <item
+                android:id="@+id/inbox_item"
+                android:icon="@drawable/ic_baseline_local_shipping_24"
+                android:title="@string/new_transport"
+                android:checkable="true"/>
+
+        </menu>
+    </item>
+</menu>
