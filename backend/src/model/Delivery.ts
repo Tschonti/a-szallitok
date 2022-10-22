@@ -84,7 +84,7 @@ const deliverySchema = new Schema({
   },
   status: {
     type: String,
-    enum: [DeliveryStatus.ON_THE_WAY, DeliveryStatus.IN_TRANSIT, DeliveryStatus.DELIVERED],
+    enum: [DeliveryStatus.UNASSIGNED, DeliveryStatus.PENDING, DeliveryStatus.IN_TRANSIT, DeliveryStatus.DELIVERED],
     default: DeliveryStatus.UNASSIGNED,
     required: true
   },
