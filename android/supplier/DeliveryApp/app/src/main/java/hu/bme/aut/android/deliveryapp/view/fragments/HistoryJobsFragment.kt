@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
+import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentHistoryJobsBinding
 import hu.bme.aut.android.deliveryapp.model.JobDetails
@@ -21,7 +23,7 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
 
     private val viewModel: HistoryJobsFragmentViewModel by viewModels()
 
-    private val adapter: JobDetailsAdapter = JobDetailsAdapter(this)
+    private lateinit var adapter: JobDetailsAdapter
 
     private lateinit var loadingDialog: LottieProgressDialog
 
@@ -37,6 +39,8 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        adapter = JobDetailsAdapter(requireContext(), this)
 
         viewModel.getUserHistory(10).observe(viewLifecycleOwner
         ) { jobDetailState ->
@@ -75,6 +79,6 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
     }
 
     override fun onJobSelected(job: JobDetails?) {
-        //TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_historyJobsFragment_to_jobDetailsFragment)
     }
 }

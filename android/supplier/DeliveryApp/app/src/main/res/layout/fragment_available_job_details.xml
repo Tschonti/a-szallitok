@@ -15,7 +15,7 @@
         />
 
     <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/jobDetailsFragment"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.JobDetailsFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,34 +23,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <TextView
-        android:id="@+id/tvStatusLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Status"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment" />
 
     <Button
-        android:id="@+id/btnMarkAsReady"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Mard as ready"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvStatusLabel" />
-
-    <Button
-        android:id="@+id/btnCancel"
+        android:id="@+id/btnMakeContract"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:text="Cancel job"
+        android:text="Make a contract"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvStatusLabel" />
+        app:layout_constraintTop_toBottomOf="@id/jobDetailsFragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

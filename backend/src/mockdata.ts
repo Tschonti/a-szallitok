@@ -7,7 +7,7 @@ import { Coordinate } from './types/coordinate'
 import { UserInToplist } from './types/userInToplist'
 
 export const mockUser: IUser = {
-  profilePictureUrl: 'files:///defaultImage.png',
+  profilePictureUrl: 'https://cdn-icons-png.flaticon.com/512/685/685681.png',
   name: 'John James',
   googleToken: 'U2314251234234',
   phoneNumber: '12345',
@@ -18,7 +18,7 @@ export const mockUser: IUser = {
 
 export const mockJobDetails: JobDetails = {
   name: 'John Doe',
-  imPaths: 'files:///defaultImage.png',
+  imPaths: 'https://cdn-icons-png.flaticon.com/512/685/685681.png',
   avgRating: 4.5,
   deliveryDate: new Date('2019-01-16'),
   deliveryCost: 10000,
@@ -58,7 +58,7 @@ export const mockLocation: Location = {
 export const mockDelivery: Delivery = {
   clientUserId: 2,
   transporterUserId: 2,
-  pictureUrl: 'file:///defaultImage.png',
+  pictureUrl: 'https://cdn-icons-png.flaticon.com/512/685/685681.png',
   description: 'Please deliver it!',
   destinationLocation: mockLocation,
   title: 'Brick delivery',
@@ -87,7 +87,7 @@ export const mockDelivery: Delivery = {
 }
 
 export const mockVehicle: IVehicle = {
-  pictureUrl: 'file:///defaultImage.png',
+  pictureUrl: 'https://cdn-icons-png.flaticon.com/512/685/685681.png',
   yearOfManufacturing: 2008,
   location: 'Telephely',
   plateNumber: 'AD0000',

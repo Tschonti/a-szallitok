@@ -39,7 +39,11 @@
         android:id="@+id/availableJobsFragment"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.AvailableJobsFragment"
         android:label="fragment_available_jobs"
-        tools:layout="@layout/fragment_available_jobs" />
+        tools:layout="@layout/fragment_available_jobs" >
+        <action
+            android:id="@+id/action_availableJobsFragment_to_availableJobDetailsFragment"
+            app:destination="@id/availableJobDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/availableJobsMapFragment"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.AvailableJobsMapFragment"
@@ -58,7 +62,11 @@
         android:id="@+id/historyJobsFragment"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.HistoryJobsFragment"
         android:label="fragment_history_jobs"
-        tools:layout="@layout/fragment_history_jobs" />
+        tools:layout="@layout/fragment_history_jobs" >
+        <action
+            android:id="@+id/action_historyJobsFragment_to_jobDetailsFragment"
+            app:destination="@id/jobDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.ProfileFragment"
@@ -78,4 +86,14 @@
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.InProgressJobsDetailsFragment"
         android:label="InProgressJobsDetailsFragment"
         tools:layout="@layout/fragment_in_progress_details" />
+    <fragment
+        android:id="@+id/availableJobDetailsFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.fragments.AvailableJobDetailsFragment"
+        android:label="AvailableJobDetailsFragment"
+        tools:layout="@layout/fragment_available_job_details" />
+    <fragment
+        android:id="@+id/jobDetailsFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.fragments.JobDetailsFragment"
+        android:label="JobDetailsFragment"
+        tools:layout="@layout/fragment_job_details" />
 </navigation>

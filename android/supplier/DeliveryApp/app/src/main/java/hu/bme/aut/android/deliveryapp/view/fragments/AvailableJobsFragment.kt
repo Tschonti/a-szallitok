@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
@@ -24,7 +25,7 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
 
     private val viewModel: AvailableJobsFragmentViewModel by viewModels()
 
-    private val adapter: JobDetailsAdapter = JobDetailsAdapter(this)
+    private lateinit var adapter: JobDetailsAdapter
 
     private lateinit var loadingDialog: LottieProgressDialog
 
@@ -39,6 +40,8 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        adapter = JobDetailsAdapter(requireContext(), this)
 
         viewModel.getAvailableJobs(null, null,null, null).observe(viewLifecycleOwner
         ) { jobDetailState ->
@@ -78,7 +81,10 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
     }
 
     override fun onJobSelected(job: JobDetails?) {
-        TODO("Not yet implemented")
+
+        val b = Bundle()
+        b.putSerializable("JOB", job)
+        findNavController().navigate(R.id.action_availableJobsFragment_to_availableJobDetailsFragment, b)
     }
 
 }

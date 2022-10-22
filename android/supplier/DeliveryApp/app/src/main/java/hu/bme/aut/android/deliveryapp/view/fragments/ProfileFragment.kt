@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentMenuBinding
@@ -68,6 +69,7 @@ class ProfileFragment : Fragment() {
                 loadingDialog.show()
             }
             is UserState.userResponseSuccess -> {
+                Glide.with(requireContext()).load(state.data.profilePictureUrl).into(binding.ivProfileImage);
                 binding.tvName.text = "${state.data.name}"
                 binding.tvRating.text = "Rating: TODO"
                 loadingDialog.dismiss()

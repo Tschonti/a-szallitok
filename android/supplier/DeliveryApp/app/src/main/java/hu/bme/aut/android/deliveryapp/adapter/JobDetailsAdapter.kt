@@ -1,14 +1,16 @@
 package hu.bme.aut.android.deliveryapp.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.JobDetailsRowBinding
 import hu.bme.aut.android.deliveryapp.model.JobDetails
 
-class JobDetailsAdapter(private val listener: OnJobSelectedListener) : RecyclerView.Adapter<JobDetailsAdapter.JobDetailsViewHolder>() {
+class JobDetailsAdapter(private val context: Context, private val listener: OnJobSelectedListener) : RecyclerView.Adapter<JobDetailsAdapter.JobDetailsViewHolder>() {
     private val jobs: MutableList<JobDetails> = ArrayList()
 
     interface OnJobSelectedListener {
@@ -56,6 +58,7 @@ class JobDetailsAdapter(private val listener: OnJobSelectedListener) : RecyclerV
 
         fun bind(newJob: JobDetails) {
             item = newJob
+            Glide.with(context).load(newJob.imPaths).into(binding.ivImage);
             binding.tvLocation.text = newJob.deliveryLocation.address
             binding.tvDate.text = newJob.deliveryDate
             binding.tvPrice.text = newJob.deliveryCost

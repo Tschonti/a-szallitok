@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import hu.bme.aut.android.deliveryapp.databinding.FragmentProfileBinding
 import hu.bme.aut.android.deliveryapp.databinding.FragmentVehicleBinding
@@ -60,12 +61,12 @@ class VehicleFragment : Fragment() {
                 loadingDialog.show()
             }
             is VehicleState.vehicleResponseSuccess -> {
+                Glide.with(requireContext()).load(state.data.pictureUrl).into(binding.ivVehicleImage);
                 binding.tvType.text = state.data.type
                 binding.tvYear.text = state.data.yearOfManufacturing.toString()
                 binding.tvStorageSize.text = "width: ${state.data.maxWidth} x length: ${state.data.maxLength} x height: ${state.data.maxHeight}"
-                binding.tvStorageCapacity.text = "Capacity"
+                binding.tvStorageCapacity.text = "${state.data.maxWeight} kg"
                 binding.tvParkLocation.text = state.data.location
-                binding.tvMinCost.text = "Min cost"
                 loadingDialog.dismiss()
             }
             is VehicleState.vehicleResponseError -> {

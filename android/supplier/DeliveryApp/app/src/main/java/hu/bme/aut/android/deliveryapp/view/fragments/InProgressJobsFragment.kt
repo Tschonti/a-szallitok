@@ -24,7 +24,7 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
 
     private val viewModel: InProgressJobsFragmentViewModel by viewModels()
 
-    private val adapter: JobDetailsAdapter = JobDetailsAdapter(this)
+    private lateinit var adapter: JobDetailsAdapter
 
     private lateinit var loadingDialog: LottieProgressDialog
 
@@ -39,6 +39,8 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        adapter = JobDetailsAdapter(requireContext(), this)
 
         viewModel.getJobsInProgress(10).observe(viewLifecycleOwner
         ) { jobDetailState ->
