@@ -1470,10 +1470,27 @@
       "JobDetails": {
         "type": "object",
         "properties": {
-          "name": {
+          "_id": {
+            "type": "string",
+            "example": "mongoDbRandomId"
+          },
+          "title": {
+            "type": "string",
+            "example": "Brick delivery"
+          },
+          "description": {
+            "type": "string",
+            "example": "Please deliver it!"
+          },
+          "clientName": {
             "type": "string",
             "description": "Client's name",
             "example": "John Doe"
+          },
+          "transporterName": {
+            "type": "string",
+            "description": "Transporter's name",
+            "example": "Doe John"
           },
           "imPaths": {
             "type": "string",
@@ -1499,7 +1516,7 @@
             "$ref": "#/components/schemas/Location"
           }
         },
-        "required": ["name", "avgRating", "deliveryDate", "deliveryCost", "deliveryLocation"]
+        "required": ["name", "avgRating", "deliveryDate", "deliveryCost", "deliveryLocation", "_id", "title", "description", "clientName"]
       }
     },
     "requestBodies": {
