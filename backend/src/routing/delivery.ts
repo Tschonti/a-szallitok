@@ -37,4 +37,12 @@ export default (app: Express) => {
   app.put('/delivery/:id/rateClient', (req: Request, res: Response) => {
     res.send(mockDelivery)
   })
+
+  app.post('/delivery/:id/request', (req: Request, res: Response) => {
+    res.send(mockDelivery)
+  })
+
+  app.put('/delivery/:id/reply', (req: Request, res: Response) => {
+    res.send(mockDelivery)
+  })
 }
