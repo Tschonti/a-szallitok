@@ -1,9 +1,9 @@
-import { Coordinate } from './coordinate';
+import { ICoordinate } from './coordinate'
 
-export interface Location {
-  coordinate: Coordinate
+export interface ILocation {
+  coordinate: ICoordinate
   country: string
-  postalCode: number
+  postalCode: Number
   city: string
   address: string
 }
