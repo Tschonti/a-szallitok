@@ -4,7 +4,6 @@ import { IDelivery } from '../types/delivery'
 enum DeliveryStatus {
   UNASSIGNED = 'UNASSIGNED',
   ASSIGNED = 'ASSIGNED',
-  ON_THE_WAY = 'ON_THE_WAY',
   IN_TRANSIT = 'IN_TRANSIT',
   DELIVERED = 'DELIVERED'
 }
