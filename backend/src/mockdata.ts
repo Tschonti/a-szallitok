@@ -5,6 +5,7 @@ import { IVehicle } from './types/vehicle'
 import { Location } from './types/location'
 import { Coordinate } from './types/coordinate'
 import { UserInToplist } from './types/userInToplist'
+import { UserWithRating } from './types/userWithRating'
 
 export const mockUser: IUser = {
   profilePictureUrl: 'https://cdn-icons-png.flaticon.com/512/685/685681.png',
@@ -14,6 +15,12 @@ export const mockUser: IUser = {
   vehicleId: 4,
   isAdmin: true,
   email: 'john@email.com'
+}
+
+export const mockUserWithRating: UserWithRating = {
+  _id: 'mongoDbRandomId',
+  name: 'John Doe',
+  avgRating: 3.45
 }
 
 export const mockJobDetails: JobDetails = {
