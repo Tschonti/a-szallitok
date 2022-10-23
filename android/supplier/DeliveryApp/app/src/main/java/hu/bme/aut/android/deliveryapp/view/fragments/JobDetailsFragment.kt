@@ -33,6 +33,8 @@ class JobDetailsFragment : Fragment() {
     }
 
     fun initFragment(job: JobDetails?) {
+        binding.tvTitle.text = job?.title
+        binding.tvDescription.text = job?.description
         Glide.with(requireContext()).load(job?.imPaths).into(binding.ivProfileImage)
         binding.tvProfileRating.text = "0"
         binding.tvProfileName.text = job?.clientName
