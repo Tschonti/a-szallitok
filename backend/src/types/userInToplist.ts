@@ -1,4 +1,4 @@
-export interface UserInToplist {
+export interface IUserInToplist {
   id: number
   firstName: string
   lastName: string

@@ -1,6 +1,6 @@
-import { Location } from './location'
+import { ILocation } from './location'
 
-export interface JobDetails {
+export interface IJobDetails {
   _id: string
   title: string
   description: string
@@ -10,5 +10,5 @@ export interface JobDetails {
   avgRating: number
   deliveryDate: Date
   deliveryCost: number
-  deliveryLocation: Location
+  deliveryLocation: ILocation
 }

@@ -1,12 +1,12 @@
-import { Location } from './location'
+import { ILocation } from './location'
 
-export interface Delivery {
+export interface IDelivery {
   title: string
   description: string
-  sourceLocation: Location
-  destinationLocation: Location
-  clientUserId: number
-  transporterUserId?: number
+  sourceLocation: ILocation
+  destinationLocation: ILocation
+  clientUser: number
+  transporterUser?: number
   pickUpFrom: Date
   pickUpUntil: Date
   price: number
