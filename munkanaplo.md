@@ -66,3 +66,9 @@
 - Adatbázis sémájának javítása közösen
 - Backend routerben a maradék endpointok definiálása
 - Minta entitások készítése, amit az endpointok visszaadhatnak amíg nincs adatbázis
+
+## 7. hét
+- Mongoose sémák elkezdése Samuval
+- A maradék mongoose sémák befejezése
+- Middleware-ek elkezdése Samuval
+- Postman Team seup Samuval
