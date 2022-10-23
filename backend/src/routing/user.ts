@@ -1,4 +1,6 @@
 import { Express, Request, Response } from 'express'
+import { decodeToken, getUserByUId } from '../middleware/auth'
+import { checkIfAdmin, deleteLoggedInUser, deleteParamUser, getUser, updateUser } from '../middleware/user'
 import { mockJobDetails, mockUser, mockUserInToplist, mockUserWithRating } from '../mockdata'
 
 export default (app: Express) => {
@@ -10,17 +12,13 @@ export default (app: Express) => {
     res.send(mockUser)
   })
 
-  app.get('/user/:id', (req: Request, res: Response) => {
-    res.send(mockUser)
-  })
+  app.get('/user/:id', decodeToken, getUser)
 
-  app.put('/user/:id', (req: Request, res: Response) => {
-    res.send(mockUser)
-  })
+  app.put('/user/', decodeToken, getUserByUId, updateUser)
 
-  app.delete('/user/:id', (req: Request, res: Response) => {
-    res.send(mockUser)
-  })
+  app.delete('/user/', decodeToken, getUserByUId, deleteLoggedInUser)
+
+  app.delete('/user/:id', decodeToken, getUserByUId, checkIfAdmin, deleteParamUser)
 
   app.get('/user/:id/rating', (req: Request, res: Response) => {
     res.send(mockUserWithRating)

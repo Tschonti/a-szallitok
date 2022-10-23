@@ -1,7 +1,7 @@
 import { Document, model, Model, Schema } from 'mongoose'
 import { IUser } from '../types/user'
 
-interface UserDoc extends IUser, Document {}
+export interface UserDoc extends IUser, Document {}
 
 interface UserModel extends Model<UserDoc> {
   build: (attr: IUser) => UserDoc
