@@ -3,8 +3,7 @@ package hu.bme.aut.android.deliveryapp.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import hu.bme.aut.android.deliveryapp.repository.ApiRepository
-import hu.bme.aut.android.deliveryapp.view.UserState
-import hu.bme.aut.android.deliveryapp.view.VehicleState
+import hu.bme.aut.android.deliveryapp.view.states.VehicleState
 
 class VehicleFragmentViewModel : ViewModel() {
     private val apiRepository = ApiRepository()

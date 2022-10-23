@@ -14,10 +14,8 @@ import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentAvailableJobsBinding
 import hu.bme.aut.android.deliveryapp.model.JobDetails
-import hu.bme.aut.android.deliveryapp.view.JobDetailState
+import hu.bme.aut.android.deliveryapp.view.states.JobDetailState
 import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobsFragmentViewModel
-import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobsMapFragmentViewModel
-import hu.bme.aut.android.deliveryapp.viewmodel.HistoryJobsFragmentViewModel
 
 class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener {
 

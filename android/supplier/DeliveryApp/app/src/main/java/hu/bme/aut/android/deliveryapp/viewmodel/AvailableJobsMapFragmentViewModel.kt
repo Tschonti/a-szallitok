@@ -3,7 +3,7 @@ package hu.bme.aut.android.deliveryapp.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import hu.bme.aut.android.deliveryapp.repository.ApiRepository
-import hu.bme.aut.android.deliveryapp.view.JobDetailState
+import hu.bme.aut.android.deliveryapp.view.states.JobDetailState
 
 class AvailableJobsMapFragmentViewModel : ViewModel() {
     private val apiRepository = ApiRepository()

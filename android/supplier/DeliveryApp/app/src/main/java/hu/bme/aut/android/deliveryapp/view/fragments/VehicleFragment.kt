@@ -9,11 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
-import hu.bme.aut.android.deliveryapp.databinding.FragmentProfileBinding
 import hu.bme.aut.android.deliveryapp.databinding.FragmentVehicleBinding
-import hu.bme.aut.android.deliveryapp.view.UserState
-import hu.bme.aut.android.deliveryapp.view.VehicleState
-import hu.bme.aut.android.deliveryapp.viewmodel.ProfileFragmentViewModel
+import hu.bme.aut.android.deliveryapp.view.states.VehicleState
 import hu.bme.aut.android.deliveryapp.viewmodel.VehicleFragmentViewModel
 
 class VehicleFragment : Fragment() {

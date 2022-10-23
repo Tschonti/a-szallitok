@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentAvailableJobsMapBinding
-import hu.bme.aut.android.deliveryapp.view.JobDetailState
+import hu.bme.aut.android.deliveryapp.view.states.JobDetailState
 import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobsMapFragmentViewModel
-import hu.bme.aut.android.deliveryapp.viewmodel.HistoryJobsFragmentViewModel
 
 class AvailableJobsMapFragment : Fragment() {
 

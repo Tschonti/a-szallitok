@@ -1,6 +1,5 @@
-package hu.bme.aut.android.deliveryapp.view
+package hu.bme.aut.android.deliveryapp.view.states
 
-import hu.bme.aut.android.deliveryapp.model.User
 import hu.bme.aut.android.deliveryapp.model.Vehicle
 
 sealed class VehicleState {

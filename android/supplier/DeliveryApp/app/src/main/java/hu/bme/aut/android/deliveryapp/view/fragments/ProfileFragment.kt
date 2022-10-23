@@ -1,7 +1,6 @@
 package hu.bme.aut.android.deliveryapp.view.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +11,9 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import hu.bme.aut.android.deliveryapp.R
-import hu.bme.aut.android.deliveryapp.databinding.FragmentMenuBinding
 import hu.bme.aut.android.deliveryapp.databinding.FragmentProfileBinding
-import hu.bme.aut.android.deliveryapp.model.User
-import hu.bme.aut.android.deliveryapp.view.JobDetailState
-import hu.bme.aut.android.deliveryapp.view.UserState
-import hu.bme.aut.android.deliveryapp.view.UserWithRatingState
-import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobsFragmentViewModel
+import hu.bme.aut.android.deliveryapp.view.states.UserState
+import hu.bme.aut.android.deliveryapp.view.states.UserWithRatingState
 import hu.bme.aut.android.deliveryapp.viewmodel.ProfileFragmentViewModel
 
 class ProfileFragment : Fragment() {

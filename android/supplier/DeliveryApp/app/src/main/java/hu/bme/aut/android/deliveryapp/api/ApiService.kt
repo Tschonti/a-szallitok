@@ -34,4 +34,7 @@ interface ApiService {
 
     @GET("user/{ID}/rating")
     fun getRating(@Path("ID") ID: Int): Call<UserWithRating>
+
+    @GET("user/login")
+    fun loginUser(@Header("token") token: String): Call<User>
 }

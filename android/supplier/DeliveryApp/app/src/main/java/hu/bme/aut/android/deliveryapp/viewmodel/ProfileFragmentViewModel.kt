@@ -1,14 +1,10 @@
 package hu.bme.aut.android.deliveryapp.viewmodel
 
-import android.service.autofill.UserData
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import hu.bme.aut.android.deliveryapp.model.User
-import hu.bme.aut.android.deliveryapp.model.UserWithRating
 import hu.bme.aut.android.deliveryapp.repository.ApiRepository
-import hu.bme.aut.android.deliveryapp.view.JobDetailState
-import hu.bme.aut.android.deliveryapp.view.UserState
-import hu.bme.aut.android.deliveryapp.view.UserWithRatingState
+import hu.bme.aut.android.deliveryapp.view.states.UserState
+import hu.bme.aut.android.deliveryapp.view.states.UserWithRatingState
 
 class ProfileFragmentViewModel : ViewModel() {
     private val apiRepository = ApiRepository()

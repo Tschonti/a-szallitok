@@ -3,9 +3,7 @@ package hu.bme.aut.android.deliveryapp.api
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import hu.bme.aut.android.deliveryapp.model.*
-import hu.bme.aut.android.deliveryapp.view.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import hu.bme.aut.android.deliveryapp.view.states.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -187,6 +185,31 @@ object DeliveryApi {
 
             override fun onFailure(call: Call<UserWithRating>, throwable: Throwable) {
                 resultData.postValue(UserWithRatingState.userResponseError("ERROR"))
+            }
+        })
+
+        return resultData
+    }
+
+    fun loginUser(token: String): MutableLiveData<UserState> {
+        val resultData = MutableLiveData<UserState>()
+        resultData.value = UserState.inProgress
+
+        api.loginUser("Bearer $token").enqueue(object : Callback<User> {
+            override fun onResponse(
+                call: Call<User>,
+                response: Response<User>
+            ) {
+                if (response.isSuccessful) {
+                    resultData.postValue(response.body()
+                        ?.let { UserState.userResponseSuccess(it) })
+                } else {
+                    resultData.postValue(UserState.userResponseError(response.message()))
+                }
+            }
+
+            override fun onFailure(call: Call<User>, throwable: Throwable) {
+                resultData.postValue(UserState.userResponseError("ERROR"))
             }
         })
 
