@@ -14,6 +14,12 @@
 - Backend router vázának elkészítése (első pár endpoint mintaként)
 - Google Firebase bejelentkezés kutatás (befejezetlen)
 
+## 7. hét
+- Google Firebase bejelentkezés befejezése
+- Mongoose sémák elkezdése Levivel
+- Middleware-ek elkezdése Levivel
+- Postman Team setup Levivel
+
 # Domonkos Ádám
 ## 4. hét
 - Specifikáció kidolgozása közösen
@@ -71,4 +77,4 @@
 - Mongoose sémák elkezdése Samuval
 - A maradék mongoose sémák befejezése
 - Middleware-ek elkezdése Samuval
-- Postman Team seup Samuval
+- Postman Team setup Samuval
