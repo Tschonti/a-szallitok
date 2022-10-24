@@ -5,8 +5,8 @@ export interface IDelivery {
   description: string
   sourceLocation: ILocation
   destinationLocation: ILocation
-  clientUser: number
-  transporterUser?: number
+  clientUser: string
+  transporterUser?: string
   pickUpFrom: Date
   pickUpUntil: Date
   price: number

@@ -1,4 +1,3 @@
-import { Console } from 'console'
 import { NextFunction, Request, Response } from 'express'
 import { app } from '../config/firebase'
 import { User } from '../model/User'
@@ -7,8 +6,6 @@ import { User } from '../model/User'
 // If verified, saves the data extracted from the token in res.locals
 export const decodeToken = async (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization
-  console.log(authHeader);
-  
   if (authHeader) {
     try {
       const user = await app.auth().verifyIdToken(authHeader.split(' ')[1] || '')
@@ -46,6 +43,7 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
       email: res.locals.googleUser.email || '',
       googleToken: res.locals.googleUser.uid,
       phoneNumber: res.locals.googleUser.phone_number,
+      profilePictureUrl: res.locals.googleUser.picture,
       isAdmin: false
     })
     await newUser.save()

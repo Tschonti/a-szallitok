@@ -1,10 +1,10 @@
-import { Delivery } from './types/delivery'
-import { JobDetails } from './types/JobDetails'
+import { IDelivery } from './types/delivery'
+import { IJobDetails } from './types/JobDetails'
 import { IUser } from './types/user'
 import { IVehicle } from './types/vehicle'
-import { Location } from './types/location'
-import { Coordinate } from './types/coordinate'
-import { UserInToplist } from './types/userInToplist'
+import { ILocation } from './types/location'
+import { ICoordinate } from './types/coordinate'
+import { IUserInToplist } from './types/userInToplist'
 import { UserWithRating } from './types/userWithRating'
 
 export const mockUser: IUser = {
@@ -23,7 +23,7 @@ export const mockUserWithRating: UserWithRating = {
   avgRating: 3.45
 }
 
-export const mockJobDetails: JobDetails = {
+export const mockJobDetails: IJobDetails = {
   clientName: 'John Doe',
   transporterName: 'Doe John',
   imPaths: 'https://cdn-icons-png.flaticon.com/512/685/685681.png',
@@ -45,7 +45,7 @@ export const mockJobDetails: JobDetails = {
   description: 'Please deliver it!'
 }
 
-export const mockUserInToplist: UserInToplist = {
+export const mockUserInToplist: IUserInToplist = {
   firstName: 'John',
   lastName: 'James',
   moneyEarned: 100000,
@@ -53,12 +53,12 @@ export const mockUserInToplist: UserInToplist = {
   id: 10
 }
 
-export const mockCoordinate: Coordinate = {
+export const mockCoordinate: ICoordinate = {
   latitude: -19.47381,
   longitude: 14.45529
 }
 
-export const mockLocation: Location = {
+export const mockLocation: ILocation = {
   country: 'Hungary',
   coordinate: mockCoordinate,
   address: 'Irinyi József utca 42',
@@ -66,9 +66,9 @@ export const mockLocation: Location = {
   postalCode: 1117
 }
 
-export const mockDelivery: Delivery = {
-  clientUserId: 2,
-  transporterUserId: 2,
+export const mockDelivery: IDelivery = {
+  clientUser: 'mongodbRandomId',
+  transporterUser: 'mongodbRandomId',
   pictureUrl: 'https://cdn-icons-png.flaticon.com/512/685/685681.png',
   description: 'Please deliver it!',
   destinationLocation: mockLocation,
