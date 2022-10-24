@@ -1,4 +1,4 @@
-package hu.bme.aut.android.deliveryapp.view
+package hu.bme.aut.deliveryappforcustomers.view
 
 import hu.bme.aut.android.deliveryapp.model.JobDetails
 

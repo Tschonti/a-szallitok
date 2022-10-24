@@ -56,4 +56,21 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="appname">Szállítók</string>
     <string name="new_transport">Új fuvar</string>
+    <string name="active_transports">Aktív fuvarok</string>
+    <string name="history">Előzmények</string>
+    <string name="map_view">Térkép nézet</string>
+    <string name="extras">Egyebek</string>
+    <string name="settings">Beállítások</string>
+    <string name="transport_name">Szállítandó termék neve</string>
+    <string name="currency">Ft</string>
+    <string name="name_of_product">Termék neve</string>
+    <string name="weight">Súly</string>
+    <string name="weight_kg">kg</string>
+    <string name="width">Szélesség</string>
+    <string name="width_cm">cm</string>
+    <string name="height">Magasság</string>
+    <string name="length">Hossz</string>
+    <string name="pickup_place">Felvétel helye</string>
+    <string name="delivery_place">Kiszállítás helye</string>
+    <string name="submit">Kész</string>
 </resources>

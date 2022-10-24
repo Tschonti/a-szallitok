@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- implementing a basic material design 3 navigation drawer -->
     <item
-        android:id="@+id/main_item"
-        android:title="@string/appname">
+        android:id="@+id/main_functions"
+        android:title="@string/app_name">
         <menu>
             <item
-                android:id="@+id/inbox_item"
+                android:id="@+id/new_transport"
                 android:icon="@drawable/ic_baseline_local_shipping_24"
                 android:title="@string/new_transport"
                 android:checkable="true"/>
-
+            <item
+                android:id="@+id/active_transports"
+                android:icon="@drawable/ic_baseline_local_shipping_24"
+                android:title="@string/active_transports"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/history"
+                android:icon="@drawable/ic_baseline_local_shipping_24"
+                android:title="@string/history"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/dashboard_item"
+                android:icon="@drawable/ic_baseline_local_shipping_24"
+                android:title="@string/map_view"
+                android:checkable="true"/>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/extra_functions"
+        android:title="@string/extras">
+        <menu>
+            <item
+                android:id="@+id/label_one"
+                android:icon="@drawable/ic_baseline_local_shipping_24"
+                android:title="@string/settings"
+                android:checkable="true"/>
         </menu>
     </item>
 </menu>

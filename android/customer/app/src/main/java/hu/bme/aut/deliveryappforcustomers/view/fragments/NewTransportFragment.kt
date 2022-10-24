@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import hu.bme.aut.deliveryappforcustomers.R
+import hu.bme.aut.deliveryappforcustomers.viewmodel.NewTransportViewModel
 
 class NewTransportFragment : Fragment() {
 
