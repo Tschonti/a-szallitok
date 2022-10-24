@@ -204,11 +204,13 @@ object DeliveryApi {
                     resultData.postValue(response.body()
                         ?.let { UserState.userResponseSuccess(it) })
                 } else {
+                    Log.d("ERROR", "e: " + response.message())
                     resultData.postValue(UserState.userResponseError(response.message()))
                 }
             }
 
             override fun onFailure(call: Call<User>, throwable: Throwable) {
+                Log.d("ERROR", "e: " + throwable.message.toString())
                 resultData.postValue(UserState.userResponseError("ERROR"))
             }
         })

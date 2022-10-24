@@ -108,8 +108,9 @@ class LoginFragment : Fragment() {
     }
 
     private fun actionForAuthUser() {
+        //findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
         auth.currentUser?.getIdToken(false)?.addOnSuccessListener {
-            viewModel.loginUser(it.toString()).observe(viewLifecycleOwner
+            viewModel.loginUser(it.token ?: "").observe(viewLifecycleOwner
             ) { state ->
                 render(state)
             }
