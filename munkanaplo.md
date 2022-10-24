@@ -58,6 +58,14 @@
 - API interfész átnézése
 - Backendhez szükséges dolgok setupolása
 
+## 7. hét
+- Material UI navigation drawer implementálása
+- retrofit client 
+- repository alapjai
+- új fuvar felvitele form alapok material UI 3-mal
+- api hívás teszt a user aktív fuvarjaira
+- (app nem indul - debugolás)
+
 # Farkasházi Levente
 ## 4. hét
 - Discord szerver elkészítése
