@@ -1,4 +1,5 @@
 export interface IUser {
+  id: string,
   name: string
   email: string
   googleToken: string
@@ -6,4 +7,5 @@ export interface IUser {
   vehicleId?: number
   isAdmin: boolean
   profilePictureUrl?: string
+  avgRating: number
 }
