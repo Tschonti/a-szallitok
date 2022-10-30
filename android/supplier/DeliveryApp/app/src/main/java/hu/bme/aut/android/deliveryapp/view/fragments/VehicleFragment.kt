@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import hu.bme.aut.android.deliveryapp.databinding.FragmentVehicleBinding
+import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.VehicleState
 import hu.bme.aut.android.deliveryapp.viewmodel.VehicleFragmentViewModel
 
@@ -24,7 +25,7 @@ class VehicleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getVehicleData("10").observe(viewLifecycleOwner
+        viewModel.getVehicleData(CurrentUser.user.vehicleId).observe(viewLifecycleOwner
         ) { vehicleData ->
             render(vehicleData)
         }

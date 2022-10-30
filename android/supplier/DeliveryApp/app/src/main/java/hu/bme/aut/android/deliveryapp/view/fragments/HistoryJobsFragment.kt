@@ -1,6 +1,7 @@
 package hu.bme.aut.android.deliveryapp.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentHistoryJobsBinding
 import hu.bme.aut.android.deliveryapp.model.JobDetails
+import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.JobDetailState
 import hu.bme.aut.android.deliveryapp.viewmodel.HistoryJobsFragmentViewModel
 
@@ -42,7 +44,7 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
 
         adapter = JobDetailsAdapter(requireContext(), this)
 
-        viewModel.getUserHistory("10").observe(viewLifecycleOwner
+        viewModel.getUserHistory(CurrentUser.user.id).observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
         }

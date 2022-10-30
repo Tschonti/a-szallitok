@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentProfileBinding
+import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.ProfileFragmentViewModel
 
@@ -26,7 +27,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getUserData("10").observe(viewLifecycleOwner
+        viewModel.getUserData(CurrentUser.user.id).observe(viewLifecycleOwner
         ) { userState ->
             render(userState)
         }

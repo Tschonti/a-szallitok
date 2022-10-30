@@ -36,4 +36,8 @@ class ApiRepository {
     fun loginUser(token: String): MutableLiveData<UserState> {
         return DeliveryApi.loginUser(token)
     }
+
+    fun requestJob(id: String): MutableLiveData<DeliveryState> {
+        return DeliveryApi.requestJob(id)
+    }
 }

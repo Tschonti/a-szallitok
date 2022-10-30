@@ -5,7 +5,7 @@ import hu.bme.aut.android.deliveryapp.model.User
 object CurrentUser {
     private var _token: String? = null
     var token: String
-        get() = _token ?: ""
+        get() = _token ?: "1"
         set(value) { _token = value }
 
     private var _user: User? = null

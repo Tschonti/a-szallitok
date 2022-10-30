@@ -9,13 +9,13 @@ import retrofit2.http.*
 
 interface ApiService {
     @GET("/user/{ID}")
-    fun getUserData(@Path("ID") ID: String): Call<User>
+    fun getUserData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<User>
 
     @GET("user/{ID}/history")
-    fun getUserHistory(@Path("ID") ID: String): Call<List<JobDetails>>
+    fun getUserHistory(@Header("Authorization") token: String, @Path("ID") ID: String): Call<List<JobDetails>>
 
     @GET("vehicle/{ID}")
-    fun getVehicleData(@Path("ID") ID: String): Call<Vehicle>
+    fun getVehicleData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<Vehicle>
 
     @GET("delivery/jobDetails")
     fun getJobDetails(@Query("status") status: String?,
@@ -27,10 +27,10 @@ interface ApiService {
     ): Call<List<JobDetails>>
 
     @GET("delivery/{ID}/jobDetails")
-    fun getJobDetail(@Path("ID") ID: String): Call<JobDetails>
+    fun getJobDetail(@Header("Authorization") token: String, @Path("ID") ID: String): Call<JobDetails>
 
     @GET("delivery/{ID}")
-    fun getDeliveryData(@Path("ID") ID: String): Call<Delivery>
+    fun getDeliveryData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<Delivery>
 /*
     @GET("user/{ID}/rating")
     fun getRating(@Header("Authorization") token: String, @Path("ID") ID: String): Call<UserWithRating>
@@ -39,8 +39,8 @@ interface ApiService {
     fun loginUser(@Header("Authorization") token: String): Call<User>
 
     @PUT("delivery/{ID}/request")
-    fun requestJob(@Path("ID") ID: String, @Body transporterId: Int): Call<Delivery>
+    fun requestJob(@Header("Authorization") token: String, @Path("ID") ID: String, @Body transporterId: String): Call<Delivery>
 
     @PUT("delivery/{ID}/rateClient")
-    fun rateClient(@Path("ID") ID: String, @Body rating: Int): Call<Delivery>
+    fun rateClient(@Header("Authorization") token: String, @Path("ID") ID: String, @Body rating: Int): Call<Delivery>
 }
