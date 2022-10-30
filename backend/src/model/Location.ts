@@ -1,7 +1,7 @@
 import { Document, model, Model, Schema } from 'mongoose'
 import { ILocation } from '../types/location'
 
-interface LocationDoc extends ILocation, Document {}
+export interface LocationDoc extends ILocation, Document {}
 
 interface LocationModel extends Model<LocationDoc> {
   build: (attr: ILocation) => LocationDoc
@@ -36,8 +36,8 @@ const locationSchema = new Schema({
   }
 })
 locationSchema.set('timestamps', true)
-locationSchema.statics.build = (attr: ILocation) => new Vehicle(attr)
+locationSchema.statics.build = (attr: ILocation) => new Location(attr)
 
-const Vehicle = model<LocationDoc, LocationModel>('Vehicle', locationSchema)
+const Location = model<LocationDoc, LocationModel>('Location', locationSchema)
 
-export { Vehicle }
+export { Location }
