@@ -24,10 +24,14 @@ export const mockUserWithRating: UserWithRating = {
 }
 
 export const mockJobDetails: IJobDetails = {
+  title: 'Brick delivery',
+  description: 'Please deliver it!',
+  clientId: "randomMongoDbId",
+  transporterId: "randomMongoDbId",
+  deliveryId: 'randomMongoDbId',
   clientName: 'John Doe',
-  transporterName: 'Doe John',
+  clientAvgRating: 4.5,
   imPaths: 'https://cdn-icons-png.flaticon.com/512/685/685681.png',
-  avgRating: 4.5,
   deliveryDate: new Date('2019-01-16'),
   deliveryCost: 10000,
   deliveryLocation: {
@@ -39,10 +43,7 @@ export const mockJobDetails: IJobDetails = {
     address: 'Irinyi József utca 42',
     city: 'Budapest',
     postalCode: 1117
-  },
-  _id: 'randomMongoDbId',
-  title: 'Brick delivery',
-  description: 'Please deliver it!'
+  }
 }
 
 export const mockUserInToplist: IUserInToplist = {
