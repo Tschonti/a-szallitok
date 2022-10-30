@@ -1,14 +1,14 @@
 import { IDelivery } from './types/delivery'
 import { IJobDetails } from './types/JobDetails'
-import { IUser } from './types/user'
+import { UserDto } from './types/user'
 import { IVehicle } from './types/vehicle'
 import { ILocation } from './types/location'
 import { ICoordinate } from './types/coordinate'
 import { IUserInToplist } from './types/userInToplist'
 import { UserWithRating } from './types/userWithRating'
 
-export const mockUser: IUser = {
-  id: "mongoDbRandomId",
+export const mockUser: UserDto = {
+  id: 'mongoDbRandomId',
   profilePictureUrl: 'https://cdn-icons-png.flaticon.com/512/685/685681.png',
   name: 'John James',
   googleToken: 'U2314251234234',
@@ -28,8 +28,8 @@ export const mockUserWithRating: UserWithRating = {
 export const mockJobDetails: IJobDetails = {
   title: 'Brick delivery',
   description: 'Please deliver it!',
-  clientId: "randomMongoDbId",
-  transporterId: "randomMongoDbId",
+  clientId: 'randomMongoDbId',
+  transporterId: 'randomMongoDbId',
   deliveryId: 'randomMongoDbId',
   clientName: 'John Doe',
   clientAvgRating: 4.5,

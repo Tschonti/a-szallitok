@@ -1,7 +1,7 @@
 import { Document, model, Model, Schema } from 'mongoose'
 import { IDelivery } from '../types/delivery'
 
-enum DeliveryStatus {
+export enum DeliveryStatus {
   UNASSIGNED = 'UNASSIGNED',
   PENDING = 'PENDING',
   ASSIGNED = 'ASSIGNED',
@@ -94,8 +94,8 @@ const deliverySchema = new Schema({
   }
 })
 deliverySchema.set('timestamps', true)
-deliverySchema.statics.build = (attr: IDelivery) => new Vehicle(attr)
+deliverySchema.statics.build = (attr: IDelivery) => new Delivery(attr)
 
-const Vehicle = model<DeliveryDoc, DeliveryModel>('Vehicle', deliverySchema)
+const Delivery = model<DeliveryDoc, DeliveryModel>('Delivery', deliverySchema)
 
-export { Vehicle }
+export { Delivery }

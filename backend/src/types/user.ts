@@ -1,5 +1,4 @@
 export interface IUser {
-  id: string,
   name: string
   email: string
   googleToken: string
@@ -7,5 +6,9 @@ export interface IUser {
   vehicleId?: string
   isAdmin: boolean
   profilePictureUrl?: string
+}
+
+export interface UserDto extends IUser {
+  id: string
   avgRating: number
 }
