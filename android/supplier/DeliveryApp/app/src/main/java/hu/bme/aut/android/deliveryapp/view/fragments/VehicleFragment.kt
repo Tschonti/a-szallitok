@@ -25,9 +25,20 @@ class VehicleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getVehicleData(CurrentUser.user.vehicleId).observe(viewLifecycleOwner
-        ) { vehicleData ->
-            render(vehicleData)
+        //TODO: Set if there is a vehicle
+        //CurrentUser.user.vehicleId = "4"
+        if (CurrentUser.user.vehicleId != null) {
+            viewModel.getVehicleData(CurrentUser.user.vehicleId!!).observe(
+                viewLifecycleOwner
+            ) { vehicleData ->
+                render(vehicleData)
+            }
+            binding.layoutVehicle.visibility = View.VISIBLE
+            binding.layoutNoVehicle.visibility = View.GONE
+        }
+        else {
+            binding.layoutVehicle.visibility = View.GONE
+            binding.layoutNoVehicle.visibility = View.VISIBLE
         }
 
         loadingDialog = LottieProgressDialog(
@@ -42,6 +53,9 @@ class VehicleFragment : Fragment() {
             titleVisible = null
         )
 
+        binding.btnAddVehicle.setOnClickListener {
+            AddVehicleFragment().show(childFragmentManager, "NEW_VEHICLE")
+        }
     }
 
     override fun onCreateView(

@@ -13,7 +13,7 @@ export const mockUser: IUser = {
   name: 'John James',
   googleToken: 'U2314251234234',
   phoneNumber: '12345',
-  vehicleId: 4,
+  vehicleId: "4",
   isAdmin: true,
   email: 'john@email.com',
   avgRating: 3.45

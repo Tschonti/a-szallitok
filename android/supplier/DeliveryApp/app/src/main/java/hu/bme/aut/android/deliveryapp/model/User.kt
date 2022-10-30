@@ -6,7 +6,7 @@ data class User(
     val name: String,
     val googletoken: String,
     val phoneNumber: String,
-    val vehicleId: String,
+    var vehicleId: String?, //TODO: Should be val, but for debug purposes it's var
     val isAdmin: Boolean,
     val email: String,
     val avgRating: Float,

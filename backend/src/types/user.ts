@@ -4,7 +4,7 @@ export interface IUser {
   email: string
   googleToken: string
   phoneNumber?: string
-  vehicleId?: number
+  vehicleId?: string
   isAdmin: boolean
   profilePictureUrl?: string
   avgRating: number
