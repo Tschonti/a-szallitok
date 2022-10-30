@@ -31,10 +31,10 @@ interface ApiService {
 
     @GET("delivery/{ID}")
     fun getDeliveryData(@Path("ID") ID: String): Call<Delivery>
-
+/*
     @GET("user/{ID}/rating")
     fun getRating(@Header("Authorization") token: String, @Path("ID") ID: String): Call<UserWithRating>
-
+*/
     @GET("login")
     fun loginUser(@Header("Authorization") token: String): Call<User>
 

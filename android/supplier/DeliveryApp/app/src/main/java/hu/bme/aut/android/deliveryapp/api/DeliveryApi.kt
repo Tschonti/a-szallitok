@@ -166,7 +166,7 @@ object DeliveryApi {
 
         return resultData
     }
-
+/*
     fun getUserRating(id: String): MutableLiveData<UserWithRatingState> {
         val resultData = MutableLiveData<UserWithRatingState>()
         resultData.value = UserWithRatingState.inProgress
@@ -191,7 +191,7 @@ object DeliveryApi {
 
         return resultData
     }
-
+*/
     fun loginUser(token: String): MutableLiveData<UserState> {
         val resultData = MutableLiveData<UserState>()
         resultData.value = UserState.inProgress

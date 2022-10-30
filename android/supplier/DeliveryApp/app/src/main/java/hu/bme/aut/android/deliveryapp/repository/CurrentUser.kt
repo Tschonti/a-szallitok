@@ -10,6 +10,6 @@ object CurrentUser {
 
     private var _user: User? = null
     var user: User
-        get() = _user ?: User("", "", "", "","", "", false, "")
+        get() = _user ?: User("", "", "", "","", "", false, "", 1.0f)
         set(value) { _user = value }
 }

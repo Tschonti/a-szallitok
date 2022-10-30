@@ -14,7 +14,7 @@ import hu.bme.aut.android.deliveryapp.databinding.FragmentJobDetailsBinding
 import hu.bme.aut.android.deliveryapp.databinding.FragmentMenuBinding
 import hu.bme.aut.android.deliveryapp.model.JobDetails
 import hu.bme.aut.android.deliveryapp.repository.CurrentUser
-import hu.bme.aut.android.deliveryapp.view.states.UserWithRatingState
+import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.JobDetailsFragmentViewModel
 import hu.bme.aut.android.deliveryapp.viewmodel.ProfileFragmentViewModel
 
@@ -57,16 +57,16 @@ class JobDetailsFragment : Fragment() {
         binding.tvLocation.text = "Delivery location:\n${location?.country}\n${location?.postalCode}, ${location?.city}\n${location?.address}"
     }
 
-    private fun render(state: UserWithRatingState) {
+    private fun render(state: UserState) {
         when (state) {
-            is UserWithRatingState.inProgress -> {
+            is UserState.inProgress -> {
             }
-            is UserWithRatingState.userResponseSuccess -> {
-                //Glide.with(requireContext()).load(state.data?.imgPath).into(binding.ivProfileImage)
+            is UserState.userResponseSuccess -> {
+                Glide.with(requireContext()).load(state.data?.profilePictureUrl).into(binding.ivProfileImage)
                 binding.tvProfileName.text = "Name: ${state.data.name}"
                 binding.tvProfileRating.text = "Rating: ${state.data.avgRating}"
             }
-            is UserWithRatingState.userResponseError -> {
+            is UserState.userResponseError -> {
                 Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
             }
         }

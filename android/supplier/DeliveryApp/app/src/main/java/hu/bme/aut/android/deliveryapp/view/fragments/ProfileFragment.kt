@@ -13,7 +13,6 @@ import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentProfileBinding
 import hu.bme.aut.android.deliveryapp.view.states.UserState
-import hu.bme.aut.android.deliveryapp.view.states.UserWithRatingState
 import hu.bme.aut.android.deliveryapp.viewmodel.ProfileFragmentViewModel
 
 class ProfileFragment : Fragment() {
@@ -28,11 +27,6 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getUserData("10").observe(viewLifecycleOwner
-        ) { userState ->
-            render(userState)
-        }
-
-        viewModel.getUserRating("10").observe(viewLifecycleOwner
         ) { userState ->
             render(userState)
         }
@@ -72,6 +66,7 @@ class ProfileFragment : Fragment() {
             is UserState.userResponseSuccess -> {
                 Glide.with(requireContext()).load(state.data.profilePictureUrl).into(binding.ivProfileImage);
                 binding.tvName.text = "Name: ${state.data.name}"
+                binding.tvRating.text = "Rating: ${state.data.avgRating}"
                 loadingDialog.dismiss()
             }
             is UserState.userResponseError -> {
@@ -81,16 +76,4 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun render(state: UserWithRatingState) {
-        when (state) {
-            is UserWithRatingState.inProgress -> {
-            }
-            is UserWithRatingState.userResponseSuccess -> {
-                binding.tvRating.text = "Rating: ${state.data.avgRating}"
-            }
-            is UserWithRatingState.userResponseError -> {
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 }

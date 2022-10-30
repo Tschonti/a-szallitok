@@ -28,11 +28,11 @@ class ApiRepository {
     fun getVehicleData(id: String): MutableLiveData<VehicleState> {
         return DeliveryApi.getVehicleData(id)
     }
-
+/*
     fun getUserRating(id: String): MutableLiveData<UserWithRatingState> {
         return DeliveryApi.getUserRating(id)
     }
-
+*/
     fun loginUser(token: String): MutableLiveData<UserState> {
         return DeliveryApi.loginUser(token)
     }

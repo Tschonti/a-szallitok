@@ -8,5 +8,6 @@ data class User(
     val phoneNumber: String,
     val vehicleId: String,
     val isAdmin: Boolean,
-    val email: String
+    val email: String,
+    val avgRating: Float,
 )
