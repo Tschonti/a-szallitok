@@ -12,7 +12,7 @@ class InProgressJobsFragmentViewModel : ViewModel() {
 
     fun getJobsInProgress(id: Int): LiveData<JobDetailState> {
         if (!::data.isInitialized) {
-            data = apiRepository.getJobsInProgress(id)
+            data = apiRepository.getJobsInProgress("10")
         }
         return data
     }

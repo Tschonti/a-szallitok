@@ -8,13 +8,15 @@ import { IUserInToplist } from './types/userInToplist'
 import { UserWithRating } from './types/userWithRating'
 
 export const mockUser: IUser = {
+  id: "mongoDbRandomId",
   profilePictureUrl: 'https://cdn-icons-png.flaticon.com/512/685/685681.png',
   name: 'John James',
   googleToken: 'U2314251234234',
   phoneNumber: '12345',
   vehicleId: 4,
   isAdmin: true,
-  email: 'john@email.com'
+  email: 'john@email.com',
+  avgRating: 3.45
 }
 
 export const mockUserWithRating: UserWithRating = {

@@ -24,7 +24,7 @@ class VehicleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getVehicleData(10).observe(viewLifecycleOwner
+        viewModel.getVehicleData("10").observe(viewLifecycleOwner
         ) { vehicleData ->
             render(vehicleData)
         }

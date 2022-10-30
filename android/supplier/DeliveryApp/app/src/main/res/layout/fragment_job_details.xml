@@ -17,6 +17,16 @@
         app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
 
     <ImageView
+        android:id="@+id/ivJobImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvJobDetailsLabel"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
         android:id="@+id/ivProfileImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -61,11 +71,11 @@
         android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="16dp"
         android:text="Date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/ivJobImage" />
 
     <TextView
         android:id="@+id/tvPrice"
@@ -87,13 +97,13 @@
 
     <TextView
         android:id="@+id/tvTitle"
+        style="@style/TitleTextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Title"
-        style="@style/TitleTextViewStyle"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivJobImage"
         app:layout_constraintTop_toBottomOf="@+id/tvJobDetailsLabel" />
 
     <TextView
