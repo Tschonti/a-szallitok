@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentLoginBinding
+import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.LoginFragmentViewModel
 
@@ -110,6 +111,7 @@ class LoginFragment : Fragment() {
     private fun actionForAuthUser() {
         //findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
         auth.currentUser?.getIdToken(false)?.addOnSuccessListener {
+            CurrentUser.token = it.token.toString()
             viewModel.loginUser(it.token ?: "").observe(viewLifecycleOwner
             ) { state ->
                 render(state)
@@ -124,6 +126,7 @@ class LoginFragment : Fragment() {
             }
             is UserState.userResponseSuccess -> {
                 loadingDialog.dismiss()
+                CurrentUser.user = state.data
                 findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
             }
             is UserState.userResponseError -> {

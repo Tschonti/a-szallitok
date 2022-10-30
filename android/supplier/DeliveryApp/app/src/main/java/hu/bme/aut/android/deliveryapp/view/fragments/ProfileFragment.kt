@@ -27,12 +27,12 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getUserData(10).observe(viewLifecycleOwner
+        viewModel.getUserData("10").observe(viewLifecycleOwner
         ) { userState ->
             render(userState)
         }
 
-        viewModel.getUserRating(10).observe(viewLifecycleOwner
+        viewModel.getUserRating("10").observe(viewLifecycleOwner
         ) { userState ->
             render(userState)
         }

@@ -3,6 +3,7 @@ package hu.bme.aut.android.deliveryapp.api
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import hu.bme.aut.android.deliveryapp.model.*
+import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -12,7 +13,7 @@ object DeliveryApi {
 
     private val api = RetrofitClient.api
 
-    fun getUserHistory(id: Int): MutableLiveData<JobDetailState> {
+    fun getUserHistory(id: String): MutableLiveData<JobDetailState> {
 
         val resultData = MutableLiveData<JobDetailState>()
         resultData.value = JobDetailState.inProgress
@@ -64,7 +65,7 @@ object DeliveryApi {
         return resultData
     }
 
-    fun getJobsInProgress(id: Int): MutableLiveData<JobDetailState> {
+    fun getJobsInProgress(id: String): MutableLiveData<JobDetailState> {
         val resultData = MutableLiveData<JobDetailState>()
         resultData.value = JobDetailState.inProgress
 
@@ -90,7 +91,7 @@ object DeliveryApi {
         return resultData
     }
 
-    fun getDeliveryData(id: Int): MutableLiveData<DeliveryState> {
+    fun getDeliveryData(id: String): MutableLiveData<DeliveryState> {
 
         val resultData = MutableLiveData<DeliveryState>()
         resultData.value = DeliveryState.inProgress
@@ -116,7 +117,7 @@ object DeliveryApi {
         return resultData
     }
 
-    fun getUserData(id: Int): MutableLiveData<UserState> {
+    fun getUserData(id: String): MutableLiveData<UserState> {
         val resultData = MutableLiveData<UserState>()
         resultData.value = UserState.inProgress
 
@@ -141,7 +142,7 @@ object DeliveryApi {
         return resultData
     }
 
-    fun getVehicleData(id: Int): MutableLiveData<VehicleState> {
+    fun getVehicleData(id: String): MutableLiveData<VehicleState> {
         val resultData = MutableLiveData<VehicleState>()
         resultData.value = VehicleState.inProgress
 
@@ -166,11 +167,11 @@ object DeliveryApi {
         return resultData
     }
 
-    fun getUserRating(id: Int): MutableLiveData<UserWithRatingState> {
+    fun getUserRating(id: String): MutableLiveData<UserWithRatingState> {
         val resultData = MutableLiveData<UserWithRatingState>()
         resultData.value = UserWithRatingState.inProgress
 
-        api.getRating(id).enqueue(object : Callback<UserWithRating> {
+        api.getRating(CurrentUser.token, id).enqueue(object : Callback<UserWithRating> {
             override fun onResponse(
                 call: Call<UserWithRating>,
                 response: Response<UserWithRating>

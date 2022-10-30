@@ -10,7 +10,7 @@ class HistoryJobsFragmentViewModel : ViewModel() {
 
     private lateinit var data: LiveData<JobDetailState>
 
-    fun getUserHistory(id: Int): LiveData<JobDetailState> {
+    fun getUserHistory(id: String): LiveData<JobDetailState> {
         if (!::data.isInitialized) {
             data = apiRepository.getUserHistory(id)
         }

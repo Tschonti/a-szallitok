@@ -5,7 +5,7 @@ import hu.bme.aut.android.deliveryapp.api.DeliveryApi
 import hu.bme.aut.android.deliveryapp.view.states.*
 
 class ApiRepository {
-    fun getUserHistory(id: Int): MutableLiveData<JobDetailState> {
+    fun getUserHistory(id: String): MutableLiveData<JobDetailState> {
         return DeliveryApi.getUserHistory(id)
     }
 
@@ -13,23 +13,23 @@ class ApiRepository {
         return DeliveryApi.getAvailableJobs(sourceCity, destinationCity, price, date)
     }
 
-    fun getDeliveries (id: Int): MutableLiveData<DeliveryState> {
+    fun getDeliveries (id: String): MutableLiveData<DeliveryState> {
         return DeliveryApi.getDeliveryData(id)
     }
 
-    fun getJobsInProgress(id: Int): MutableLiveData<JobDetailState> {
+    fun getJobsInProgress(id: String): MutableLiveData<JobDetailState> {
         return DeliveryApi.getJobsInProgress(id)
     }
 
-    fun getUserData(id: Int): MutableLiveData<UserState> {
+    fun getUserData(id: String): MutableLiveData<UserState> {
         return DeliveryApi.getUserData(id)
     }
 
-    fun getVehicleData(id: Int): MutableLiveData<VehicleState> {
+    fun getVehicleData(id: String): MutableLiveData<VehicleState> {
         return DeliveryApi.getVehicleData(id)
     }
 
-    fun getUserRating(id: Int): MutableLiveData<UserWithRatingState> {
+    fun getUserRating(id: String): MutableLiveData<UserWithRatingState> {
         return DeliveryApi.getUserRating(id)
     }
 
