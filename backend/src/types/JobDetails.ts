@@ -1,13 +1,14 @@
 import { ILocation } from './location'
 
 export interface IJobDetails {
-  _id: string
   title: string
   description: string
+  clientId: string
+  transporterId?: string
+  deliveryId: string
   clientName: string
-  transporterName?: string
+  clientAvgRating: number
   imPaths: string
-  avgRating: number
   deliveryDate: Date
   deliveryCost: number
   deliveryLocation: ILocation
