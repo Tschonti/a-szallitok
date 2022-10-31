@@ -252,4 +252,31 @@ object DeliveryApi {
 
         return resultData
     }
+
+    fun markDeliveryAsReady(deliveryId: String): MutableLiveData<DeliveryState> {
+        val resultData = MutableLiveData<DeliveryState>()
+        resultData.value = DeliveryState.inProgress
+
+        api.requestJob(CurrentUser.token, deliveryId, CurrentUser.user.id).enqueue(object : Callback<Delivery> {
+            override fun onResponse(
+                call: Call<Delivery>,
+                response: Response<Delivery>
+            ) {
+                if (response.isSuccessful) {
+                    resultData.postValue(response.body()
+                        ?.let { DeliveryState.deliveriesResponseSuccess(it) })
+                } else {
+                    Log.d("ERROR", "e: " + response.message())
+                    resultData.postValue(DeliveryState.deliveriesResponseError(response.message()))
+                }
+            }
+
+            override fun onFailure(call: Call<Delivery>, throwable: Throwable) {
+                Log.d("ERROR", "e: " + throwable.message.toString())
+                resultData.postValue(DeliveryState.deliveriesResponseError(throwable.message.toString()))
+            }
+        })
+
+        return resultData
+    }
 }

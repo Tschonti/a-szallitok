@@ -40,4 +40,8 @@ class ApiRepository {
     fun requestJob(id: String): MutableLiveData<DeliveryState> {
         return DeliveryApi.requestJob(id)
     }
+
+    fun markJobAsReady(deliveryId: String): MutableLiveData<DeliveryState> {
+        return DeliveryApi.markDeliveryAsReady(deliveryId)
+    }
 }

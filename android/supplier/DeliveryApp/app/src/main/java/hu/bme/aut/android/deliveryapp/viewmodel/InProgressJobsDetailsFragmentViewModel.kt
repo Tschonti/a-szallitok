@@ -27,4 +27,11 @@ class InProgressJobsDetailsFragmentViewModel : ViewModel() {
         }
         return delivery
     }
+
+    fun markJobAsReady(deliveryId: String): LiveData<DeliveryState> {
+        if (!::delivery.isInitialized) {
+            delivery = apiRepository.markJobAsReady(deliveryId)
+        }
+        return delivery
+    }
 }

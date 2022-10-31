@@ -43,4 +43,7 @@ interface ApiService {
 
     @PUT("delivery/{ID}/rateClient")
     fun rateClient(@Header("Authorization") token: String, @Path("ID") ID: String, @Body rating: Int): Call<Delivery>
+
+    @PUT("delivery/{ID}")
+    fun changeStatus(@Header("Authorization") token: String, @Path("ID") ID: String, @Body delivery: Delivery): Call<Delivery>
 }

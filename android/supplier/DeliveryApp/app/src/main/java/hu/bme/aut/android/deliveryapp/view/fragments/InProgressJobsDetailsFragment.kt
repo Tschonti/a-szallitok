@@ -61,6 +61,13 @@ class InProgressJobsDetailsFragment : Fragment() {
             }
         }
 
+        binding.btnMarkAsReady.setOnClickListener {
+            viewModel.markJobAsReady(selectedJob!!.deliveryId).observe(viewLifecycleOwner
+            ) { deliveryState ->
+                jobEnded(deliveryState)
+            }
+        }
+
     }
 
 
@@ -119,6 +126,30 @@ class InProgressJobsDetailsFragment : Fragment() {
             is DeliveryState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
                 binding.tvStatusLabel.text = "Status: ${state.data.status}"
+            }
+            is DeliveryState.deliveriesResponseError -> {
+                loadingDialog.dismiss()
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body(state.exceptionMsg)
+                    .icon(R.drawable.error)
+                    .onPositive("Close")
+            }
+        }
+    }
+
+    private fun jobEnded(state: DeliveryState) {
+        when (state) {
+            is DeliveryState.inProgress -> {
+                loadingDialog.show()
+            }
+            is DeliveryState.deliveriesResponseSuccess -> {
+                loadingDialog.dismiss()
+                AwesomeDialog.build(requireActivity())
+                    .title("Success")
+                    .body("Delivery marked as ready")
+                    .icon(R.drawable.success)
+                    .onPositive("Close")
             }
             is DeliveryState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
