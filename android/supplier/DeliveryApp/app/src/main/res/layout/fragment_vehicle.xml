@@ -21,23 +21,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/ivNoCarMeme"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:background="@drawable/no_car_meme"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <TextView
             android:id="@+id/tvNoVehicleLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="You have no vehicles, so you can add one to your profile with the button below."
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivNoCarMeme"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
+            style="@style/Widget.Material3.Button.ElevatedButton"
             android:id="@+id/btnAddVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Add a vehicle"
+            android:text="Add Vehicle"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/purple_200"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNoVehicleLabel"
-            app:layout_constraintStart_toStartOf="@id/tvNoVehicleLabel" />
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -117,6 +132,21 @@
             android:text="Park location"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvStorageCapacity" />
+
+        <Button
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:id="@+id/btnEditVehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Vehicle"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/purple_200"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvParkLocation"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

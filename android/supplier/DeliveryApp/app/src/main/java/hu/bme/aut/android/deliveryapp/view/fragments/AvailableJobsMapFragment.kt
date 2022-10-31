@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.example.awesomedialog.*
+import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentAvailableJobsMapBinding
 import hu.bme.aut.android.deliveryapp.view.states.JobDetailState
 import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobsMapFragmentViewModel
@@ -44,7 +46,11 @@ class AvailableJobsMapFragment : Fragment() {
                 binding.tvText.text = state.data.toString()
             }
             is JobDetailState.jobDetailsResponseError -> {
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body(state.exceptionMsg)
+                    .icon(R.drawable.error)
+                    .onPositive("Close")
             }
         }
     }

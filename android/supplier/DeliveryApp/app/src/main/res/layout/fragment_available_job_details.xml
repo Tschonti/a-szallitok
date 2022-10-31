@@ -23,16 +23,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-
     <Button
+        style="@style/Widget.Material3.Button.ElevatedButton"
         android:id="@+id/btnMakeContract"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Make a contract"
+        android:textColor="@color/black"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:text="Make a contract"
+        android:backgroundTint="@color/action_button_color"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/jobDetailsFragmentOnAvailableJob" />
+        app:layout_constraintTop_toBottomOf="@id/jobDetailsFragmentOnAvailableJob"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

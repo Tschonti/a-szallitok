@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
+import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentHistoryJobsBinding
@@ -75,7 +76,11 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
             }
             is JobDetailState.jobDetailsResponseError -> {
                 loadingDialog.dismiss()
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body(state.exceptionMsg)
+                    .icon(R.drawable.error)
+                    .onPositive("Close")
             }
         }
     }

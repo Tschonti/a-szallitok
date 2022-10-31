@@ -2,6 +2,7 @@ package hu.bme.aut.android.deliveryapp.api
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseAuth
 import hu.bme.aut.android.deliveryapp.model.*
 import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.*
@@ -32,7 +33,7 @@ object DeliveryApi {
             }
 
             override fun onFailure(call: Call<List<JobDetails>?>, throwable: Throwable) {
-                resultData.postValue(JobDetailState.jobDetailsResponseError("ERROR"))
+                resultData.postValue(JobDetailState.jobDetailsResponseError(throwable.message.toString()))
             }
         })
 
@@ -58,7 +59,7 @@ object DeliveryApi {
 
             override fun onFailure(call: Call<List<JobDetails>?>, throwable: Throwable) {
                 Log.i("Error", throwable.message.toString())
-                resultData.postValue(JobDetailState.jobDetailsResponseError("ERROR"))
+                resultData.postValue(JobDetailState.jobDetailsResponseError(throwable.message.toString()))
             }
         })
 
@@ -84,7 +85,7 @@ object DeliveryApi {
 
             override fun onFailure(call: Call<List<JobDetails>?>, throwable: Throwable) {
                 Log.i("Error", throwable.message.toString())
-                resultData.postValue(JobDetailState.jobDetailsResponseError("ERROR"))
+                resultData.postValue(JobDetailState.jobDetailsResponseError(throwable.message.toString()))
             }
         })
 
@@ -110,7 +111,7 @@ object DeliveryApi {
             }
 
             override fun onFailure(call: Call<Delivery>, throwable: Throwable) {
-                resultData.postValue(DeliveryState.deliveriesResponseError("ERROR"))
+                resultData.postValue(DeliveryState.deliveriesResponseError(throwable.message.toString()))
             }
         })
 
@@ -121,26 +122,29 @@ object DeliveryApi {
         val resultData = MutableLiveData<UserState>()
         resultData.value = UserState.inProgress
 
-        api.getUserData(CurrentUser.token, id).enqueue(object : Callback<User> {
-            override fun onResponse(
-                call: Call<User>,
-                response: Response<User>
-            ) {
-                if (response.isSuccessful) {
-                    resultData.postValue(response.body()
-                        ?.let { UserState.userResponseSuccess(it) })
-                } else {
-                    Log.d("API_ERROR", response.message())
-                    Log.d("TOKEN", CurrentUser.token)
-                    resultData.postValue(UserState.userResponseError(response.message()))
+        FirebaseAuth.getInstance().currentUser?.getIdToken(false)?.addOnSuccessListener {
+            api.getUserData(it.token!!, id).enqueue(object : Callback<User> {
+                override fun onResponse(
+                    call: Call<User>,
+                    response: Response<User>
+                ) {
+                    if (response.isSuccessful) {
+                        resultData.postValue(response.body()
+                            ?.let { UserState.userResponseSuccess(it) })
+                    } else {
+                        Log.d("API_ERROR", response.message())
+                        Log.d("TOKEN", CurrentUser.token)
+                        resultData.postValue(UserState.userResponseError(response.message()))
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<User>, throwable: Throwable) {
-                Log.d("API_ERROR", throwable.message.toString())
-                resultData.postValue(UserState.userResponseError("ERROR"))
-            }
-        })
+                override fun onFailure(call: Call<User>, throwable: Throwable) {
+                    Log.d("API_ERROR", throwable.message.toString())
+                    resultData.postValue(UserState.userResponseError(throwable.message.toString()))
+                }
+            })
+        }
+
 
         return resultData
     }
@@ -163,7 +167,7 @@ object DeliveryApi {
             }
 
             override fun onFailure(call: Call<Vehicle>, throwable: Throwable) {
-                resultData.postValue(VehicleState.vehicleResponseError("ERROR"))
+                resultData.postValue(VehicleState.vehicleResponseError(throwable.message.toString()))
             }
         })
 
@@ -215,7 +219,7 @@ object DeliveryApi {
 
             override fun onFailure(call: Call<User>, throwable: Throwable) {
                 Log.d("ERROR", "e: " + throwable.message.toString())
-                resultData.postValue(UserState.userResponseError("ERROR"))
+                resultData.postValue(UserState.userResponseError(throwable.message.toString()))
             }
         })
 
@@ -242,7 +246,7 @@ object DeliveryApi {
 
             override fun onFailure(call: Call<Delivery>, throwable: Throwable) {
                 Log.d("ERROR", "e: " + throwable.message.toString())
-                resultData.postValue(DeliveryState.deliveriesResponseError("ERROR"))
+                resultData.postValue(DeliveryState.deliveriesResponseError(throwable.message.toString()))
             }
         })
 

@@ -80,7 +80,11 @@
         android:id="@+id/vehicleFragment"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.VehicleFragment"
         android:label="VehicleFragment"
-        tools:layout="@layout/fragment_vehicle" />
+        tools:layout="@layout/fragment_vehicle" >
+        <action
+            android:id="@+id/action_vehicleFragment_to_addVehicleFragment"
+            app:destination="@id/addVehicleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/inProgressJobsDetailsFragment"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.InProgressJobsDetailsFragment"
@@ -96,4 +100,9 @@
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.JobDetailsFragment"
         android:label="JobDetailsFragment"
         tools:layout="@layout/fragment_job_details" />
+    <fragment
+        android:id="@+id/addVehicleFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.fragments.AddVehicleFragment"
+        android:label="AddVehicleFragment"
+        tools:layout="@layout/fragment_add_vehicle" />
 </navigation>

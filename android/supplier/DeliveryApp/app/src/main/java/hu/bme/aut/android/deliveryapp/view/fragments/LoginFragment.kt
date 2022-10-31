@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
+import com.example.awesomedialog.*
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -133,7 +134,11 @@ class LoginFragment : Fragment() {
             }
             is UserState.userResponseError -> {
                 loadingDialog.dismiss()
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body(state.exceptionMsg)
+                    .icon(R.drawable.error)
+                    .onPositive("Close")
             }
         }
     }

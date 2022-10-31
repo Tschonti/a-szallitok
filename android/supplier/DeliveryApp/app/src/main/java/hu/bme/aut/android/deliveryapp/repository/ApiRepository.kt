@@ -13,7 +13,7 @@ class ApiRepository {
         return DeliveryApi.getAvailableJobs(sourceCity, destinationCity, price, date)
     }
 
-    fun getDeliveries (id: String): MutableLiveData<DeliveryState> {
+    fun getDelivery (id: String): MutableLiveData<DeliveryState> {
         return DeliveryApi.getDeliveryData(id)
     }
 

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentAvailableJobDetailsBinding
 import hu.bme.aut.android.deliveryapp.databinding.FragmentJobDetailsBinding
@@ -58,7 +59,11 @@ class AvailableJobDetailsFragment : Fragment() {
                 Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show()
             }
             is DeliveryState.deliveriesResponseError -> {
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body(state.exceptionMsg)
+                    .icon(R.drawable.error)
+                    .onPositive("Close")
             }
         }
     }

@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentJobDetailsBinding
 import hu.bme.aut.android.deliveryapp.databinding.FragmentMenuBinding
@@ -51,10 +53,10 @@ class JobDetailsFragment : Fragment() {
         Glide.with(requireContext()).load(job?.imPaths).into(binding.ivJobImage)
         binding.tvProfileRating.text = "0"
         binding.tvProfileName.text = job?.clientName
-        binding.tvDate.text = "Delivery date: ${job?.deliveryDate?.subSequence(0, 10)}"
-        binding.tvPrice.text = "Delivery cost: ${job?.deliveryCost.toString()}"
+        binding.tvDate.text = job?.deliveryDate?.subSequence(0, 10)
+        binding.tvPrice.text = job?.deliveryCost.toString()
         val location = job?.deliveryLocation
-        binding.tvLocation.text = "Delivery location:\n${location?.country}\n${location?.postalCode}, ${location?.city}\n${location?.address}"
+        binding.tvLocation.text = "${location?.country}\n${location?.postalCode}, ${location?.city}\n${location?.address}"
     }
 
     private fun render(state: UserState) {
@@ -63,11 +65,15 @@ class JobDetailsFragment : Fragment() {
             }
             is UserState.userResponseSuccess -> {
                 Glide.with(requireContext()).load(state.data?.profilePictureUrl).into(binding.ivProfileImage)
-                binding.tvProfileName.text = "Name: ${state.data.name}"
-                binding.tvProfileRating.text = "Rating: ${state.data.avgRating}"
+                binding.tvProfileName.text = state.data.name
+                binding.tvProfileRating.text = state.data.avgRating.toString()
             }
             is UserState.userResponseError -> {
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body(state.exceptionMsg)
+                    .icon(R.drawable.error)
+                    .onPositive("Close")
             }
         }
     }

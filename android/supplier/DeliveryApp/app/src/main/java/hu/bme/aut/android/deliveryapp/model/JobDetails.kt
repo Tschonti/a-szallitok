@@ -5,9 +5,9 @@ import java.io.Serializable
 data class JobDetails(
     val title: String?,
     val description: String?,
-    val clientId: String,
+    var clientId: String, //TODO: should be val
     var transporterId: String?,
-    val deliveryId: String?,
+    var deliveryId: String, //TODO: should be val
     val clientName: String?,
     val clientAvgRating: Float?,
     val imPaths: String?,

@@ -71,29 +71,30 @@
         android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
         android:text="Date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivJobImage" />
+        app:layout_constraintBottom_toBottomOf="@+id/ivDate"
+        app:layout_constraintStart_toEndOf="@+id/tvDateLabel"
+        app:layout_constraintTop_toTopOf="@+id/ivDate" />
 
     <TextView
         android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
         android:text="Price"
-        app:layout_constraintStart_toStartOf="@+id/tvDate"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+        app:layout_constraintBottom_toBottomOf="@+id/ivPrice"
+        app:layout_constraintStart_toEndOf="@+id/tvPriceLabel"
+        app:layout_constraintTop_toTopOf="@+id/ivPrice" />
 
     <TextView
         android:id="@+id/tvLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Location"
-        app:layout_constraintStart_toStartOf="@+id/tvPrice"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
+        app:layout_constraintStart_toStartOf="@+id/tvLocationLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvLocationLabel" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -114,4 +115,64 @@
         android:text="Description"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <ImageView
+        android:id="@+id/ivDate"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/ivJobImage"
+        app:layout_constraintTop_toBottomOf="@+id/ivJobImage"
+        app:srcCompat="@drawable/ic_baseline_date_range_24" />
+
+    <TextView
+        android:id="@+id/tvDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Date:"
+        style="@style/SubTitleTextViewStyle"
+        app:layout_constraintBottom_toBottomOf="@+id/ivDate"
+        app:layout_constraintStart_toEndOf="@+id/ivDate"
+        app:layout_constraintTop_toTopOf="@+id/ivDate" />
+
+    <ImageView
+        android:id="@+id/ivPrice"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/ivDate"
+        app:layout_constraintTop_toBottomOf="@+id/ivDate"
+        app:srcCompat="@drawable/ic_baseline_attach_money_24" />
+
+    <TextView
+        android:id="@+id/tvPriceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Price:"
+        style="@style/SubTitleTextViewStyle"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPrice"
+        app:layout_constraintStart_toEndOf="@+id/ivPrice"
+        app:layout_constraintTop_toTopOf="@+id/ivPrice" />
+
+    <ImageView
+        android:id="@+id/ivLocation"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/ivPrice"
+        app:layout_constraintTop_toBottomOf="@+id/ivPrice"
+        app:srcCompat="@drawable/ic_baseline_location_on_24" />
+
+    <TextView
+        android:id="@+id/tvLocationLabel"
+        style="@style/SubTitleTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Location:"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLocation"
+        app:layout_constraintStart_toEndOf="@+id/ivLocation"
+        app:layout_constraintTop_toTopOf="@+id/ivLocation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

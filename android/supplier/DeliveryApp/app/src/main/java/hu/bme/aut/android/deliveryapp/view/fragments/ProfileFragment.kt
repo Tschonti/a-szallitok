@@ -1,6 +1,7 @@
 package hu.bme.aut.android.deliveryapp.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
+import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentProfileBinding
 import hu.bme.aut.android.deliveryapp.repository.CurrentUser
@@ -68,11 +70,17 @@ class ProfileFragment : Fragment() {
                 Glide.with(requireContext()).load(state.data.profilePictureUrl).into(binding.ivProfileImage);
                 binding.tvName.text = "Name: ${state.data.name}"
                 binding.tvRating.text = "Rating: ${state.data.avgRating}"
+                binding.tvEmail.text = "Email: ${state.data.email}"
+                binding.tvPhone.text = "Phone: ${state.data.phoneNumber}"
                 loadingDialog.dismiss()
             }
             is UserState.userResponseError -> {
                 loadingDialog.dismiss()
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body(state.exceptionMsg)
+                    .icon(R.drawable.error)
+                    .onPositive("Close")
             }
         }
     }

@@ -7,9 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
+import com.example.awesomedialog.*
+import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentVehicleBinding
+import hu.bme.aut.android.deliveryapp.model.Vehicle
 import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.VehicleState
 import hu.bme.aut.android.deliveryapp.viewmodel.VehicleFragmentViewModel
@@ -21,6 +25,8 @@ class VehicleFragment : Fragment() {
     private val viewModel: VehicleFragmentViewModel by viewModels()
 
     private lateinit var loadingDialog: LottieProgressDialog
+
+    private lateinit var vehicle: Vehicle
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,7 +60,14 @@ class VehicleFragment : Fragment() {
         )
 
         binding.btnAddVehicle.setOnClickListener {
-            AddVehicleFragment().show(childFragmentManager, "NEW_VEHICLE")
+            findNavController().navigate(R.id.action_vehicleFragment_to_addVehicleFragment)
+        }
+
+        binding.btnEditVehicle.setOnClickListener {
+            val b = Bundle()
+            vehicle.id = "id"
+            b.putSerializable("VEHICLE", vehicle)
+            findNavController().navigate(R.id.action_vehicleFragment_to_addVehicleFragment, b)
         }
     }
 
@@ -80,10 +93,15 @@ class VehicleFragment : Fragment() {
                 binding.tvStorageCapacity.text = "${state.data.maxWeight} kg"
                 binding.tvParkLocation.text = state.data.location
                 loadingDialog.dismiss()
+                vehicle = state.data
             }
             is VehicleState.vehicleResponseError -> {
                 loadingDialog.dismiss()
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body(state.exceptionMsg)
+                    .icon(R.drawable.error)
+                    .onPositive("Close")
             }
         }
     }
