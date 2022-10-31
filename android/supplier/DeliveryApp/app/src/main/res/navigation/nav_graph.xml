@@ -23,9 +23,6 @@
             android:id="@+id/action_menuFragment_to_availableJobsFragment"
             app:destination="@id/availableJobsFragment" />
         <action
-            android:id="@+id/action_menuFragment_to_availableJobsMapFragment"
-            app:destination="@id/availableJobsMapFragment" />
-        <action
             android:id="@+id/action_menuFragment_to_inProgressJobsFragment"
             app:destination="@id/inProgressJobsFragment" />
         <action
@@ -34,6 +31,9 @@
         <action
             android:id="@+id/action_menuFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_availableJobsMapFragment"
+            app:destination="@id/availableJobsMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/availableJobsFragment"
@@ -44,11 +44,6 @@
             android:id="@+id/action_availableJobsFragment_to_availableJobDetailsFragment"
             app:destination="@id/availableJobDetailsFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/availableJobsMapFragment"
-        android:name="hu.bme.aut.android.deliveryapp.view.fragments.AvailableJobsMapFragment"
-        android:label="fragment_available_jobs_map"
-        tools:layout="@layout/fragment_available_jobs_map" />
     <fragment
         android:id="@+id/inProgressJobsFragment"
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.InProgressJobsFragment"
@@ -105,4 +100,9 @@
         android:name="hu.bme.aut.android.deliveryapp.view.fragments.AddVehicleFragment"
         android:label="AddVehicleFragment"
         tools:layout="@layout/fragment_add_vehicle" />
+    <fragment
+        android:id="@+id/availableJobsMapFragment"
+        android:name="hu.bme.aut.android.deliveryapp.view.fragments.AvailableJobsMapFragment"
+        android:label="fragment_available_jobs_map"
+        tools:layout="@layout/fragment_available_jobs_map" />
 </navigation>
