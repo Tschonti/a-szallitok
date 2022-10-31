@@ -8,7 +8,7 @@ data class Delivery(
     val pictureUrl: String,
     val length: Float,
     val description: String,
-    val destinationLocation: String,
+    val destinationLocation: Location,
     val weight: Float,
     val title: String,
     val createdAt: String,
@@ -21,6 +21,6 @@ data class Delivery(
     val id: String,
     val pickUpFrom: String,
     val height: Float,
-    val status: String,
+    var status: String, //TODO: should be val
     val updatedAt: String
 )

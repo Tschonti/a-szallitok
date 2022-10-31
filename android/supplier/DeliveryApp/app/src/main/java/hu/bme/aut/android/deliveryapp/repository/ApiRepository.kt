@@ -2,6 +2,7 @@ package hu.bme.aut.android.deliveryapp.repository
 
 import androidx.lifecycle.MutableLiveData
 import hu.bme.aut.android.deliveryapp.api.DeliveryApi
+import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.view.states.*
 
 class ApiRepository {
@@ -41,7 +42,11 @@ class ApiRepository {
         return DeliveryApi.requestJob(id)
     }
 
-    fun markJobAsReady(deliveryId: String): MutableLiveData<DeliveryState> {
-        return DeliveryApi.markDeliveryAsReady(deliveryId)
+    fun markJobAsReady(delivery: Delivery): MutableLiveData<DeliveryState> {
+        return DeliveryApi.markDeliveryAsReady(delivery)
+    }
+
+    fun markDeliveryAsCancelled(delivery: Delivery): MutableLiveData<DeliveryState> {
+        return DeliveryApi.markDeliveryAsCancelled(delivery)
     }
 }

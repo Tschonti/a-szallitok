@@ -12,6 +12,7 @@ import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentInProgressDetailsBinding
+import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.model.JobDetails
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryState
 import hu.bme.aut.android.deliveryapp.view.states.UserState
@@ -26,6 +27,8 @@ class InProgressJobsDetailsFragment : Fragment() {
     private val viewModel: InProgressJobsDetailsFragmentViewModel by viewModels()
 
     private lateinit var loadingDialog: LottieProgressDialog
+
+    private lateinit var delivery: Delivery
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,7 +65,14 @@ class InProgressJobsDetailsFragment : Fragment() {
         }
 
         binding.btnMarkAsReady.setOnClickListener {
-            viewModel.markJobAsReady(selectedJob!!.deliveryId).observe(viewLifecycleOwner
+            viewModel.markJobAsReady(delivery).observe(viewLifecycleOwner
+            ) { deliveryState ->
+                jobReady(deliveryState)
+            }
+        }
+
+        binding.btnCancel.setOnClickListener {
+            viewModel.markDeliveryAsCancelled(delivery).observe(viewLifecycleOwner
             ) { deliveryState ->
                 jobEnded(deliveryState)
             }
@@ -125,7 +135,32 @@ class InProgressJobsDetailsFragment : Fragment() {
             }
             is DeliveryState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
+                delivery = state.data
                 binding.tvStatusLabel.text = "Status: ${state.data.status}"
+            }
+            is DeliveryState.deliveriesResponseError -> {
+                loadingDialog.dismiss()
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body(state.exceptionMsg)
+                    .icon(R.drawable.error)
+                    .onPositive("Close")
+            }
+        }
+    }
+
+    private fun jobReady(state: DeliveryState) {
+        when (state) {
+            is DeliveryState.inProgress -> {
+                loadingDialog.show()
+            }
+            is DeliveryState.deliveriesResponseSuccess -> {
+                loadingDialog.dismiss()
+                AwesomeDialog.build(requireActivity())
+                    .title("Success")
+                    .body("Delivery marked as ready")
+                    .icon(R.drawable.success)
+                    .onPositive("Close")
             }
             is DeliveryState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
@@ -147,7 +182,7 @@ class InProgressJobsDetailsFragment : Fragment() {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
                     .title("Success")
-                    .body("Delivery marked as ready")
+                    .body("Delivery marked as cancelled")
                     .icon(R.drawable.success)
                     .onPositive("Close")
             }

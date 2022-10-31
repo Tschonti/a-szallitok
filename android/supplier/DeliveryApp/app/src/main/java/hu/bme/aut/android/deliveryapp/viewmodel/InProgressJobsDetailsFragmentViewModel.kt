@@ -2,6 +2,7 @@ package hu.bme.aut.android.deliveryapp.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.repository.ApiRepository
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryState
 import hu.bme.aut.android.deliveryapp.view.states.JobDetailState
@@ -28,9 +29,16 @@ class InProgressJobsDetailsFragmentViewModel : ViewModel() {
         return delivery
     }
 
-    fun markJobAsReady(deliveryId: String): LiveData<DeliveryState> {
+    fun markJobAsReady(d: Delivery): LiveData<DeliveryState> {
         if (!::delivery.isInitialized) {
-            delivery = apiRepository.markJobAsReady(deliveryId)
+            delivery = apiRepository.markJobAsReady(d)
+        }
+        return delivery
+    }
+
+    fun markDeliveryAsCancelled(d: Delivery): LiveData<DeliveryState> {
+        if (!::delivery.isInitialized) {
+            delivery = apiRepository.markDeliveryAsCancelled(d)
         }
         return delivery
     }

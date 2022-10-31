@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="action_button_color">#BC544B</color>
+    <color name="background_fade_color_1">#91E0FF</color>
+    <color name="background_fade_color_2">#B9EBFF</color>
+    <color name="background_fade_color_3">#55CEFF</color>
 </resources>
