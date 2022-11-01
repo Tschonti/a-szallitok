@@ -1,6 +1,6 @@
 import { Document, model, Model, Schema } from 'mongoose'
 
-enum TransportRequestStatus {
+export enum TransportRequestStatus {
   PENDING = 'PENDING',
   REJECTED = 'REJECTED',
   ACCEPTED = 'ACCEPTED'
