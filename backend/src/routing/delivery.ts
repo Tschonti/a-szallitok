@@ -2,6 +2,7 @@ import { Express, Request, Response } from 'express'
 import { body } from 'express-validator'
 import { getUserByUId } from '../middleware/auth'
 import { createDelivery, createLocationEntities } from '../middleware/delivery'
+import { checkValidationResult } from '../middleware/validation'
 import { mockDelivery, mockJobDetails } from '../mockdata'
 
 export default (app: Express) => {
@@ -12,14 +13,15 @@ export default (app: Express) => {
   app.post('/delivery',
     body('title').isString().notEmpty(),
     body('description').isString().notEmpty(),
-    body('pickUpFrom').isDate(),
-    body('pickUpUntil').isDate(),
+    body('pickUpFrom').isISO8601().toDate(),
+    body('pickUpUntil').isISO8601().toDate(),
     body('price').isDecimal(),
     body('weight').isDecimal(),
-    body('lenght').isDecimal(),
+    body('length').isDecimal(),
     body('height').isDecimal(),
     body('width').isDecimal(),
-    body('pictureUrl'), // todo
+    body('pictureUrl').optional().isURL(),
+    checkValidationResult,
     getUserByUId, createLocationEntities, createDelivery)
 
   app.get('/delivery/jobDetails', (req: Request, res: Response) => {
@@ -47,6 +49,10 @@ export default (app: Express) => {
   })
 
   app.put('/delivery/:id/rateClient', (req: Request, res: Response) => {
+    res.send(mockDelivery)
+  })
+
+  app.put('/delivery/:id/statusChange', (req: Request, res: Response) => {
     res.send(mockDelivery)
   })
 
