@@ -19,9 +19,7 @@ interface ApiService {
     fun getVehicleData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<Vehicle>
 
     @GET("delivery")
-    fun getJobDetails(@Header("Authorization") token: String,
-                        @Query("transporterId") transporterId: String?,
-    ): Call<List<Delivery>>
+    fun getJobDetails(@Header("Authorization") token: String, @Query("transporterId") transporterId: String?): Call<List<Delivery>>
 
     @GET("delivery/{ID}")
     fun getDeliveryData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<Delivery>
@@ -29,11 +27,11 @@ interface ApiService {
     @GET("login")
     fun loginUser(@Header("Authorization") token: String): Call<User>
 
-    @PUT("delivery/{ID}/request")
-    fun requestJob(@Header("Authorization") token: String, @Path("ID") ID: String, @Body transporterId: String): Call<Delivery>
+    @POST("delivery/{ID}/request")
+    fun requestJob(@Header("Authorization") token: String, @Path("ID") ID: String): Call<Delivery>
 
     @PUT("delivery/{ID}/rateClient")
-    fun rateClient(@Header("Authorization") token: String, @Path("ID") ID: String, @Body rating: Int): Call<Delivery>
+    fun rateClient(@Header("Authorization") token: String, @Path("ID") ID: String/*, @Body rating: Int*/): Call<Delivery>
 
     @PUT("delivery/{ID}")
     fun changeStatus(@Header("Authorization") token: String, @Path("ID") ID: String, @Body delivery: Delivery): Call<Delivery>

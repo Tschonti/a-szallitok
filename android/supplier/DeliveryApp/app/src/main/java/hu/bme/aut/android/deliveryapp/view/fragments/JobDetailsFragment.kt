@@ -31,11 +31,6 @@ class JobDetailsFragment : Fragment() {
 
         val selectedJob: Delivery? = arguments?.get("JOB") as Delivery?
         initFragment(selectedJob)
-
-        viewModel.getUserData(CurrentUser.user._id).observe(viewLifecycleOwner
-        ) { userState ->
-            render(userState)
-        }
     }
 
     override fun onCreateView(
@@ -51,12 +46,17 @@ class JobDetailsFragment : Fragment() {
         binding.tvTitle.text = job?.title
         binding.tvDescription.text = job?.description
         Glide.with(requireContext()).load(job?.pictureUrl).into(binding.ivJobImage)
-        //binding.tvProfileRating.text = "0"
-        //binding.tvProfileName.text = job?.
         binding.tvDate.text = "${job?.pickUpFrom?.subSequence(0, 10)} - ${job?.pickUpUntil?.subSequence(0, 10)}"
         binding.tvPrice.text = job?.price.toString()
         val location = job?.sourceLocation
         binding.tvLocation.text = "${location?.country}\n${location?.postalCode}, ${location?.city}\n${location?.address}"
+
+        job?.clientUser?.let {
+            viewModel.getUserData(it).observe(viewLifecycleOwner
+            ) { userState ->
+                render(userState)
+            }
+        }
     }
 
     private fun render(state: UserState) {

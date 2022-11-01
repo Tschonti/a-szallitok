@@ -71,8 +71,7 @@ object DeliveryApi {
         val resultData = MutableLiveData<UserState>()
         resultData.value = UserState.inProgress
 
-        FirebaseAuth.getInstance().currentUser?.getIdToken(false)?.addOnSuccessListener {
-            api.getUserData(it.token!!, id).enqueue(object : Callback<User> {
+            api.getUserData(CurrentUser.token, id).enqueue(object : Callback<User> {
                 override fun onResponse(
                     call: Call<User>,
                     response: Response<User>
@@ -92,7 +91,6 @@ object DeliveryApi {
                     resultData.postValue(UserState.userResponseError(throwable.message.toString()))
                 }
             })
-        }
 
 
         return resultData
@@ -154,7 +152,7 @@ object DeliveryApi {
         val resultData = MutableLiveData<DeliveryState>()
         resultData.value = DeliveryState.inProgress
 
-        api.requestJob(CurrentUser.token, id, CurrentUser.user._id).enqueue(object : Callback<Delivery> {
+        api.requestJob(CurrentUser.token, id).enqueue(object : Callback<Delivery> {
             override fun onResponse(
                 call: Call<Delivery>,
                 response: Response<Delivery>
@@ -181,7 +179,7 @@ object DeliveryApi {
         val resultData = MutableLiveData<DeliveryState>()
         resultData.value = DeliveryState.inProgress
 
-        api.rateClient(CurrentUser.token, clientId, rating).enqueue(object : Callback<Delivery> {
+        api.rateClient(CurrentUser.token, clientId,/* rating*/).enqueue(object : Callback<Delivery> {
             override fun onResponse(
                 call: Call<Delivery>,
                 response: Response<Delivery>

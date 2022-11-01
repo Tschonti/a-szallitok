@@ -56,7 +56,11 @@ class AvailableJobDetailsFragment : Fragment() {
             is DeliveryState.inProgress -> {
             }
             is DeliveryState.deliveriesResponseSuccess -> {
-                Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show()
+                AwesomeDialog.build(requireActivity())
+                    .title("Success")
+                    .body("Now it's in pending status")
+                    .icon(R.drawable.success)
+                    .onPositive("Close")
             }
             is DeliveryState.deliveriesResponseError -> {
                 AwesomeDialog.build(requireActivity())

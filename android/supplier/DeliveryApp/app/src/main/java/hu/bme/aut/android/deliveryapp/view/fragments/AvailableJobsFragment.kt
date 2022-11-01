@@ -84,7 +84,7 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
     }
 
     override fun onJobSelected(job: Delivery?) {
-
+        Log.d("JOB", job.toString())
         val b = Bundle()
         b.putSerializable("JOB", job)
         findNavController().navigate(R.id.action_availableJobsFragment_to_availableJobDetailsFragment, b)
