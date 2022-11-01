@@ -1055,6 +1055,69 @@
         "x-swagger-router-controller": "Delivery"
       }
     },
+    "/delivery/{ID}/statusChange": {
+      "put": {
+        "tags": [
+          "delivery"
+        ],
+        "summary": "Update the status of the delivery",
+        "description": "Update the status of the delivery",
+        "operationId": "statusChange",
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID of the delivery to edit",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "mongoDbRandomId"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The new status",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "IN TRANSIT"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Delivery"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "403": {
+            "description": "Only the transporter can update the status"
+          },
+          "404": {
+            "description": "Delivery not found"
+          }
+        },
+        "x-swagger-router-controller": "Delivery"
+      }
+    },
     "/delivery/{ID}/jobDetails": {
       "get": {
         "tags": [
