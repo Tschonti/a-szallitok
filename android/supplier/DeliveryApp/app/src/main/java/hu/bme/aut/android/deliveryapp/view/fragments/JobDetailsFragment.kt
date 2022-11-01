@@ -32,7 +32,7 @@ class JobDetailsFragment : Fragment() {
         val selectedJob: JobDetails? = arguments?.get("JOB") as JobDetails?
         initFragment(selectedJob)
 
-        viewModel.getUserData(CurrentUser.user.id).observe(viewLifecycleOwner
+        viewModel.getUserData(CurrentUser.user._id).observe(viewLifecycleOwner
         ) { userState ->
             render(userState)
         }

@@ -29,7 +29,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getUserData(CurrentUser.user.id).observe(viewLifecycleOwner
+        viewModel.getUserData(CurrentUser.user._id).observe(viewLifecycleOwner
         ) { userState ->
             render(userState)
         }

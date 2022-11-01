@@ -18,9 +18,9 @@ data class Delivery(
     val width: Float,
     val sourceLocation: Location,
     val transporterRating: Float,
-    val id: String,
+    val _id: String,
     val pickUpFrom: String,
     val height: Float,
-    var status: String, //TODO: should be val
+    var status: String,
     val updatedAt: String
 )

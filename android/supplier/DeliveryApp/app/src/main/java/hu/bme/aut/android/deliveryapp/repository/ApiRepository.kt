@@ -49,4 +49,8 @@ class ApiRepository {
     fun markDeliveryAsCancelled(delivery: Delivery): MutableLiveData<DeliveryState> {
         return DeliveryApi.markDeliveryAsCancelled(delivery)
     }
+
+    fun rateClient(clientId: String, rating: Int): MutableLiveData<DeliveryState> {
+        return DeliveryApi.rateClient(clientId, rating)
+    }
 }

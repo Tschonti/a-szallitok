@@ -45,7 +45,7 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
 
         adapter = JobDetailsAdapter(requireContext(), this)
 
-        viewModel.getUserHistory(CurrentUser.user.id).observe(viewLifecycleOwner
+        viewModel.getUserHistory(CurrentUser.user._id).observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
         }

@@ -18,7 +18,8 @@ interface ApiService {
     fun getVehicleData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<Vehicle>
 
     @GET("delivery/jobDetails")
-    fun getJobDetails(@Query("status") status: String?,
+    fun getJobDetails(@Header("Authorization") token: String,
+                        @Query("status") status: String?,
                         @Query("sourceCity") sourceCity: String?,
                         @Query("destinationCity") destinationCity: String?,
                         @Query("price") price: Int?,

@@ -42,4 +42,8 @@ class InProgressJobsDetailsFragmentViewModel : ViewModel() {
         }
         return delivery
     }
+
+    fun rateClient(clientId: String, rating: Int): LiveData<DeliveryState> {
+        return apiRepository.rateClient(clientId, rating)
+    }
 }

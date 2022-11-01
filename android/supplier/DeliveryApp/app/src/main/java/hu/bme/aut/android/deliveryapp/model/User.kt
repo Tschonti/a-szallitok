@@ -1,7 +1,7 @@
 package hu.bme.aut.android.deliveryapp.model
 
 data class User(
-    var id: String, //TODO: Should be val, but for debug purposes it's var
+    val _id: String,
     val profilePictureUrl: String,
     val name: String,
     val googletoken: String,

@@ -19,7 +19,7 @@ import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.InProgressJobsDetailsFragmentViewModel
 
 
-class InProgressJobsDetailsFragment : Fragment() {
+class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmittedListener {
     private lateinit var binding: FragmentInProgressDetailsBinding
 
     private var selectedJob: JobDetails? = null
@@ -30,10 +30,14 @@ class InProgressJobsDetailsFragment : Fragment() {
 
     private lateinit var delivery: Delivery
 
+    private lateinit var listener: RatingDialog.RateDialogSubmittedListener
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         selectedJob = arguments?.get("JOB") as JobDetails?
+
+        listener = this
 
         loadingDialog = LottieProgressDialog(
             context = requireContext(),
@@ -156,11 +160,8 @@ class InProgressJobsDetailsFragment : Fragment() {
             }
             is DeliveryState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
-                AwesomeDialog.build(requireActivity())
-                    .title("Success")
-                    .body("Delivery marked as ready")
-                    .icon(R.drawable.success)
-                    .onPositive("Close")
+
+                RatingDialog(listener).show(childFragmentManager, "RATE")
             }
             is DeliveryState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
@@ -183,6 +184,43 @@ class InProgressJobsDetailsFragment : Fragment() {
                 AwesomeDialog.build(requireActivity())
                     .title("Success")
                     .body("Delivery marked as cancelled")
+                    .icon(R.drawable.success)
+                    .onPositive("Close")
+            }
+            is DeliveryState.deliveriesResponseError -> {
+                loadingDialog.dismiss()
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body(state.exceptionMsg)
+                    .icon(R.drawable.error)
+                    .onPositive("Close")
+            }
+        }
+    }
+
+    override fun rateSubmitted(rating: Int) {
+        AwesomeDialog.build(requireActivity())
+            .title("Success")
+            .body("Delivery marked as ready")
+            .icon(R.drawable.success)
+            .onPositive("Close")
+        viewModel.rateClient(delivery.clientUserId, rating).observe(viewLifecycleOwner
+        ) { deliveryState ->
+            userRated(deliveryState)
+        }
+
+    }
+
+    private fun userRated(state: DeliveryState) {
+        when (state) {
+            is DeliveryState.inProgress -> {
+                loadingDialog.show()
+            }
+            is DeliveryState.deliveriesResponseSuccess -> {
+                loadingDialog.dismiss()
+                AwesomeDialog.build(requireActivity())
+                    .title("Success")
+                    .body("User succesfully rated")
                     .icon(R.drawable.success)
                     .onPositive("Close")
             }
