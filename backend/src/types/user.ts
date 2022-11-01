@@ -9,6 +9,6 @@ export interface IUser {
 }
 
 export interface UserDto extends IUser {
-  id: string
+  _id: string
   avgRating: number
 }

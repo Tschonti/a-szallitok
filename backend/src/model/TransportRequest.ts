@@ -12,7 +12,7 @@ interface ITransportRequest {
   status?: TransportRequestStatus
 }
 
-interface TransportRequestDoc extends ITransportRequest, Document {}
+export interface TransportRequestDoc extends ITransportRequest, Document {}
 
 interface TransportRequestModel extends Model<TransportRequestDoc> {
   build: (attr: ITransportRequest) => TransportRequestDoc

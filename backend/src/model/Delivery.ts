@@ -9,7 +9,7 @@ export enum DeliveryStatus {
   DELIVERED = 'DELIVERED'
 }
 
-interface DeliveryDoc extends IDelivery, Document {}
+export interface DeliveryDoc extends IDelivery, Document {}
 
 interface DeliveryModel extends Model<DeliveryDoc> {
   build: (attr: IDelivery) => DeliveryDoc

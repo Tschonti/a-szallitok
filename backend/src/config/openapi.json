@@ -251,49 +251,6 @@
         "x-swagger-router-controller": "User"
       }
     },
-    "/user/{ID}/rating": {
-      "get": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Avarage rating of the user",
-        "description": "Avarage rating of the user",
-        "operationId": "userRating",
-        "parameters": [
-          {
-            "name": "ID",
-            "in": "path",
-            "description": "ID of user to return",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string",
-              "example": "mongoDbRandomId"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserWithRating"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "User not found"
-          }
-        },
-        "x-swagger-router-controller": "User"
-      }
-    },
     "/user/{ID}/history": {
       "get": {
         "tags": [
@@ -324,7 +281,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/JobDetails"
+                    "$ref": "#/components/schemas/Delivery"
                   }
                 }
               }
@@ -547,68 +504,6 @@
         "tags": [
           "delivery"
         ],
-        "summary": "Get all deliveries",
-        "description": "Returns all deliveries",
-        "operationId": "getDelivery",
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Delivery"
-                  },
-                  "x-content-type": "application/json"
-                }
-              }
-            }
-          }
-        },
-        "x-swagger-router-controller": "Delivery"
-      },
-      "post": {
-        "tags": [
-          "delivery"
-        ],
-        "summary": "Add a new delivery",
-        "description": "Add a new delivery",
-        "operationId": "addDelivery",
-        "requestBody": {
-          "description": "Add a new ddelivery to the database",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Delivery"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Delivery"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input"
-          }
-        },
-        "x-swagger-router-controller": "Delivery"
-      }
-    },
-    "/delivery/jobDetails": {
-      "get": {
-        "tags": [
-          "delivery"
-        ],
         "parameters": [
           {
             "in": "query",
@@ -673,9 +568,9 @@
             }
           }
         ],
-        "description": "Filter on date; returns deliveries where the pickUpFrom is less and the pickUpUntil is bigger than the input date",
-        "summary": "Get all job detials by filters",
-        "operationId": "getJobDetails",
+        "summary": "Get all deliveries",
+        "description": "Returns all deliveries",
+        "operationId": "getDelivery",
         "responses": {
           "200": {
             "description": "successful operation",
@@ -690,6 +585,41 @@
                 }
               }
             }
+          }
+        },
+        "x-swagger-router-controller": "Delivery"
+      },
+      "post": {
+        "tags": [
+          "delivery"
+        ],
+        "summary": "Add a new delivery",
+        "description": "Add a new delivery",
+        "operationId": "addDelivery",
+        "requestBody": {
+          "description": "Add a new ddelivery to the database",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Delivery"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Delivery"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
           }
         },
         "x-swagger-router-controller": "Delivery"
@@ -1117,49 +1047,6 @@
         },
         "x-swagger-router-controller": "Delivery"
       }
-    },
-    "/delivery/{ID}/jobDetails": {
-      "get": {
-        "tags": [
-          "delivery"
-        ],
-        "summary": "Returns with a jobs' detals",
-        "description": "Returns with a jobs' detals",
-        "operationId": "jobDetails",
-        "parameters": [
-          {
-            "name": "ID",
-            "in": "path",
-            "description": "ID of the delivery to return",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string",
-              "example": "mongoDbRandomId"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JobDetails"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Delivery not found"
-          }
-        },
-        "x-swagger-router-controller": "Delivery"
-      }
     }
   },
   "components": {
@@ -1196,6 +1083,10 @@
             "type": "boolean",
             "example": false
           },
+          "avgRating": {
+            "type": "number",
+            "example": 3.45
+          },
           "profilePictureUrl": {
             "type": "string",
             "example": "files:///defaultImage.png"
@@ -1210,39 +1101,13 @@
           "id": 10,
           "vehicleId": 4,
           "isAdmin": false,
-          "email": "john@email.com"
+          "email": "john@email.com",
+          "avgRating": 3.45
         },
         "xml": {
           "name": "user"
         },
         "required": ["_id", "name", "email", "googleToken", "isAdmin"]
-      },
-      "UserWithRating": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string",
-            "example": "mongodbRandomIdsubvdj67"
-          },
-          "name": {
-            "type": "string",
-            "example": "John Doe"
-          },
-          "avgRating": {
-            "type": "number",
-            "format": "float",
-            "example": 3.45
-          }
-        },
-        "example": {
-          "_id": "mongoDbRandomId",
-          "name": "John Doe",
-          "avgRating": 3.45
-        },
-        "xml": {
-          "name": "userWithRating"
-        },
-        "required": ["_id", "name", "avgRating"]
       },
       "UserInToplist": {
         "type": "object",
@@ -1529,57 +1394,6 @@
           "postalCode": 1117
         },
         "required": ["coordinate"]
-      },
-      "JobDetails": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string",
-            "example": "mongoDbRandomId"
-          },
-          "title": {
-            "type": "string",
-            "example": "Brick delivery"
-          },
-          "description": {
-            "type": "string",
-            "example": "Please deliver it!"
-          },
-          "clientName": {
-            "type": "string",
-            "description": "Client's name",
-            "example": "John Doe"
-          },
-          "transporterName": {
-            "type": "string",
-            "description": "Transporter's name",
-            "example": "Doe John"
-          },
-          "imPaths": {
-            "type": "string",
-            "description": "Client's image's url",
-            "example": "file//"
-          },
-          "avgRating": {
-            "type": "number",
-            "description": "Client's average rating",
-            "example": 4.5
-          },
-          "deliveryDate": {
-            "type": "object",
-            "description": "Deivery's date",
-            "example": "022.10.10."
-          },
-          "deliveryCost": {
-            "type": "integer",
-            "description": "Deivery's cost",
-            "example": 10000
-          },
-          "deliveryLocation": {
-            "$ref": "#/components/schemas/Location"
-          }
-        },
-        "required": ["name", "avgRating", "deliveryDate", "deliveryCost", "deliveryLocation", "_id", "title", "description", "clientName"]
       }
     },
     "requestBodies": {

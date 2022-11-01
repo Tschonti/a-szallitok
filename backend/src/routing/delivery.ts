@@ -1,13 +1,19 @@
 import { Express, Request, Response } from 'express'
-import { body } from 'express-validator'
+import { body, param } from 'express-validator'
 import { getUserByUId } from '../middleware/auth'
-import { createDelivery, createLocationEntities } from '../middleware/delivery'
+import {
+  createDelivery,
+  createLocationEntities,
+  getDelivery, readDelivery,
+  statusChangeMiddleware
+} from '../middleware/delivery'
 import { checkValidationResult } from '../middleware/validation'
-import { mockDelivery, mockJobDetails } from '../mockdata'
+import { mockDelivery } from '../mockdata'
+import { Delivery, DeliveryStatus } from '../model/Delivery'
 
 export default (app: Express) => {
-  app.get('/delivery', (req: Request, res: Response) => {
-    res.send([mockDelivery, mockDelivery])
+  app.get('/delivery', async (req: Request, res: Response) => {
+    return res.status(200).send(await Delivery.find())
   })
 
   app.post('/delivery',
@@ -24,17 +30,7 @@ export default (app: Express) => {
     checkValidationResult,
     getUserByUId, createLocationEntities, createDelivery)
 
-  app.get('/delivery/jobDetails', (req: Request, res: Response) => {
-    res.send([mockJobDetails, mockJobDetails])
-  })
-
-  app.get('/delivery/jobDetails/:id', (req: Request, res: Response) => {
-    res.send(mockJobDetails)
-  })
-
-  app.get('/delivery/:id', (req: Request, res: Response) => {
-    res.send(mockDelivery)
-  })
+  app.get('/delivery/:id', param('id').isMongoId(), checkValidationResult, getDelivery)
 
   app.put('/delivery/:id', (req: Request, res: Response) => {
     res.send(mockDelivery)
@@ -52,9 +48,12 @@ export default (app: Express) => {
     res.send(mockDelivery)
   })
 
-  app.put('/delivery/:id/statusChange', (req: Request, res: Response) => {
-    res.send(mockDelivery)
-  })
+  app.put('/delivery/:id/statusChange', param('id').isMongoId(), body('status').custom((value) => {
+    if ([DeliveryStatus.IN_TRANSIT, DeliveryStatus.DELIVERED].includes(value)) {
+      return true
+    }
+    throw new Error('Invalid status')
+  }), checkValidationResult, getUserByUId, readDelivery, statusChangeMiddleware)
 
   app.post('/delivery/:id/request', (req: Request, res: Response) => {
     res.send(mockDelivery)
