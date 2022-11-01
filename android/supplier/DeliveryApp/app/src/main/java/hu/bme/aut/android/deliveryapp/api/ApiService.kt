@@ -20,12 +20,7 @@ interface ApiService {
 
     @GET("delivery")
     fun getJobDetails(@Header("Authorization") token: String,
-                        @Query("status") status: String?,
-                        @Query("sourceCity") sourceCity: String?,
-                        @Query("destinationCity") destinationCity: String?,
-                        @Query("price") price: Int?,
                         @Query("transporterId") transporterId: String?,
-                        @Query("date") date: String?
     ): Call<List<Delivery>>
 
     @GET("delivery/{ID}")

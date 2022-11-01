@@ -17,7 +17,7 @@ data class Delivery(
     val createdAt: String,
     val _id: String,
     val pickUpFrom: String,
-    var status: String,
+    var status: DeliveryStatus,
     val updatedAt: String,
     val capacity: Capacity,
 ) : Serializable

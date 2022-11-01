@@ -46,7 +46,7 @@ class AvailableJobsMapFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
-        viewModel.getAvailableJobs(null, null,null, null).observe(viewLifecycleOwner
+        viewModel.getAvailableJobs().observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
         }

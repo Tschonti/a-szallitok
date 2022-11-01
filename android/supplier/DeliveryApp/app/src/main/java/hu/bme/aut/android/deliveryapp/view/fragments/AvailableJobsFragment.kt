@@ -42,7 +42,7 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
 
         adapter = JobDetailsAdapter(requireContext(), this)
 
-        viewModel.getAvailableJobs(null, null,null, null).observe(viewLifecycleOwner
+        viewModel.getAvailableJobs().observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
         }
