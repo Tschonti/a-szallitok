@@ -14,79 +14,79 @@ object DeliveryApi {
 
     private val api = RetrofitClient.api
 
-    fun getUserHistory(id: String): MutableLiveData<JobDetailState> {
+    fun getUserHistory(id: String): MutableLiveData<DeliveryListState> {
 
-        val resultData = MutableLiveData<JobDetailState>()
-        resultData.value = JobDetailState.inProgress
+        val resultData = MutableLiveData<DeliveryListState>()
+        resultData.value = DeliveryListState.inProgress
 
-        api.getUserHistory(CurrentUser.token, id).enqueue(object : Callback<List<JobDetails>> {
+        api.getUserHistory(CurrentUser.token, id).enqueue(object : Callback<List<Delivery>> {
             override fun onResponse(
-                call: Call<List<JobDetails>>,
-                response: Response<List<JobDetails>>
+                call: Call<List<Delivery>>,
+                response: Response<List<Delivery>>
             ) {
                 if (response.isSuccessful) {
                     resultData.postValue(response.body()
-                        ?.let { JobDetailState.jobDetailsResponseSuccess(it) })
+                        ?.let { DeliveryListState.deliveriesResponseSuccess(it) })
                 } else {
-                    resultData.postValue(JobDetailState.jobDetailsResponseError(response.message()))
+                    resultData.postValue(DeliveryListState.deliveriesResponseError(response.message()))
                 }
             }
 
-            override fun onFailure(call: Call<List<JobDetails>?>, throwable: Throwable) {
-                resultData.postValue(JobDetailState.jobDetailsResponseError(throwable.message.toString()))
+            override fun onFailure(call: Call<List<Delivery>?>, throwable: Throwable) {
+                resultData.postValue(DeliveryListState.deliveriesResponseError(throwable.message.toString()))
             }
         })
 
         return resultData
     }
 
-    fun getAvailableJobs(sourceCity: String?, destinationCity: String?, price: Int?, date: String?): MutableLiveData<JobDetailState> {
-        val resultData = MutableLiveData<JobDetailState>()
-        resultData.value = JobDetailState.inProgress
+    fun getAvailableJobs(sourceCity: String?, destinationCity: String?, price: Int?, date: String?): MutableLiveData<DeliveryListState> {
+        val resultData = MutableLiveData<DeliveryListState>()
+        resultData.value = DeliveryListState.inProgress
 
-        api.getJobDetails(CurrentUser.token, "OPEN", sourceCity, destinationCity, price, null, date).enqueue(object : Callback<List<JobDetails>> {
+        api.getJobDetails(CurrentUser.token, "OPEN", sourceCity, destinationCity, price, null, date).enqueue(object : Callback<List<Delivery>> {
             override fun onResponse(
-                call: Call<List<JobDetails>>,
-                response: Response<List<JobDetails>>
+                call: Call<List<Delivery>>,
+                response: Response<List<Delivery>>
             ) {
                 if (response.isSuccessful) {
                     resultData.postValue(response.body()
-                        ?.let { JobDetailState.jobDetailsResponseSuccess(it) })
+                        ?.let { DeliveryListState.deliveriesResponseSuccess(it) })
                 } else {
-                    resultData.postValue(JobDetailState.jobDetailsResponseError(response.message()))
+                    resultData.postValue(DeliveryListState.deliveriesResponseError(response.message()))
                 }
             }
 
-            override fun onFailure(call: Call<List<JobDetails>?>, throwable: Throwable) {
+            override fun onFailure(call: Call<List<Delivery>?>, throwable: Throwable) {
                 Log.i("Error", throwable.message.toString())
-                resultData.postValue(JobDetailState.jobDetailsResponseError(throwable.message.toString()))
+                resultData.postValue(DeliveryListState.deliveriesResponseError(throwable.message.toString()))
             }
         })
 
         return resultData
     }
 
-    fun getJobsInProgress(id: String): MutableLiveData<JobDetailState> {
-        val resultData = MutableLiveData<JobDetailState>()
-        resultData.value = JobDetailState.inProgress
+    fun getJobsInProgress(id: String): MutableLiveData<DeliveryListState> {
+        val resultData = MutableLiveData<DeliveryListState>()
+        resultData.value = DeliveryListState.inProgress
 
 
-        api.getJobDetails(CurrentUser.token, "INPROGRESS",  null, null, null, id, null).enqueue(object : Callback<List<JobDetails>> {
+        api.getJobDetails(CurrentUser.token, "INPROGRESS",  null, null, null, id, null).enqueue(object : Callback<List<Delivery>> {
             override fun onResponse(
-                call: Call<List<JobDetails>>,
-                response: Response<List<JobDetails>>
+                call: Call<List<Delivery>>,
+                response: Response<List<Delivery>>
             ) {
                 if (response.isSuccessful) {
                     resultData.postValue(response.body()
-                        ?.let { JobDetailState.jobDetailsResponseSuccess(it) })
+                        ?.let { DeliveryListState.deliveriesResponseSuccess(it) })
                 } else {
-                    resultData.postValue(JobDetailState.jobDetailsResponseError(response.message()))
+                    resultData.postValue(DeliveryListState.deliveriesResponseError(response.message()))
                 }
             }
 
-            override fun onFailure(call: Call<List<JobDetails>?>, throwable: Throwable) {
+            override fun onFailure(call: Call<List<Delivery>?>, throwable: Throwable) {
                 Log.i("Error", throwable.message.toString())
-                resultData.postValue(JobDetailState.jobDetailsResponseError(throwable.message.toString()))
+                resultData.postValue(DeliveryListState.deliveriesResponseError(throwable.message.toString()))
             }
         })
 

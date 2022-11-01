@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.JobDetailsRowBinding
-import hu.bme.aut.android.deliveryapp.model.JobDetails
+import hu.bme.aut.android.deliveryapp.model.Delivery
 
 class JobDetailsAdapter(private val context: Context, private val listener: OnJobSelectedListener) : RecyclerView.Adapter<JobDetailsAdapter.JobDetailsViewHolder>() {
-    private val jobs: MutableList<JobDetails> = ArrayList()
+    private val jobs: MutableList<Delivery> = ArrayList()
 
     interface OnJobSelectedListener {
-        fun onJobSelected(job: JobDetails?)
+        fun onJobSelected(job: Delivery?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobDetailsViewHolder {
@@ -29,12 +29,12 @@ class JobDetailsAdapter(private val context: Context, private val listener: OnJo
 
     override fun getItemCount(): Int = jobs.size
 
-    fun addJob(newJob: JobDetails) {
+    fun addJob(newJob: Delivery) {
         jobs.add(newJob)
         notifyItemInserted(jobs.size - 1)
     }
 
-    fun addJobs(newJobs: List<JobDetails>) {
+    fun addJobs(newJobs: List<Delivery>) {
         jobs.clear()
         jobs.addAll(newJobs)
         notifyDataSetChanged()
@@ -50,19 +50,19 @@ class JobDetailsAdapter(private val context: Context, private val listener: OnJo
 
     inner class JobDetailsViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding = JobDetailsRowBinding.bind(itemView)
-        var item: JobDetails? = null
+        var item: Delivery? = null
 
         init {
             binding.root.setOnClickListener { listener.onJobSelected(item) }
         }
 
-        fun bind(newJob: JobDetails) {
+        fun bind(newJob: Delivery) {
             item = newJob
-            Glide.with(context).load(newJob.imPaths).into(binding.ivImage)
+            Glide.with(context).load(newJob.pictureUrl).into(binding.ivImage)
             binding.tvTitle.text = newJob.title
-            binding.tvLocation.text = newJob.deliveryLocation?.city
-            binding.tvDate.text = newJob.deliveryDate?.subSequence(0, 10)
-            binding.tvPrice.text = newJob.deliveryCost.toString()
+            binding.tvLocation.text = newJob.sourceLocation?.city
+            binding.tvDate.text = newJob.pickUpUntil?.subSequence(0, 10)
+            binding.tvPrice.text = newJob.price.toString()
         }
     }
 }

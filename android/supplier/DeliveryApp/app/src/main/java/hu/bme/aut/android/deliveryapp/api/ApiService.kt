@@ -1,6 +1,7 @@
 package hu.bme.aut.android.deliveryapp.api
 
 import hu.bme.aut.android.deliveryapp.model.*
+import hu.bme.aut.android.deliveryapp.view.states.DeliveryState
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
@@ -12,12 +13,12 @@ interface ApiService {
     fun getUserData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<User>
 
     @GET("user/{ID}/history")
-    fun getUserHistory(@Header("Authorization") token: String, @Path("ID") ID: String): Call<List<JobDetails>>
+    fun getUserHistory(@Header("Authorization") token: String, @Path("ID") ID: String): Call<List<Delivery>>
 
     @GET("vehicle/{ID}")
     fun getVehicleData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<Vehicle>
 
-    @GET("delivery/jobDetails")
+    @GET("delivery")
     fun getJobDetails(@Header("Authorization") token: String,
                         @Query("status") status: String?,
                         @Query("sourceCity") sourceCity: String?,
@@ -25,17 +26,11 @@ interface ApiService {
                         @Query("price") price: Int?,
                         @Query("transporterId") transporterId: String?,
                         @Query("date") date: String?
-    ): Call<List<JobDetails>>
-
-    @GET("delivery/{ID}/jobDetails")
-    fun getJobDetail(@Header("Authorization") token: String, @Path("ID") ID: String): Call<JobDetails>
+    ): Call<List<Delivery>>
 
     @GET("delivery/{ID}")
     fun getDeliveryData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<Delivery>
-/*
-    @GET("user/{ID}/rating")
-    fun getRating(@Header("Authorization") token: String, @Path("ID") ID: String): Call<UserWithRating>
-*/
+
     @GET("login")
     fun loginUser(@Header("Authorization") token: String): Call<User>
 

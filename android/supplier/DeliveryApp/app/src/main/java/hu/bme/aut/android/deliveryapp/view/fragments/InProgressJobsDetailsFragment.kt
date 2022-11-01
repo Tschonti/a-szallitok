@@ -13,7 +13,6 @@ import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentInProgressDetailsBinding
 import hu.bme.aut.android.deliveryapp.model.Delivery
-import hu.bme.aut.android.deliveryapp.model.JobDetails
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryState
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.InProgressJobsDetailsFragmentViewModel
@@ -22,7 +21,7 @@ import hu.bme.aut.android.deliveryapp.viewmodel.InProgressJobsDetailsFragmentVie
 class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmittedListener {
     private lateinit var binding: FragmentInProgressDetailsBinding
 
-    private var selectedJob: JobDetails? = null
+    private var selectedJob: Delivery? = null
 
     private val viewModel: InProgressJobsDetailsFragmentViewModel by viewModels()
 
@@ -35,7 +34,8 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        selectedJob = arguments?.get("JOB") as JobDetails?
+        selectedJob = arguments?.get("JOB") as Delivery?
+        binding.tvStatusLabel.text = "Status: ${selectedJob?.status}"
 
         listener = this
 
@@ -55,17 +55,11 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
         fragment.initFragment(selectedJob)
 
         if (selectedJob != null) {
-            selectedJob!!.clientId = "10"
-            viewModel.getUserData(selectedJob!!.clientId).observe(viewLifecycleOwner
+            viewModel.getUserData(selectedJob!!.clientUser).observe(viewLifecycleOwner
             ) { userState ->
                 render(userState)
             }
 
-            selectedJob!!.deliveryId = "10"
-            viewModel.getDeliveryData(selectedJob!!.deliveryId).observe(viewLifecycleOwner
-            ) { deliveryState ->
-                render(deliveryState)
-            }
         }
 
         binding.btnMarkAsReady.setOnClickListener {
@@ -204,7 +198,7 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             .body("Delivery marked as ready")
             .icon(R.drawable.success)
             .onPositive("Close")
-        viewModel.rateClient(delivery.clientUserId, rating).observe(viewLifecycleOwner
+        viewModel.rateClient(delivery.clientUser, rating).observe(viewLifecycleOwner
         ) { deliveryState ->
             userRated(deliveryState)
         }

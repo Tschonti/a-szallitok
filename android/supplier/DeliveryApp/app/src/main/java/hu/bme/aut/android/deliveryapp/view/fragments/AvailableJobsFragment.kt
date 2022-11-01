@@ -14,8 +14,8 @@ import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentAvailableJobsBinding
-import hu.bme.aut.android.deliveryapp.model.JobDetails
-import hu.bme.aut.android.deliveryapp.view.states.JobDetailState
+import hu.bme.aut.android.deliveryapp.model.Delivery
+import hu.bme.aut.android.deliveryapp.view.states.DeliveryListState
 import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobsFragmentViewModel
 
 class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener {
@@ -62,17 +62,17 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
         binding.availableJobsRecyclerView.adapter = adapter
     }
 
-    private fun render(state: JobDetailState) {
+    private fun render(state: DeliveryListState) {
         when (state) {
-            is JobDetailState.inProgress -> {
+            is DeliveryListState.inProgress -> {
                 loadingDialog.show()
             }
-            is JobDetailState.jobDetailsResponseSuccess -> {
+            is DeliveryListState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
                 Log.i("DATA ARRIVED", state.data.toString())
                 adapter.addJobs(state.data)
             }
-            is JobDetailState.jobDetailsResponseError -> {
+            is DeliveryListState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
                     .title("Error")
@@ -83,7 +83,7 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
         }
     }
 
-    override fun onJobSelected(job: JobDetails?) {
+    override fun onJobSelected(job: Delivery?) {
 
         val b = Bundle()
         b.putSerializable("JOB", job)

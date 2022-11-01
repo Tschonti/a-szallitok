@@ -14,7 +14,7 @@ import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentJobDetailsBinding
 import hu.bme.aut.android.deliveryapp.databinding.FragmentMenuBinding
-import hu.bme.aut.android.deliveryapp.model.JobDetails
+import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.JobDetailsFragmentViewModel
@@ -29,7 +29,7 @@ class JobDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val selectedJob: JobDetails? = arguments?.get("JOB") as JobDetails?
+        val selectedJob: Delivery? = arguments?.get("JOB") as Delivery?
         initFragment(selectedJob)
 
         viewModel.getUserData(CurrentUser.user._id).observe(viewLifecycleOwner
@@ -47,15 +47,15 @@ class JobDetailsFragment : Fragment() {
         return binding.root
     }
 
-    fun initFragment(job: JobDetails?) {
+    fun initFragment(job: Delivery?) {
         binding.tvTitle.text = job?.title
         binding.tvDescription.text = job?.description
-        Glide.with(requireContext()).load(job?.imPaths).into(binding.ivJobImage)
-        binding.tvProfileRating.text = "0"
-        binding.tvProfileName.text = job?.clientName
-        binding.tvDate.text = job?.deliveryDate?.subSequence(0, 10)
-        binding.tvPrice.text = job?.deliveryCost.toString()
-        val location = job?.deliveryLocation
+        Glide.with(requireContext()).load(job?.pictureUrl).into(binding.ivJobImage)
+        //binding.tvProfileRating.text = "0"
+        //binding.tvProfileName.text = job?.
+        binding.tvDate.text = "${job?.pickUpFrom?.subSequence(0, 10)} - ${job?.pickUpUntil?.subSequence(0, 10)}"
+        binding.tvPrice.text = job?.price.toString()
+        val location = job?.sourceLocation
         binding.tvLocation.text = "${location?.country}\n${location?.postalCode}, ${location?.city}\n${location?.address}"
     }
 

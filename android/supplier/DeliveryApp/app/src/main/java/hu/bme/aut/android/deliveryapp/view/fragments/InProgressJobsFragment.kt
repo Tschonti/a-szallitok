@@ -13,8 +13,9 @@ import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentInProgressJobsBinding
-import hu.bme.aut.android.deliveryapp.model.JobDetails
-import hu.bme.aut.android.deliveryapp.view.states.JobDetailState
+import hu.bme.aut.android.deliveryapp.model.Delivery
+import hu.bme.aut.android.deliveryapp.repository.CurrentUser
+import hu.bme.aut.android.deliveryapp.view.states.DeliveryListState
 import hu.bme.aut.android.deliveryapp.viewmodel.InProgressJobsFragmentViewModel
 
 class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener {
@@ -41,7 +42,7 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
 
         adapter = JobDetailsAdapter(requireContext(), this)
 
-        viewModel.getJobsInProgress(10).observe(viewLifecycleOwner
+        viewModel.getJobsInProgress(CurrentUser.user._id).observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
         }
@@ -61,16 +62,16 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
         binding.inProgressJobsRecyclerView.adapter = adapter
     }
 
-    private fun render(state: JobDetailState) {
+    private fun render(state: DeliveryListState) {
         when (state) {
-            is JobDetailState.inProgress -> {
+            is DeliveryListState.inProgress -> {
                 loadingDialog.show()
             }
-            is JobDetailState.jobDetailsResponseSuccess -> {
+            is DeliveryListState.deliveriesResponseSuccess -> {
                 adapter.addJobs(state.data)
                 loadingDialog.dismiss()
             }
-            is JobDetailState.jobDetailsResponseError -> {
+            is DeliveryListState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
                     .title("Error")
@@ -81,7 +82,7 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
         }
     }
 
-    override fun onJobSelected(job: JobDetails?) {
+    override fun onJobSelected(job: Delivery?) {
         val b = Bundle()
         b.putSerializable("JOB", job)
         findNavController().navigate(R.id.action_inProgressJobsFragment_to_inProgressJobsDetailsFragment, b)
