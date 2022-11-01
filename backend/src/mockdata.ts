@@ -4,6 +4,8 @@ import { IVehicle } from './types/vehicle'
 import { ILocation } from './types/location'
 import { ICoordinate } from './types/coordinate'
 import { IUserInToplist } from './types/userInToplist'
+import { DeliveryWithUserStatus } from './types/deliveryWithUserStatus'
+import { TransportRequestStatus } from './model/TransportRequest'
 
 export const mockUser: UserDto = {
   _id: 'mongoDbRandomId',
@@ -81,5 +83,9 @@ export const mockVehicle: IVehicle = {
     weight: 2,
     height: 2
   }
+}
 
+export const mockDeliveryWithUserStatus: DeliveryWithUserStatus = {
+  delivery: mockDelivery,
+  userStatus: TransportRequestStatus.REJECTED
 }

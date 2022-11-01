@@ -81,41 +81,6 @@
           }
         },
         "x-swagger-router-controller": "User"
-      },
-      "post": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Add a new users' profile",
-        "description": "Add a new users' profile",
-        "operationId": "addUser",
-        "requestBody": {
-          "description": "Add a new users' profile to the database",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "x-swagger-router-controller": "User"
       }
     },
     "/user/{ID}": {
@@ -360,6 +325,44 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/UserInToplist"
+                  },
+                  "x-content-type": "application/json"
+                }
+              }
+            }
+          }
+        },
+        "x-swagger-router-controller": "User"
+      }
+    },
+    "/user/allJobs": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "transporterId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter on transporter"
+          }
+        ],
+        "summary": "All the jobs of the logged in user",
+        "description": "All the jobs of the logged in user, including the pending and rejected ones",
+        "operationId": "allJobs",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeliveryWithUserStatus"
                   },
                   "x-content-type": "application/json"
                 }
@@ -1294,7 +1297,16 @@
           "transporterUserId": 2,
           "pictureUrl": "file:///defaultImage.png",
           "description": "Please deliver it!",
-          "destinationLocation": null,
+          "destinationLocation": {
+            "country": "Hungary",
+            "coordinate": {
+              "latitude": -19.47381,
+              "longitude": 14.45529
+            },
+            "address": "Irinyi József utca 42",
+            "city": "Budapest",
+            "postalCode": 1117
+          },
           "title": "Brick delivery",
           "createdAt": "2022.10.10",
           "clientRating": 2,
@@ -1394,6 +1406,19 @@
           "postalCode": 1117
         },
         "required": ["coordinate"]
+      },
+      "DeliveryWithUserStatus": {
+        "type": "object",
+        "properties": {
+          "delivery": {
+            "$ref": "#/components/schemas/Delivery"
+          },
+          "userStatus": {
+            "type": "string",
+            "example": "REJECTED"
+          }
+        },
+        "required": ["delivery", "userStatus"]
       }
     },
     "requestBodies": {

@@ -3,8 +3,8 @@ import { body, param } from 'express-validator'
 import { getUserByUId } from '../middleware/auth'
 import {
   createDelivery,
-  createLocationEntities,
-  getDelivery, readDelivery,
+  readDelivery,
+  returnDelivery,
   statusChangeMiddleware
 } from '../middleware/delivery'
 import { checkValidationResult } from '../middleware/validation'
@@ -22,15 +22,15 @@ export default (app: Express) => {
     body('pickUpFrom').isISO8601().toDate(),
     body('pickUpUntil').isISO8601().toDate(),
     body('price').isDecimal(),
-    body('weight').isDecimal(),
+    /* body('weight').isDecimal(),
     body('length').isDecimal(),
     body('height').isDecimal(),
-    body('width').isDecimal(),
+    body('width').isDecimal(), */
     body('pictureUrl').optional().isURL(),
     checkValidationResult,
-    getUserByUId, createLocationEntities, createDelivery)
+    getUserByUId, createDelivery)
 
-  app.get('/delivery/:id', param('id').isMongoId(), checkValidationResult, getDelivery)
+  app.get('/delivery/:id', param('id').isMongoId(), checkValidationResult, readDelivery, returnDelivery)
 
   app.put('/delivery/:id', (req: Request, res: Response) => {
     res.send(mockDelivery)

@@ -2,15 +2,11 @@ import { User } from '../model/User'
 import { NextFunction, Request, Response } from 'express'
 
 export const getUser = async (req: Request, res: Response) => {
-  try {
-    const user = await User.findById(req.params.id).exec()
-    if (user == null) {
-      return res.sendStatus(404)
-    }
-    return res.status(200).send(user)
-  } catch (e) {
+  const user = await User.findById(req.params.id).exec()
+  if (user == null) {
     return res.sendStatus(404)
   }
+  return res.status(200).send(user)
 }
 
 export const updateUser = async (req: Request, res: Response) => {
@@ -51,14 +47,9 @@ export const deleteLoggedInUser = async (req: Request, res: Response) => {
 }
 
 export const deleteParamUser = async (req: Request, res: Response) => {
-  try {
-    const user = await User.findByIdAndDelete(req.params.id).exec()
-    if (user == null) {
-      return res.sendStatus(404)
-    }
-    return res.status(201).send(user)
-  } catch (e) {
-    console.error(e)
+  const user = await User.findByIdAndDelete(req.params.id).exec()
+  if (user == null) {
     return res.sendStatus(404)
   }
+  return res.status(201).send(user)
 }

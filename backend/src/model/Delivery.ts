@@ -15,6 +15,35 @@ interface DeliveryModel extends Model<DeliveryDoc> {
   build: (attr: IDelivery) => DeliveryDoc
 }
 
+const locationSchema = new Schema({
+  coordinate: {
+    longitude: {
+      type: Number,
+      required: true
+    },
+    latitude: {
+      type: Number,
+      required: true
+    }
+  },
+  country: {
+    type: String,
+    required: true
+  },
+  postalCode: {
+    type: Number,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  address: {
+    type: String,
+    required: true
+  }
+})
+
 const deliverySchema = new Schema({
   title: {
     type: String,
@@ -25,13 +54,11 @@ const deliverySchema = new Schema({
     required: true
   },
   sourceLocation: {
-    type: Schema.Types.ObjectId,
-    ref: 'Location',
+    type: locationSchema,
     required: true
   },
   destinationLocation: {
-    type: Schema.Types.ObjectId,
-    ref: 'Location',
+    type: locationSchema,
     required: true
   },
   clientUser: {
