@@ -46,7 +46,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        app:input_type="numberDecimal"
         app:layout_constraintTop_toBottomOf="@id/max_price" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -68,7 +67,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        app:input_type="numberDecimal"
         app:layout_constraintTop_toBottomOf="@id/weight" />
 
     <!-- dimensions of the product (width, height and length) -->
@@ -91,7 +89,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        app:input_type="numberDecimal"
         app:layout_constraintTop_toBottomOf="@id/width" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -113,7 +110,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        app:input_type="numberDecimal"
         app:layout_constraintTop_toBottomOf="@id/height" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -179,7 +175,6 @@
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_consrtaintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
