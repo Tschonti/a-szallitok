@@ -15,8 +15,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import hu.bme.aut.android.deliveryapp.R
-import hu.bme.aut.android.deliveryapp.model.JobDetails
-import hu.bme.aut.android.deliveryapp.view.states.JobDetailState
+import hu.bme.aut.android.deliveryapp.model.Delivery
+import hu.bme.aut.android.deliveryapp.view.states.DeliveryListState
 import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobsMapFragmentViewModel
 
 class AvailableJobsMapFragment : Fragment() {
@@ -27,7 +27,7 @@ class AvailableJobsMapFragment : Fragment() {
 
     private lateinit var googleMap: GoogleMap
 
-    private val jobList: MutableList<JobDetails> = mutableListOf()
+    private val jobList: MutableList<Delivery> = mutableListOf()
 
     private val callback = OnMapReadyCallback { googleMap ->
         this.googleMap = googleMap
@@ -46,7 +46,7 @@ class AvailableJobsMapFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
-        viewModel.getAvailableJobs(null, null,null, null).observe(viewLifecycleOwner
+        viewModel.getAvailableJobs().observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
         }
@@ -64,20 +64,20 @@ class AvailableJobsMapFragment : Fragment() {
         )
     }
 
-    private fun render(state: JobDetailState) {
+    private fun render(state: DeliveryListState) {
         when (state) {
-            is JobDetailState.inProgress -> {
+            is DeliveryListState.inProgress -> {
                 loadingDialog.show()
             }
-            is JobDetailState.jobDetailsResponseSuccess -> {
+            is DeliveryListState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
                 state.data.forEach {
                     jobList.add(it)
                     addMarker(it)
                 }
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(jobList[0].deliveryLocation!!.coordinate.latitude.toDouble(), jobList[0].deliveryLocation!!.coordinate.longitude.toDouble()), 10f))
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(jobList[0].sourceLocation!!.coordinate.latitude.toDouble(), jobList[0].destinationLocation!!.coordinate.longitude.toDouble()), 10f))
             }
-            is JobDetailState.jobDetailsResponseError -> {
+            is DeliveryListState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
                     .title("Error")
@@ -88,9 +88,9 @@ class AvailableJobsMapFragment : Fragment() {
         }
     }
 
-    private fun addMarker(job: JobDetails) {
+    private fun addMarker(job: Delivery) {
         val markerOptions = MarkerOptions()
-        markerOptions.position(LatLng(job.deliveryLocation!!.coordinate.latitude.toDouble(), job.deliveryLocation.coordinate.longitude.toDouble()))
+        markerOptions.position(LatLng(job.sourceLocation!!.coordinate.latitude.toDouble(), job.sourceLocation.coordinate.longitude.toDouble()))
         markerOptions.title(job.title)
         googleMap.addMarker(markerOptions)
     }

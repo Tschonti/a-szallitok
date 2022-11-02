@@ -13,6 +13,7 @@ export const decodeToken = async (req: Request, res: Response, next: NextFunctio
       res.locals.name = user.name
       return next()
     } catch (e) {
+      console.error(authHeader)
       console.error(e)
       return res.sendStatus(403)
     }

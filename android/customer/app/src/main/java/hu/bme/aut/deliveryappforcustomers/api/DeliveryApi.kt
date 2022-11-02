@@ -16,10 +16,10 @@ object DeliveryApi {
         GlobalScope.launch {
             val response = RetrofitClient.api.getUserHistory(id)
             val result = response.body()?.any{
-                it.status == "in_progress" //TODO update this
+                true //TODO tbd
             }
             if (response.isSuccessful && result != null) {
-                resultData.postValue(JobDetailState.jobDetailsResponseSuccess(result!!))
+                //resultData.postValue(JobDetailState.jobDetailsResponseSuccess(result!!)) //TODO tbd
             } else {
                 resultData.postValue(
                     JobDetailState.jobDetailsResponseError(

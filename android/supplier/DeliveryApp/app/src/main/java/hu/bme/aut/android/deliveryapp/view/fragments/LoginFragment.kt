@@ -111,10 +111,10 @@ class LoginFragment : Fragment() {
 
     private fun actionForAuthUser() {
         //findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
-        auth.currentUser?.getIdToken(false)?.addOnSuccessListener {
-            CurrentUser.token = it.token.toString()
+        auth.currentUser?.getIdToken(true)?.addOnSuccessListener {
+            CurrentUser.token = it.token!!
             Log.d("TOKEN", it.token!!)
-            viewModel.loginUser(it.token ?: "").observe(viewLifecycleOwner
+            viewModel.loginUser(it.token!!).observe(viewLifecycleOwner
             ) { state ->
                 render(state)
             }
@@ -129,7 +129,6 @@ class LoginFragment : Fragment() {
             is UserState.userResponseSuccess -> {
                 loadingDialog.dismiss()
                 CurrentUser.user = state.data
-                CurrentUser.user.id = "1"
                 findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
             }
             is UserState.userResponseError -> {

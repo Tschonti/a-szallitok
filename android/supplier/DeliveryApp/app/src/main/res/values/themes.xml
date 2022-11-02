@@ -29,4 +29,12 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">#000000</item>
     </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/lightGrey</item>
+        <item name="colorControlActivated">@color/duskYellow</item>
+    </style>
+
+    <color name="lightGrey">#D3D3D3</color>
+    <color name="duskYellow">#FFD000</color>
 </resources>

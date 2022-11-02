@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.repository.ApiRepository
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryState
-import hu.bme.aut.android.deliveryapp.view.states.JobDetailState
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 
 class InProgressJobsDetailsFragmentViewModel : ViewModel() {
@@ -41,5 +40,9 @@ class InProgressJobsDetailsFragmentViewModel : ViewModel() {
             delivery = apiRepository.markDeliveryAsCancelled(d)
         }
         return delivery
+    }
+
+    fun rateClient(clientId: String, rating: Int): LiveData<DeliveryState> {
+        return apiRepository.rateClient(clientId, rating)
     }
 }

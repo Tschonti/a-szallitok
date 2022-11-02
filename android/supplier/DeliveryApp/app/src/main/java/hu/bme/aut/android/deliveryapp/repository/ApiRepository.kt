@@ -3,23 +3,24 @@ package hu.bme.aut.android.deliveryapp.repository
 import androidx.lifecycle.MutableLiveData
 import hu.bme.aut.android.deliveryapp.api.DeliveryApi
 import hu.bme.aut.android.deliveryapp.model.Delivery
+import hu.bme.aut.android.deliveryapp.model.DeliveryStatus
 import hu.bme.aut.android.deliveryapp.view.states.*
 
 class ApiRepository {
-    fun getUserHistory(id: String): MutableLiveData<JobDetailState> {
-        return DeliveryApi.getUserHistory(id)
+    fun getUserHistory(transporterId: String): MutableLiveData<DeliveryListState> {
+        return DeliveryApi.getDeliveries(transporterId)
     }
 
-    fun getAvailableJobs(sourceCity: String?, destinationCity: String?, price: Int?, date: String?): MutableLiveData<JobDetailState> {
-        return DeliveryApi.getAvailableJobs(sourceCity, destinationCity, price, date)
+    fun getAvailableJobs(): MutableLiveData<DeliveryListState> {
+        return DeliveryApi.getDeliveries(null)
     }
 
     fun getDelivery (id: String): MutableLiveData<DeliveryState> {
         return DeliveryApi.getDeliveryData(id)
     }
 
-    fun getJobsInProgress(id: String): MutableLiveData<JobDetailState> {
-        return DeliveryApi.getJobsInProgress(id)
+    fun getJobsInProgress(transporterId: String): MutableLiveData<DeliveryListState> {
+        return DeliveryApi.getDeliveries(transporterId)
     }
 
     fun getUserData(id: String): MutableLiveData<UserState> {
@@ -43,10 +44,14 @@ class ApiRepository {
     }
 
     fun markJobAsReady(delivery: Delivery): MutableLiveData<DeliveryState> {
-        return DeliveryApi.markDeliveryAsReady(delivery)
+        return DeliveryApi.changeDeliveryStatus(delivery, DeliveryStatus.DELIVERED)
     }
 
     fun markDeliveryAsCancelled(delivery: Delivery): MutableLiveData<DeliveryState> {
-        return DeliveryApi.markDeliveryAsCancelled(delivery)
+        return DeliveryApi.changeDeliveryStatus(delivery, DeliveryStatus.UNASSIGNED)
+    }
+
+    fun rateClient(clientId: String, rating: Int): MutableLiveData<DeliveryState> {
+        return DeliveryApi.rateClient(clientId, rating)
     }
 }

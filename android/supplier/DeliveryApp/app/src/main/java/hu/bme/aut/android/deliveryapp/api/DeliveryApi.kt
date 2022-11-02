@@ -14,78 +14,27 @@ object DeliveryApi {
 
     private val api = RetrofitClient.api
 
-    fun getUserHistory(id: String): MutableLiveData<JobDetailState> {
+    fun getDeliveries(transporterId: String?): MutableLiveData<DeliveryListState> {
+        val resultData = MutableLiveData<DeliveryListState>()
+        resultData.value = DeliveryListState.inProgress
 
-        val resultData = MutableLiveData<JobDetailState>()
-        resultData.value = JobDetailState.inProgress
 
-        api.getUserHistory(CurrentUser.token, id).enqueue(object : Callback<List<JobDetails>> {
+        api.getJobDetails(CurrentUser.token, transporterId).enqueue(object : Callback<List<Delivery>> {
             override fun onResponse(
-                call: Call<List<JobDetails>>,
-                response: Response<List<JobDetails>>
+                call: Call<List<Delivery>>,
+                response: Response<List<Delivery>>
             ) {
                 if (response.isSuccessful) {
                     resultData.postValue(response.body()
-                        ?.let { JobDetailState.jobDetailsResponseSuccess(it) })
+                        ?.let { DeliveryListState.deliveriesResponseSuccess(it) })
                 } else {
-                    resultData.postValue(JobDetailState.jobDetailsResponseError(response.message()))
+                    resultData.postValue(DeliveryListState.deliveriesResponseError(response.message()))
                 }
             }
 
-            override fun onFailure(call: Call<List<JobDetails>?>, throwable: Throwable) {
-                resultData.postValue(JobDetailState.jobDetailsResponseError(throwable.message.toString()))
-            }
-        })
-
-        return resultData
-    }
-
-    fun getAvailableJobs(sourceCity: String?, destinationCity: String?, price: Int?, date: String?): MutableLiveData<JobDetailState> {
-        val resultData = MutableLiveData<JobDetailState>()
-        resultData.value = JobDetailState.inProgress
-
-        api.getJobDetails("OPEN", sourceCity, destinationCity, price, null, date).enqueue(object : Callback<List<JobDetails>> {
-            override fun onResponse(
-                call: Call<List<JobDetails>>,
-                response: Response<List<JobDetails>>
-            ) {
-                if (response.isSuccessful) {
-                    resultData.postValue(response.body()
-                        ?.let { JobDetailState.jobDetailsResponseSuccess(it) })
-                } else {
-                    resultData.postValue(JobDetailState.jobDetailsResponseError(response.message()))
-                }
-            }
-
-            override fun onFailure(call: Call<List<JobDetails>?>, throwable: Throwable) {
+            override fun onFailure(call: Call<List<Delivery>?>, throwable: Throwable) {
                 Log.i("Error", throwable.message.toString())
-                resultData.postValue(JobDetailState.jobDetailsResponseError(throwable.message.toString()))
-            }
-        })
-
-        return resultData
-    }
-
-    fun getJobsInProgress(id: String): MutableLiveData<JobDetailState> {
-        val resultData = MutableLiveData<JobDetailState>()
-        resultData.value = JobDetailState.inProgress
-
-        api.getJobDetails("INPROGRESS",  null, null, null, id, null).enqueue(object : Callback<List<JobDetails>> {
-            override fun onResponse(
-                call: Call<List<JobDetails>>,
-                response: Response<List<JobDetails>>
-            ) {
-                if (response.isSuccessful) {
-                    resultData.postValue(response.body()
-                        ?.let { JobDetailState.jobDetailsResponseSuccess(it) })
-                } else {
-                    resultData.postValue(JobDetailState.jobDetailsResponseError(response.message()))
-                }
-            }
-
-            override fun onFailure(call: Call<List<JobDetails>?>, throwable: Throwable) {
-                Log.i("Error", throwable.message.toString())
-                resultData.postValue(JobDetailState.jobDetailsResponseError(throwable.message.toString()))
+                resultData.postValue(DeliveryListState.deliveriesResponseError(throwable.message.toString()))
             }
         })
 
@@ -122,8 +71,7 @@ object DeliveryApi {
         val resultData = MutableLiveData<UserState>()
         resultData.value = UserState.inProgress
 
-        FirebaseAuth.getInstance().currentUser?.getIdToken(false)?.addOnSuccessListener {
-            api.getUserData(it.token!!, id).enqueue(object : Callback<User> {
+            api.getUserData(CurrentUser.token, id).enqueue(object : Callback<User> {
                 override fun onResponse(
                     call: Call<User>,
                     response: Response<User>
@@ -143,7 +91,6 @@ object DeliveryApi {
                     resultData.postValue(UserState.userResponseError(throwable.message.toString()))
                 }
             })
-        }
 
 
         return resultData
@@ -173,32 +120,7 @@ object DeliveryApi {
 
         return resultData
     }
-/*
-    fun getUserRating(id: String): MutableLiveData<UserWithRatingState> {
-        val resultData = MutableLiveData<UserWithRatingState>()
-        resultData.value = UserWithRatingState.inProgress
 
-        api.getRating(CurrentUser.token, id).enqueue(object : Callback<UserWithRating> {
-            override fun onResponse(
-                call: Call<UserWithRating>,
-                response: Response<UserWithRating>
-            ) {
-                if (response.isSuccessful) {
-                    resultData.postValue(response.body()
-                        ?.let { UserWithRatingState.userResponseSuccess(it) })
-                } else {
-                    resultData.postValue(UserWithRatingState.userResponseError(response.message()))
-                }
-            }
-
-            override fun onFailure(call: Call<UserWithRating>, throwable: Throwable) {
-                resultData.postValue(UserWithRatingState.userResponseError("ERROR"))
-            }
-        })
-
-        return resultData
-    }
-*/
     fun loginUser(token: String): MutableLiveData<UserState> {
         val resultData = MutableLiveData<UserState>()
         resultData.value = UserState.inProgress
@@ -230,7 +152,7 @@ object DeliveryApi {
         val resultData = MutableLiveData<DeliveryState>()
         resultData.value = DeliveryState.inProgress
 
-        api.requestJob(CurrentUser.token, id, CurrentUser.user.id).enqueue(object : Callback<Delivery> {
+        api.requestJob(CurrentUser.token, id).enqueue(object : Callback<Delivery> {
             override fun onResponse(
                 call: Call<Delivery>,
                 response: Response<Delivery>
@@ -253,12 +175,11 @@ object DeliveryApi {
         return resultData
     }
 
-    fun markDeliveryAsReady(delivery: Delivery): MutableLiveData<DeliveryState> {
+    fun rateClient(clientId: String, rating: Int): MutableLiveData<DeliveryState> {
         val resultData = MutableLiveData<DeliveryState>()
         resultData.value = DeliveryState.inProgress
 
-        delivery.status = "DONE"
-        api.changeStatus(CurrentUser.token, delivery.id, delivery).enqueue(object : Callback<Delivery> {
+        api.rateClient(CurrentUser.token, clientId,/* rating*/).enqueue(object : Callback<Delivery> {
             override fun onResponse(
                 call: Call<Delivery>,
                 response: Response<Delivery>
@@ -281,12 +202,12 @@ object DeliveryApi {
         return resultData
     }
 
-    fun markDeliveryAsCancelled(delivery: Delivery): MutableLiveData<DeliveryState> {
+    fun changeDeliveryStatus(delivery: Delivery, newStatus: DeliveryStatus): MutableLiveData<DeliveryState> {
         val resultData = MutableLiveData<DeliveryState>()
         resultData.value = DeliveryState.inProgress
 
-        delivery.status = "CANCEL"
-        api.changeStatus(CurrentUser.token, delivery.id, delivery).enqueue(object : Callback<Delivery> {
+        delivery.status = DeliveryStatus.DELIVERED
+        api.changeStatus(CurrentUser.token, delivery._id, delivery).enqueue(object : Callback<Delivery> {
             override fun onResponse(
                 call: Call<Delivery>,
                 response: Response<Delivery>

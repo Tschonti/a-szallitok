@@ -12,7 +12,7 @@ import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentAvailableJobDetailsBinding
 import hu.bme.aut.android.deliveryapp.databinding.FragmentJobDetailsBinding
-import hu.bme.aut.android.deliveryapp.model.JobDetails
+import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryState
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobDetailsFragmentViewModel
@@ -21,20 +21,20 @@ class AvailableJobDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentAvailableJobDetailsBinding
 
-    private var selectedJob: JobDetails? = null
+    private var selectedJob: Delivery? = null
 
     private val viewModel: AvailableJobDetailsFragmentViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        selectedJob = arguments?.get("JOB") as JobDetails?
+        selectedJob = arguments?.get("JOB") as Delivery?
 
         val fragment: JobDetailsFragment = childFragmentManager.findFragmentById(R.id.jobDetailsFragmentOnAvailableJob) as JobDetailsFragment
         fragment.initFragment(selectedJob)
 
         binding.btnMakeContract.setOnClickListener {
-            viewModel.requestJob(selectedJob?.deliveryId!!).observe(viewLifecycleOwner
+            viewModel.requestJob(selectedJob!!._id).observe(viewLifecycleOwner
             ) { deliveryState ->
                 render(deliveryState)
             }
@@ -56,7 +56,11 @@ class AvailableJobDetailsFragment : Fragment() {
             is DeliveryState.inProgress -> {
             }
             is DeliveryState.deliveriesResponseSuccess -> {
-                Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show()
+                AwesomeDialog.build(requireActivity())
+                    .title("Success")
+                    .body("Now it's in pending status")
+                    .icon(R.drawable.success)
+                    .onPositive("Close")
             }
             is DeliveryState.deliveriesResponseError -> {
                 AwesomeDialog.build(requireActivity())
