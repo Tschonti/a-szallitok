@@ -335,25 +335,14 @@
         "x-swagger-router-controller": "User"
       }
     },
-    "/user/allJobs": {
+    "/user/requestedJobs": {
       "get": {
         "tags": [
           "user"
         ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "transporterId",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Filter on transporter"
-          }
-        ],
-        "summary": "All the jobs of the logged in user",
-        "description": "All the jobs of the logged in user, including the pending and rejected ones",
-        "operationId": "allJobs",
+        "summary": "All the jobs that the logged in user requested",
+        "description": "All the jobs that the logged in user requested, including the pending and rejected ones",
+        "operationId": "requestedJobs",
         "responses": {
           "200": {
             "description": "successful operation",
@@ -363,6 +352,33 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/DeliveryWithUserStatus"
+                  },
+                  "x-content-type": "application/json"
+                }
+              }
+            }
+          }
+        },
+        "x-swagger-router-controller": "User"
+      }
+    },
+    "/user/jobRequests": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "All the users that requested a delivery from the logged in user",
+        "description": "All the users that requested a delivery from the logged in user, including the pending and rejected ones",
+        "operationId": "jobRequests",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeliveryWithUserAndStatus"
                   },
                   "x-content-type": "application/json"
                 }
@@ -1419,6 +1435,22 @@
           }
         },
         "required": ["delivery", "userStatus"]
+      },
+      "DeliveryWithUserAndStatus": {
+        "type": "object",
+        "properties": {
+          "delivery": {
+            "$ref": "#/components/schemas/Delivery"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "userStatus": {
+            "type": "string",
+            "example": "REJECTED"
+          }
+        },
+        "required": ["delivery", "userStatus", "user"]
       }
     },
     "requestBodies": {

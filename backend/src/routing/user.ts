@@ -1,9 +1,17 @@
 import { Express, Request, Response } from 'express'
 import { param } from 'express-validator'
 import { getUserByUId } from '../middleware/auth'
-import { checkIfAdmin, deleteLoggedInUser, deleteParamUser, getUser, updateUser } from '../middleware/user'
+import {
+  checkIfAdmin,
+  deleteLoggedInUser,
+  deleteParamUser,
+  getJobRequests,
+  getRequestedJobs,
+  getUser,
+  updateUser
+} from '../middleware/user'
 import { checkValidationResult } from '../middleware/validation'
-import { mockDelivery, mockDeliveryWithUserStatus, mockUser, mockUserInToplist } from '../mockdata'
+import { mockDelivery, mockUser, mockUserInToplist } from '../mockdata'
 
 export default (app: Express) => {
   app.get('/user', (req: Request, res: Response) => {
@@ -30,7 +38,6 @@ export default (app: Express) => {
     res.send([mockUserInToplist, mockUserInToplist, mockUserInToplist])
   })
 
-  app.get('/user/allJobs', (req: Request, res: Response) => {
-    res.send([mockDeliveryWithUserStatus, mockDeliveryWithUserStatus])
-  })
+  app.get('/user/requestedJobs', getUserByUId, getRequestedJobs)
+  app.get('/user/jobRequests', getUserByUId, getJobRequests)
 }

@@ -1,5 +1,7 @@
-import { User } from '../model/User'
+import { User, UserDoc } from '../model/User'
 import { NextFunction, Request, Response } from 'express'
+import { TransportRequest } from '../model/TransportRequest'
+import { DeliveryDoc } from '../model/Delivery'
 
 export const getUser = async (req: Request, res: Response) => {
   const user = await User.findById(req.params.id).exec()
@@ -52,4 +54,18 @@ export const deleteParamUser = async (req: Request, res: Response) => {
     return res.sendStatus(404)
   }
   return res.status(201).send(user)
+}
+
+export const getRequestedJobs = async (req: Request, res: Response) => {
+  return res.status(200).send(
+    await TransportRequest.find({ user: res.locals.dbUser?._id }).populate('delivery').exec()
+  )
+}
+
+export const getJobRequests = async (req: Request, res: Response) => {
+  const allRequests = await TransportRequest
+    .find({})
+    .populate<{delivery: DeliveryDoc, user: UserDoc}>(['delivery', 'user'])
+    .exec()
+  return res.status(200).send(allRequests.filter(r => r.delivery.clientUser.toString() === res.locals.dbUser?._id))
 }

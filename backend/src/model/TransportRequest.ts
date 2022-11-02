@@ -7,8 +7,8 @@ export enum TransportRequestStatus {
 }
 
 interface ITransportRequest {
-  _delivery: Schema.Types.ObjectId
-  _user: Schema.Types.ObjectId
+  delivery: Schema.Types.ObjectId
+  user: Schema.Types.ObjectId
   status?: TransportRequestStatus
 }
 
@@ -19,11 +19,11 @@ interface TransportRequestModel extends Model<TransportRequestDoc> {
 }
 
 const transportRequestSchema = new Schema({
-  _delivery: {
+  delivery: {
     type: Schema.Types.ObjectId,
     ref: 'Delivery'
   },
-  _user: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
