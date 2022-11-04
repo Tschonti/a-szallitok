@@ -1,14 +1,62 @@
 import { User, UserDoc } from '../model/User'
 import { NextFunction, Request, Response } from 'express'
 import { TransportRequest } from '../model/TransportRequest'
-import { DeliveryDoc } from '../model/Delivery'
+import { Delivery, DeliveryDoc } from '../model/Delivery'
+
+interface AggregationResult {
+  average: number
+  count: number
+}
+
+function validateAggregationResult (arr: AggregationResult[]): AggregationResult {
+  if (arr.length === 0) {
+    return { average: 0, count: 0 }
+  }
+  return arr[0]
+}
 
 export const getUser = async (req: Request, res: Response) => {
   const user = await User.findById(req.params.id).exec()
   if (user == null) {
     return res.sendStatus(404)
   }
-  return res.status(200).send(user)
+
+  const clientAggregate: AggregationResult = validateAggregationResult(await Delivery
+    .aggregate(
+      [{
+        $match: {
+          clientUser: user._id,
+          clientRating: { $exists: true }
+        }
+      }, {
+        $group: {
+          _id: null,
+          average: {
+            $avg: '$clientRating'
+          },
+          count: { $sum: 1 }
+        }
+      }]).exec())
+  const transporterAggregate: AggregationResult = validateAggregationResult(await Delivery
+    .aggregate(
+      [{
+        $match: {
+          transporterUser: user._id,
+          transporterRating: { $exists: true }
+        }
+      }, {
+        $group: {
+          _id: null,
+          average: {
+            $avg: '$transporterRating'
+          },
+          count: { $sum: 1 }
+        }
+      }]).exec())
+  const avgRating = (clientAggregate.count * clientAggregate.average +
+    transporterAggregate.count * transporterAggregate.average) /
+  (clientAggregate.count + transporterAggregate.count)
+  return res.status(200).send({ ...user._doc, avgRating })
 }
 
 export const updateUser = async (req: Request, res: Response) => {

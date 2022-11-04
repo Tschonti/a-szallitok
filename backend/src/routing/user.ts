@@ -14,10 +14,6 @@ import { checkValidationResult } from '../middleware/validation'
 import { mockDelivery, mockUser, mockUserInToplist } from '../mockdata'
 
 export default (app: Express) => {
-  app.get('/user', (req: Request, res: Response) => {
-    res.send([mockUser, mockUser])
-  })
-
   app.get('/user/:id', param('id').isMongoId(), checkValidationResult, getUser)
 
   app.put('/user/', getUserByUId, updateUser)
