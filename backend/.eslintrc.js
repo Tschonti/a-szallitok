@@ -23,6 +23,7 @@ module.exports = {
     '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off'
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/restrict-plus-operands': 'off'
   }
 }
