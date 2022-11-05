@@ -66,6 +66,11 @@ const deliverySchema = new Schema({
     ref: 'User',
     required: true
   },
+  requests: {
+    type: [Schema.Types.ObjectId],
+    ref: 'User',
+    required: false
+  },
   transporterUser: {
     type: Schema.Types.ObjectId,
     ref: 'User',
