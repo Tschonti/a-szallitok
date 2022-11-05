@@ -68,27 +68,31 @@ export const rateTransporterMiddleware = async (req: Request, res: Response, nex
 }
 
 export const addRequestMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+  // csekkolni, hogy unassigned vagy pending a deliverystatus
   if (res.locals.dbUser?._id.toString() === res.locals.delivery?.clientUser?.toString()) {
     return res.sendStatus(403)
   }
 
-  if (res.locals.delivery == null) {
+  if (res.locals.delivery == null) { // nem kell, readDelivery megcsinálja
     return res.sendStatus(404)
   }
-
+  // használjuk inkább a TransportRequest request sémát
+  // delivery státuszt is állítani kell
   if (res.locals.delivery.requests === undefined) {
     res.locals.delivery.requests = []
   }
 
   if (!res.locals.delivery.requests.includes(res.locals.dbUser?._id)) {
-    res.locals.delivery.requests.push(res.locals.dbUser)
+    res.locals.delivery.requests.push(res.locals.dbUser?._id)
     res.locals.delivery.save()
   }
 
   return res.status(200).send(res.locals.delivery)
 }
-
+// lehet elutasítani is, meg ugye szintén TransportRequest séma
+// esetleg a delivery státuszát is állítani kell
 export const replyMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+  // ez gondolom !== akart lenni?
   if (res.locals.dbUser?._id.toString() === res.locals.delivery?.clientUser?.toString()) {
     return res.sendStatus(403)
   }
