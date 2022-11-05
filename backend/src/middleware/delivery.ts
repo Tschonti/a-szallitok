@@ -38,3 +38,71 @@ export const statusChangeMiddleware = async (req: Request, res: Response, next: 
   res.locals.delivery.save()
   return res.status(200).send(res.locals.delivery)
 }
+
+export const rateClientMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+  if (res.locals.dbUser?._id.toString() !== res.locals.delivery?.transporterUser?.toString()) {
+    return res.sendStatus(403)
+  }
+
+  if (res.locals.delivery == null) {
+    return res.sendStatus(404)
+  }
+
+  res.locals.delivery.clientRating = req.body.rating
+  res.locals.delivery.save()
+  return res.status(200).send(res.locals.delivery)
+}
+
+export const rateTransporterMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+  if (res.locals.dbUser?._id.toString() !== res.locals.delivery?.clientUser?.toString()) {
+    return res.sendStatus(403)
+  }
+
+  if (res.locals.delivery == null) {
+    return res.sendStatus(404)
+  }
+
+  res.locals.delivery.transporterRating = req.body.rating
+  res.locals.delivery.save()
+  return res.status(200).send(res.locals.delivery)
+}
+
+export const addRequestMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+  if (res.locals.dbUser?._id.toString() === res.locals.delivery?.clientUser?.toString()) {
+    return res.sendStatus(403)
+  }
+
+  if (res.locals.delivery == null) {
+    return res.sendStatus(404)
+  }
+
+  if (res.locals.delivery.requests === undefined) {
+    res.locals.delivery.requests = []
+  }
+
+  if (!res.locals.delivery.requests.includes(res.locals.dbUser?._id)) {
+    res.locals.delivery.requests.push(res.locals.dbUser)
+    res.locals.delivery.save()
+  }
+
+  return res.status(200).send(res.locals.delivery)
+}
+
+export const replyMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+  if (res.locals.dbUser?._id.toString() === res.locals.delivery?.clientUser?.toString()) {
+    return res.sendStatus(403)
+  }
+
+  if (res.locals.delivery == null || !res.locals.delivery.requests?.includes(req.body.userId)) {
+    return res.sendStatus(404)
+  }
+
+  if (!res.locals.delivery.requests?.includes(req.body.userId)) {
+    return res.sendStatus(403)
+  }
+
+  res.locals.delivery.transporterUser = req.body.userId
+  res.locals.delivery.requests = res.locals.delivery.requests.filter(request => request.toString() !== req.body.userId)
+  res.locals.delivery.save()
+  return res.status(200).send(res.locals.delivery)
+}

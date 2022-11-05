@@ -2,8 +2,12 @@ import { Express, Request, Response } from 'express'
 import { body, param } from 'express-validator'
 import { getUserByUId } from '../middleware/auth'
 import {
+  addRequestMiddleware,
   createDelivery,
+  rateClientMiddleware,
+  rateTransporterMiddleware,
   readDelivery,
+  replyMiddleware,
   returnDelivery,
   statusChangeMiddleware
 } from '../middleware/delivery'
@@ -40,13 +44,11 @@ export default (app: Express) => {
     res.send(mockDelivery)
   })
 
-  app.put('/delivery/:id/rateTransporter', (req: Request, res: Response) => {
-    res.send(mockDelivery)
-  })
+  app.put('/delivery/:id/rateTransporter', param('id').isMongoId(), body('rating').isInt({ min: 1, max: 5 }),
+    checkValidationResult, getUserByUId, readDelivery, rateTransporterMiddleware)
 
-  app.put('/delivery/:id/rateClient', (req: Request, res: Response) => {
-    res.send(mockDelivery)
-  })
+  app.put('/delivery/:id/rateClient', param('id').isMongoId(), body('rating').isInt({ min: 1, max: 5 }),
+    checkValidationResult, getUserByUId, readDelivery, rateClientMiddleware)
 
   app.put('/delivery/:id/statusChange', param('id').isMongoId(), body('status').custom((value) => {
     if ([DeliveryStatus.IN_TRANSIT, DeliveryStatus.DELIVERED].includes(value)) {
@@ -55,11 +57,9 @@ export default (app: Express) => {
     throw new Error('Invalid status')
   }), checkValidationResult, getUserByUId, readDelivery, statusChangeMiddleware)
 
-  app.post('/delivery/:id/request', (req: Request, res: Response) => {
-    res.send(mockDelivery)
-  })
+  app.post('/delivery/:id/request', param('id').isMongoId(),
+    checkValidationResult, getUserByUId, readDelivery, addRequestMiddleware)
 
-  app.put('/delivery/:id/reply', (req: Request, res: Response) => {
-    res.send(mockDelivery)
-  })
+  app.put('/delivery/:id/reply', param('id').isMongoId(), body('userId').isMongoId(), body('accept').isBoolean(),
+    checkValidationResult, getUserByUId, readDelivery, replyMiddleware)
 }
