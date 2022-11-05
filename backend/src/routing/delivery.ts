@@ -3,6 +3,8 @@ import { body, param } from 'express-validator'
 import { getUserByUId } from '../middleware/auth'
 import {
   createDelivery,
+  rateClientMiddleware,
+  rateTransporterMiddleware,
   readDelivery,
   returnDelivery,
   statusChangeMiddleware
@@ -40,13 +42,11 @@ export default (app: Express) => {
     res.send(mockDelivery)
   })
 
-  app.put('/delivery/:id/rateTransporter', (req: Request, res: Response) => {
-    res.send(mockDelivery)
-  })
+  app.put('/delivery/:id/rateTransporter', param('id').isMongoId(), body('rating').isInt({ min: 1, max: 5 }),
+    checkValidationResult, getUserByUId, readDelivery, rateTransporterMiddleware)
 
-  app.put('/delivery/:id/rateClient', (req: Request, res: Response) => {
-    res.send(mockDelivery)
-  })
+  app.put('/delivery/:id/rateClient', param('id').isMongoId(), body('rating').isInt({ min: 1, max: 5 }),
+    checkValidationResult, getUserByUId, readDelivery, rateClientMiddleware)
 
   app.put('/delivery/:id/statusChange', param('id').isMongoId(), body('status').custom((value) => {
     if ([DeliveryStatus.IN_TRANSIT, DeliveryStatus.DELIVERED].includes(value)) {

@@ -38,3 +38,23 @@ export const statusChangeMiddleware = async (req: Request, res: Response, next: 
   res.locals.delivery.save()
   return res.status(200).send(res.locals.delivery)
 }
+
+export const rateClientMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+  if (res.locals.dbUser?._id.toString() !== res.locals.delivery?.transporterUser?.toString()) {
+    return res.sendStatus(403)
+  }
+
+  res.locals.delivery?.clientRating = req.body.rating
+  res.locals.delivery?.save()
+  return res.status(200).send(res.locals.delivery)
+}
+
+export const rateTransporterMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+  if (res.locals.dbUser?._id.toString() !== res.locals.delivery?.clientUser?.toString()) {
+    return res.sendStatus(403)
+  }
+
+  res.locals.delivery?.transporterRating = req.body.rating
+  res.locals.delivery?.save()
+  return res.status(200).send(res.locals.delivery)
+}
