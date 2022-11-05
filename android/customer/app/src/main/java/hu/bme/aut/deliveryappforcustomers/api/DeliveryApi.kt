@@ -41,7 +41,7 @@ object DeliveryApi {
             val response = RetrofitClient.api.getUserHistory(id)
             val result = response.body()
             if (response.isSuccessful && result != null) {
-                resultData.postValue(JobDetailState.jobDetailsResponseSuccess(result!!))
+                resultData.postValue(JobDetailState.jobDetailsResponseSuccess(result))
             } else {
                 resultData.postValue(
                     JobDetailState.jobDetailsResponseError(
@@ -65,7 +65,7 @@ object DeliveryApi {
             )
             val result = response.body()
             if (response.isSuccessful && result != null) {
-                resultData.postValue(JobDetailState.jobDetailsResponseSuccess(result!!))
+                resultData.postValue(JobDetailState.jobDetailsResponseSuccess(result))
             } else {
                 resultData.postValue(
                     JobDetailState.jobDetailsResponseError(

@@ -58,7 +58,7 @@
     <string name="new_transport">Új fuvar</string>
     <string name="active_transports">Aktív fuvarok</string>
     <string name="history">Előzmények</string>
-    <string name="map_view">Térkép nézet</string>
+    <string name="map_view">Térkép</string>
     <string name="extras">Egyebek</string>
     <string name="settings">Beállítások</string>
     <string name="transport_name">Szállítandó termék neve</string>
@@ -73,4 +73,15 @@
     <string name="pickup_place">Felvétel helye</string>
     <string name="delivery_place">Kiszállítás helye</string>
     <string name="submit">Kész</string>
+    <string name="max_price">Maximum ár</string>
+    <string name="title_activity_container">ContainerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>

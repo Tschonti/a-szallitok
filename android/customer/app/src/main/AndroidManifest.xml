@@ -13,10 +13,10 @@
         android:theme="@style/Theme.DeliveryAppForCustomers"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ContainerActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.DeliveryAppForCustomers">
+            android:label="@string/title_activity_container"
+            android:theme="@style/Theme.DeliveryAppForCustomers.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

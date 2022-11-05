@@ -7,26 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import hu.bme.aut.deliveryappforcustomers.R
-import hu.bme.aut.deliveryappforcustomers.viewmodel.NewTransportViewModel
+import hu.bme.aut.deliveryappforcustomers.viewmodel.SettingsViewModel
 
-class NewTransportFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = NewTransportFragment()
+        fun newInstance() = SettingsFragment()
     }
 
-    //private lateinit var viewModel: NewTransportViewModel
+    //private lateinit var viewModel: SettingsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_new_transport, container, false)
+        return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //viewModel = ViewModelProvider(this).get(NewTransportViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

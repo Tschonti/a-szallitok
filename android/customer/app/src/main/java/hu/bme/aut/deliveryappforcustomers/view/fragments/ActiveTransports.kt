@@ -18,7 +18,7 @@ class ActiveTransports : Fragment() {
         fun newInstance() = ActiveTransports()
     }
 
-    private lateinit var viewModel: ActiveTransportsViewModel
+    //private lateinit var viewModel: ActiveTransportsViewModel
     private lateinit var binding: FragmentActiveTransportsBinding
 
     override fun onCreateView(
@@ -31,10 +31,10 @@ class ActiveTransports : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getActiveTransports(10).observe(viewLifecycleOwner
+        /*viewModel.getActiveTransports(10).observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
-        }
+        }*/
     }
 
     private fun render(state: JobDetailState) {
@@ -54,7 +54,7 @@ class ActiveTransports : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ActiveTransportsViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(ActiveTransportsViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
