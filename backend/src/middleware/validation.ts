@@ -6,5 +6,6 @@ export const checkValidationResult = async (req: Request, res: Response, next: N
   if (errors.isEmpty()) {
     return next()
   }
+  console.error(errors)
   return res.status(400).send(errors)
 }

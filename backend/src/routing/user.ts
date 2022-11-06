@@ -8,10 +8,11 @@ import {
   getJobRequests,
   getRequestedJobs,
   getUser,
+  promote,
   updateUser
 } from '../middleware/user'
 import { checkValidationResult } from '../middleware/validation'
-import { mockDelivery, mockUser, mockUserInToplist } from '../mockdata'
+import { mockUserInToplist } from '../mockdata'
 
 export default (app: Express) => {
   app.get('/user/requestedJobs', getUserByUId, getRequestedJobs)
@@ -25,13 +26,7 @@ export default (app: Express) => {
 
   app.delete('/user/:id', param('id').isMongoId(), checkValidationResult, getUserByUId, checkIfAdmin, deleteParamUser)
 
-  app.get('/user/:id/history', (req: Request, res: Response) => {
-    res.send([mockDelivery, mockDelivery])
-  })
-
-  app.put('/user/:id/promote', (req: Request, res: Response) => {
-    res.send(mockUser)
-  })
+  app.put('/user/:id/promote', param('id').isMongoId(), getUserByUId, checkIfAdmin, promote)
 
   app.get('/user/toplist', (req: Request, res: Response) => {
     res.send([mockUserInToplist, mockUserInToplist, mockUserInToplist])

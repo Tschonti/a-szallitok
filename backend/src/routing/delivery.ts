@@ -4,20 +4,23 @@ import { getUserByUId } from '../middleware/auth'
 import {
   addRequestMiddleware,
   createDelivery,
+  deleteDelivery,
   rateClientMiddleware,
   rateTransporterMiddleware,
   readDelivery,
   replyMiddleware,
   returnDelivery,
-  statusChangeMiddleware
+  statusChangeMiddleware,
+  updateDelivery
 } from '../middleware/delivery'
 import { checkValidationResult } from '../middleware/validation'
-import { mockDelivery } from '../mockdata'
 import { Delivery, DeliveryStatus } from '../model/Delivery'
 
 export default (app: Express) => {
   app.get('/delivery', async (req: Request, res: Response) => {
-    return res.status(200).send(await Delivery.find())
+    return res.status(200).send(await Delivery.find({
+      status: { $in: [DeliveryStatus.UNASSIGNED, DeliveryStatus.PENDING] }
+    }))
   })
 
   app.post('/delivery',
@@ -48,13 +51,35 @@ export default (app: Express) => {
 
   app.get('/delivery/:id', param('id').isMongoId(), checkValidationResult, readDelivery, returnDelivery)
 
-  app.put('/delivery/:id', (req: Request, res: Response) => {
-    res.send(mockDelivery)
-  })
+  app.put('/delivery/:id',
+    param('id').isMongoId(),
+    body('title').isString().notEmpty(),
+    body('description').isString().notEmpty(),
+    body('pickUpFrom').isISO8601().toDate(),
+    body('pickUpUntil').isISO8601().toDate(),
+    body('price').isDecimal(),
+    body('capacity.weight').isDecimal(),
+    body('capacity.length').isDecimal(),
+    body('capacity.height').isDecimal(),
+    body('capacity.width').isDecimal(),
+    body('sourceLocation.country').isString().notEmpty(),
+    body('sourceLocation.address').isString().notEmpty(),
+    body('sourceLocation.city').isString().notEmpty(),
+    body('sourceLocation.postalCode').isInt(),
+    body('sourceLocation.coordinate.longitude').isDecimal(),
+    body('sourceLocation.coordinate.latitude').isDecimal(),
+    body('destinationLocation.country').isString().notEmpty(),
+    body('destinationLocation.address').isString().notEmpty(),
+    body('destinationLocation.city').isString().notEmpty(),
+    body('destinationLocation.postalCode').isInt(),
+    body('destinationLocation.coordinate.longitude').isDecimal(),
+    body('destinationLocation.coordinate.latitude').isDecimal(),
+    body('pictureUrl').optional().isURL(),
+    checkValidationResult,
+    getUserByUId, readDelivery, updateDelivery
+  )
 
-  app.delete('/delivery/:id', (req: Request, res: Response) => {
-    res.send(mockDelivery)
-  })
+  app.delete('/delivery/:id', param('id').isMongoId(), getUserByUId, readDelivery, deleteDelivery)
 
   app.put('/delivery/:id/rateTransporter', param('id').isMongoId(), body('rating').isInt({ min: 1, max: 5 }),
     checkValidationResult, getUserByUId, readDelivery, rateTransporterMiddleware)

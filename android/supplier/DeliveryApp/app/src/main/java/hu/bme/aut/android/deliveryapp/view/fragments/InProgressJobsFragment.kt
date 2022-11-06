@@ -11,21 +11,23 @@ import androidx.navigation.fragment.findNavController
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
+import hu.bme.aut.android.deliveryapp.adapter.DeliveriesInProgressAdapter
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentInProgressJobsBinding
 import hu.bme.aut.android.deliveryapp.model.Delivery
+import hu.bme.aut.android.deliveryapp.model.DeliveryInProgress
 import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryInProgressState
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryListState
 import hu.bme.aut.android.deliveryapp.viewmodel.InProgressJobsFragmentViewModel
 
-class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener {
+class InProgressJobsFragment : Fragment(), DeliveriesInProgressAdapter.OnDeliveryInProgressSelectedListener {
 
     private lateinit var binding: FragmentInProgressJobsBinding
 
     private val viewModel: InProgressJobsFragmentViewModel by viewModels()
 
-    private lateinit var adapter: JobDetailsAdapter
+    private lateinit var adapter: DeliveriesInProgressAdapter
 
     private lateinit var loadingDialog: LottieProgressDialog
 
@@ -41,7 +43,7 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = JobDetailsAdapter(requireContext(), this)
+        adapter = DeliveriesInProgressAdapter(requireContext(), this)
 
         viewModel.getJobsInProgress().observe(viewLifecycleOwner
         ) { jobDetailState ->
@@ -69,7 +71,7 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
                 loadingDialog.show()
             }
             is DeliveryInProgressState.deliveriesResponseSuccess -> {
-                adapter.addJobs(state.data.map { dip -> dip.delivery })
+                adapter.addDeliveries(state.data)
                 loadingDialog.dismiss()
             }
             is DeliveryInProgressState.deliveriesResponseError -> {
@@ -83,10 +85,11 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
         }
     }
 
-    override fun onJobSelected(job: Delivery?) {
+    override fun onDeliveryInProgressSelected(delivery: DeliveryInProgress?) {
         val b = Bundle()
-        b.putSerializable("JOB", job)
+        b.putSerializable("JOB", delivery)
         findNavController().navigate(R.id.action_inProgressJobsFragment_to_inProgressJobsDetailsFragment, b)
     }
+
 
 }

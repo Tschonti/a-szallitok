@@ -35,9 +35,9 @@ class InProgressJobsDetailsFragmentViewModel : ViewModel() {
         return delivery
     }
 
-    fun markDeliveryAsCancelled(d: Delivery): LiveData<DeliveryState> {
+    fun markDeliveryAsInTransit(d: Delivery): LiveData<DeliveryState> {
         if (!::delivery.isInitialized) {
-            delivery = apiRepository.markDeliveryAsCancelled(d)
+            delivery = apiRepository.markDeliveryAsInTransit(d)
         }
         return delivery
     }
