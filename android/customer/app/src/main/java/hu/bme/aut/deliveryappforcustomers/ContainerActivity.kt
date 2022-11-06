@@ -37,7 +37,8 @@ class ContainerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.new_transport -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, NewTransportFragment()).commit()
             R.id.active_transports -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ActiveTransports()).commit()
+                .replace(R.id.fragment_container, LoginFragment()).commit()
+            //TODO replace this with the active transports fragment
             R.id.history -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HistoryFragment()).commit()
             R.id.map_view -> supportFragmentManager.beginTransaction()
