@@ -15,6 +15,7 @@ import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentInProgressJobsBinding
 import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.repository.CurrentUser
+import hu.bme.aut.android.deliveryapp.view.states.DeliveryInProgressState
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryListState
 import hu.bme.aut.android.deliveryapp.viewmodel.InProgressJobsFragmentViewModel
 
@@ -42,7 +43,7 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
 
         adapter = JobDetailsAdapter(requireContext(), this)
 
-        viewModel.getJobsInProgress(CurrentUser.user._id).observe(viewLifecycleOwner
+        viewModel.getJobsInProgress().observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
         }
@@ -62,16 +63,16 @@ class InProgressJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListen
         binding.inProgressJobsRecyclerView.adapter = adapter
     }
 
-    private fun render(state: DeliveryListState) {
+    private fun render(state: DeliveryInProgressState) {
         when (state) {
-            is DeliveryListState.inProgress -> {
+            is DeliveryInProgressState.inProgress -> {
                 loadingDialog.show()
             }
-            is DeliveryListState.deliveriesResponseSuccess -> {
-                adapter.addJobs(state.data)
+            is DeliveryInProgressState.deliveriesResponseSuccess -> {
+                adapter.addJobs(state.data.map { dip -> dip.delivery })
                 loadingDialog.dismiss()
             }
-            is DeliveryListState.deliveriesResponseError -> {
+            is DeliveryInProgressState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
                     .title("Error")

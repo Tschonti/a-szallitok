@@ -30,11 +30,7 @@ class ApiRepository {
     fun getVehicleData(id: String): MutableLiveData<VehicleState> {
         return DeliveryApi.getVehicleData(id)
     }
-/*
-    fun getUserRating(id: String): MutableLiveData<UserWithRatingState> {
-        return DeliveryApi.getUserRating(id)
-    }
-*/
+
     fun loginUser(token: String): MutableLiveData<UserState> {
         return DeliveryApi.loginUser(token)
     }
@@ -53,5 +49,9 @@ class ApiRepository {
 
     fun rateClient(clientId: String, rating: Int): MutableLiveData<DeliveryState> {
         return DeliveryApi.rateClient(clientId, rating)
+    }
+
+    fun getDeliveriesInProgress(): MutableLiveData<DeliveryInProgressState> {
+        return DeliveryApi.getDeliveriesInProgress()
     }
 }

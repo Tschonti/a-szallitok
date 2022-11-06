@@ -21,6 +21,9 @@ interface ApiService {
     @GET("delivery")
     fun getJobDetails(@Header("Authorization") token: String, @Query("transporterId") transporterId: String?): Call<List<Delivery>>
 
+    @GET("user/requestedJobs")
+    fun getJobsInProgress(@Header("Authorization") token: String): Call<List<DeliveryInProgress>>
+
     @GET("delivery/{ID}")
     fun getDeliveryData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<Delivery>
 
