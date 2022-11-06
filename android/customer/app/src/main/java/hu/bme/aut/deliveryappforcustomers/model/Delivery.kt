@@ -1,26 +1,26 @@
 package hu.bme.aut.android.deliveryapp.model
 
 import android.location.Location
+import hu.bme.aut.deliveryappforcustomers.model.Capacity
+import hu.bme.aut.deliveryappforcustomers.model.DeliveryStatus
+import java.io.Serializable
 
 data class Delivery(
-    val clientUserId: Int,
-    val transporterUserId: Int,
+    val clientUser: String,
+    val transporterUser: String?,
     val pictureUrl: String,
-    val length: Int,
     val description: String,
-    val destinationLocation: String,
-    val weight: Int,
+    val destinationLocation: Location?,
     val title: String,
-    val createdAt: String,
-    val clientRating: Int,
+    val clientRating: Float?,
     val pickUpUntil: String,
-    val price: Int,
-    val width: Int,
-    val sourceLocation: Location,
-    val transporterRating: Int,
-    val id: Int,
+    val price: Float,
+    val sourceLocation: Location?,
+    val transporterRating: Float,
+    val createdAt: String,
+    val _id: String,
     val pickUpFrom: String,
-    val height: Int,
-    val status: String,
-    val updatedAt: String
-)
+    var status: DeliveryStatus,
+    val updatedAt: String,
+    val capacity: Capacity?,
+) : Serializable
