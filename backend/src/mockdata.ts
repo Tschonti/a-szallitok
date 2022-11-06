@@ -48,7 +48,7 @@ export const mockDelivery: IDelivery = {
   destinationLocation: mockLocation,
   title: 'Brick delivery',
   clientRating: 2,
-  pickUpUntil: new Date(),
+  pickUpUntil: '2022.05.12',
   price: 10000,
   sourceLocation: {
     country: 'Hungary',
@@ -61,7 +61,7 @@ export const mockDelivery: IDelivery = {
     postalCode: 1117
   },
   transporterRating: 2,
-  pickUpFrom: new Date(),
+  pickUpFrom: '2022.05.12',
   capacity: {
     height: 2,
     length: 2,

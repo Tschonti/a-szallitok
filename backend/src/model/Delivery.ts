@@ -72,11 +72,11 @@ const deliverySchema = new Schema({
     required: false
   },
   pickUpFrom: {
-    type: Date,
+    type: String,
     required: true
   },
   pickUpUntil: {
-    type: Date,
+    type: String,
     required: true
   },
   price: {
