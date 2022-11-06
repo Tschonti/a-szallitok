@@ -13,6 +13,7 @@ import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentInProgressDetailsBinding
 import hu.bme.aut.android.deliveryapp.model.Delivery
+import hu.bme.aut.android.deliveryapp.model.DeliveryStatus
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryState
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.InProgressJobsDetailsFragmentViewModel
@@ -55,22 +56,30 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
         if (selectedJob != null) {
             viewModel.getUserData(selectedJob!!.clientUser).observe(viewLifecycleOwner
             ) { userState ->
-                render(userState)
+                renderData(userState)
             }
 
+            if (selectedJob?.status == DeliveryStatus.IN_TRANSIT) {
+                binding.btnMarkAsInTransit.visibility = View.GONE
+                binding.btnMarkAsReady.visibility = View.VISIBLE
+            }
+            if (selectedJob?.status == DeliveryStatus.IN_TRANSIT) {
+                binding.btnMarkAsInTransit.visibility = View.VISIBLE
+                binding.btnMarkAsReady.visibility = View.GONE
+            }
         }
 
         binding.btnMarkAsReady.setOnClickListener {
             viewModel.markJobAsReady(selectedJob!!).observe(viewLifecycleOwner
             ) { deliveryState ->
-                jobReady(deliveryState)
+                jobReadyRender(deliveryState)
             }
         }
 
-        binding.btnCancel.setOnClickListener {
-            viewModel.markDeliveryAsCancelled(selectedJob!!).observe(viewLifecycleOwner
+        binding.btnMarkAsInTransit.setOnClickListener {
+            viewModel.markDeliveryAsInTransit(selectedJob!!).observe(viewLifecycleOwner
             ) { deliveryState ->
-                jobEnded(deliveryState)
+                inTransitRender(deliveryState)
             }
         }
 
@@ -86,7 +95,7 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
         return binding.root
     }
 
-    private fun render(state: UserState) {
+    private fun renderData(state: UserState) {
         when (state) {
             is UserState.inProgress -> {
                 loadingDialog.show()
@@ -124,7 +133,7 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
         }
     }
 
-    private fun jobReady(state: DeliveryState) {
+    private fun jobReadyRender(state: DeliveryState) {
         when (state) {
             is DeliveryState.inProgress -> {
                 loadingDialog.show()
@@ -145,7 +154,7 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
         }
     }
 
-    private fun jobEnded(state: DeliveryState) {
+    private fun inTransitRender(state: DeliveryState) {
         when (state) {
             is DeliveryState.inProgress -> {
                 loadingDialog.show()
@@ -154,7 +163,7 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
                     .title("Success")
-                    .body("Delivery marked as cancelled")
+                    .body("Delivery marked as in transit")
                     .icon(R.drawable.success)
                     .onPositive("Close")
             }

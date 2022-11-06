@@ -43,8 +43,8 @@ class ApiRepository {
         return DeliveryApi.changeDeliveryStatus(delivery, DeliveryStatus.DELIVERED)
     }
 
-    fun markDeliveryAsCancelled(delivery: Delivery): MutableLiveData<DeliveryState> {
-        return DeliveryApi.changeDeliveryStatus(delivery, DeliveryStatus.UNASSIGNED)
+    fun markDeliveryAsInTransit(delivery: Delivery): MutableLiveData<DeliveryState> {
+        return DeliveryApi.changeDeliveryStatus(delivery, DeliveryStatus.IN_TRANSIT)
     }
 
     fun rateClient(clientId: String, rating: Int): MutableLiveData<DeliveryState> {

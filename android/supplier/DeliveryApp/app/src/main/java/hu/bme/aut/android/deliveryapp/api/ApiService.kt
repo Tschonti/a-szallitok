@@ -12,9 +12,6 @@ interface ApiService {
     @GET("/user/{ID}")
     fun getUserData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<User>
 
-    @GET("user/{ID}/history")
-    fun getUserHistory(@Header("Authorization") token: String, @Path("ID") ID: String): Call<List<Delivery>>
-
     @GET("vehicle/{ID}")
     fun getVehicleData(@Header("Authorization") token: String, @Path("ID") ID: String): Call<Vehicle>
 
