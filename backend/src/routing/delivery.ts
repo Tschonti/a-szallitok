@@ -26,8 +26,6 @@ export default (app: Express) => {
   app.post('/delivery',
     body('title').isString().notEmpty(),
     body('description').isString().notEmpty(),
-    body('pickUpFrom').isDate({ format: 'YYYY.MM.DD' }),
-    body('pickUpUntil').isDate({ format: 'YYYY.MM.DD' }),
     body('price').isDecimal(),
     body('capacity.weight').isDecimal(),
     body('capacity.length').isDecimal(),
