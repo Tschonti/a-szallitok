@@ -4,21 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentJobDetailsBinding
-import hu.bme.aut.android.deliveryapp.databinding.FragmentMenuBinding
 import hu.bme.aut.android.deliveryapp.model.Delivery
-import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.JobDetailsFragmentViewModel
-import hu.bme.aut.android.deliveryapp.viewmodel.ProfileFragmentViewModel
 
 class JobDetailsFragment : Fragment() {
 
@@ -47,8 +41,10 @@ class JobDetailsFragment : Fragment() {
         binding.tvDescription.text = job?.description
         binding.tvDate.text = "${job?.pickUpFrom?.subSequence(0, 10)} - ${job?.pickUpUntil?.subSequence(0, 10)}"
         binding.tvPrice.text = job?.price.toString()
-        val location = job?.sourceLocation
-        binding.tvLocation.text = "${location?.country}\n${location?.postalCode}, ${location?.city}\n${location?.address}"
+        val locationSource = job?.sourceLocation
+        binding.tvLocationSource.text = "${locationSource?.country}\n${locationSource?.postalCode}, ${locationSource?.city}\n${locationSource?.address}"
+        val locationDestination = job?.destinationLocation
+        binding.tvLocationDestination.text = "${locationDestination?.country}\n${locationDestination?.postalCode}, ${locationDestination?.city}\n${locationDestination?.address}"
 
         job?.clientUser?.let {
             viewModel.getUserData(it).observe(viewLifecycleOwner

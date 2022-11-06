@@ -16,19 +16,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutNoVehicle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <ImageView
             android:id="@+id/ivNoCarMeme"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:background="@drawable/no_car_meme"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvNoVehicleLabel"
@@ -36,23 +37,22 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="You have no vehicles, so you can add one to your profile with the button below."
-            app:layout_constraintTop_toBottomOf="@id/ivNoCarMeme"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivNoCarMeme" />
 
         <Button
-            style="@style/Widget.Material3.Button.ElevatedButton"
             android:id="@+id/btnAddVehicle"
+            style="@style/Widget.Material3.Button.ElevatedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Vehicle"
-            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/purple_200"
+            android:text="Add Vehicle"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNoVehicleLabel"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNoVehicleLabel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -64,32 +64,23 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tvMyVehicleLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="My vehicle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/tvType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="Type"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMyVehicleLabel" />
+            app:layout_constraintStart_toEndOf="@+id/tvTypeLabel"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Year"
-            app:layout_constraintStart_toStartOf="@+id/tvType"
+            app:layout_constraintStart_toEndOf="@+id/tvYearLabel"
             app:layout_constraintTop_toBottomOf="@+id/tvType" />
 
         <TextView
@@ -97,30 +88,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="Storage size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvYear" />
+            app:layout_constraintTop_toBottomOf="@+id/tvStorageSizeLabel" />
 
         <TextView
             android:id="@+id/tvStorageCapacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="Storage capacity"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvStorageSize" />
+            app:layout_constraintTop_toBottomOf="@+id/tvStorageCapacityLabel" />
 
         <TextView
             android:id="@+id/tvParkLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:text="Park location"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvStorageCapacity" />
+            app:layout_constraintTop_toBottomOf="@+id/tvParkLocationLabel" />
 
         <Button
             style="@style/Widget.Material3.Button.ElevatedButton"
@@ -136,6 +127,61 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvParkLocation"
             />
+
+        <TextView
+            android:id="@+id/tvTypeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Type:"
+            style="@style/TitleTextViewStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvYearLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Year:"
+            style="@style/TitleTextViewStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTypeLabel" />
+
+        <TextView
+            android:id="@+id/tvStorageSizeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="Storage size"
+            style="@style/TitleTextViewStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvYearLabel" />
+
+        <TextView
+            android:id="@+id/tvStorageCapacityLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="Storage capacity"
+            style="@style/TitleTextViewStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvStorageSize" />
+
+        <TextView
+            android:id="@+id/tvParkLocationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="Park location"
+            style="@style/TitleTextViewStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvStorageCapacity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

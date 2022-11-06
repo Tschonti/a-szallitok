@@ -1,6 +1,7 @@
 package hu.bme.aut.android.deliveryapp.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import hu.bme.aut.android.deliveryapp.databinding.JobDetailsStatusRowBinding
 import hu.bme.aut.android.deliveryapp.databinding.JobInProgressRowBinding
 import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.model.DeliveryInProgress
+import hu.bme.aut.android.deliveryapp.model.InProgressStatus
 
 class DeliveriesInProgressAdapter(private val context: Context, private val listener: OnDeliveryInProgressSelectedListener) : RecyclerView.Adapter<DeliveriesInProgressAdapter.DeliveriesInProgressViewHolder>() {
     private val deliveries: MutableList<DeliveryInProgress> = ArrayList()
@@ -65,6 +67,13 @@ class DeliveriesInProgressAdapter(private val context: Context, private val list
             binding.tvDescription.text = newDelivery.delivery.description
             binding.tvStatus.text = newDelivery.status.toString()
             binding.tvPrice.text = newDelivery.delivery.price.toString()
+
+            if (newDelivery.status == InProgressStatus.PENDING)
+                binding.tvStatus.setBackgroundColor(Color.YELLOW)
+            else if (newDelivery.status == InProgressStatus.ACCEPTED)
+                binding.tvStatus.setBackgroundColor(Color.GREEN)
+            else if (newDelivery.status == InProgressStatus.REJECTED)
+                binding.tvStatus.setBackgroundColor(Color.GREEN)
         }
     }
 }
