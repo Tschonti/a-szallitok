@@ -18,23 +18,14 @@
 
             <TextView
                 android:id="@+id/tvTitle"
+                style="@style/TitleTextViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:text="Title"
-                style="@style/TitleTextViewStyle"
-                app:layout_constraintStart_toEndOf="@+id/ivImage"
-                app:layout_constraintTop_toTopOf="@+id/ivImage" />
-
-            <ImageView
-                android:id="@+id/ivImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvLocation"
@@ -49,19 +40,23 @@
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:text="Date"
-                app:layout_constraintStart_toEndOf="@id/ivImage"
-                app:layout_constraintBottom_toBottomOf="@id/ivImage" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
             <TextView
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="Price"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/ivImage" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

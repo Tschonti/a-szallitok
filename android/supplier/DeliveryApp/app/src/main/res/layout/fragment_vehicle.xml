@@ -73,45 +73,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivVehicleImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMyVehicleLabel"
-            tools:srcCompat="@tools:sample/avatars" />
-
         <TextView
             android:id="@+id/tvType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:text="Type"
-            app:layout_constraintStart_toEndOf="@+id/ivVehicleImage"
-            app:layout_constraintTop_toTopOf="@+id/ivVehicleImage" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMyVehicleLabel" />
 
         <TextView
             android:id="@+id/tvYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="8dp"
             android:text="Year"
-            app:layout_constraintBottom_toBottomOf="@+id/ivVehicleImage"
-            app:layout_constraintStart_toEndOf="@+id/ivVehicleImage" />
+            app:layout_constraintStart_toStartOf="@+id/tvType"
+            app:layout_constraintTop_toBottomOf="@+id/tvType" />
 
         <TextView
             android:id="@+id/tvStorageSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:text="Storage size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivVehicleImage" />
+            app:layout_constraintTop_toBottomOf="@+id/tvYear" />
 
         <TextView
             android:id="@+id/tvStorageCapacity"
