@@ -60,17 +60,12 @@ export const getUser = async (req: Request, res: Response) => {
 }
 
 export const updateUser = async (req: Request, res: Response) => {
-  try {
-    const user = await User.findByIdAndUpdate(res.locals.dbUser?._id.toString(),
-      { phoneNumber: req.body.phoneNumber }).exec()
-    if (user == null) {
-      return res.sendStatus(404)
-    }
-    return res.status(201).send(user)
-  } catch (e) {
-    console.error(e)
+  const user = await User.findByIdAndUpdate(res.locals.dbUser?._id.toString(),
+    { phoneNumber: req.body.phoneNumber }).exec()
+  if (user == null) {
     return res.sendStatus(404)
   }
+  return res.status(201).send(user)
 }
 
 export const checkIfAdmin = (req: Request, res: Response, next: NextFunction) => {
@@ -118,4 +113,14 @@ export const getJobRequests = async (req: Request, res: Response) => {
   return res.status(200).send(
     allRequests.filter(r => r.delivery.clientUser.toString() === res.locals.dbUser?._id.toString())
   )
+}
+
+export const promote = async (req: Request, res: Response) => {
+  const user = await User.findById(req.params.id).exec()
+  if (user == null) {
+    return res.sendStatus(404)
+  }
+  user.isAdmin = true
+  await user.save()
+  return res.status(200).send(user)
 }

@@ -13,6 +13,18 @@ export const createDelivery = async (req: Request, res: Response, next: NextFunc
   return res.status(201).send(delivery)
 }
 
+export const updateDelivery = async (req: Request, res: Response, next: NextFunction) => {
+  if (res.locals.dbUser?._id.toString() !== res.locals.delivery?.clientUser.toString() && !res.locals.dbUser?.isAdmin) {
+    return res.sendStatus(403)
+  }
+  const delivery = await Delivery.findOneAndUpdate({ _id: req.params.id }, { ...req.body }).exec()
+
+  if (delivery == null) {
+    return res.sendStatus(404)
+  }
+  return res.status(200).send(delivery)
+}
+
 export const returnDelivery = async (req: Request, res: Response, next: NextFunction) => {
   return res.status(200).send(res.locals.delivery)
 }
@@ -126,4 +138,14 @@ export const replyMiddleware = async (req: Request, res: Response, next: NextFun
   }
 
   return res.status(200).send(request)
+}
+
+export const deleteDelivery = async (req: Request, res: Response) => {
+  if (res.locals.dbUser?._id.toString() !== res.locals.delivery?.clientUser.toString() && !res.locals.dbUser?.isAdmin) {
+    return res.sendStatus(403)
+  }
+
+  await TransportRequest.deleteMany({ delivery: res.locals.delivery?._id })
+  await Delivery.deleteOne({ _id: res.locals.delivery?._id })
+  return res.status(200).send(res.locals.delivery)
 }

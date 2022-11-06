@@ -2,10 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { Vehicle } from '../model/Vehicle'
 
 export const createVehicle = async (req: Request, res: Response, next: NextFunction) => {
-  const vehicle = Vehicle.build({
-    ...req.body
-  }
-  )
+  const vehicle = Vehicle.build({ ...req.body })
 
   await vehicle.save()
   console.log()
@@ -16,6 +13,10 @@ export const createVehicle = async (req: Request, res: Response, next: NextFunct
 }
 
 export const updateVehicle = async (req: Request, res: Response, next: NextFunction) => {
+  if (res.locals.dbUser?.vehicle?.toString() !== req.params.id && !res.locals.dbUser?.isAdmin) {
+    return res.sendStatus(403)
+  }
+
   const vehicle = await Vehicle.findByIdAndUpdate(req.params.id.toString(),
     { ...req.body }).exec()
   if (vehicle == null) {
