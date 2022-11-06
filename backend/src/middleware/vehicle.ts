@@ -5,9 +5,7 @@ export const createVehicle = async (req: Request, res: Response, next: NextFunct
   const vehicle = Vehicle.build({ ...req.body })
 
   await vehicle.save()
-  console.log()
   res.locals.dbUser!!.vehicle = vehicle._id
-  console.log(res.locals.dbUser)
   await res.locals.dbUser?.save()
   return res.status(201).send(vehicle)
 }
