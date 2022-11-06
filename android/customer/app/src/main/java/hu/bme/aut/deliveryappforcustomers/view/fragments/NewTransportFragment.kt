@@ -59,7 +59,7 @@ class NewTransportFragment : Fragment() {
                     clientUser = CurrentUserPlain.user!!._id,
                     description = "no description",
                     createdAt = "2022.11.07", //TODO implement proper date
-                    pickUpFrom = "example location",
+                    pickUpFrom = "2022.10.10",
                     pickUpUntil = "2022.11.18",
                 )
             )

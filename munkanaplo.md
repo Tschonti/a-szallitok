@@ -66,6 +66,12 @@
 - api hívás teszt a user aktív fuvarjaira
 - (app nem indul - debugolás)
 
+## 8-9. hét
+- fragmentek közti navigálással kapcsolatos hibák kijavítása
+- új fuvar felvételéhez kapcsolódó fragmenthez logika elkészítése, összekötés a backenddel
+- Google-ös login elkészítése
+- Tesztelés a backenddel
+
 # Farkasházi Levente
 ## 4. hét
 - Discord szerver elkészítése
