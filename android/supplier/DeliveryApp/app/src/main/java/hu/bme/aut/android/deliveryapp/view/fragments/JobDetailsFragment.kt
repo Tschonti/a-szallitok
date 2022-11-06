@@ -45,7 +45,6 @@ class JobDetailsFragment : Fragment() {
     fun initFragment(job: Delivery?) {
         binding.tvTitle.text = job?.title
         binding.tvDescription.text = job?.description
-        Glide.with(requireContext()).load(job?.pictureUrl).into(binding.ivJobImage)
         binding.tvDate.text = "${job?.pickUpFrom?.subSequence(0, 10)} - ${job?.pickUpUntil?.subSequence(0, 10)}"
         binding.tvPrice.text = job?.price.toString()
         val location = job?.sourceLocation

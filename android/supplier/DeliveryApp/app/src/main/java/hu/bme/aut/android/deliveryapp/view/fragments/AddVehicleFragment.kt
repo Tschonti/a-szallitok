@@ -148,7 +148,6 @@ class AddVehicleFragment : Fragment() {
         vehicle = arguments?.get("VEHICLE") as Vehicle?
         if (vehicle != null) {
             binding.etVehicleHeight.editText?.setText(vehicle?.maxCapacity?.height.toString())
-            Glide.with(requireContext()).load(vehicle?.pictureUrl).into(binding.ivVehicleImage);
             binding.etVehicleYear.editText?.setText(vehicle?.yearOfManufacturing.toString())
             binding.etVehicleLocation.editText?.setText(vehicle?.location.toString())
             binding.etVehicleWeight.editText?.setText(vehicle?.maxCapacity?.weight.toString())

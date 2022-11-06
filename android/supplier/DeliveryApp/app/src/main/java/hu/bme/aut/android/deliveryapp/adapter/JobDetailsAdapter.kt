@@ -58,7 +58,6 @@ class JobDetailsAdapter(private val context: Context, private val listener: OnJo
 
         fun bind(newJob: Delivery) {
             item = newJob
-            Glide.with(context).load(newJob.pictureUrl).into(binding.ivImage)
             binding.tvTitle.text = newJob.title
             binding.tvLocation.text = newJob.sourceLocation?.city
             binding.tvDate.text = newJob.pickUpUntil?.subSequence(0, 10)

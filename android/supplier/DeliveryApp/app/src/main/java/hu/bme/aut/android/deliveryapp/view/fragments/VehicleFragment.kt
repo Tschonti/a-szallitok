@@ -84,7 +84,6 @@ class VehicleFragment : Fragment() {
                 loadingDialog.show()
             }
             is VehicleState.vehicleResponseSuccess -> {
-                Glide.with(requireContext()).load(state.data.pictureUrl).into(binding.ivVehicleImage);
                 binding.tvType.text = state.data.type
                 binding.tvYear.text = state.data.yearOfManufacturing.toString()
                 binding.tvStorageSize.text = "width: ${state.data.maxCapacity.width} x length: ${state.data.maxCapacity.length} x height: ${state.data.maxCapacity.height}"
