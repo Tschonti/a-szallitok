@@ -63,7 +63,7 @@ class NewTransportFragment : Fragment() {
                     pickUpUntil = "2022.11.18",
                 )
             )
-            Log.d("NewTransportFragment", "New transport created(?): $returnValue")
+            Log.d("NewTransportFragment", "New transport created")
         }
     }
 }
