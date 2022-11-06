@@ -26,6 +26,8 @@ export default (app: Express) => {
   app.post('/delivery',
     body('title').isString().notEmpty(),
     body('description').isString().notEmpty(),
+    body('pickUpFrom').isString().notEmpty(),
+    body('pickUpUntil').isString().notEmpty(),
     body('price').isDecimal(),
     body('capacity.weight').isDecimal(),
     body('capacity.length').isDecimal(),
