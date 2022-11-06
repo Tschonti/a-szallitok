@@ -47,6 +47,12 @@
 - API hívások véglegesítése
 - Teljes UI elkészítése
 
+## 8-9. hét
+- Google Maps intergrálása
+- Jármű hozzáadása/szerkesztése
+- Munka elvállalása/befejezése
+- Client app segítése
+
 # Raisz Olivér
 ## 4. hét
 - Specifikáció kidolgozása közösen
