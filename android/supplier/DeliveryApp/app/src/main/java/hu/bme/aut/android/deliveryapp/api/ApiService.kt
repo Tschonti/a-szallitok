@@ -37,6 +37,14 @@ interface ApiService {
     @Headers("Cache-control: no-cache")
     fun requestJob(@Header("Authorization") token: String, @Path("ID") ID: String): Call<Delivery>
 
+    @POST("vehicle")
+    @Headers("Cache-control: no-cache")
+    fun addVehicle(@Header("Authorization") token: String, @Body vehicle: Vehicle): Call<Vehicle>
+
+    @PUT("vehicle/{ID}")
+    @Headers("Cache-control: no-cache")
+    fun updateVehicle(@Header("Authorization") token: String, @Path("ID") ID: String, @Body vehicle: Vehicle): Call<Vehicle>
+
     @PUT("delivery/{ID}/rateClient")
     @Headers("Cache-control: no-cache")
     fun rateClient(@Header("Authorization") token: String, @Path("ID") ID: String, @Body rating: RateChange): Call<Delivery>

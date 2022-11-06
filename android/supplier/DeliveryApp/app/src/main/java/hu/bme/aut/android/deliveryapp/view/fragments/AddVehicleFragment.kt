@@ -2,6 +2,7 @@ package hu.bme.aut.android.deliveryapp.view.fragments
 
 import android.R
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,14 +10,28 @@ import android.view.WindowManager
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.devhoony.lottieproegressdialog.LottieProgressDialog
+import com.example.awesomedialog.*
 import hu.bme.aut.android.deliveryapp.databinding.FragmentAddVehicleBinding
+import hu.bme.aut.android.deliveryapp.model.Capacity
 import hu.bme.aut.android.deliveryapp.model.Vehicle
+import hu.bme.aut.android.deliveryapp.view.states.DeliveryListState
+import hu.bme.aut.android.deliveryapp.view.states.VehicleState
+import hu.bme.aut.android.deliveryapp.viewmodel.AddVehicleFragmentViewModel
+import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobDetailsFragmentViewModel
 
 
 class AddVehicleFragment : Fragment() {
     private lateinit var binding: FragmentAddVehicleBinding
+
+    private val viewModel: AddVehicleFragmentViewModel by viewModels()
+
+    private lateinit var loadingDialog: LottieProgressDialog
+
+    private var vehicle: Vehicle? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,21 +56,50 @@ class AddVehicleFragment : Fragment() {
             }
         }
 
+        loadingDialog = LottieProgressDialog(
+            context = requireContext(),
+            isCancel = true,
+            dialogWidth = null,
+            dialogHeight = null,
+            animationViewWidth = null,
+            animationViewHeight = null,
+            fileName = LottieProgressDialog.SAMPLE_8,
+            title = null,
+            titleVisible = null
+        )
+
         binding.btnAddVehicle.setOnClickListener {
 
             if (checkInputFields()) {
-                val vehicle = Vehicle(
-                    binding.etVehicleHeight.editText?.text.toString().toFloat(),
-                    "IMG",
-                    binding.etVehicleYear.editText?.text.toString().toInt(),
-                    binding.etVehicleLocation.editText?.text.toString(),
-                    "ID",
-                    binding.etVehicleWeight.editText?.text.toString().toFloat(),
-                    binding.etVehiclePlate.editText?.text.toString(),
-                    binding.etVehicleType.editText?.text.toString(),
-                    binding.etVehicleLength.editText?.text.toString().toFloat(),
-                    binding.etVehicleWidth.editText?.text.toString().toFloat(),
+                val v = Vehicle(
+                    maxCapacity = Capacity(
+                        weight = binding.etVehicleWeight.editText?.text.toString().toFloat(),
+                        height = binding.etVehicleHeight.editText?.text.toString().toFloat(),
+                        length = binding.etVehicleLength.editText?.text.toString().toFloat(),
+                        width = binding.etVehicleWidth.editText?.text.toString().toFloat(),
+                    ),
+                    pictureUrl = null,
+                    yearOfManufacturing = binding.etVehicleYear.editText?.text.toString().toInt(),
+                    location = binding.etVehicleLocation.editText?.text.toString(),
+                    _id = null,
+                    plateNumber = binding.etVehiclePlate.editText?.text.toString(),
+                    type = binding.etVehicleType.editText?.text.toString(),
                 )
+
+                if (vehicle == null) {
+                    viewModel.addVehicle(v).observe(viewLifecycleOwner
+                    ) { jobDetailState ->
+                        render(jobDetailState)
+                    }
+                }
+                else {
+                    viewModel.updateVehicle(vehicle!!._id!!, v).observe(viewLifecycleOwner
+                    ) { jobDetailState ->
+                        render(jobDetailState)
+                    }
+                }
+
+
             }
         }
 
@@ -101,17 +145,44 @@ class AddVehicleFragment : Fragment() {
     }
 
     private fun initInputText() {
-        val vehicle: Vehicle? = arguments?.get("VEHICLE") as Vehicle?
+        vehicle = arguments?.get("VEHICLE") as Vehicle?
         if (vehicle != null) {
-            binding.etVehicleHeight.editText?.setText(vehicle?.maxHeight.toString())
+            binding.etVehicleHeight.editText?.setText(vehicle?.maxCapacity?.height.toString())
             Glide.with(requireContext()).load(vehicle?.pictureUrl).into(binding.ivVehicleImage);
             binding.etVehicleYear.editText?.setText(vehicle?.yearOfManufacturing.toString())
             binding.etVehicleLocation.editText?.setText(vehicle?.location.toString())
-            binding.etVehicleWeight.editText?.setText(vehicle?.maxWeight.toString())
+            binding.etVehicleWeight.editText?.setText(vehicle?.maxCapacity?.weight.toString())
             binding.etVehiclePlate.editText?.setText(vehicle?.plateNumber.toString())
             binding.etVehicleType.editText?.setText(vehicle?.type.toString())
-            binding.etVehicleLength.editText?.setText(vehicle?.maxLength.toString())
-            binding.etVehicleWidth.editText?.setText(vehicle?.maxWidth.toString())
+            binding.etVehicleLength.editText?.setText(vehicle?.maxCapacity?.length.toString())
+            binding.etVehicleWidth.editText?.setText(vehicle?.maxCapacity?.length.toString())
         }
     }
+
+    private fun render(state: VehicleState) {
+        when (state) {
+            is VehicleState.inProgress -> {
+                loadingDialog.show()
+            }
+            is VehicleState.vehicleResponseSuccess -> {
+                loadingDialog.dismiss()
+                findNavController().popBackStack()
+                AwesomeDialog.build(requireActivity())
+                    .title("Success")
+                    .body("Vehicle successfully added")
+                    .icon(hu.bme.aut.android.deliveryapp.R.drawable.success)
+                    .onPositive("Close")
+            }
+            is VehicleState.vehicleResponseError -> {
+                loadingDialog.dismiss()
+                findNavController().popBackStack()
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body(state.exceptionMsg)
+                    .icon(hu.bme.aut.android.deliveryapp.R.drawable.error)
+                    .onPositive("Close")
+            }
+        }
+    }
+
 }

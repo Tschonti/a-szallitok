@@ -31,7 +31,7 @@ class RatingDialog(val listener: RateDialogSubmittedListener) : DialogFragment()
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnSubmitRating.setOnClickListener {
-            listener.rateSubmitted(binding.ratingBar.numStars)
+            listener.rateSubmitted(binding.ratingBar.rating.toInt())
             dismiss()
         }
     }

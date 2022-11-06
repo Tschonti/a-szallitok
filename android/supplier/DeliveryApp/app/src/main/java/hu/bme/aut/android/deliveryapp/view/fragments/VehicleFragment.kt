@@ -31,10 +31,9 @@ class VehicleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO: Set if there is a vehicle
-        //CurrentUser.user.vehicleId = "4"
-        if (CurrentUser.user.vehicleId != null) {
-            viewModel.getVehicleData(CurrentUser.user.vehicleId!!).observe(
+
+        if (CurrentUser.user.vehicle != null) {
+            viewModel.getVehicleData(CurrentUser.user.vehicle!!).observe(
                 viewLifecycleOwner
             ) { vehicleData ->
                 render(vehicleData)
@@ -65,7 +64,6 @@ class VehicleFragment : Fragment() {
 
         binding.btnEditVehicle.setOnClickListener {
             val b = Bundle()
-            vehicle.id = "id"
             b.putSerializable("VEHICLE", vehicle)
             findNavController().navigate(R.id.action_vehicleFragment_to_addVehicleFragment, b)
         }
@@ -89,8 +87,8 @@ class VehicleFragment : Fragment() {
                 Glide.with(requireContext()).load(state.data.pictureUrl).into(binding.ivVehicleImage);
                 binding.tvType.text = state.data.type
                 binding.tvYear.text = state.data.yearOfManufacturing.toString()
-                binding.tvStorageSize.text = "width: ${state.data.maxWidth} x length: ${state.data.maxLength} x height: ${state.data.maxHeight}"
-                binding.tvStorageCapacity.text = "${state.data.maxWeight} kg"
+                binding.tvStorageSize.text = "width: ${state.data.maxCapacity.width} x length: ${state.data.maxCapacity.length} x height: ${state.data.maxCapacity.height}"
+                binding.tvStorageCapacity.text = "${state.data.maxCapacity.weight} kg"
                 binding.tvParkLocation.text = state.data.location
                 loadingDialog.dismiss()
                 vehicle = state.data

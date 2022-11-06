@@ -72,6 +72,7 @@ class ProfileFragment : Fragment() {
                 binding.tvRating.text = "Rating: ${state.data.avgRating}"
                 binding.tvEmail.text = "Email: ${state.data.email}"
                 binding.tvPhone.text = "Phone: ${state.data.phoneNumber}"
+                CurrentUser.user = state.data
                 loadingDialog.dismiss()
             }
             is UserState.userResponseError -> {

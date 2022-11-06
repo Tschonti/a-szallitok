@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.repository.ApiRepository
+import hu.bme.aut.android.deliveryapp.repository.CurrentUser.user
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryState
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 
@@ -11,38 +12,23 @@ class InProgressJobsDetailsFragmentViewModel : ViewModel() {
 
     private val apiRepository = ApiRepository()
 
-    private lateinit var user: LiveData<UserState>
-    private lateinit var delivery: LiveData<DeliveryState>
-
     fun getUserData(userId: String): LiveData<UserState> {
-        if (!::user.isInitialized) {
-            user = apiRepository.getUserData(userId)
-        }
-        return user
+        return apiRepository.getUserData(userId)
     }
 
     fun getDeliveryData(deliveryId: String): LiveData<DeliveryState> {
-        if (!::delivery.isInitialized) {
-            delivery = apiRepository.getDelivery(deliveryId)
-        }
-        return delivery
+        return apiRepository.getDelivery(deliveryId)
     }
 
     fun markJobAsReady(d: Delivery): LiveData<DeliveryState> {
-        if (!::delivery.isInitialized) {
-            delivery = apiRepository.markJobAsReady(d)
-        }
-        return delivery
+        return apiRepository.markJobAsReady(d)
     }
 
     fun markDeliveryAsInTransit(d: Delivery): LiveData<DeliveryState> {
-        if (!::delivery.isInitialized) {
-            delivery = apiRepository.markDeliveryAsInTransit(d)
-        }
-        return delivery
+        return apiRepository.markDeliveryAsInTransit(d)
     }
 
-    fun rateClient(clientId: String, rating: Int): LiveData<DeliveryState> {
-        return apiRepository.rateClient(clientId, rating)
+    fun rateClient(deliveryId: String, rating: Int): LiveData<DeliveryState> {
+        return apiRepository.rateClient(deliveryId, rating)
     }
 }

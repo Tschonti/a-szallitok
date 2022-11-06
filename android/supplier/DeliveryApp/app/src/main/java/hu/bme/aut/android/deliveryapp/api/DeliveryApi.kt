@@ -175,12 +175,12 @@ object DeliveryApi {
         return resultData
     }
 
-    fun rateClient(clientId: String, rating: Int): MutableLiveData<DeliveryState> {
+    fun rateClient(deliveryId: String, rating: Int): MutableLiveData<DeliveryState> {
         val resultData = MutableLiveData<DeliveryState>()
         resultData.value = DeliveryState.inProgress
 
         val r = RateChange(rating)
-        api.rateClient(CurrentUser.token, clientId, r).enqueue(object : Callback<Delivery> {
+        api.rateClient(CurrentUser.token, deliveryId, r).enqueue(object : Callback<Delivery> {
             override fun onResponse(
                 call: Call<Delivery>,
                 response: Response<Delivery>
@@ -242,7 +242,7 @@ object DeliveryApi {
             ) {
                 if (response.isSuccessful) {
                     resultData.postValue(response.body()
-                        ?.let { DeliveryInProgressState.deliveriesResponseSuccess(it) })
+                        ?.let { DeliveryInProgressState.deliveriesResponseSuccess(it.filter { dip -> dip.delivery.status == DeliveryStatus.PENDING || dip.delivery.status == DeliveryStatus.ASSIGNED || dip.delivery.status == DeliveryStatus.IN_TRANSIT}) })
                 } else {
                     Log.d("ERROR", "e: " + response.message())
                     resultData.postValue(DeliveryInProgressState.deliveriesResponseError(response.message()))
@@ -252,6 +252,89 @@ object DeliveryApi {
             override fun onFailure(call: Call<List<DeliveryInProgress>>, throwable: Throwable) {
                 Log.d("ERROR", "e: " + throwable.message.toString())
                 resultData.postValue(DeliveryInProgressState.deliveriesResponseError(throwable.message.toString()))
+            }
+        })
+
+        return resultData
+    }
+
+    fun getDeliveriesEarlier(): MutableLiveData<DeliveryInProgressState> {
+        val resultData = MutableLiveData<DeliveryInProgressState>()
+        resultData.value = DeliveryInProgressState.inProgress
+
+        api.getJobsInProgress(CurrentUser.token).enqueue(object : Callback<List<DeliveryInProgress>> {
+            override fun onResponse(
+                call: Call<List<DeliveryInProgress>>,
+                response: Response<List<DeliveryInProgress>>
+            ) {
+                if (response.isSuccessful) {
+                    resultData.postValue(response.body()
+                        ?.let { DeliveryInProgressState.deliveriesResponseSuccess(it.filter { dip -> dip.delivery.status == DeliveryStatus.DELIVERED }) })
+                } else {
+                    Log.d("ERROR", "e: " + response.message())
+                    resultData.postValue(DeliveryInProgressState.deliveriesResponseError(response.message()))
+                }
+            }
+
+            override fun onFailure(call: Call<List<DeliveryInProgress>>, throwable: Throwable) {
+                Log.d("ERROR", "e: " + throwable.message.toString())
+                resultData.postValue(DeliveryInProgressState.deliveriesResponseError(throwable.message.toString()))
+            }
+        })
+
+        return resultData
+    }
+
+    fun addVehicle(vehicle: Vehicle): MutableLiveData<VehicleState> {
+        val resultData = MutableLiveData<VehicleState>()
+        resultData.value = VehicleState.inProgress
+
+        api.addVehicle(CurrentUser.token, vehicle).enqueue(object : Callback<Vehicle> {
+            override fun onResponse(
+                call: Call<Vehicle>,
+                response: Response<Vehicle>
+            ) {
+                if (response.isSuccessful) {
+                    resultData.postValue(response.body()
+                        ?.let { VehicleState.vehicleResponseSuccess(it)
+                    })
+                } else {
+                    Log.d("ERROR", "e: " + response.message())
+                    resultData.postValue(VehicleState.vehicleResponseError(response.message()))
+                }
+            }
+
+            override fun onFailure(call: Call<Vehicle>, throwable: Throwable) {
+                Log.d("ERROR", "e: " + throwable.message.toString())
+                resultData.postValue(VehicleState.vehicleResponseError(throwable.message.toString()))
+            }
+        })
+
+        return resultData
+    }
+
+    fun updateVehicle(vehicleId: String, vehicle: Vehicle): MutableLiveData<VehicleState> {
+        val resultData = MutableLiveData<VehicleState>()
+        resultData.value = VehicleState.inProgress
+
+        api.updateVehicle(CurrentUser.token, vehicleId, vehicle).enqueue(object : Callback<Vehicle> {
+            override fun onResponse(
+                call: Call<Vehicle>,
+                response: Response<Vehicle>
+            ) {
+                if (response.isSuccessful) {
+                    resultData.postValue(response.body()
+                        ?.let { VehicleState.vehicleResponseSuccess(it)
+                        })
+                } else {
+                    Log.d("ERROR", "e: " + response.message())
+                    resultData.postValue(VehicleState.vehicleResponseError(response.message()))
+                }
+            }
+
+            override fun onFailure(call: Call<Vehicle>, throwable: Throwable) {
+                Log.d("ERROR", "e: " + throwable.message.toString())
+                resultData.postValue(VehicleState.vehicleResponseError(throwable.message.toString()))
             }
         })
 

@@ -189,7 +189,7 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             .body("Delivery marked as ready")
             .icon(R.drawable.success)
             .onPositive("Close")
-        viewModel.rateClient(selectedJob!!.delivery.clientUser, rating).observe(viewLifecycleOwner
+        viewModel.rateClient(selectedJob!!.delivery._id, rating).observe(viewLifecycleOwner
         ) { deliveryState ->
             userRated(deliveryState)
         }

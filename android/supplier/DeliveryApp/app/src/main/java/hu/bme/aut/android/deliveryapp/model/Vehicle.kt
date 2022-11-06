@@ -4,14 +4,11 @@ import android.location.Location
 import java.io.Serializable
 
 data class Vehicle(
-    val maxHeight: Float,
-    val pictureUrl: String,
+    val pictureUrl: String?,
     val yearOfManufacturing: Int,
     val location: String,
-    var id: String, //TODO: should be val
-    val maxWeight: Float,
+    var _id: String?, //TODO: should be val
     val plateNumber: String,
     val type: String,
-    val maxLength: Float,
-    val maxWidth: Float,
+    val maxCapacity: Capacity,
 ) : Serializable

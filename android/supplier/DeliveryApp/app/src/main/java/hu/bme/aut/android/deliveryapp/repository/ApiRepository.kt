@@ -4,11 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import hu.bme.aut.android.deliveryapp.api.DeliveryApi
 import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.model.DeliveryStatus
+import hu.bme.aut.android.deliveryapp.model.Vehicle
 import hu.bme.aut.android.deliveryapp.view.states.*
 
 class ApiRepository {
-    fun getUserHistory(transporterId: String): MutableLiveData<DeliveryListState> {
-        return DeliveryApi.getDeliveries(transporterId)
+    fun getUserHistory(): MutableLiveData<DeliveryInProgressState> {
+        return DeliveryApi.getDeliveriesEarlier()
     }
 
     fun getAvailableJobs(): MutableLiveData<DeliveryListState> {
@@ -19,8 +20,8 @@ class ApiRepository {
         return DeliveryApi.getDeliveryData(id)
     }
 
-    fun getJobsInProgress(transporterId: String): MutableLiveData<DeliveryListState> {
-        return DeliveryApi.getDeliveries(transporterId)
+    fun getJobsInProgress(): MutableLiveData<DeliveryInProgressState> {
+        return DeliveryApi.getDeliveriesInProgress()
     }
 
     fun getUserData(id: String): MutableLiveData<UserState> {
@@ -47,11 +48,18 @@ class ApiRepository {
         return DeliveryApi.changeDeliveryStatus(delivery, DeliveryStatus.IN_TRANSIT)
     }
 
-    fun rateClient(clientId: String, rating: Int): MutableLiveData<DeliveryState> {
-        return DeliveryApi.rateClient(clientId, rating)
+    fun rateClient(deliveryId: String, rating: Int): MutableLiveData<DeliveryState> {
+        return DeliveryApi.rateClient(deliveryId, rating)
     }
 
     fun getDeliveriesInProgress(): MutableLiveData<DeliveryInProgressState> {
         return DeliveryApi.getDeliveriesInProgress()
+    }
+
+    fun addVehicle(vehicle: Vehicle): MutableLiveData<VehicleState> {
+        return DeliveryApi.addVehicle(vehicle)
+    }
+    fun updateVehicle(vehicleId: String, vehicle: Vehicle): MutableLiveData<VehicleState> {
+        return DeliveryApi.updateVehicle(vehicleId, vehicle)
     }
 }

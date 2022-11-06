@@ -7,13 +7,8 @@ import hu.bme.aut.android.deliveryapp.view.states.VehicleState
 
 class VehicleFragmentViewModel : ViewModel() {
     private val apiRepository = ApiRepository()
-    private lateinit var data: LiveData<VehicleState>
 
     fun getVehicleData(id: String): LiveData<VehicleState> {
-        if (!::data.isInitialized) {
-            data = apiRepository.getVehicleData(id)
-        }
-
-        return data
+        return apiRepository.getVehicleData(id)
     }
 }
