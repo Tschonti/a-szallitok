@@ -16,7 +16,7 @@ import { mockDelivery, mockUser, mockUserInToplist } from '../mockdata'
 export default (app: Express) => {
   app.get('/user/requestedJobs', getUserByUId, getRequestedJobs)
   app.get('/user/jobRequests', getUserByUId, getJobRequests)
-  
+
   app.get('/user/:id', param('id').isMongoId(), checkValidationResult, getUser)
 
   app.put('/user/', getUserByUId, updateUser)

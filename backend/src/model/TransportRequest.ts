@@ -9,7 +9,7 @@ export enum TransportRequestStatus {
 interface ITransportRequest {
   delivery: Schema.Types.ObjectId
   user: Schema.Types.ObjectId
-  status?: TransportRequestStatus
+  status: TransportRequestStatus
 }
 
 export interface TransportRequestDoc extends ITransportRequest, Document {}

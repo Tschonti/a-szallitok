@@ -115,5 +115,7 @@ export const getJobRequests = async (req: Request, res: Response) => {
     .find({})
     .populate<{delivery: DeliveryDoc, user: UserDoc}>(['delivery', 'user'])
     .exec()
-  return res.status(200).send(allRequests.filter(r => r.delivery.clientUser.toString() === res.locals.dbUser?._id))
+  return res.status(200).send(
+    allRequests.filter(r => r.delivery.clientUser.toString() === res.locals.dbUser?._id.toString())
+  )
 }

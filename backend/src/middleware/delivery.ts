@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { Delivery, DeliveryStatus } from '../model/Delivery'
+import { TransportRequest, TransportRequestStatus } from '../model/TransportRequest'
 
 export const createDelivery = async (req: Request, res: Response, next: NextFunction) => {
   const delivery = Delivery.build({
@@ -48,6 +49,11 @@ export const rateClientMiddleware = async (req: Request, res: Response, next: Ne
     return res.sendStatus(404)
   }
 
+  if (res.locals.delivery.status === DeliveryStatus.UNASSIGNED ||
+    res.locals.delivery.status === DeliveryStatus.PENDING) {
+    return res.sendStatus(403)
+  }
+
   res.locals.delivery.clientRating = req.body.rating
   res.locals.delivery.save()
   return res.status(200).send(res.locals.delivery)
@@ -62,51 +68,62 @@ export const rateTransporterMiddleware = async (req: Request, res: Response, nex
     return res.sendStatus(404)
   }
 
+  if (res.locals.delivery.status === DeliveryStatus.UNASSIGNED ||
+    res.locals.delivery.status === DeliveryStatus.PENDING) {
+    return res.sendStatus(403)
+  }
+
   res.locals.delivery.transporterRating = req.body.rating
   res.locals.delivery.save()
   return res.status(200).send(res.locals.delivery)
 }
 
 export const addRequestMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-  // csekkolni, hogy unassigned vagy pending a deliverystatus
   if (res.locals.dbUser?._id.toString() === res.locals.delivery?.clientUser?.toString()) {
     return res.sendStatus(403)
   }
 
-  if (res.locals.delivery == null) { // nem kell, readDelivery megcsinálja
+  if (res.locals.delivery == null) {
     return res.sendStatus(404)
   }
-  // használjuk inkább a TransportRequest request sémát
-  // delivery státuszt is állítani kell
-  if (res.locals.delivery.requests === undefined) {
-    res.locals.delivery.requests = []
+  if (res.locals.delivery.status !== DeliveryStatus.UNASSIGNED &&
+    res.locals.delivery.status !== DeliveryStatus.PENDING) {
+    return res.sendStatus(403)
   }
 
-  if (!res.locals.delivery.requests.includes(res.locals.dbUser?._id)) {
-    res.locals.delivery.requests.push(res.locals.dbUser?._id)
-    res.locals.delivery.save()
+  const request = TransportRequest.build({
+    user: res.locals.dbUser?._id,
+    delivery: res.locals.delivery._id,
+    status: TransportRequestStatus.PENDING
+  })
+  await request.save()
+  if (res.locals.delivery.status === DeliveryStatus.UNASSIGNED) {
+    res.locals.delivery.status = DeliveryStatus.PENDING
+    await res.locals.delivery.save()
   }
 
-  return res.status(200).send(res.locals.delivery)
+  return res.status(201).send(request)
 }
-// lehet elutasítani is, meg ugye szintén TransportRequest séma
-// esetleg a delivery státuszát is állítani kell
+
 export const replyMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-  // ez gondolom !== akart lenni?
-  if (res.locals.dbUser?._id.toString() === res.locals.delivery?.clientUser?.toString()) {
+  if (res.locals.dbUser?._id.toString() !== res.locals.delivery?.clientUser?.toString()) {
     return res.sendStatus(403)
   }
 
-  if (res.locals.delivery == null || !res.locals.delivery.requests?.includes(req.body.userId)) {
+  const request = await TransportRequest.findOne({ user: req.body.userId, delivery: res.locals.delivery?._id }).exec()
+  if (request === null) {
     return res.sendStatus(404)
   }
 
-  if (!res.locals.delivery.requests?.includes(req.body.userId)) {
-    return res.sendStatus(403)
+  if (req.body.accept) {
+    request.status = TransportRequestStatus.ACCEPTED
+    res.locals.delivery!!.status = DeliveryStatus.ASSIGNED
+    res.locals.delivery!!.transporterUser = req.body.userId
+    await Promise.all([request.save(), res.locals.delivery!!.save()])
+  } else {
+    request.status = TransportRequestStatus.REJECTED
+    await request.save()
   }
 
-  res.locals.delivery.transporterUser = req.body.userId
-  res.locals.delivery.requests = res.locals.delivery.requests.filter(request => request.toString() !== req.body.userId)
-  res.locals.delivery.save()
-  return res.status(200).send(res.locals.delivery)
+  return res.status(200).send(request)
 }

@@ -66,11 +66,6 @@ const deliverySchema = new Schema({
     ref: 'User',
     required: true
   },
-  requests: {
-    type: [Schema.Types.ObjectId],
-    ref: 'User',
-    required: false
-  },
   transporterUser: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -116,7 +111,13 @@ const deliverySchema = new Schema({
   },
   status: {
     type: String,
-    enum: [DeliveryStatus.UNASSIGNED, DeliveryStatus.PENDING, DeliveryStatus.IN_TRANSIT, DeliveryStatus.DELIVERED],
+    enum: [
+      DeliveryStatus.UNASSIGNED,
+      DeliveryStatus.PENDING,
+      DeliveryStatus.IN_TRANSIT,
+      DeliveryStatus.DELIVERED,
+      DeliveryStatus.ASSIGNED
+    ],
     default: DeliveryStatus.UNASSIGNED,
     required: true
   },

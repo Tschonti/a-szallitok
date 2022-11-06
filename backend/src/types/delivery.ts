@@ -20,5 +20,4 @@ export interface IDelivery {
   }
   status: string
   pictureUrl?: string
-  requests?: string[]
 }
