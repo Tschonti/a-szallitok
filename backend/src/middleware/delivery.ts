@@ -57,7 +57,7 @@ export const rateClientMiddleware = async (req: Request, res: Response, next: Ne
     return res.sendStatus(403)
   }
 
-  if (res.locals.delivery == null) {
+  if (!res.locals.delivery) {
     return res.sendStatus(404)
   }
 

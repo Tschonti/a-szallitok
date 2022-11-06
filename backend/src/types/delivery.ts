@@ -7,8 +7,8 @@ export interface IDelivery {
   destinationLocation: ILocation
   clientUser: string
   transporterUser?: string
-  pickUpFrom: Date
-  pickUpUntil: Date
+  pickUpFrom: String
+  pickUpUntil: String
   price: number
   clientRating?: number
   transporterRating?: number

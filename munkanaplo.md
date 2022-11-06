@@ -20,6 +20,10 @@
 - Middleware-ek elkezdése Levivel
 - Postman Team setup Levivel
 
+## 8-9. hét
+- Az Android alkalmazásokat kiszolgáló middlewarek elkészítése (Levivel megosztva)
+- Tesztelés az Android alkalmazásokkal
+
 # Domonkos Ádám
 ## 4. hét
 - Specifikáció kidolgozása közösen
@@ -92,3 +96,7 @@
 - A maradék mongoose sémák befejezése
 - Middleware-ek elkezdése Samuval
 - Postman Team setup Samuval
+
+## 8-9. hét
+- Az Android alkalmazásokat kiszolgáló middlewarek elkészítése (Samuval megosztva)
+- Tesztelés az Android alkalmazásokkal
