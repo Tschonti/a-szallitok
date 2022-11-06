@@ -3,7 +3,7 @@ export interface IUser {
   email: string
   googleToken: string
   phoneNumber?: string
-  vehicleId?: string
+  vehicle?: string
   isAdmin: boolean
   profilePictureUrl?: string
 }

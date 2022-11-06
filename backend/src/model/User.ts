@@ -26,7 +26,7 @@ const userSchema = new Schema({
     type: String,
     required: false
   },
-  _vehicle: {
+  vehicle: {
     type: Schema.Types.ObjectId,
     ref: 'Vehicle',
     required: false
