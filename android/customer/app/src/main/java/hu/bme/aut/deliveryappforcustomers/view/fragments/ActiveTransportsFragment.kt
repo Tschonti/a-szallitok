@@ -1,6 +1,5 @@
 package hu.bme.aut.deliveryappforcustomers.view.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,12 +9,11 @@ import android.widget.Toast
 import hu.bme.aut.deliveryappforcustomers.R
 import hu.bme.aut.deliveryappforcustomers.databinding.FragmentActiveTransportsBinding
 import hu.bme.aut.deliveryappforcustomers.view.JobDetailState
-import hu.bme.aut.deliveryappforcustomers.viewmodel.ActiveTransportsViewModel
 
-class ActiveTransports : Fragment() {
+class ActiveTransportsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ActiveTransports()
+        fun newInstance() = ActiveTransportsFragment()
     }
 
     //private lateinit var viewModel: ActiveTransportsViewModel

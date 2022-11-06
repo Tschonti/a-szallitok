@@ -20,10 +20,12 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import hu.bme.aut.android.deliveryapp.model.User
+import hu.bme.aut.deliveryappforcustomers.CurrentUserPlain
 import hu.bme.aut.deliveryappforcustomers.R
 import hu.bme.aut.deliveryappforcustomers.api.RetrofitClient
 import hu.bme.aut.deliveryappforcustomers.databinding.FragmentLoginBinding
 import hu.bme.aut.deliveryappforcustomers.repository.CurrentUser
+import hu.bme.aut.deliveryappforcustomers.view.states.UserState
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -96,7 +98,6 @@ class LoginFragment : Fragment() {
     }
 
     private fun actionForAuthUser() {
-        //findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
         auth.currentUser?.getIdToken(true)?.addOnSuccessListener {
             CurrentUser.token = it.token!!
             Log.d("TOKEN", it.token!!)
@@ -109,10 +110,14 @@ class LoginFragment : Fragment() {
                             response: Response<User>
                         ) {
                             if (response.isSuccessful) {
-                                //done
+                                //TODO move to the menu
                                 Log.d("Login", "Successful login: ${response.body()}")
-                            } else {
-                                //error
+                                CurrentUserPlain.user = response.body()!!
+                                CurrentUser.user = response.body()!!
+                            }
+                            else {
+                                //TODO handle the error properly
+                                Log.d("Login", "login unsuccessful, error: ${response.errorBody()}")
                             }
                         }
 
@@ -123,4 +128,19 @@ class LoginFragment : Fragment() {
             }.start()
         }
     }
+
+    private fun render(state: UserState) {
+        when (state) {
+            is UserState.userResponseSuccess -> {
+                CurrentUser.user = state.data
+            }
+            is UserState.userResponseError -> {
+                Log.d("LoginFragment error", "uh oh, something went wrong")
+            }
+            else -> {
+                Log.d("LoginFragment", "placeholder for loading bar")
+            }
+        }
+    }
+
 }

@@ -16,7 +16,7 @@ class ApiRepository {
         return DeliveryApi.getActiveTransports(userId)
     }
 
-    fun createNewTransport(delivery: Delivery): MutableLiveData<DeliveryState> {
+    fun createNewTransport(delivery: Delivery): MutableLiveData<Delivery> {
         return DeliveryApi.createNewTransport(delivery)
     }
 

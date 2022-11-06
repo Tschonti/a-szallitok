@@ -11,7 +11,7 @@ import hu.bme.aut.deliveryappforcustomers.view.states.DeliveryState
 class NewTransportViewModel : ViewModel() {
     private val apiRepository = ApiRepository()
 
-    fun createNewTransport(delivery: Delivery): MutableLiveData<DeliveryState> {
+    fun createNewTransport(delivery: Delivery): MutableLiveData<Delivery> {
         return apiRepository.createNewTransport(delivery)
     }
 }

@@ -85,4 +85,5 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="client_id">408596429373-abarp5hbqjns2hdi046fg850a12ic1fh.apps.googleusercontent.com</string>
+    <string name="login">Bejelentkezés</string>
 </resources>

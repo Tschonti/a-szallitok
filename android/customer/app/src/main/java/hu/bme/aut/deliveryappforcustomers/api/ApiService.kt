@@ -37,7 +37,6 @@ interface ApiService {
     @POST("delivery/")
     fun createNewTransport(
         @Header("Authorization") token: String,
-        //@Path("ID") ID: String,
         @Body delivery: Delivery
     ): Call<Delivery>
 

@@ -1,16 +1,18 @@
 package hu.bme.aut.android.deliveryapp.model
 
 import android.location.Location
+import java.io.Serializable
 
 data class Vehicle(
-    val maxHeight: Int,
+    val maxHeight: Float,
     val pictureUrl: String,
     val yearOfManufacturing: Int,
     val location: String,
-    val id: Int,
-    val maxWeight: Int,
+    val id: String,
+    val maxWeight: Float,
     val plateNumber: String,
     val type: String,
-    val maxLength: Int,
-    val maxWidth: Int,
-)
+    val maxLength: Float,
+    val maxWidth: Float,
+) : Serializable
+

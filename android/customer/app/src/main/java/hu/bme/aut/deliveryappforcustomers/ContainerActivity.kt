@@ -28,8 +28,8 @@ class ContainerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         toggle.syncState()
         binding.navView.setNavigationItemSelectedListener(this)
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, ActiveTransports()).commit()
-        binding.navView.setCheckedItem(R.id.active_transports)
+            .replace(R.id.fragment_container, LoginFragment()).commit()
+        binding.navView.setCheckedItem(R.id.login)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -37,14 +37,15 @@ class ContainerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.new_transport -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, NewTransportFragment()).commit()
             R.id.active_transports -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, LoginFragment()).commit()
-            //TODO replace this with the active transports fragment
+                .replace(R.id.fragment_container, ActiveTransportsFragment()).commit()
             R.id.history -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HistoryFragment()).commit()
             R.id.map_view -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, MapViewFragment()).commit()
             R.id.settings -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, SettingsFragment()).commit()
+            R.id.login -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, LoginFragment()).commit()
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true

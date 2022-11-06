@@ -7,24 +7,24 @@
         <menu>
             <item
                 android:id="@+id/new_transport"
+                android:checkable="true"
                 android:icon="@drawable/ic_baseline_local_shipping_24"
-                android:title="@string/new_transport"
-                android:checkable="true"/>
+                android:title="@string/new_transport" />
             <item
                 android:id="@+id/active_transports"
+                android:checkable="true"
                 android:icon="@drawable/ic_baseline_bolt_24"
-                android:title="@string/active_transports"
-                android:checkable="true"/>
+                android:title="@string/active_transports" />
             <item
                 android:id="@+id/history"
+                android:checkable="true"
                 android:icon="@drawable/ic_baseline_history_24"
-                android:title="@string/history"
-                android:checkable="true"/>
+                android:title="@string/history" />
             <item
                 android:id="@+id/map_view"
+                android:checkable="true"
                 android:icon="@drawable/ic_baseline_map_24"
-                android:title="@string/map_view"
-                android:checkable="true"/>
+                android:title="@string/map_view" />
         </menu>
     </item>
     <item
@@ -33,9 +33,14 @@
         <menu>
             <item
                 android:id="@+id/settings"
+                android:checkable="true"
                 android:icon="@drawable/ic_baseline_settings_24"
-                android:title="@string/settings"
-                android:checkable="true"/>
+                android:title="@string/settings" />
+            <item
+                android:id="@+id/login"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_person_24"
+                android:title="@string/login" />
         </menu>
     </item>
 </menu>
