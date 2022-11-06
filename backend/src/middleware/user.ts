@@ -1,7 +1,7 @@
 import { User, UserDoc } from '../model/User'
 import { NextFunction, Request, Response } from 'express'
 import { TransportRequest } from '../model/TransportRequest'
-import { Delivery, DeliveryDoc } from '../model/Delivery'
+import { Delivery, DeliveryDoc, DeliveryStatus } from '../model/Delivery'
 
 interface AggregationResult {
   average: number
@@ -101,7 +101,10 @@ export const deleteParamUser = async (req: Request, res: Response) => {
 
 export const getRequestedJobs = async (req: Request, res: Response) => {
   return res.status(200).send(
-    await TransportRequest.find({ user: res.locals.dbUser?._id }).populate('delivery').exec()
+    await TransportRequest.find({
+      user: res.locals.dbUser?._id,
+      status: { $ne: DeliveryStatus.DELIVERED }
+    }).populate('delivery').exec()
   )
 }
 
