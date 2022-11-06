@@ -179,7 +179,8 @@ object DeliveryApi {
         val resultData = MutableLiveData<DeliveryState>()
         resultData.value = DeliveryState.inProgress
 
-        api.rateClient(CurrentUser.token, clientId,/* rating*/).enqueue(object : Callback<Delivery> {
+        val r = RateChange(rating)
+        api.rateClient(CurrentUser.token, clientId, r).enqueue(object : Callback<Delivery> {
             override fun onResponse(
                 call: Call<Delivery>,
                 response: Response<Delivery>
@@ -206,8 +207,8 @@ object DeliveryApi {
         val resultData = MutableLiveData<DeliveryState>()
         resultData.value = DeliveryState.inProgress
 
-        delivery.status = DeliveryStatus.DELIVERED
-        api.changeStatus(CurrentUser.token, delivery._id, delivery).enqueue(object : Callback<Delivery> {
+        val status = StatusChange(newStatus.toString())
+        api.changeStatus(CurrentUser.token, delivery._id, status).enqueue(object : Callback<Delivery> {
             override fun onResponse(
                 call: Call<Delivery>,
                 response: Response<Delivery>
