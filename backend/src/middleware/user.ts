@@ -100,12 +100,10 @@ export const deleteParamUser = async (req: Request, res: Response) => {
 }
 
 export const getRequestedJobs = async (req: Request, res: Response) => {
-  return res.status(200).send(
-    await TransportRequest.find({
-      user: res.locals.dbUser?._id,
-      status: { $ne: DeliveryStatus.DELIVERED }
-    }).populate('delivery').exec()
-  )
+  const requests = await TransportRequest
+    .find({ user: res.locals.dbUser?._id })
+    .populate<{delivery: DeliveryDoc}>('delivery').exec()
+  return res.status(200).send(requests.filter(r => r.delivery.status !== DeliveryStatus.DELIVERED))
 }
 
 export const getJobRequests = async (req: Request, res: Response) => {

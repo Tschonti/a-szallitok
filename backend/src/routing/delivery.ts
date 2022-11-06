@@ -18,7 +18,9 @@ import { Delivery, DeliveryStatus } from '../model/Delivery'
 
 export default (app: Express) => {
   app.get('/delivery', async (req: Request, res: Response) => {
-    return res.status(200).send(await Delivery.find())
+    return res.status(200).send(await Delivery.find({
+      status: { $in: [DeliveryStatus.UNASSIGNED, DeliveryStatus.PENDING] }
+    }))
   })
 
   app.post('/delivery',
