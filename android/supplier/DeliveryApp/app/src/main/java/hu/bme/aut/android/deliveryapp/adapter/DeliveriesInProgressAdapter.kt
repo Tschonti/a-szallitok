@@ -73,7 +73,7 @@ class DeliveriesInProgressAdapter(private val context: Context, private val list
             else if (newDelivery.status == InProgressStatus.ACCEPTED)
                 binding.tvStatus.setBackgroundColor(Color.GREEN)
             else if (newDelivery.status == InProgressStatus.REJECTED)
-                binding.tvStatus.setBackgroundColor(Color.GREEN)
+                binding.tvStatus.setBackgroundColor(Color.RED)
         }
     }
 }
