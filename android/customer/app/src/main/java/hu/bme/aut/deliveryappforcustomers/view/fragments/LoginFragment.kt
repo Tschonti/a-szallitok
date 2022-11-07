@@ -26,8 +26,6 @@ import hu.bme.aut.deliveryappforcustomers.api.RetrofitClient
 import hu.bme.aut.deliveryappforcustomers.databinding.FragmentLoginBinding
 import hu.bme.aut.deliveryappforcustomers.repository.CurrentUser
 import hu.bme.aut.deliveryappforcustomers.view.states.UserState
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,8 +39,7 @@ class LoginFragment : Fragment() {
     private lateinit var googleAuth: ActivityResultLauncher<Intent>
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater, container, false);
         return binding.root
@@ -53,9 +50,7 @@ class LoginFragment : Fragment() {
 
         val googleSignInOptions = GoogleSignInOptions.Builder(
             GoogleSignInOptions.DEFAULT_SIGN_IN
-        ).requestIdToken(getString(R.string.client_id))
-            .requestEmail()
-            .build()
+        ).requestIdToken(getString(R.string.client_id)).requestEmail().build()
 
         FirebaseApp.initializeApp(requireContext())
 
@@ -75,7 +70,9 @@ class LoginFragment : Fragment() {
                             it
                         )
                     }
+
                     if (result!!.isSuccess) {
+                        Log.d("Auth", "ok")
                         val idToken = result.signInAccount?.idToken
                         auth.signInWithCredential(GoogleAuthProvider.getCredential(idToken, null))
                         actionForAuthUser()
@@ -98,34 +95,29 @@ class LoginFragment : Fragment() {
     }
 
     private fun actionForAuthUser() {
+        Log.d("Auth", "ok")
         auth.currentUser?.getIdToken(true)?.addOnSuccessListener {
             CurrentUser.token = it.token!!
             Log.d("TOKEN", it.token!!)
-            GlobalScope.launch {
-                val api = RetrofitClient.api
-                api.loginUser("Bearer " + it.token!!)
-                    .enqueue(object : Callback<User> {
-                        override fun onResponse(
-                            call: Call<User>,
-                            response: Response<User>
-                        ) {
-                            if (response.isSuccessful) {
-                                //TODO move to the menu
-                                Log.d("Login", "Successful login: ${response.body()}")
-                                CurrentUserPlain.user = response.body()!!
-                                CurrentUser.user = response.body()!!
-                            }
-                            else {
-                                //TODO handle the error properly
-                                Log.d("Login", "login unsuccessful, error: ${response.errorBody()}")
-                            }
-                        }
+            val api = RetrofitClient.api
+            api.loginUser("Bearer " + it.token!!).enqueue(object : Callback<User> {
+                override fun onResponse(
+                    call: Call<User>, response: Response<User>
+                ) {
+                    if (response.isSuccessful) {
+                        //TODO move to the menu
+                        Log.d("Login", "Successful login: ${response.body()}")
+                        CurrentUser.user = response.body()!!
+                    } else {
+                        //TODO handle the error properly
+                        Log.d("Login", "login unsuccessful, error: ${response.errorBody()}")
+                    }
+                }
 
-                        override fun onFailure(call: Call<User>, throwable: Throwable) {
-                            Log.d("ERROR", "e: " + throwable.message.toString())
-                        }
-                    })
-            }.start()
+                override fun onFailure(call: Call<User>, throwable: Throwable) {
+                    Log.d("ERROR", "e: " + throwable.message.toString())
+                }
+            })
         }
     }
 
@@ -142,5 +134,4 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
 }
