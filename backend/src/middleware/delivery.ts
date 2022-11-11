@@ -153,8 +153,6 @@ export const deleteDelivery = async (req: Request, res: Response) => {
 
 export const locationUpdateMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   if (res.locals.dbUser?._id.toString() !== res.locals.delivery?.transporterUser?.toString()) {
-    console.log(res.locals.dbUser?._id.toString())
-    console.log(res.locals.delivery?.transporterUser?.toString())
     return res.sendStatus(403)
   }
 
