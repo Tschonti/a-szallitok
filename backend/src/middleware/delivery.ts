@@ -160,6 +160,10 @@ export const locationUpdateMiddleware = async (req: Request, res: Response, next
     return res.sendStatus(404)
   }
 
+  if (res.locals.delivery.status !== DeliveryStatus.IN_TRANSIT) {
+    return res.sendStatus(403)
+  }
+
   res.locals.delivery.transporterLocation =
   {
     latitude: req.body.latitude,
