@@ -5,6 +5,7 @@ import {
   addRequestMiddleware,
   createDelivery,
   deleteDelivery,
+  locationUpdateMiddleware,
   rateClientMiddleware,
   rateTransporterMiddleware,
   readDelivery,
@@ -99,4 +100,7 @@ export default (app: Express) => {
 
   app.put('/delivery/:id/reply', param('id').isMongoId(), body('userId').isMongoId(), body('accept').isBoolean(),
     checkValidationResult, getUserByUId, readDelivery, replyMiddleware)
+
+  app.put('/delivery/:id/locationUpdate', param('id').isMongoId(), body('latitude').isDecimal(),
+    body('longitude').isDecimal(), checkValidationResult, getUserByUId, readDelivery, locationUpdateMiddleware)
 }

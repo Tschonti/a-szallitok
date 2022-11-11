@@ -1,3 +1,4 @@
+import { ICoordinate } from './coordinate'
 import { ILocation } from './location'
 
 export interface IDelivery {
@@ -20,4 +21,5 @@ export interface IDelivery {
   }
   status: string
   pictureUrl?: string
+  transporterLocation?: ICoordinate
 }
