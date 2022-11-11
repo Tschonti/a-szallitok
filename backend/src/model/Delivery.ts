@@ -124,8 +124,19 @@ const deliverySchema = new Schema({
   pictureUrl: {
     type: String,
     required: false
+  },
+  transporterLocation: {
+    longitude: {
+      type: Number,
+      required: false
+    },
+    latitude: {
+      type: Number,
+      required: false
+    }
   }
-})
+}
+)
 deliverySchema.set('timestamps', true)
 deliverySchema.statics.build = (attr: IDelivery) => new Delivery(attr)
 
