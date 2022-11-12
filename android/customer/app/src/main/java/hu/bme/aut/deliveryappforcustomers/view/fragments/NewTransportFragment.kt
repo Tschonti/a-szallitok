@@ -56,7 +56,7 @@ class NewTransportFragment : Fragment() {
                     ),
                     sourceLocation = testLocation,
                     destinationLocation = testLocation,
-                    clientUser = CurrentUserPlain.user!!._id,
+                    clientUser = CurrentUser.user!!._id,
                     description = "no description",
                     createdAt = "2022.11.07", //TODO implement proper date
                     pickUpFrom = "2022.10.10",
