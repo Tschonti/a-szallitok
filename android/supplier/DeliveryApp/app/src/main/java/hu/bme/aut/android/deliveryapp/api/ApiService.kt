@@ -52,4 +52,8 @@ interface ApiService {
     @PUT("delivery/{ID}/statusChange")
     @Headers("Cache-control: no-cache")
     fun changeStatus(@Header("Authorization") token: String, @Path("ID") ID: String, @Body status: StatusChange): Call<Delivery>
+
+    @PUT("delivery/{ID}/locationUpdate")
+    @Headers("Cache-control: no-cache")
+    fun updateLocation(@Header("Authorization") token: String, @Path("ID") ID: String, @Body location: LocationUpdate): Call<Delivery>
 }
