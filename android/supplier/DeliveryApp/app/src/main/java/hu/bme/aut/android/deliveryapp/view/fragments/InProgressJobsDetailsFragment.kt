@@ -1,11 +1,16 @@
 package hu.bme.aut.android.deliveryapp.view.fragments
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
@@ -15,6 +20,7 @@ import hu.bme.aut.android.deliveryapp.databinding.FragmentInProgressDetailsBindi
 import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.model.DeliveryInProgress
 import hu.bme.aut.android.deliveryapp.model.DeliveryStatus
+import hu.bme.aut.android.deliveryapp.service.LocationTrackerService
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryState
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.InProgressJobsDetailsFragmentViewModel
@@ -30,6 +36,13 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
     private lateinit var loadingDialog: LottieProgressDialog
 
     private lateinit var listener: RatingDialog.RateDialogSubmittedListener
+
+    private lateinit var intentMyService: Intent
+
+    companion object {
+        private const val REQUEST_CODE_PERMISSIONS = 1001
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.FOREGROUND_SERVICE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -74,6 +87,7 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             }
         }
 
+        intentMyService = Intent(requireContext(), LocationTrackerService::class.java)
         binding.btnMarkAsReady.setOnClickListener {
             viewModel.markJobAsReady(selectedJob!!.delivery).observe(viewLifecycleOwner
             ) { deliveryState ->
@@ -88,8 +102,40 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             }
         }
 
+        if (allPermissionsGranted()) {
+
+        } else {
+            ActivityCompat.requestPermissions(
+                requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+            )
+        }
+
     }
 
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(
+            requireContext(), it
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults:
+        IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
+                binding.btnMarkAsInTransit.isEnabled = true
+            } else {
+                binding.btnMarkAsInTransit.isEnabled = false
+                AwesomeDialog.build(requireActivity())
+                    .title("Error")
+                    .body("You have to grant the permissions to start the delivery!")
+                    .icon(R.drawable.error)
+                    .onPositive("Close")
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -146,6 +192,8 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             is DeliveryState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
 
+                requireActivity().stopService(intentMyService)
+
                 RatingDialog(listener).show(childFragmentManager, "RATE")
             }
             is DeliveryState.deliveriesResponseError -> {
@@ -171,6 +219,9 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
                     .body("Delivery marked as in transit")
                     .icon(R.drawable.success)
                     .onPositive("Close")
+
+                intentMyService.putExtra("DELIVERY_ID", state.data._id)
+                requireActivity().startService(intentMyService)
             }
             is DeliveryState.deliveriesResponseError -> {
                 loadingDialog.dismiss()

@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
+import { body } from 'express-validator'
 import { Delivery, DeliveryStatus } from '../model/Delivery'
 import { TransportRequest, TransportRequestStatus } from '../model/TransportRequest'
 
@@ -147,5 +148,28 @@ export const deleteDelivery = async (req: Request, res: Response) => {
 
   await TransportRequest.deleteMany({ delivery: res.locals.delivery?._id })
   await Delivery.deleteOne({ _id: res.locals.delivery?._id })
+  return res.status(200).send(res.locals.delivery)
+}
+
+export const locationUpdateMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+  if (res.locals.dbUser?._id.toString() !== res.locals.delivery?.transporterUser?.toString()) {
+    return res.sendStatus(403)
+  }
+
+  if (res.locals.delivery == null) {
+    return res.sendStatus(404)
+  }
+
+  if (res.locals.delivery.status !== DeliveryStatus.IN_TRANSIT) {
+    return res.sendStatus(403)
+  }
+
+  res.locals.delivery.transporterLocation =
+  {
+    latitude: req.body.latitude,
+    longitude: req.body.longitude
+  }
+
+  res.locals.delivery.save()
   return res.status(200).send(res.locals.delivery)
 }

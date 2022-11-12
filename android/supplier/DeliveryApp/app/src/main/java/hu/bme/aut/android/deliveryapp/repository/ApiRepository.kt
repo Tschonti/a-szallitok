@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import hu.bme.aut.android.deliveryapp.api.DeliveryApi
 import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.model.DeliveryStatus
+import hu.bme.aut.android.deliveryapp.model.LocationUpdate
 import hu.bme.aut.android.deliveryapp.model.Vehicle
 import hu.bme.aut.android.deliveryapp.view.states.*
 
@@ -59,7 +60,12 @@ class ApiRepository {
     fun addVehicle(vehicle: Vehicle): MutableLiveData<VehicleState> {
         return DeliveryApi.addVehicle(vehicle)
     }
+
     fun updateVehicle(vehicleId: String, vehicle: Vehicle): MutableLiveData<VehicleState> {
         return DeliveryApi.updateVehicle(vehicleId, vehicle)
+    }
+
+    fun updateLocation(deliveryId: String, location: LocationUpdate): MutableLiveData<DeliveryState> {
+        return DeliveryApi.updateLocation(deliveryId, location)
     }
 }
