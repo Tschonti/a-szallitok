@@ -15,12 +15,19 @@ function validateAggregationResult (arr: AggregationResult[]): AggregationResult
   return arr[0]
 }
 
-export const getUser = async (req: Request, res: Response) => {
-  const user = await User.findById(req.params.id).exec()
+export const getUser = async (req: Request, res: Response, next: NextFunction) => {
+  res.locals.dbUser = await User.findById(req.params.id).exec()
+  if (res.locals.dbUser == null) {
+    return res.sendStatus(404)
+  }
+  return next()
+}
+
+export const calculateRating = async (req: Request, res: Response, next: NextFunction) => {
+  const user = res.locals.dbUser
   if (user == null) {
     return res.sendStatus(404)
   }
-
   const clientAggregate: AggregationResult = validateAggregationResult(await Delivery
     .aggregate(
       [{
@@ -55,7 +62,7 @@ export const getUser = async (req: Request, res: Response) => {
       }]).exec())
   const avgRating = (clientAggregate.count * clientAggregate.average +
     transporterAggregate.count * transporterAggregate.average) /
-  (clientAggregate.count + transporterAggregate.count)
+  (clientAggregate.count + transporterAggregate.count) || 0
   return res.status(200).send({ ...user._doc, avgRating })
 }
 

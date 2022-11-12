@@ -48,9 +48,10 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
       isAdmin: false
     })
     await newUser.save()
-    return res.status(201).send(newUser)
+    res.locals.dbUser = newUser
+    return next()
   } else {
     console.log(`User with name ${res.locals.dbUser.name} already registered.`)
-    return res.status(200).send(res.locals.dbUser)
+    return next()
   }
 }

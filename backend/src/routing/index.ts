@@ -5,6 +5,7 @@ import user from './user'
 import vehicle from './vehicle'
 import * as openapiDesc from '../config/openapi.json'
 import { serve, setup } from 'swagger-ui-express'
+import { calculateRating } from '../middleware/user'
 
 export default (app: Express) => {
   app.get('/', (req: Request, res: Response) => {
@@ -12,7 +13,7 @@ export default (app: Express) => {
   })
   app.use('/api-docs', serve, setup(openapiDesc))
   app.use(decodeToken)
-  app.get('/login', getUserByUId, registerUser)
+  app.get('/login', getUserByUId, registerUser, calculateRating)
   delivery(app)
   user(app)
   vehicle(app)

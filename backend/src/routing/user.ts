@@ -2,6 +2,7 @@ import { Express, Request, Response } from 'express'
 import { param } from 'express-validator'
 import { getUserByUId } from '../middleware/auth'
 import {
+  calculateRating,
   checkIfAdmin,
   deleteLoggedInUser,
   deleteParamUser,
@@ -18,7 +19,7 @@ export default (app: Express) => {
   app.get('/user/requestedJobs', getUserByUId, getRequestedJobs)
   app.get('/user/jobRequests', getUserByUId, getJobRequests)
 
-  app.get('/user/:id', param('id').isMongoId(), checkValidationResult, getUser)
+  app.get('/user/:id', param('id').isMongoId(), checkValidationResult, getUser, calculateRating)
 
   app.put('/user/', getUserByUId, updateUser)
 
