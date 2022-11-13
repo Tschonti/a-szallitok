@@ -24,6 +24,11 @@
 - Az Android alkalmazásokat kiszolgáló middlewarek elkészítése (Levivel megosztva)
 - Tesztelés az Android alkalmazásokkal
 
+## 10. hét
+- Frontend és Backend projektek deployolása Azureba Levivel
+- React frontend projektben az autentikáció átírása Contex-es megoldásra, a routing inicializálása
+- Az utolsó backend enpoint elkészítése Levivel
+
 # Domonkos Ádám
 ## 4. hét
 - Specifikáció kidolgozása közösen
@@ -70,7 +75,7 @@
 
 ## 7. hét
 - Material UI navigation drawer implementálása
-- retrofit client 
+- retrofit client
 - repository alapjai
 - új fuvar felvitele form alapok material UI 3-mal
 - api hívás teszt a user aktív fuvarjaira
