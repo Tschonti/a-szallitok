@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
+console.log(process.env.PRIVATE_KEY)
+
 const params = {
   type: 'service_account',
   projectId: 'the-transporters-fb',
