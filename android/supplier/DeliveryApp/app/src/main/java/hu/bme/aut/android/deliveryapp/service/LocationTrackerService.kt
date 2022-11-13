@@ -79,18 +79,25 @@ class LocationTrackerService : LifecycleService() {
         val gmmIntentUri = Uri.parse("geo:$lat,$lng")
         val notificationIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
         notificationIntent.setPackage("com.google.android.apps.maps")
-        val contentIntent = PendingIntent.getActivity(
-            this,
-            NOTIF_FOREGROUND_ID,
-            notificationIntent,
-            PendingIntent.FLAG_CANCEL_CURRENT
-        )
-
+        val contentIntent = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S)
+            PendingIntent.getActivity(
+                this,
+                NOTIF_FOREGROUND_ID,
+                notificationIntent,
+                PendingIntent.FLAG_MUTABLE
+            )
+        else
+            PendingIntent.getActivity(
+                this,
+                NOTIF_FOREGROUND_ID,
+                notificationIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT
+            )
         return NotificationCompat.Builder(
             this, NOTIFICATION_CHANNEL_ID
         )
-            .setContentTitle("This the MyTimeService")
-            .setContentText("$lat, $lng")
+            .setContentTitle("Transporter location tracker")
+            .setContentText("Current location: $lat, $lng\nIt will automatically stop when you mark it as ready.")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setVibrate(longArrayOf(1000, 2000, 1000))
             .setContentIntent(contentIntent).build()

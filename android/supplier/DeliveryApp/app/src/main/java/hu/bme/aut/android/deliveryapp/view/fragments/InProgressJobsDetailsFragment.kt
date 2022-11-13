@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -102,12 +103,26 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             }
         }
 
+        binding.btnMarkAsInTransit.isEnabled = false
         if (allPermissionsGranted()) {
-
+            binding.btnMarkAsInTransit.isEnabled = true
         } else {
-            ActivityCompat.requestPermissions(
-                requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
-            )
+            val permissionLauncher = registerForActivityResult(
+                ActivityResultContracts.RequestPermission()
+            ) { isGranted ->
+                if (isGranted) {
+                    binding.btnMarkAsInTransit.isEnabled = true
+                }
+                else {
+                    AwesomeDialog.build(requireActivity())
+                        .title("Error")
+                        .body("You have to grant the permissions to start the delivery!")
+                        .icon(R.drawable.error)
+                        .onPositive("Close")
+                }
+            }
+
+            permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
 
     }

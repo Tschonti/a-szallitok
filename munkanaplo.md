@@ -53,6 +53,10 @@
 - Munka elvállalása/befejezése
 - Client app segítése
 
+## 10. hét
+- Transporter alkalmazás tracking implementálása
+- Location update enpoint használata
+
 # Raisz Olivér
 ## 4. hét
 - Specifikáció kidolgozása közösen
