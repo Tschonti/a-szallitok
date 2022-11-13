@@ -70,6 +70,11 @@ export const generateToplist = async (req: Request, res: Response) => {
   const aggr = await Delivery
     .aggregate(
       [{
+        $match: {
+          status: 'DELIVERED'
+        }
+      },
+      {
         $group: {
           _id: '$transporterUser',
           moneyEarned: {
@@ -77,10 +82,8 @@ export const generateToplist = async (req: Request, res: Response) => {
           },
           deliveriesCompleted: { $sum: 1 }
         }
-      }]).exec()
-  console.log(aggr)
-
-  return res.sendStatus(200)
+      }]).sort({ moneyEarned: -1, deliveriesCompleted: -1 }).limit(10).exec()
+  return res.status(200).send(await User.populate(aggr, { path: '_id' }))
 }
 
 export const updateUser = async (req: Request, res: Response) => {
