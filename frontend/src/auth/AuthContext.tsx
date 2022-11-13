@@ -6,6 +6,7 @@ import { HasChildren } from "../types/Utils"
 import { app } from "./initFirebaseApp"
 import { COOKIE_KEY_JWT, } from "../util/Constants"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export type AuthContextType = {
     user: User | undefined
@@ -21,6 +22,7 @@ export const AuthContext = createContext<AuthContextType>({
 
 export const AuthProvider = ({children}: HasChildren) => {
     const [user, setUser] = useState<User | undefined>()
+    const navigate = useNavigate()
 
     const onLogin = async () => {
         const userCred = await signInWithPopup(getAuth(app), new GoogleAuthProvider())
@@ -32,6 +34,7 @@ export const AuthProvider = ({children}: HasChildren) => {
     const onLogout = async () => {
         Cookies.remove(COOKIE_KEY_JWT)
         setUser(undefined)
+        navigate('/')
     }
 
     return (

@@ -1,27 +1,16 @@
-import { Button, Center, Heading } from '@chakra-ui/react'
-import axios from 'axios'
-import { useContext } from 'react'
-import { FaGoogle } from 'react-icons/fa'
-import { AuthContext } from './auth/AuthContext'
-import { Delivery } from './types/Delivery'
+import { Route, Routes } from "react-router-dom";
+import { IndexPage } from "./pages/index/IndexPage";
+import { MapPage } from "./pages/map/MapPage";
 
 const App = () => {
-  const {user, onLogin, onLogout } = useContext(AuthContext)
-
-  const getDeliveries = async () => {
-    console.log((await axios.get<Delivery>('/user/toplist')).data)
-  }
-
   return (
-    <Center>
-      {user ?
-      <>
-        <Heading>Welcome, {user.name}!</Heading>
-        <Button onClick={onLogout}>Logout</Button>
-      </>
-      : <Button leftIcon={<FaGoogle />} colorScheme="red" onClick={onLogin}>Sign in with Google</Button>}
-      <Button onClick={getDeliveries}>Get deliveries</Button>
-    </Center>
+    <Routes>
+      <Route path="/">
+        <Route index element={<IndexPage/>} />
+        <Route path="/map" element={<MapPage/>} />
+      </Route>
+
+    </Routes>
   );
 }
 
