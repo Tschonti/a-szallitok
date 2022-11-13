@@ -1,4 +1,4 @@
-import { Express, Request, Response } from 'express'
+import { Express } from 'express'
 import { param } from 'express-validator'
 import { getUserByUId } from '../middleware/auth'
 import {
@@ -6,6 +6,7 @@ import {
   checkIfAdmin,
   deleteLoggedInUser,
   deleteParamUser,
+  generateToplist,
   getJobRequests,
   getRequestedJobs,
   getUser,
@@ -13,12 +14,11 @@ import {
   updateUser
 } from '../middleware/user'
 import { checkValidationResult } from '../middleware/validation'
-import { mockUserInToplist } from '../mockdata'
 
 export default (app: Express) => {
   app.get('/user/requestedJobs', getUserByUId, getRequestedJobs)
   app.get('/user/jobRequests', getUserByUId, getJobRequests)
-
+  app.get('/user/toplist', generateToplist)
   app.get('/user/:id', param('id').isMongoId(), checkValidationResult, getUser, calculateRating)
 
   app.put('/user/', getUserByUId, updateUser)
@@ -28,8 +28,4 @@ export default (app: Express) => {
   app.delete('/user/:id', param('id').isMongoId(), checkValidationResult, getUserByUId, checkIfAdmin, deleteParamUser)
 
   app.put('/user/:id/promote', param('id').isMongoId(), getUserByUId, checkIfAdmin, promote)
-
-  app.get('/user/toplist', (req: Request, res: Response) => {
-    res.send([mockUserInToplist, mockUserInToplist, mockUserInToplist])
-  })
 }

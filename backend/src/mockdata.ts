@@ -20,8 +20,7 @@ export const mockUser: UserDto = {
 }
 
 export const mockUserInToplist: IUserInToplist = {
-  firstName: 'John',
-  lastName: 'James',
+  name: 'John',
   moneyEarned: 100000,
   deliveriesCompleted: 10,
   id: 10

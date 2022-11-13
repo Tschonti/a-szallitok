@@ -1,7 +1,6 @@
 export interface IUserInToplist {
   id: number
-  firstName: string
-  lastName: string
+  name: string
   deliveriesCompleted: number
   moneyEarned: number
 }

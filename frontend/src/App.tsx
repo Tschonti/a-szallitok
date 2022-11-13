@@ -9,7 +9,7 @@ const App = () => {
   const {user, onLogin, onLogout } = useContext(AuthContext)
 
   const getDeliveries = async () => {
-    console.log((await axios.get<Delivery>('/delivery')).data)
+    console.log((await axios.get<Delivery>('/user/toplist')).data)
   }
 
   return (

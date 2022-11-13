@@ -66,6 +66,22 @@ export const calculateRating = async (req: Request, res: Response, next: NextFun
   return res.status(200).send({ ...user._doc, avgRating })
 }
 
+export const generateToplist = async (req: Request, res: Response) => {
+  const aggr = await Delivery
+    .aggregate(
+      [{
+        $group: {
+          _id: '$transporterUser',
+          moneyEarned: {
+            $sum: '$price'
+          },
+          deliveriesCompleted: { $sum: 1 }
+        }
+      }]).exec()
+  console.log(aggr)
+  return res.sendStatus(200)
+}
+
 export const updateUser = async (req: Request, res: Response) => {
   const user = await User.findByIdAndUpdate(res.locals.dbUser?._id.toString(),
     { phoneNumber: req.body.phoneNumber }).exec()

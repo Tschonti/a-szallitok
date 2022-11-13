@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express'
-import { body } from 'express-validator'
 import { Delivery, DeliveryStatus } from '../model/Delivery'
 import { TransportRequest, TransportRequestStatus } from '../model/TransportRequest'
 
