@@ -3,13 +3,13 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-console.log(process.env.PRIVATE_KEY)
+console.log(process.env.PRIVATE_KEY?.replace(/\\n/g, '\n'))
 
 const params = {
   type: 'service_account',
   projectId: 'the-transporters-fb',
   privateKeyId: process.env.PRIVATE_KEY_ID,
-  privateKey: process.env.PRIVATE_KEY,
+  privateKey: process.env.PRIVATE_KEY?.replace(/\\n/g, '\n'),
   clientEmail: 'firebase-adminsdk-y08ow@the-transporters-fb.iam.gserviceaccount.com',
   clientId: process.env.CLIENT_ID,
   authUri: 'https://accounts.google.com/o/oauth2/auth',
