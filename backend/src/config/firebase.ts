@@ -3,8 +3,6 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-console.log(process.env.PRIVATE_KEY?.replace(/\\n/g, '\n'))
-
 const params = {
   type: 'service_account',
   projectId: 'the-transporters-fb',
