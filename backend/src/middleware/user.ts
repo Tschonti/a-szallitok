@@ -79,6 +79,7 @@ export const generateToplist = async (req: Request, res: Response) => {
         }
       }]).exec()
   console.log(aggr)
+
   return res.sendStatus(200)
 }
 
