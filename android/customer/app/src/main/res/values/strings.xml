@@ -86,4 +86,9 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="client_id">408596429373-abarp5hbqjns2hdi046fg850a12ic1fh.apps.googleusercontent.com</string>
     <string name="login">Bejelentkezés</string>
+    <string name="pickup_date">Felvétel dátuma</string>
+    <string name="description_hint">A termék leírása</string>
+    <string name="date_of_pickup">Felvétel dátuma</string>
+    <string name="date_of_delivery">Kiszállítás dátuma</string>
+    <string name="accept">Elfogad</string>
 </resources>
