@@ -124,3 +124,4 @@
 ## 10. hét
 - Frontend és Backend projektek deployolása Azureba Samuval
 - Az utolsó backend enpoint elkészítése Samuval
+- Tracking support a backenden
