@@ -91,6 +91,11 @@
 - Google-ös login elkészítése
 - Tesztelés a backenddel
 
+## 10. hét
+- új delivery form dummy adatok helyett valósakat küld a backendnek
+- form validációja
+- pending deliveryk listázása (wip)
+
 # Farkasházi Levente
 ## 4. hét
 - Discord szerver elkészítése
