@@ -24,6 +24,10 @@ export default (app: Express) => {
     }))
   })
 
+  app.get('/allDeliveries', async (req: Request, res: Response) => {
+    return res.status(200).send(await Delivery.find({}).populate(['clientUser', 'transporterUser']).exec())
+  })
+
   app.post('/delivery',
     body('title').isString().notEmpty(),
     body('description').isString().notEmpty(),

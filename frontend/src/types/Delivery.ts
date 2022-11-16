@@ -1,10 +1,13 @@
+import { User } from "./User"
+
 export interface Delivery {
+    _id: string
     title: string
     description: string
     sourceLocation: Location
     destinationLocation: Location
-    clientUser: string
-    transporterUser?: string
+    clientUser: User
+    transporterUser?: User
     pickUpFrom: String
     pickUpUntil: String
     price: number

@@ -3,6 +3,7 @@ import axios from "axios"
 import { useContext } from "react"
 import { AuthContext } from "../../auth/AuthContext"
 import { Delivery } from "../../types/Delivery"
+import { Page } from "../../components/Page"
 
 export const MapPage = () => {
     const { onLogout } = useContext(AuthContext)
@@ -10,9 +11,11 @@ export const MapPage = () => {
         console.log((await axios.get<Delivery>('/user/toplist')).data)
       }
     return (
-        <Center>
-            <Button onClick={getDeliveries}>Get deliveries</Button>
-            <Button onClick={onLogout}>Logout</Button>
-        </Center>
+        <Page>
+            <Center>
+                <Button onClick={getDeliveries}>Get deliveries</Button>
+                <Button onClick={onLogout}>Logout</Button>
+            </Center>
+        </Page>
     )
 }
