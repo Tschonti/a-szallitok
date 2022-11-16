@@ -120,3 +120,8 @@
 ## 8-9. hét
 - Az Android alkalmazásokat kiszolgáló middlewarek elkészítése (Samuval megosztva)
 - Tesztelés az Android alkalmazásokkal
+
+## 10. hét
+- Frontend és Backend projektek deployolása Azureba Samuval
+- Az utolsó backend enpoint elkészítése Samuval
+- Tracking support a backenden
