@@ -142,6 +142,10 @@ export const getJobRequests = async (req: Request, res: Response) => {
   )
 }
 
+export const getUsers = async (req: Request, res: Response) => {
+  return res.status(200).send(await User.find({}).exec())
+}
+
 export const promote = async (req: Request, res: Response) => {
   const user = await User.findById(req.params.id).exec()
   if (user == null) {

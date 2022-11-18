@@ -10,12 +10,14 @@ import {
   getJobRequests,
   getRequestedJobs,
   getUser,
+  getUsers,
   promote,
   updateUser
 } from '../middleware/user'
 import { checkValidationResult } from '../middleware/validation'
 
 export default (app: Express) => {
+  app.get('/user', getUsers)
   app.get('/user/requestedJobs', getUserByUId, getRequestedJobs)
   app.get('/user/jobRequests', getUserByUId, getJobRequests)
   app.get('/user/toplist', generateToplist)
