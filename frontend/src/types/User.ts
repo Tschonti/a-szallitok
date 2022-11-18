@@ -11,9 +11,7 @@ export interface User {
   }
 
   export interface UserInToplist {
-    id: number
-    firstName: string
-    lastName: string
+    _id: User
     deliveriesCompleted: number
     moneyEarned: number
   }

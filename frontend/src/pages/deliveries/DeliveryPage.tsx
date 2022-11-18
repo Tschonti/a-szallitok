@@ -1,4 +1,4 @@
-import { Heading, IconButton, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useToast } from "@chakra-ui/react"
+import { Heading, IconButton, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useToast } from "@chakra-ui/react"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { FaTrash } from "react-icons/fa"
@@ -8,7 +8,7 @@ import { getErrorMessage } from "../../util/errorMessage"
 
 export const DeliveryPage = () => {
     const toast = useToast()
-    const [deliveries, setDeliveries] = useState<Delivery[] | undefined>(undefined)
+    const [deliveries, setDeliveries] = useState<Delivery[]>([])
 
     const deleteDelivery = async (deliveryId: string) => {
         try {
@@ -57,7 +57,7 @@ export const DeliveryPage = () => {
             </Heading>
 
             <TableContainer>
-                <Table variant="striped" colorScheme="red">
+                <Table variant="striped" colorScheme="blue">
                     <Thead>
                         <Tr>
                             <Th>
@@ -81,7 +81,7 @@ export const DeliveryPage = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {deliveries && deliveries.map(d => (
+                        {deliveries.length > 0 ? deliveries.map(d => (
                             <Tr key={d._id}>
                                 <Td>
                                    {d.clientUser.name}
@@ -102,7 +102,7 @@ export const DeliveryPage = () => {
                                    <IconButton icon={<FaTrash />} onClick={() => deleteDelivery(d._id)} colorScheme="red" aria-label={`Delete delivery ${d._id}`} />
                                 </Td>
                             </Tr>
-                        ))}
+                        )) : <Text>No deliveries found</Text>}
                     </Tbody>
                 </Table>
 

@@ -21,7 +21,7 @@ export const Navbar = () => {
                             px={2}
                             py={4}
                             variant="ghost"
-                            colorScheme="red"
+                            colorScheme="blue"
                         >
                             Map
                         </Button>
@@ -30,7 +30,7 @@ export const Navbar = () => {
                             to="/deliveries"
                             px={2}
                             py={4}
-                            colorScheme="red"
+                            colorScheme="blue"
                             variant="ghost"
                         >
                             Deliveries
@@ -40,7 +40,7 @@ export const Navbar = () => {
                             to="/users"
                             px={2}
                             py={4}
-                            colorScheme="red"
+                            colorScheme="blue"
                             variant="ghost"
                         >
                             Users
@@ -50,7 +50,7 @@ export const Navbar = () => {
                             to="/toplist"
                             px={2}
                             py={4}
-                            colorScheme="red"
+                            colorScheme="blue"
                             variant="ghost"
                         >
                             Toplist
@@ -62,7 +62,7 @@ export const Navbar = () => {
                 <Button
                     mr={{base: 0, sm: "1rem", md: "3rem", lg: "5rem"}}
                     px={2}
-                    colorScheme="red"
+                    colorScheme="blue"
                     py={4}
                     variant="ghost"
                     onClick={onLogout}
