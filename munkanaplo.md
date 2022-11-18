@@ -29,6 +29,10 @@
 - React frontend projektben az autentikáció átírása Contex-es megoldásra, a routing inicializálása
 - Az utolsó backend enpoint elkészítése Levivel
 
+## 11. hét
+- Frontend app megjelenésének váza: Navbar és Footer elkészítése, dizájnolása
+- Deliveries oldal elkészítése
+
 # Domonkos Ádám
 ## 4. hét
 - Specifikáció kidolgozása közösen
