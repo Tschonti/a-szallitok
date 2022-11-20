@@ -12,22 +12,6 @@ export const UserPage = () => {
     const toast = useToast()
     const [users, setUsers] = useState<User[]>([])
 
-    const fetchData = async () => {
-            try {
-                const res = await axios.get<User[]>('/user')
-                if (res.status === 200) {
-                    setUsers(res.data)
-                }
-            } catch(error) {
-                toast({
-                    title: 'Error fetching users',
-                    description: getErrorMessage(error),
-                    status: 'error',
-                    duration: 5000
-                })
-            }
-        }
-
     const deleteUser = async (userId: string) => {
         try {
             const res = await axios.delete(`/user/${userId}`)
@@ -49,7 +33,7 @@ export const UserPage = () => {
         }
     }
 
-    const promotrUser = async (userId: string) => {
+    const promoteUser = async (userId: string) => {
         try {
             const res = await axios.put(`/user/${userId}/promote`)
             if (res.status === 200) {
@@ -58,7 +42,11 @@ export const UserPage = () => {
                     status: 'success',
                     duration: 5000
                 })
-                fetchData()
+                const userToPromote = users.find(u => u._id === userId)
+                if (userToPromote) {
+                    userToPromote.isAdmin = true
+                    setUsers(users.map(u => u._id === userId ? userToPromote : u))
+                }
             }
         } catch(e) {
             toast({
@@ -71,8 +59,23 @@ export const UserPage = () => {
     }
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get<User[]>('/user')
+                if (res.status === 200) {
+                    setUsers(res.data)
+                }
+            } catch(error) {
+                toast({
+                    title: 'Error fetching users',
+                    description: getErrorMessage(error),
+                    status: 'error',
+                    duration: 5000
+                })
+            }
+        }
         fetchData()
-    }, [])
+    }, [toast])
 
     return (
         <Page>
@@ -112,7 +115,7 @@ export const UserPage = () => {
                                 </Td>
                                 <Td>
                                     {user?._id!==u._id ? <IconButton marginRight={3} icon={<FaTrash />} onClick={() => deleteUser(u._id)} colorScheme="red" aria-label={`Delete user ${u._id}`} /> : <></>}
-                                    {u.isAdmin===false ? <IconButton icon={<FaCrown />} onClick={() => promotrUser(u._id)} colorScheme="green" aria-label={`Delete user ${u._id}`} /> : <></>}
+                                    {u.isAdmin===false ? <IconButton icon={<FaCrown />} onClick={() => promoteUser(u._id)} colorScheme="green" aria-label={`Delete user ${u._id}`} /> : <></>}
                                 </Td>
                             </Tr>
                         )) : <Text>No users found</Text>}
