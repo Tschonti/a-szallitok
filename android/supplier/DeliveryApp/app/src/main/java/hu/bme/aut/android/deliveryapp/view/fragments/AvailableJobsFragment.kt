@@ -60,6 +60,13 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
         )
 
         binding.availableJobsRecyclerView.adapter = adapter
+
+        binding.srlJobs.setOnRefreshListener {
+            viewModel.getAvailableJobs().observe(viewLifecycleOwner
+            ) { jobDetailState ->
+                render(jobDetailState)
+            }
+        }
     }
 
     private fun render(state: DeliveryListState) {
@@ -69,11 +76,13 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
             }
             is DeliveryListState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
+                binding.srlJobs.isRefreshing = false
                 Log.i("DATA ARRIVED", state.data.toString())
                 adapter.addJobs(state.data)
             }
             is DeliveryListState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
+                binding.srlJobs.isRefreshing = false
                 AwesomeDialog.build(requireActivity())
                     .title("Error")
                     .body(state.exceptionMsg)

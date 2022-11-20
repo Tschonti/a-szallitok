@@ -63,6 +63,13 @@ class InProgressJobsFragment : Fragment(), DeliveriesInProgressAdapter.OnDeliver
         )
 
         binding.inProgressJobsRecyclerView.adapter = adapter
+
+        binding.srlJobs.setOnRefreshListener {
+            viewModel.getJobsInProgress().observe(viewLifecycleOwner
+            ) { jobDetailState ->
+                render(jobDetailState)
+            }
+        }
     }
 
     private fun render(state: DeliveryInProgressState) {
@@ -73,9 +80,11 @@ class InProgressJobsFragment : Fragment(), DeliveriesInProgressAdapter.OnDeliver
             is DeliveryInProgressState.deliveriesResponseSuccess -> {
                 adapter.addDeliveries(state.data)
                 loadingDialog.dismiss()
+                binding.srlJobs.isRefreshing = false
             }
             is DeliveryInProgressState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
+                binding.srlJobs.isRefreshing = false
                 AwesomeDialog.build(requireActivity())
                     .title("Error")
                     .body(state.exceptionMsg)

@@ -93,11 +93,12 @@ class LocationTrackerService : LifecycleService() {
                 notificationIntent,
                 PendingIntent.FLAG_CANCEL_CURRENT
             )
+
         return NotificationCompat.Builder(
             this, NOTIFICATION_CHANNEL_ID
         )
             .setContentTitle("Transporter location tracker")
-            .setContentText("Current location: $lat, $lng\nIt will automatically stop when you mark it as ready.")
+            .setContentText("Current location: $lat, $lng")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setVibrate(longArrayOf(1000, 2000, 1000))
             .setContentIntent(contentIntent).build()

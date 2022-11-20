@@ -65,6 +65,11 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             titleVisible = null
         )
 
+        initView()
+
+    }
+
+    private fun initView() {
         val fragment: JobDetailsFragment = childFragmentManager.findFragmentById(R.id.jobDetailsFragmentOnInProgress) as JobDetailsFragment
         fragment.initFragment(selectedJob?.delivery)
 
@@ -89,6 +94,7 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
         }
 
         intentMyService = Intent(requireContext(), LocationTrackerService::class.java)
+
         binding.btnMarkAsReady.setOnClickListener {
             viewModel.markJobAsReady(selectedJob!!.delivery).observe(viewLifecycleOwner
             ) { deliveryState ->
@@ -124,7 +130,6 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
 
             permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
-
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {

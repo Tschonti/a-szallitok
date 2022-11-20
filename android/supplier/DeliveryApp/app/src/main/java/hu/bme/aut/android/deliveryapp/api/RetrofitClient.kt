@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 object RetrofitClient {
-    val baseUrl = "https://szallitok-api.azurewebsites.net/"
+    val baseUrl = "http://10.0.2.2:8000/"
 
     val api = getInstance().create(ApiService::class.java)
 
