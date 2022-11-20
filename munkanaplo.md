@@ -129,3 +129,7 @@
 - Frontend és Backend projektek deployolása Azureba Samuval
 - Az utolsó backend enpoint elkészítése Samuval
 - Tracking support a backenden
+
+## 11. hét
+- Users oldal elkészítése
+- Toplist oldal elkészítése
