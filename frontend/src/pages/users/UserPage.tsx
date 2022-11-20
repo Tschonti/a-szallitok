@@ -72,7 +72,7 @@ export const UserPage = () => {
 
     useEffect(() => {
         fetchData()
-    })
+    }, [])
 
     return (
         <Page>

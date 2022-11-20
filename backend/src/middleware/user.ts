@@ -111,7 +111,7 @@ export const deleteLoggedInUser = async (req: Request, res: Response) => {
     if (user == null) {
       return res.sendStatus(404)
     }
-    return res.status(201).send(user)
+    return res.status(200).send(user)
   } catch (e) {
     console.error(e)
     return res.sendStatus(404)
@@ -123,7 +123,7 @@ export const deleteParamUser = async (req: Request, res: Response) => {
   if (user == null) {
     return res.sendStatus(404)
   }
-  return res.status(201).send(user)
+  return res.status(200).send(user)
 }
 
 export const getRequestedJobs = async (req: Request, res: Response) => {
