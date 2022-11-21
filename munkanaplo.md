@@ -66,6 +66,10 @@
 - Transporter alkalmazás tracking implementálása
 - Location update enpoint használata
 
+## 11. hét
+- ScrollRefresh a lista nézetekre
+- Broadcast receiver bootolásra, így újraindul a LocationService a telefon újraindításakor
+
 # Raisz Olivér
 ## 4. hét
 - Specifikáció kidolgozása közösen
