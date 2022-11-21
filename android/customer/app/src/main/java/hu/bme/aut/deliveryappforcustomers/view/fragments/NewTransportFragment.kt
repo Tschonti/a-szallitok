@@ -75,9 +75,15 @@ class NewTransportFragment : Fragment() {
             binding.deliveryPlace.editText?.error = "A kiszállítás helye nem lehet üres"
             return false
         }
+        if(pickupDate.time > deliveryDate.time) {
+            Toast.makeText(context, "A felvétel dátuma nem lehet későbbi, mint a kiszállítás dátuma", Toast.LENGTH_SHORT).show()
+            return false
+        }
         return true
     }
 
+    var pickupDate: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+    var deliveryDate: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -90,9 +96,8 @@ class NewTransportFragment : Fragment() {
                     .build()
             datePicker.show(childFragmentManager, "DATE_PICKER")
             datePicker.addOnPositiveButtonClickListener {
-                val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-                calendar.timeInMillis = it
-                binding.pickupDate.text = format.format(calendar.time)
+                pickupDate.timeInMillis = it
+                binding.pickupDate.text = format.format(pickupDate.time)
             }
         }
         binding.deliveryDate.setOnClickListener {
@@ -102,9 +107,8 @@ class NewTransportFragment : Fragment() {
                     .build()
             datePicker.show(childFragmentManager, "DATE_PICKER")
             datePicker.addOnPositiveButtonClickListener {
-                val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-                calendar.timeInMillis = it
-                binding.deliveryDate.text = format.format(calendar.time)
+                deliveryDate.timeInMillis = it
+                binding.deliveryDate.text = format.format(deliveryDate.time)
             }
         }
 

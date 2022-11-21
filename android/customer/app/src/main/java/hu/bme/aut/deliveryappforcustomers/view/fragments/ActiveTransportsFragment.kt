@@ -36,15 +36,15 @@ class ActiveTransportsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       adapter = JobDetailsAdapter(requireContext(), this)
+      // adapter = JobDetailsAdapter(requireContext(), this)
 
         //TODO change to valid id
         viewModel.getActiveTransports(0/*CurrentUser.user._id*/).observe(viewLifecycleOwner
         ) { jobDetailState ->
-            render(jobDetailState)
+           // render(jobDetailState)
         }
 
-        binding.availableJobsRecyclerView.adapter = adapter
+        //binding.availableJobsRecyclerView.adapter = adapter
     }
 
    /* private fun render(state: TransportListState) {
@@ -68,12 +68,12 @@ class ActiveTransportsFragment : Fragment() {
         }
     }*/
 
-    override fun onTransportSelected(job: Delivery?) {
-     /*   Log.d("JOB", job.toString())
+/*    override fun onTransportSelected(job: Delivery?) {
+     *//*   Log.d("JOB", job.toString())
         val b = Bundle()
         b.putSerializable("JOB", job)
-        findNavController().navigate(R.id.action_availableJobsFragment_to_availableJobDetailsFragment, b)*/
+        findNavController().navigate(R.id.action_availableJobsFragment_to_availableJobDetailsFragment, b)*//*
         // TODO: implement function
-    }
+    }*/
 
 }
