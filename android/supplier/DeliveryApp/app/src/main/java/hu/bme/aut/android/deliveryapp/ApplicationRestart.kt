@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
@@ -36,9 +37,10 @@ class ApplicationRestart : AppCompatActivity() {
                         if (state is DeliveryInProgressState.deliveriesResponseSuccess) {
                             state.data.forEach {
                                 if (it.delivery.status == DeliveryStatus.IN_TRANSIT) {
-                                    startService(Intent(this, LocationTrackerService::class.java))
+                                    startService(Intent(this, LocationTrackerService::class.java).putExtra("DELIVERY_ID", it.delivery._id))
                                 }
                             }
+                            finish()
                         }
                     }
                 }
