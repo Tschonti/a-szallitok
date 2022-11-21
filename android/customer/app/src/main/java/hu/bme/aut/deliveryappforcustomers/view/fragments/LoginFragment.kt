@@ -20,7 +20,6 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import hu.bme.aut.android.deliveryapp.model.User
-import hu.bme.aut.deliveryappforcustomers.CurrentUserPlain
 import hu.bme.aut.deliveryappforcustomers.R
 import hu.bme.aut.deliveryappforcustomers.api.RetrofitClient
 import hu.bme.aut.deliveryappforcustomers.databinding.FragmentLoginBinding
