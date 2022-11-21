@@ -2,78 +2,92 @@ package hu.bme.aut.deliveryappforcustomers.view.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import hu.bme.aut.android.deliveryapp.model.Delivery
-import hu.bme.aut.deliveryappforcustomers.R
+import hu.bme.aut.android.deliveryapp.model.JobDetails
 import hu.bme.aut.deliveryappforcustomers.adapter.ActiveTransportsAdapter
+import hu.bme.aut.deliveryappforcustomers.databinding.FragmentActiveTransportsBinding
 import hu.bme.aut.deliveryappforcustomers.repository.CurrentUser
-import hu.bme.aut.deliveryappforcustomers.repository.CurrentUser.user
+import hu.bme.aut.deliveryappforcustomers.view.JobDetailState
 import hu.bme.aut.deliveryappforcustomers.viewmodel.ActiveTransportsViewModel
-import retrofit2.Response.error
 
-class ActiveTransportsFragment : Fragment() {
+class ActiveTransportsFragment : Fragment(), ActiveTransportsAdapter.onTransportSelectedListener {
 
-    private lateinit var binding: ActiveTransportsFragmentBinding
+    private lateinit var binding: FragmentActiveTransportsBinding
 
     private val viewModel: ActiveTransportsViewModel by viewModels()
 
     private lateinit var adapter: ActiveTransportsAdapter
 
-    //private lateinit var loadingDialog: LottieProgressDialog
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_active_transports, container, false)
+    ): View {
+        binding = FragmentActiveTransportsBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-      // adapter = JobDetailsAdapter(requireContext(), this)
+        adapter = ActiveTransportsAdapter(requireContext(), this)
 
-        //TODO change to valid id
-        viewModel.getActiveTransports(0/*CurrentUser.user._id*/).observe(viewLifecycleOwner
-        ) { jobDetailState ->
-           // render(jobDetailState)
+        //TODO change to valid id - CurrentUser.user._id
+        Log.d("USERID", "current user's id would be ${CurrentUser.user._id} (NOT YET USED)")
+
+        binding.swipeRefreshLayout.setOnRefreshListener() {
+            viewModel.getActiveTransports(0).observe(viewLifecycleOwner) { jobDetailState ->
+                render(jobDetailState)
+            }
         }
 
-        //binding.availableJobsRecyclerView.adapter = adapter
+        binding.activeTransportsRecyclerView.adapter = adapter
     }
 
-   /* private fun render(state: TransportListState) {
-        when (state) {
+    private fun render(state: JobDetailState/*DeliveryListState volt*/) {
+        /*when (state) {
             is DeliveryListState.inProgress -> {
-                loadingDialog.show()
+                //loadingDialog.show()
             }
             is DeliveryListState.deliveriesResponseSuccess -> {
-                loadingDialog.dismiss()
+                //loadingDialog.dismiss()
                 Log.i("DATA ARRIVED", state.data.toString())
-                adapter.addJobs(state.data)
+                adapter.addTransports(state.data)
             }
             is DeliveryListState.deliveriesResponseError -> {
-                loadingDialog.dismiss()
-                AwesomeDialog.build(requireActivity())
-                    .title("Error")
-                    .body(state.exceptionMsg)
-                    .icon(R.drawable.error)
-                    .onPositive("Close")
+                //loadingDialog.dismiss()
+                Log.e("ERROR", state.exceptionMsg)
+            }
+        }*/
+        when (state) {
+            is JobDetailState.inProgress -> {
+                //loadingDialog.show()
+            }
+            is JobDetailState.jobDetailsResponseSuccess -> {
+                //loadingDialog.dismiss()
+                Log.i("DATA ARRIVED", state.data.toString())
+                adapter.addTransports(state.data)
+            }
+            is JobDetailState.jobDetailsResponseError -> {
+                //loadingDialog.dismiss()
+                Log.e("ERROR", state.exceptionMsg)
             }
         }
-    }*/
+    }
 
-/*    override fun onTransportSelected(job: Delivery?) {
-     *//*   Log.d("JOB", job.toString())
-        val b = Bundle()
-        b.putSerializable("JOB", job)
-        findNavController().navigate(R.id.action_availableJobsFragment_to_availableJobDetailsFragment, b)*//*
-        // TODO: implement function
-    }*/
+    override fun onJobDetailAccepted(jobDetail: JobDetails?) {
+        Log.d("TRANSPORT", jobDetail.toString())
+        adapter.removeTransportAt(adapter.getTransportPosition(jobDetail!!))
+        // TODO: send "accepted" to the server
+    }
+
+    override fun onJobDetailDeclined(jobDetail: JobDetails?) {
+        Log.d("TRANSPORT", "declined the ${jobDetail.toString()}")
+        adapter.removeTransportAt(adapter.getTransportPosition(jobDetail!!))
+        // TODO: send "declined" to the server function
+    }
 
 }

@@ -91,4 +91,5 @@
     <string name="date_of_pickup">Felvétel dátuma</string>
     <string name="date_of_delivery">Kiszállítás dátuma</string>
     <string name="accept">Elfogad</string>
+    <string name="decline">Elutasít</string>
 </resources>

@@ -104,6 +104,11 @@
 - form validációja
 - pending deliveryk listázása (wip)
 
+## 11. hét
+- pending deliveryk listázása
+- adatok megjelenítése ezekhez a deliverykhez
+- lehetőség van elfogadni/elutasítani a deliveryt (wip)
+
 # Farkasházi Levente
 ## 4. hét
 - Discord szerver elkészítése
