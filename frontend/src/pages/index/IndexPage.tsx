@@ -1,3 +1,4 @@
+import { Center, Spinner } from "@chakra-ui/react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthContext";
@@ -6,7 +7,7 @@ import { Forbidden } from "./components/Forbidden";
 import { LoginButton } from "./components/LoginButton";
 
 export const IndexPage = () => {
-  const { user } = useContext(AuthContext)
+  const { user, loading } = useContext(AuthContext)
   const navigate = useNavigate()
 
   if (user && user.isAdmin) {
@@ -15,9 +16,10 @@ export const IndexPage = () => {
 
   return (
     <Page>
-        {user ?
+        { loading && <Center><Spinner size="xl" /></Center>}
+        { !loading && (user ?
         <Forbidden />
-        : <LoginButton />}
+        : <LoginButton />)}
     </Page>
   );
 }

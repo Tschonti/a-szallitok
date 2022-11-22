@@ -1,6 +1,8 @@
 import { Heading, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useToast } from "@chakra-ui/react"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../../auth/AuthContext"
 import { Page } from "../../components/Page"
 import { UserInToplist } from "../../types/User"
 import { getErrorMessage } from "../../util/errorMessage"
@@ -8,6 +10,12 @@ import { getErrorMessage } from "../../util/errorMessage"
 export const ToplistPage = () => {
     const toast = useToast()
     const [topUsers, setTopUsers] = useState<UserInToplist[]>([])
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    if (!user) {
+        navigate('/')
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -54,7 +62,7 @@ export const ToplistPage = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {topUsers.length > 0 ? topUsers.map((topUser, index) => (
+                        {topUsers.length > 0 && topUsers.map((topUser, index) => (
                             <Tr key={topUser._id._id}>
                                 <Td>
                                 {index + 1}
@@ -69,11 +77,11 @@ export const ToplistPage = () => {
                                 {topUser.moneyEarned}
                                 </Td>
                             </Tr>
-                        )) : <Text>No top users found</Text>}
+                        ))}
                     </Tbody>
                 </Table>
-
             </TableContainer>
+            {topUsers.length === 0 && <Text>No top users found</Text>}
         </Page>
     )
 }

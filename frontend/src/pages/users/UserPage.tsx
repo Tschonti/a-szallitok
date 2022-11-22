@@ -2,6 +2,7 @@ import { Heading, IconButton, Table, TableContainer, Tbody, Td, Text, Th, Thead,
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { FaCrown, FaTrash } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../auth/AuthContext"
 import { DeleteModal } from "../../components/DeleteModal"
 import { Page } from "../../components/Page"
@@ -14,6 +15,11 @@ export const UserPage = () => {
     const [users, setUsers] = useState<User[]>([])
     const { isOpen, onClose, onOpen } = useDisclosure()
     const [idToDelete, setIdToDelete] = useState('')
+    const navigate = useNavigate()
+
+    if (!user) {
+        navigate('/')
+    }
 
     const openModal = (id: string) => {
         setIdToDelete(id)
@@ -110,7 +116,7 @@ export const UserPage = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {users.length > 0 ? users.map(u => (
+                        {users.length > 0 && users.map(u => (
                             <Tr key={u._id}>
                                 <Td>
                                     {u.name}
@@ -126,10 +132,11 @@ export const UserPage = () => {
                                     {u.isAdmin===false ? <IconButton icon={<FaCrown />} onClick={() => promoteUser(u._id)} colorScheme="green" aria-label={`Delete user ${u._id}`} /> : <></>}
                                 </Td>
                             </Tr>
-                        )) : <Text>No users found</Text>}
+                        ))}
                     </Tbody>
                 </Table>
             </TableContainer>
+            { users.length === 0 && <Text>No users found</Text>}
             <DeleteModal deleteFn={() => deleteUser(idToDelete)} entityName="user" isOpen={isOpen} onClose={onClose} />
 
         </Page>
