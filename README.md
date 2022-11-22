@@ -1,9 +1,9 @@
 # a-szallitok
 A Szállítók
 
-[Frontend](https://proud-stone-080e75b03.2.azurestaticapps.net/)
+[Frontend](https://victorious-pebble-08c001303.2.azurestaticapps.net/)
 
 
-[Backend](https://szallitok-api.azurewebsites.net/)
+[Backend](https://a-szallitok-api.azurewebsites.net/)
 
-[Open API](https://szallitok-api.azurewebsites.net/api-docs)
+[Open API](https://a-szallitok-api.azurewebsites.net/api-docs)
