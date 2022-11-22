@@ -1,7 +1,9 @@
 import { Heading, IconButton, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useDisclosure, useToast } from "@chakra-ui/react"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { FaTrash } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../../auth/AuthContext"
 import { DeleteModal } from "../../components/DeleteModal"
 import { Page } from "../../components/Page"
 import { Delivery } from "../../types/Delivery"
@@ -12,6 +14,12 @@ export const DeliveryPage = () => {
     const [deliveries, setDeliveries] = useState<Delivery[]>([])
     const { isOpen, onClose, onOpen } = useDisclosure()
     const [idToDelete, setIdToDelete] = useState('')
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    if (!user) {
+        navigate('/')
+    }
 
     const openModal = (id: string) => {
         setIdToDelete(id)
@@ -89,7 +97,7 @@ export const DeliveryPage = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {deliveries.length > 0 ? deliveries.map(d => (
+                        {deliveries.length > 0 && deliveries.map(d => (
                             <Tr key={d._id}>
                                 <Td>
                                    {d.clientUser.name}
@@ -110,10 +118,11 @@ export const DeliveryPage = () => {
                                    <IconButton icon={<FaTrash />} onClick={() => openModal(d._id)} colorScheme="red" aria-label={`Delete delivery ${d._id}`} />
                                 </Td>
                             </Tr>
-                        )) : <Text>No deliveries found</Text>}
+                        ))}
                     </Tbody>
                 </Table>
             </TableContainer>
+            {deliveries.length === 0 &&  <Text>No deliveries found</Text>}
             <DeleteModal deleteFn={() => deleteDelivery(idToDelete)} entityName="delivery" isOpen={isOpen} onClose={onClose} />
         </Page>
     )

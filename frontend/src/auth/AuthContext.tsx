@@ -14,16 +14,19 @@ export type AuthContextType = {
     user: User | undefined
     onLogout: () => void
     onLogin: () => void
+    loading: boolean
 }
 
 export const AuthContext = createContext<AuthContextType>({
     user: undefined,
     onLogin: () => {},
-    onLogout: () => {}
+    onLogout: () => {},
+    loading: false
 })
 
 export const AuthProvider = ({children}: HasChildren) => {
     const [user, setUser] = useState<User | undefined>()
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const toast = useToast()
 
@@ -39,10 +42,12 @@ export const AuthProvider = ({children}: HasChildren) => {
 
     const onLogin = async () => {
         const userCred = await signInWithPopup(getAuth(app), new GoogleAuthProvider())
+        setLoading(true)
         Cookies.set(COOKIE_KEY_JWT, await userCred.user.getIdToken())
         try {
             const res =  await axios.get<User>('/login')
             setUser(res.data)
+            setLoading(false)
         } catch (e) {
             toast({
                 title: 'Failed to log in',
@@ -65,7 +70,8 @@ export const AuthProvider = ({children}: HasChildren) => {
             value={{
                 user,
                 onLogin,
-                onLogout
+                onLogout,
+                loading
             }}
         >
             { children }
