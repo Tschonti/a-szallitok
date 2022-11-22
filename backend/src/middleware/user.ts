@@ -1,7 +1,7 @@
 import { User, UserDoc } from '../model/User'
 import { NextFunction, Request, Response } from 'express'
 import { TransportRequest } from '../model/TransportRequest'
-import { Delivery, DeliveryDoc } from '../model/Delivery'
+import { Delivery, DeliveryDoc, DeliveryStatus } from '../model/Delivery'
 
 interface AggregationResult {
   average: number
@@ -107,6 +107,16 @@ export const checkIfAdmin = (req: Request, res: Response, next: NextFunction) =>
 
 export const deleteLoggedInUser = async (req: Request, res: Response) => {
   try {
+    await Delivery.deleteMany({
+      $or: [
+        { clientUser: res.locals.dbUser?._id },
+        { transporterUser: res.locals.dbUser?._id, status: DeliveryStatus.DELIVERED }
+      ]
+    })
+    await Delivery.updateMany(
+      { transporterUser: res.locals.dbUser?._id },
+      { transporterUser: undefined, status: DeliveryStatus.UNASSIGNED })
+    await TransportRequest.deleteMany({ user: req.params.id })
     const user = await User.findByIdAndDelete(res.locals.dbUser?._id.toString()).exec()
     if (user == null) {
       return res.sendStatus(404)
@@ -119,6 +129,16 @@ export const deleteLoggedInUser = async (req: Request, res: Response) => {
 }
 
 export const deleteParamUser = async (req: Request, res: Response) => {
+  await Delivery.deleteMany({
+    $or: [
+      { clientUser: req.params.id },
+      { transporterUser: req.params.id, status: DeliveryStatus.DELIVERED }
+    ]
+  })
+  await Delivery.updateMany(
+    { transporterUser: req.params.id },
+    { transporterUser: undefined, status: DeliveryStatus.UNASSIGNED })
+  await TransportRequest.deleteMany({ user: req.params.id })
   const user = await User.findByIdAndDelete(req.params.id).exec()
   if (user == null) {
     return res.sendStatus(404)
