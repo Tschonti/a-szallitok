@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - szallitok-api
+name: Build and deploy Node.js app to Azure Web App - a-szallitok-api
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
           npm run build --if-present
           npm run test --if-present
         working-directory: backend
-      
+        
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
@@ -49,6 +49,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
+      
       - name: unzip artifact for deployment
         run: |
          unzip release.zip
@@ -58,7 +59,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'szallitok-api'
+          app-name: 'a-szallitok-api'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2F4229034D434A86B790E588925E7FF4 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_96FB2290B12547959F484E8457C90F4C }}
           package: .
