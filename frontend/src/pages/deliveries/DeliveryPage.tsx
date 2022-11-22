@@ -1,7 +1,8 @@
-import { Heading, IconButton, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useToast } from "@chakra-ui/react"
+import { Heading, IconButton, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useDisclosure, useToast } from "@chakra-ui/react"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { FaTrash } from "react-icons/fa"
+import { DeleteModal } from "../../components/DeleteModal"
 import { Page } from "../../components/Page"
 import { Delivery } from "../../types/Delivery"
 import { getErrorMessage } from "../../util/errorMessage"
@@ -9,6 +10,13 @@ import { getErrorMessage } from "../../util/errorMessage"
 export const DeliveryPage = () => {
     const toast = useToast()
     const [deliveries, setDeliveries] = useState<Delivery[]>([])
+    const { isOpen, onClose, onOpen } = useDisclosure()
+    const [idToDelete, setIdToDelete] = useState('')
+
+    const openModal = (id: string) => {
+        setIdToDelete(id)
+        onOpen()
+    }
 
     const deleteDelivery = async (deliveryId: string) => {
         try {
@@ -99,14 +107,14 @@ export const DeliveryPage = () => {
                                    {d.transporterUser?.name || '-'}
                                 </Td>
                                 <Td>
-                                   <IconButton icon={<FaTrash />} onClick={() => deleteDelivery(d._id)} colorScheme="red" aria-label={`Delete delivery ${d._id}`} />
+                                   <IconButton icon={<FaTrash />} onClick={() => openModal(d._id)} colorScheme="red" aria-label={`Delete delivery ${d._id}`} />
                                 </Td>
                             </Tr>
                         )) : <Text>No deliveries found</Text>}
                     </Tbody>
                 </Table>
-
             </TableContainer>
+            <DeleteModal deleteFn={() => deleteDelivery(idToDelete)} entityName="delivery" isOpen={isOpen} onClose={onClose} />
         </Page>
     )
 }
