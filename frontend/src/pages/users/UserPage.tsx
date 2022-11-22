@@ -1,8 +1,9 @@
-import { Heading, IconButton, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useToast } from "@chakra-ui/react"
+import { Heading, IconButton, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useDisclosure, useToast } from "@chakra-ui/react"
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { FaCrown, FaTrash } from "react-icons/fa"
 import { AuthContext } from "../../auth/AuthContext"
+import { DeleteModal } from "../../components/DeleteModal"
 import { Page } from "../../components/Page"
 import { User } from "../../types/User"
 import { getErrorMessage } from "../../util/errorMessage"
@@ -11,6 +12,13 @@ export const UserPage = () => {
     const { user } = useContext(AuthContext)
     const toast = useToast()
     const [users, setUsers] = useState<User[]>([])
+    const { isOpen, onClose, onOpen } = useDisclosure()
+    const [idToDelete, setIdToDelete] = useState('')
+
+    const openModal = (id: string) => {
+        setIdToDelete(id)
+        onOpen()
+    }
 
     const deleteUser = async (userId: string) => {
         try {
@@ -114,15 +122,16 @@ export const UserPage = () => {
                                 {u.phoneNumber}
                                 </Td>
                                 <Td>
-                                    {user?._id!==u._id ? <IconButton marginRight={3} icon={<FaTrash />} onClick={() => deleteUser(u._id)} colorScheme="red" aria-label={`Delete user ${u._id}`} /> : <></>}
+                                    {user?._id!==u._id ? <IconButton marginRight={3} icon={<FaTrash />} onClick={() => openModal(u._id)} colorScheme="red" aria-label={`Delete user ${u._id}`} /> : <></>}
                                     {u.isAdmin===false ? <IconButton icon={<FaCrown />} onClick={() => promoteUser(u._id)} colorScheme="green" aria-label={`Delete user ${u._id}`} /> : <></>}
                                 </Td>
                             </Tr>
                         )) : <Text>No users found</Text>}
                     </Tbody>
                 </Table>
-
             </TableContainer>
+            <DeleteModal deleteFn={() => deleteUser(idToDelete)} entityName="user" isOpen={isOpen} onClose={onClose} />
+
         </Page>
     )
 }
