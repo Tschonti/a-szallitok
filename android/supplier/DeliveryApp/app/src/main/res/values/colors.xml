@@ -11,4 +11,5 @@
     <color name="background_fade_color_1">#FFFFFF</color>
     <color name="background_fade_color_2">#B9EBFF</color>
     <color name="background_fade_color_3">#55CEFF</color>
+    <color name="transparent">#00000000</color>
 </resources>

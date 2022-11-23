@@ -75,7 +75,8 @@ class AvailableJobsMapFragment : Fragment() {
                     jobList.add(it)
                     addMarker(it)
                 }
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(jobList[0].sourceLocation!!.coordinate.latitude.toDouble(), jobList[0].destinationLocation!!.coordinate.longitude.toDouble()), 10f))
+                if (state.data.isNotEmpty())
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(jobList[0].sourceLocation!!.coordinate.latitude.toDouble(), jobList[0].destinationLocation!!.coordinate.longitude.toDouble()), 10f))
             }
             is DeliveryListState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
