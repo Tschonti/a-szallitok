@@ -30,7 +30,7 @@ export interface Location {
     postalCode: Number
     city: string
     address: string
-  }
+}
 
 export interface Coordinate {
     longitude: number
