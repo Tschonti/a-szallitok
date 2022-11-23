@@ -1,21 +1,16 @@
 package hu.bme.aut.android.deliveryapp.adapter
 
-import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import hu.bme.aut.android.deliveryapp.R
-import hu.bme.aut.android.deliveryapp.databinding.JobDetailsRowBinding
-import hu.bme.aut.android.deliveryapp.databinding.JobDetailsStatusRowBinding
 import hu.bme.aut.android.deliveryapp.databinding.JobInProgressRowBinding
-import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.model.DeliveryInProgress
 import hu.bme.aut.android.deliveryapp.model.InProgressStatus
 
-class DeliveriesInProgressAdapter(private val context: Context, private val listener: OnDeliveryInProgressSelectedListener) : RecyclerView.Adapter<DeliveriesInProgressAdapter.DeliveriesInProgressViewHolder>() {
+class DeliveriesInProgressAdapter(private val listener: OnDeliveryInProgressSelectedListener) : RecyclerView.Adapter<DeliveriesInProgressAdapter.DeliveriesInProgressViewHolder>() {
     private val deliveries: MutableList<DeliveryInProgress> = ArrayList()
 
     interface OnDeliveryInProgressSelectedListener {
@@ -34,26 +29,13 @@ class DeliveriesInProgressAdapter(private val context: Context, private val list
 
     override fun getItemCount(): Int = deliveries.size
 
-    fun addDelivery(newJob: DeliveryInProgress) {
-        deliveries.add(newJob)
-        notifyItemInserted(deliveries.size - 1)
-    }
-
     fun addDeliveries(newJobs: List<DeliveryInProgress>) {
         deliveries.clear()
         deliveries.addAll(newJobs)
         notifyDataSetChanged()
     }
 
-    fun removeDelivery(position: Int) {
-        deliveries.removeAt(position)
-        notifyItemRemoved(position)
-        if (position < deliveries.size) {
-            notifyItemRangeChanged(position, deliveries.size - position)
-        }
-    }
-
-    inner class DeliveriesInProgressViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class DeliveriesInProgressViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding = JobInProgressRowBinding.bind(itemView)
         var item: DeliveryInProgress? = null
 

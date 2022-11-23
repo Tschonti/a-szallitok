@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
@@ -22,9 +24,11 @@ import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.model.DeliveryInProgress
 import hu.bme.aut.android.deliveryapp.model.DeliveryStatus
 import hu.bme.aut.android.deliveryapp.service.LocationTrackerService
+import hu.bme.aut.android.deliveryapp.view.LoadingDialogManager
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryState
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.InProgressJobsDetailsFragmentViewModel
+import kotlinx.coroutines.Job
 
 
 class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmittedListener {
@@ -49,21 +53,11 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
         super.onViewCreated(view, savedInstanceState)
 
         selectedJob = arguments?.get("JOB") as DeliveryInProgress?
-        binding.tvStatusLabel.text = "Status: ${selectedJob?.delivery?.status}: ${selectedJob?.status}"
+        binding.tvStatusLabel.text = getString(R.string.delivery_status, selectedJob?.delivery?.status, selectedJob?.status)
 
         listener = this
 
-        loadingDialog = LottieProgressDialog(
-            context = requireContext(),
-            isCancel = true,
-            dialogWidth = null,
-            dialogHeight = null,
-            animationViewWidth = null,
-            animationViewHeight = null,
-            fileName = LottieProgressDialog.SAMPLE_1,
-            title = null,
-            titleVisible = null
-        )
+        loadingDialog = LoadingDialogManager.getLoadingDialog(requireContext())
 
         initView()
 
@@ -121,10 +115,10 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
                 }
                 else {
                     AwesomeDialog.build(requireActivity())
-                        .title("Error")
-                        .body("You have to grant the permissions to start the delivery!")
+                        .title(getString(R.string.error))
+                        .body(getString(R.string.need_permission))
                         .icon(R.drawable.error)
-                        .onPositive("Close")
+                        .onPositive(getString(R.string.close))
                 }
             }
 
@@ -149,10 +143,10 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             } else {
                 binding.btnMarkAsInTransit.isEnabled = false
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
-                    .body("You have to grant the permissions to start the delivery!")
+                    .title(getString(R.string.error))
+                    .body(getString(R.string.need_permission))
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }
@@ -192,14 +186,23 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
                     startActivity(intent)
                 }
 
+                if (state.data.phoneNumber.length < 2)
+                    binding.btnCall.visibility = View.GONE
+
+                if (state.data.email.length < 2)
+                    binding.btnEmail.visibility = View.GONE
+
+                if (state.data.phoneNumber.length < 2)
+                    binding.btnSms.visibility = View.GONE
+
             }
             is UserState.userResponseError -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }
@@ -219,10 +222,10 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             is DeliveryState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }
@@ -235,10 +238,10 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             is DeliveryState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
-                    .title("Success")
-                    .body("Delivery marked as in transit")
+                    .title(getString(R.string.success))
+                    .body(getString(R.string.marked_as_ready))
                     .icon(R.drawable.success)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
 
                 intentMyService.putExtra("DELIVERY_ID", state.data._id)
                 requireActivity().startService(intentMyService)
@@ -246,20 +249,20 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             is DeliveryState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }
 
     override fun rateSubmitted(rating: Int) {
         AwesomeDialog.build(requireActivity())
-            .title("Success")
-            .body("Delivery marked as ready")
+            .title(getString(R.string.success))
+            .body(getString(R.string.marked_as_ready))
             .icon(R.drawable.success)
-            .onPositive("Close")
+            .onPositive(getString(R.string.close))
         viewModel.rateClient(selectedJob!!.delivery._id, rating).observe(viewLifecycleOwner
         ) { deliveryState ->
             userRated(deliveryState)
@@ -275,18 +278,18 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             is DeliveryState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
-                    .title("Success")
-                    .body("User succesfully rated")
+                    .title(getString(R.string.success))
+                    .body(getString(R.string.user_rated))
                     .icon(R.drawable.success)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
             is DeliveryState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }

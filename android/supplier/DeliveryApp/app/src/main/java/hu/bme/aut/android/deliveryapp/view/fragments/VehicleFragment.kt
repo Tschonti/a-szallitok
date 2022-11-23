@@ -15,6 +15,7 @@ import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentVehicleBinding
 import hu.bme.aut.android.deliveryapp.model.Vehicle
 import hu.bme.aut.android.deliveryapp.repository.CurrentUser
+import hu.bme.aut.android.deliveryapp.view.LoadingDialogManager
 import hu.bme.aut.android.deliveryapp.view.states.VehicleState
 import hu.bme.aut.android.deliveryapp.viewmodel.VehicleFragmentViewModel
 
@@ -46,17 +47,7 @@ class VehicleFragment : Fragment() {
             binding.layoutNoVehicle.visibility = View.VISIBLE
         }
 
-        loadingDialog = LottieProgressDialog(
-            context = requireContext(),
-            isCancel = true,
-            dialogWidth = null,
-            dialogHeight = null,
-            animationViewWidth = null,
-            animationViewHeight = null,
-            fileName = LottieProgressDialog.SAMPLE_1,
-            title = null,
-            titleVisible = null
-        )
+        loadingDialog = LoadingDialogManager.getLoadingDialog(requireContext())
 
         binding.btnAddVehicle.setOnClickListener {
             findNavController().navigate(R.id.action_vehicleFragment_to_addVehicleFragment)
@@ -86,8 +77,8 @@ class VehicleFragment : Fragment() {
             is VehicleState.vehicleResponseSuccess -> {
                 binding.tvType.text = state.data.type
                 binding.tvYear.text = state.data.yearOfManufacturing.toString()
-                binding.tvStorageSize.text = "width: ${state.data.maxCapacity.width} x length: ${state.data.maxCapacity.length} x height: ${state.data.maxCapacity.height}"
-                binding.tvStorageCapacity.text = "${state.data.maxCapacity.weight} kg"
+                binding.tvStorageSize.text = getString(R.string.vehicle_capacity, state.data.maxCapacity.width.toString(), state.data.maxCapacity.length.toString(), state.data.maxCapacity.height.toString())
+                binding.tvStorageCapacity.text = getString(R.string.vehicle_capacity_weight, state.data.maxCapacity.weight.toString())
                 binding.tvParkLocation.text = state.data.location
                 loadingDialog.dismiss()
                 vehicle = state.data
@@ -95,10 +86,10 @@ class VehicleFragment : Fragment() {
             is VehicleState.vehicleResponseError -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }

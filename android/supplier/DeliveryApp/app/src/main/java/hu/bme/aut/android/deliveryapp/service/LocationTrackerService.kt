@@ -44,20 +44,7 @@ class LocationTrackerService : LifecycleService() {
             override fun onChanged(t: Location) {
                 updateNotification(t.latitude, t.longitude)
 
-                ApiRepository().updateLocation(intent?.extras?.get("DELIVERY_ID") as String, LocationUpdate(t.latitude.toFloat(), t.longitude.toFloat()))/*.observe(this
-                ) { deliveryState ->
-                    when(deliveryState) {
-                        is DeliveryState.inProgress -> {
-                            Log.d("LOCATIONSERVICE", "SENDING DATA...")
-                        }
-                        is DeliveryState.deliveriesResponseSuccess -> {
-                            Log.d("LOCATIONSERVICE", "DATA SENT")
-                        }
-                        is DeliveryState.deliveriesResponseError -> {
-                            Log.d("LOCATIONSERVICE", "ERROR")
-                        }
-                    }
-                }*/
+                ApiRepository().updateLocation(intent?.extras?.get("DELIVERY_ID") as String, LocationUpdate(t.latitude.toFloat(), t.longitude.toFloat()))
             }
         })
 
@@ -100,7 +87,6 @@ class LocationTrackerService : LifecycleService() {
             .setContentTitle("Transporter location tracker")
             .setContentText("Current location: $lat, $lng")
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setVibrate(longArrayOf(1000, 2000, 1000))
             .setContentIntent(contentIntent).build()
     }
 
@@ -109,7 +95,7 @@ class LocationTrackerService : LifecycleService() {
         val channel = NotificationChannel(
             NOTIFICATION_CHANNEL_ID,
             NOTIFICATION_CHANNEL_NAME,
-            NotificationManager.IMPORTANCE_DEFAULT
+            NotificationManager.IMPORTANCE_LOW
         )
 
         val notificationManager =

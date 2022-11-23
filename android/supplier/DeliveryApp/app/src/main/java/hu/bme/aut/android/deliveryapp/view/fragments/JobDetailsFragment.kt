@@ -65,10 +65,10 @@ class JobDetailsFragment : Fragment() {
             }
             is UserState.userResponseError -> {
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }

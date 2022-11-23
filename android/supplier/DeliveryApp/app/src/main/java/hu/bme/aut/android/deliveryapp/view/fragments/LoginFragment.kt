@@ -26,6 +26,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentLoginBinding
 import hu.bme.aut.android.deliveryapp.repository.CurrentUser
+import hu.bme.aut.android.deliveryapp.view.LoadingDialogManager
 import hu.bme.aut.android.deliveryapp.view.states.UserState
 import hu.bme.aut.android.deliveryapp.viewmodel.LoginFragmentViewModel
 
@@ -61,17 +62,7 @@ class LoginFragment : Fragment() {
 
         FirebaseApp.initializeApp(requireContext())
 
-        loadingDialog = LottieProgressDialog(
-            context = requireContext(),
-            isCancel = true,
-            dialogWidth = null,
-            dialogHeight = null,
-            animationViewWidth = null,
-            animationViewHeight = null,
-            fileName = LottieProgressDialog.SAMPLE_8,
-            title = null,
-            titleVisible = null
-        )
+        loadingDialog = LoadingDialogManager.getLoadingDialog(requireContext())
 
         auth = FirebaseAuth.getInstance()
         googleSignInClient= GoogleSignIn.getClient(requireContext(), googleSignInOptions);
@@ -134,10 +125,10 @@ class LoginFragment : Fragment() {
             is UserState.userResponseError -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }

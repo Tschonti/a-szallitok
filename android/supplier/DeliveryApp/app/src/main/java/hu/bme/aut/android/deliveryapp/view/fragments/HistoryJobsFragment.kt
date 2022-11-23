@@ -1,11 +1,9 @@
 package hu.bme.aut.android.deliveryapp.view.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,9 +13,8 @@ import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentHistoryJobsBinding
 import hu.bme.aut.android.deliveryapp.model.Delivery
-import hu.bme.aut.android.deliveryapp.repository.CurrentUser
+import hu.bme.aut.android.deliveryapp.view.LoadingDialogManager
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryInProgressState
-import hu.bme.aut.android.deliveryapp.view.states.DeliveryListState
 import hu.bme.aut.android.deliveryapp.viewmodel.HistoryJobsFragmentViewModel
 
 
@@ -44,24 +41,14 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = JobDetailsAdapter(requireContext(), this)
+        adapter = JobDetailsAdapter(this)
 
         viewModel.getUserHistory().observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
         }
 
-        loadingDialog = LottieProgressDialog(
-            context = requireContext(),
-            isCancel = true,
-            dialogWidth = null,
-            dialogHeight = null,
-            animationViewWidth = null,
-            animationViewHeight = null,
-            fileName = LottieProgressDialog.SAMPLE_1,
-            title = null,
-            titleVisible = null
-        )
+        loadingDialog = LoadingDialogManager.getLoadingDialog(requireContext())
 
         binding.historyRecyclerView.adapter = adapter
     }
@@ -78,10 +65,10 @@ class HistoryJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListener 
             is DeliveryInProgressState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }

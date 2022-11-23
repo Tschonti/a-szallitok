@@ -33,7 +33,7 @@
             android:id="@+id/btnMakeContract"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Make a contract"
+            android:text="@string/make_a_contract"
             android:textColor="@color/black"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"

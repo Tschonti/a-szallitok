@@ -2,7 +2,6 @@ package hu.bme.aut.android.deliveryapp.api
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.auth.FirebaseAuth
 import hu.bme.aut.android.deliveryapp.model.*
 import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.*
@@ -71,26 +70,26 @@ object DeliveryApi {
         val resultData = MutableLiveData<UserState>()
         resultData.value = UserState.inProgress
 
-            api.getUserData(CurrentUser.token, id).enqueue(object : Callback<User> {
-                override fun onResponse(
-                    call: Call<User>,
-                    response: Response<User>
-                ) {
-                    if (response.isSuccessful) {
-                        resultData.postValue(response.body()
-                            ?.let { UserState.userResponseSuccess(it) })
-                    } else {
-                        Log.d("API_ERROR", response.message())
-                        Log.d("TOKEN", CurrentUser.token)
-                        resultData.postValue(UserState.userResponseError(response.message()))
-                    }
+        api.getUserData(CurrentUser.token, id).enqueue(object : Callback<User> {
+            override fun onResponse(
+                call: Call<User>,
+                response: Response<User>
+            ) {
+                if (response.isSuccessful) {
+                    resultData.postValue(response.body()
+                        ?.let { UserState.userResponseSuccess(it) })
+                } else {
+                    Log.d("API_ERROR", response.message())
+                    Log.d("TOKEN", CurrentUser.token)
+                    resultData.postValue(UserState.userResponseError(response.message()))
                 }
+            }
 
-                override fun onFailure(call: Call<User>, throwable: Throwable) {
-                    Log.d("API_ERROR", throwable.message.toString())
-                    resultData.postValue(UserState.userResponseError(throwable.message.toString()))
-                }
-            })
+            override fun onFailure(call: Call<User>, throwable: Throwable) {
+                Log.d("API_ERROR", throwable.message.toString())
+                resultData.postValue(UserState.userResponseError(throwable.message.toString()))
+            }
+        })
 
 
         return resultData

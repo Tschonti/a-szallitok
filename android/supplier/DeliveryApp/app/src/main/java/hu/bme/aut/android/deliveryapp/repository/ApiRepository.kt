@@ -21,10 +21,6 @@ class ApiRepository {
         return DeliveryApi.getDeliveryData(id)
     }
 
-    fun getJobsInProgress(): MutableLiveData<DeliveryInProgressState> {
-        return DeliveryApi.getDeliveriesInProgress()
-    }
-
     fun getUserData(id: String): MutableLiveData<UserState> {
         return DeliveryApi.getUserData(id)
     }

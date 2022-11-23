@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
@@ -15,6 +14,7 @@ import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.adapter.JobDetailsAdapter
 import hu.bme.aut.android.deliveryapp.databinding.FragmentAvailableJobsBinding
 import hu.bme.aut.android.deliveryapp.model.Delivery
+import hu.bme.aut.android.deliveryapp.view.LoadingDialogManager
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryListState
 import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobsFragmentViewModel
 
@@ -40,24 +40,14 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = JobDetailsAdapter(requireContext(), this)
+        adapter = JobDetailsAdapter(this)
 
         viewModel.getAvailableJobs().observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
         }
 
-        loadingDialog = LottieProgressDialog(
-            context = requireContext(),
-            isCancel = true,
-            dialogWidth = null,
-            dialogHeight = null,
-            animationViewWidth = null,
-            animationViewHeight = null,
-            fileName = LottieProgressDialog.SAMPLE_8,
-            title = null,
-            titleVisible = null
-        )
+        loadingDialog = LoadingDialogManager.getLoadingDialog(requireContext())
 
         binding.availableJobsRecyclerView.adapter = adapter
 
@@ -77,17 +67,16 @@ class AvailableJobsFragment : Fragment(), JobDetailsAdapter.OnJobSelectedListene
             is DeliveryListState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
                 binding.srlJobs.isRefreshing = false
-                Log.i("DATA ARRIVED", state.data.toString())
                 adapter.addJobs(state.data)
             }
             is DeliveryListState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
                 binding.srlJobs.isRefreshing = false
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }

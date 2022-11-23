@@ -1,27 +1,21 @@
 package hu.bme.aut.android.deliveryapp.view.fragments
 
-import android.R
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.EditText
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.devhoony.lottieproegressdialog.LottieProgressDialog
 import com.example.awesomedialog.*
+import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.databinding.FragmentAddVehicleBinding
 import hu.bme.aut.android.deliveryapp.model.Capacity
 import hu.bme.aut.android.deliveryapp.model.Vehicle
-import hu.bme.aut.android.deliveryapp.view.states.DeliveryListState
+import hu.bme.aut.android.deliveryapp.view.LoadingDialogManager
 import hu.bme.aut.android.deliveryapp.view.states.VehicleState
 import hu.bme.aut.android.deliveryapp.viewmodel.AddVehicleFragmentViewModel
-import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobDetailsFragmentViewModel
 
 
 class AddVehicleFragment : Fragment() {
@@ -56,17 +50,7 @@ class AddVehicleFragment : Fragment() {
             }
         }
 
-        loadingDialog = LottieProgressDialog(
-            context = requireContext(),
-            isCancel = true,
-            dialogWidth = null,
-            dialogHeight = null,
-            animationViewWidth = null,
-            animationViewHeight = null,
-            fileName = LottieProgressDialog.SAMPLE_8,
-            title = null,
-            titleVisible = null
-        )
+        loadingDialog = LoadingDialogManager.getLoadingDialog(requireContext())
 
         binding.btnAddVehicle.setOnClickListener {
 
@@ -108,36 +92,36 @@ class AddVehicleFragment : Fragment() {
 
     private fun checkInputFields(): Boolean {
         var allCorrect = true
-        if (binding.etVehicleHeight.editText?.text?.isEmpty() ?: true) {
-            binding.etVehicleHeight.editText?.setError("Empty")
+        if (binding.etVehicleHeight.editText!!.text.isEmpty()) {
+            binding.etVehicleHeight.editText?.error = getString(R.string.empty)
             allCorrect = false
         }
-        if (binding.etVehicleYear.editText?.text?.isEmpty() ?: true) {
-            binding.etVehicleYear.editText?.setError("Empty")
+        if (binding.etVehicleYear.editText!!.text.isEmpty()) {
+            binding.etVehicleYear.editText?.error = getString(R.string.empty)
             allCorrect = false
         }
-        if (binding.etVehicleLocation.editText?.text?.isEmpty() ?: true) {
-            binding.etVehicleLocation.editText?.setError("Empty")
+        if (binding.etVehicleLocation.editText!!.text.isEmpty()) {
+            binding.etVehicleLocation.editText?.error = getString(R.string.empty)
             allCorrect = false
         }
-        if (binding.etVehicleWeight.editText?.text?.isEmpty() ?: true) {
-            binding.etVehicleWeight.editText?.setError("Empty")
+        if (binding.etVehicleWeight.editText!!.text.isEmpty()) {
+            binding.etVehicleWeight.editText?.error = getString(R.string.empty)
             allCorrect = false
         }
-        if (binding.etVehiclePlate.editText?.text?.isEmpty() ?: true) {
-            binding.etVehiclePlate.editText?.setError("Empty")
+        if (binding.etVehiclePlate.editText!!.text.isEmpty()) {
+            binding.etVehiclePlate.editText?.error = getString(R.string.empty)
             allCorrect = false
         }
-        if (binding.etVehicleType.editText?.text?.isEmpty() ?: true) {
-            binding.etVehicleType.editText?.setError("Empty")
+        if (binding.etVehicleType.editText!!.text.isEmpty()) {
+            binding.etVehicleType.editText?.error = getString(R.string.empty)
             allCorrect = false
         }
-        if (binding.etVehicleLength.editText?.text?.isEmpty() ?: true) {
-            binding.etVehicleLength.editText?.setError("Empty")
+        if (binding.etVehicleLength.editText!!.text.isEmpty()) {
+            binding.etVehicleLength.editText?.error = getString(R.string.empty)
             allCorrect = false
         }
-        if (binding.etVehicleWidth.editText?.text?.isEmpty() ?: true) {
-            binding.etVehicleWidth.editText?.setError("Empty")
+        if (binding.etVehicleWidth.editText!!.text.isEmpty()) {
+            binding.etVehicleWidth.editText?.error = getString(R.string.empty)
             allCorrect = false
         }
 
@@ -167,19 +151,19 @@ class AddVehicleFragment : Fragment() {
                 loadingDialog.dismiss()
                 findNavController().popBackStack()
                 AwesomeDialog.build(requireActivity())
-                    .title("Success")
-                    .body("Vehicle successfully added")
+                    .title(getString(R.string.success))
+                    .body(getString(R.string.vehicle_added))
                     .icon(hu.bme.aut.android.deliveryapp.R.drawable.success)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
             is VehicleState.vehicleResponseError -> {
                 loadingDialog.dismiss()
                 findNavController().popBackStack()
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(hu.bme.aut.android.deliveryapp.R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }

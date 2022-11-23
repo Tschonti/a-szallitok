@@ -17,6 +17,7 @@ import hu.bme.aut.android.deliveryapp.databinding.FragmentInProgressJobsBinding
 import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.model.DeliveryInProgress
 import hu.bme.aut.android.deliveryapp.repository.CurrentUser
+import hu.bme.aut.android.deliveryapp.view.LoadingDialogManager
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryInProgressState
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryListState
 import hu.bme.aut.android.deliveryapp.viewmodel.InProgressJobsFragmentViewModel
@@ -43,24 +44,14 @@ class InProgressJobsFragment : Fragment(), DeliveriesInProgressAdapter.OnDeliver
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = DeliveriesInProgressAdapter(requireContext(), this)
+        adapter = DeliveriesInProgressAdapter(this)
 
         viewModel.getJobsInProgress().observe(viewLifecycleOwner
         ) { jobDetailState ->
             render(jobDetailState)
         }
 
-        loadingDialog = LottieProgressDialog(
-            context = requireContext(),
-            isCancel = true,
-            dialogWidth = null,
-            dialogHeight = null,
-            animationViewWidth = null,
-            animationViewHeight = null,
-            fileName = LottieProgressDialog.SAMPLE_1,
-            title = null,
-            titleVisible = null
-        )
+        loadingDialog = LoadingDialogManager.getLoadingDialog(requireContext())
 
         binding.inProgressJobsRecyclerView.adapter = adapter
 
@@ -86,10 +77,10 @@ class InProgressJobsFragment : Fragment(), DeliveriesInProgressAdapter.OnDeliver
                 loadingDialog.dismiss()
                 binding.srlJobs.isRefreshing = false
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }

@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Name"
+            android:text="@string/name"
             app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
             app:layout_constraintTop_toTopOf="@+id/ivProfileImage" />
 
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Rating"
+            android:text="@string/rating"
             app:layout_constraintBottom_toBottomOf="@+id/ivProfileImage"
             app:layout_constraintStart_toEndOf="@+id/ivProfileImage" />
 
@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Date"
+            android:text="@string/date"
             app:layout_constraintBottom_toBottomOf="@+id/ivDate"
             app:layout_constraintStart_toEndOf="@+id/tvDateLabel"
             app:layout_constraintTop_toTopOf="@+id/ivDate" />
@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Price"
+            android:text="@string/price"
             app:layout_constraintBottom_toBottomOf="@+id/ivPrice"
             app:layout_constraintStart_toEndOf="@+id/tvPriceLabel"
             app:layout_constraintTop_toTopOf="@+id/ivPrice" />
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Location"
+            android:text="@string/location"
             app:layout_constraintStart_toStartOf="@+id/tvLocationLabel"
             app:layout_constraintTop_toBottomOf="@+id/tvLocationLabel" />
 
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
-            android:text="Title"
+            android:text="@string/title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvJobDetailsLabel" />
 
@@ -107,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Description"
+            android:text="@string/description"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
@@ -125,7 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Date:"
+            android:text="@string/date_label"
             style="@style/SubTitleTextViewStyle"
             app:layout_constraintBottom_toBottomOf="@+id/ivDate"
             app:layout_constraintStart_toEndOf="@+id/ivDate"
@@ -145,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Price:"
+            android:text="@string/price_label"
             style="@style/SubTitleTextViewStyle"
             app:layout_constraintBottom_toBottomOf="@+id/ivPrice"
             app:layout_constraintStart_toEndOf="@+id/ivPrice"
@@ -166,7 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Location:"
+            android:text="@string/location_label"
             app:layout_constraintBottom_toBottomOf="@+id/ivLocation"
             app:layout_constraintStart_toEndOf="@+id/ivLocation"
             app:layout_constraintTop_toTopOf="@+id/ivLocation" />
@@ -176,7 +176,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="TextView"
+
             app:layout_constraintBottom_toBottomOf="@+id/tvLocationSource"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvLocationSource" />

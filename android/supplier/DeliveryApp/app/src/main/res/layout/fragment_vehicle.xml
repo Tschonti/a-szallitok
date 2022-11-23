@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="Vehicle"
+        app:title="@string/vehicle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="You have no vehicles, so you can add one to your profile with the button below."
+            android:text="@string/no_vehicle_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivNoCarMeme" />
 
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/purple_200"
-            android:text="Add Vehicle"
+            android:text="@string/add_vehicle"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Type"
+            android:text="@string/type"
             app:layout_constraintStart_toEndOf="@+id/tvTypeLabel"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Year"
+            android:text="@string/year"
             app:layout_constraintStart_toEndOf="@+id/tvYearLabel"
             app:layout_constraintTop_toBottomOf="@+id/tvType" />
 
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Storage size"
+            android:text="@string/storage_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvStorageSizeLabel" />
 
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Storage capacity"
+            android:text="@string/storage_capacity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvStorageCapacityLabel" />
 
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Park location"
+            android:text="@string/park_location"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvParkLocationLabel" />
 
@@ -119,7 +119,7 @@
             android:id="@+id/btnEditVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Vehicle"
+            android:text="@string/edit_vehicle"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/purple_200"
@@ -135,7 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Type:"
+            android:text="@string/type_label"
             style="@style/TitleTextViewStyle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Year:"
+            android:text="@string/year_label"
             style="@style/TitleTextViewStyle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTypeLabel" />
@@ -157,7 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:text="Storage size"
+            android:text="@string/storage_size"
             style="@style/TitleTextViewStyle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvYearLabel" />
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:text="Storage capacity"
+            android:text="@string/storage_capacity"
             style="@style/TitleTextViewStyle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvStorageSize" />
@@ -179,7 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:text="Park location"
+            android:text="@string/park_location"
             style="@style/TitleTextViewStyle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvStorageCapacity" />

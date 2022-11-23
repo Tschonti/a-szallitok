@@ -57,17 +57,17 @@ class AvailableJobDetailsFragment : Fragment() {
             }
             is DeliveryState.deliveriesResponseSuccess -> {
                 AwesomeDialog.build(requireActivity())
-                    .title("Success")
-                    .body("Now it's in pending status")
+                    .title(getString(R.string.success))
+                    .body(getString(R.string.in_pending))
                     .icon(R.drawable.success)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
             is DeliveryState.deliveriesResponseError -> {
                 AwesomeDialog.build(requireActivity())
-                    .title("Error")
+                    .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
-                    .onPositive("Close")
+                    .onPositive(getString(R.string.close))
             }
         }
     }
