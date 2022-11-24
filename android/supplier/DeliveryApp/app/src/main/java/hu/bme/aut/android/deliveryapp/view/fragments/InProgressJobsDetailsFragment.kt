@@ -186,13 +186,13 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
                     startActivity(intent)
                 }
 
-                if (state.data.phoneNumber.length < 2)
+                if (state.data.phoneNumber == null)
                     binding.btnCall.visibility = View.GONE
 
                 if (state.data.email.length < 2)
                     binding.btnEmail.visibility = View.GONE
 
-                if (state.data.phoneNumber.length < 2)
+                if (state.data.phoneNumber == null)
                     binding.btnSms.visibility = View.GONE
 
             }
