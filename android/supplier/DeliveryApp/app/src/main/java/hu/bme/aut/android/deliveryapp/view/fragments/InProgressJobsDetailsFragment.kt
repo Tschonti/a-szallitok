@@ -97,7 +97,8 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
         }
 
         binding.btnMarkAsInTransit.setOnClickListener {
-            viewModel.markDeliveryAsInTransit(selectedJob!!.delivery).observe(viewLifecycleOwner
+            viewModel.markDeliveryAsInTransit(selectedJob!!.delivery).observe(
+                viewLifecycleOwner
             ) { deliveryState ->
                 inTransitRender(deliveryState)
             }
