@@ -7,7 +7,7 @@ export const Page = ({children}: HasChildren) => {
     return (
         <Flex direction="column" minHeight="100vh">
           <Navbar />
-          <Box flex={1} pb={24} mx={["0.5rem", "3rem", "6rem", "10rem"]}>
+          <Box flex={1} mx={["0.5rem", "3rem", "6rem", "10rem"]}>
             {children}
           </Box>
           <Footer />

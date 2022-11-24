@@ -6,6 +6,7 @@
     "@chakra-ui/react": "^2.3.5",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@react-google-maps/api": "^2.17.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -20,6 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
+    "react-map-gl": "^7.0.13",
     "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",
     "typescript": "^4.8.4",
@@ -39,8 +41,7 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
+      ">0.2%", "not dead", "not ie 11", "not chrome < 51", "not safari < 10", "not android < 51",
       "not op_mini all"
     ],
     "development": [

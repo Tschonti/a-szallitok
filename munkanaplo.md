@@ -33,6 +33,13 @@
 - Frontend app megjelenésének váza: Navbar és Footer elkészítése, dizájnolása
 - Deliveries oldal elkészítése
 
+## 12. hét
+- Frontend authentikáció fejlesztése
+- Figyelmezető modalok a frontendre destruktív műveletek előtt
+- Kaszkádos törlés backenden
+- Térkép oldal elkészítése Levivel
+- Dokumentáció írás
+
 # Domonkos Ádám
 ## 4. hét
 - Specifikáció kidolgozása közösen
