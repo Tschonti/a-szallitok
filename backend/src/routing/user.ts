@@ -17,10 +17,14 @@ import {
 import { checkValidationResult } from '../middleware/validation'
 
 export default (app: Express) => {
-  app.get('/user', getUsers)
+  app.get('/user', getUserByUId, checkIfAdmin, getUsers)
+
   app.get('/user/requestedJobs', getUserByUId, getRequestedJobs)
+
   app.get('/user/jobRequests', getUserByUId, getJobRequests)
-  app.get('/user/toplist', generateToplist)
+
+  app.get('/user/toplist', getUserByUId, checkIfAdmin, generateToplist)
+
   app.get('/user/:id', param('id').isMongoId(), checkValidationResult, getUser, calculateRating)
 
   app.put('/user/', getUserByUId, updateUser)

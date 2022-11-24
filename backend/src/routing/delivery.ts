@@ -14,6 +14,7 @@ import {
   statusChangeMiddleware,
   updateDelivery
 } from '../middleware/delivery'
+import { checkIfAdmin } from '../middleware/user'
 import { checkValidationResult } from '../middleware/validation'
 import { Delivery, DeliveryStatus } from '../model/Delivery'
 
@@ -24,7 +25,7 @@ export default (app: Express) => {
     }))
   })
 
-  app.get('/allDeliveries', async (req: Request, res: Response) => {
+  app.get('/allDeliveries', getUserByUId, checkIfAdmin, async (req: Request, res: Response) => {
     return res.status(200).send(await Delivery.find({}).populate(['clientUser', 'transporterUser']).exec())
   })
 
