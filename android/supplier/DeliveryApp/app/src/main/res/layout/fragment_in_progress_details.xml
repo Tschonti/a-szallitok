@@ -1,112 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/srlJob"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/color_fade"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/color_fade">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="Job details"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            android:layout_height="match_parent">
 
-        <fragment
-            android:id="@+id/jobDetailsFragmentOnInProgress"
-            android:name="hu.bme.aut.android.deliveryapp.view.fragments.JobDetailsFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="Job details" />
 
-        <TextView
-            android:id="@+id/tvStatusLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:text="@string/status"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/jobDetailsFragmentOnInProgress" />
+            <fragment
+                android:id="@+id/jobDetailsFragmentOnInProgress"
+                android:name="hu.bme.aut.android.deliveryapp.view.fragments.JobDetailsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-        <Button
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-            android:id="@+id/btnCall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/phone"
-            android:textColor="@color/black"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="@color/purple_200"
-            android:textSize="18sp"
-            app:icon="@drawable/ic_baseline_call_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvStatusLabel"
-            />
+            <TextView
+                android:id="@+id/tvStatusLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/jobDetailsFragmentOnInProgress" />
 
-        <Button
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-            android:id="@+id/btnSms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sms"
-            android:textColor="@color/black"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/purple_200"
-            android:textSize="18sp"
-            app:icon="@drawable/ic_baseline_sms_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnCall"
-            />
+            <Button
+                android:id="@+id/btnCall"
+                style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="@color/purple_200"
+                android:text="@string/phone"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:icon="@drawable/ic_baseline_call_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvStatusLabel" />
 
-        <Button
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-            android:id="@+id/btnEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/email"
-            android:textColor="@color/black"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/purple_200"
-            android:textSize="18sp"
-            app:icon="@drawable/ic_baseline_email_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSms"
-            />
+            <Button
+                android:id="@+id/btnSms"
+                style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/purple_200"
+                android:text="@string/sms"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:icon="@drawable/ic_baseline_sms_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnCall" />
 
-        <Button
-            android:id="@+id/btnMarkAsReady"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/mark_as_ready"
-            android:background="@drawable/action_button_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnEmail" />
+            <Button
+                android:id="@+id/btnEmail"
+                style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/purple_200"
+                android:text="@string/email"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:icon="@drawable/ic_baseline_email_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnSms" />
 
-        <Button
-            android:id="@+id/btnMarkAsInTransit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/mark_as_in_transit"
-            android:background="@drawable/action_button_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnEmail" />
+            <Button
+                android:id="@+id/btnMarkAsReady"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/action_button_background"
+                android:text="@string/mark_as_ready"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnEmail" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btnMarkAsInTransit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/action_button_background"
+                android:text="@string/mark_as_in_transit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnEmail" />
 
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

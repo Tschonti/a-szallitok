@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import hu.bme.aut.android.deliveryapp.MainActivity
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.model.LocationUpdate
 import hu.bme.aut.android.deliveryapp.repository.ApiRepository
@@ -63,9 +64,7 @@ class LocationTrackerService : LifecycleService() {
             createNotificationChannel()
         }
 
-        val gmmIntentUri = Uri.parse("geo:$lat,$lng")
-        val notificationIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-        notificationIntent.setPackage("com.google.android.apps.maps")
+        val notificationIntent = Intent(this, MainActivity::class.java)
         val contentIntent = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S)
             PendingIntent.getActivity(
                 this,
@@ -85,7 +84,7 @@ class LocationTrackerService : LifecycleService() {
             this, NOTIFICATION_CHANNEL_ID
         )
             .setContentTitle("Transporter location tracker")
-            .setContentText("Current location: $lat, $lng")
+            .setContentText("Deliver the product!")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentIntent(contentIntent).build()
     }

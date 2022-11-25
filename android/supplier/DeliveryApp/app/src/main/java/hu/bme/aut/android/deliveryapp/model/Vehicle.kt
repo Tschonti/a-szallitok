@@ -7,7 +7,7 @@ data class Vehicle(
     val pictureUrl: String?,
     val yearOfManufacturing: Int,
     val location: String,
-    var _id: String?, //TODO: should be val
+    val _id: String?,
     val plateNumber: String,
     val type: String,
     val maxCapacity: Capacity,

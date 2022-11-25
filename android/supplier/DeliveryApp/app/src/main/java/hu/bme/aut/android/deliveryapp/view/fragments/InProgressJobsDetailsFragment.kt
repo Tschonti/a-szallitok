@@ -34,7 +34,8 @@ import kotlinx.coroutines.Job
 class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmittedListener {
     private lateinit var binding: FragmentInProgressDetailsBinding
 
-    private var selectedJob: DeliveryInProgress? = null
+    private var selectedJob: Delivery? = null
+    private var selectedJobInProgress: DeliveryInProgress? = null
 
     private val viewModel: InProgressJobsDetailsFragmentViewModel by viewModels()
 
@@ -46,14 +47,19 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
 
     companion object {
         private const val REQUEST_CODE_PERMISSIONS = 1001
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.FOREGROUND_SERVICE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+        private val REQUIRED_PERMISSIONS = arrayOf(
+            Manifest.permission.FOREGROUND_SERVICE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_BACKGROUND_LOCATION
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        selectedJob = arguments?.get("JOB") as DeliveryInProgress?
-        binding.tvStatusLabel.text = getString(R.string.delivery_status, selectedJob?.delivery?.status, selectedJob?.status)
+        selectedJobInProgress = arguments?.get("JOB") as DeliveryInProgress?
+        selectedJob = selectedJobInProgress?.delivery
 
         listener = this
 
@@ -61,27 +67,34 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
 
         initView()
 
+        binding.srlJob.setOnRefreshListener {
+            refreshData()
+        }
+
     }
 
     private fun initView() {
-        val fragment: JobDetailsFragment = childFragmentManager.findFragmentById(R.id.jobDetailsFragmentOnInProgress) as JobDetailsFragment
-        fragment.initFragment(selectedJob?.delivery)
+        val fragment: JobDetailsFragment =
+            childFragmentManager.findFragmentById(R.id.jobDetailsFragmentOnInProgress) as JobDetailsFragment
+        fragment.initFragment(selectedJob)
+
+        binding.tvStatusLabel.text =
+            getString(R.string.delivery_status, selectedJobInProgress?.status, selectedJob?.status)
 
         if (selectedJob != null) {
-            viewModel.getUserData(selectedJob!!.delivery.clientUser).observe(viewLifecycleOwner
+            viewModel.getUserData(selectedJob!!.clientUser).observe(
+                viewLifecycleOwner
             ) { userState ->
                 renderData(userState)
             }
 
-            if (selectedJob?.delivery?.status == DeliveryStatus.IN_TRANSIT) {
+            if (selectedJob?.status == DeliveryStatus.IN_TRANSIT) {
                 binding.btnMarkAsInTransit.visibility = View.GONE
                 binding.btnMarkAsReady.visibility = View.VISIBLE
-            }
-            else if (selectedJob?.delivery?.status == DeliveryStatus.ASSIGNED) {
+            } else if (selectedJob?.status == DeliveryStatus.ASSIGNED) {
                 binding.btnMarkAsInTransit.visibility = View.VISIBLE
                 binding.btnMarkAsReady.visibility = View.GONE
-            }
-            else {
+            } else {
                 binding.btnMarkAsInTransit.visibility = View.GONE
                 binding.btnMarkAsReady.visibility = View.GONE
             }
@@ -90,17 +103,18 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
         intentMyService = Intent(requireContext(), LocationTrackerService::class.java)
 
         binding.btnMarkAsReady.setOnClickListener {
-            viewModel.markJobAsReady(selectedJob!!.delivery).observe(viewLifecycleOwner
+            viewModel.markJobAsReady(selectedJob!!).observe(
+                viewLifecycleOwner
             ) { deliveryState ->
-                jobReadyRender(deliveryState)
+                deliveryResponseRender(deliveryState)
             }
         }
 
         binding.btnMarkAsInTransit.setOnClickListener {
-            viewModel.markDeliveryAsInTransit(selectedJob!!.delivery).observe(
+            viewModel.markDeliveryAsInTransit(selectedJob!!).observe(
                 viewLifecycleOwner
             ) { deliveryState ->
-                inTransitRender(deliveryState)
+                deliveryResponseRender(deliveryState)
             }
         }
 
@@ -113,8 +127,7 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             ) { isGranted ->
                 if (isGranted) {
                     binding.btnMarkAsInTransit.isEnabled = true
-                }
-                else {
+                } else {
                     AwesomeDialog.build(requireActivity())
                         .title(getString(R.string.error))
                         .body(getString(R.string.need_permission))
@@ -173,17 +186,26 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
                 loadingDialog.dismiss()
 
                 binding.btnCall.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", state.data.phoneNumber, null))
+                    val intent = Intent(
+                        Intent.ACTION_DIAL,
+                        Uri.fromParts("tel", state.data.phoneNumber, null)
+                    )
                     startActivity(intent)
                 }
 
                 binding.btnSms.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("sms", state.data.phoneNumber, null))
+                    val intent = Intent(
+                        Intent.ACTION_SENDTO,
+                        Uri.fromParts("sms", state.data.phoneNumber, null)
+                    )
                     startActivity(intent)
                 }
 
                 binding.btnEmail.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", state.data.email, null))
+                    val intent = Intent(
+                        Intent.ACTION_SENDTO,
+                        Uri.fromParts("mailto", state.data.email, null)
+                    )
                     startActivity(intent)
                 }
 
@@ -208,17 +230,18 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
         }
     }
 
-    private fun jobReadyRender(state: DeliveryState) {
+    private fun deliveryRender(state: DeliveryState) {
         when (state) {
             is DeliveryState.inProgress -> {
                 loadingDialog.show()
             }
             is DeliveryState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
+                binding.srlJob.isRefreshing = false
+                selectedJob = state.data
 
-                requireActivity().stopService(intentMyService)
+                initView()
 
-                RatingDialog(listener).show(childFragmentManager, "RATE")
             }
             is DeliveryState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
@@ -231,21 +254,31 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
         }
     }
 
-    private fun inTransitRender(state: DeliveryState) {
+    private fun deliveryResponseRender(state: DeliveryState) {
         when (state) {
             is DeliveryState.inProgress -> {
                 loadingDialog.show()
             }
             is DeliveryState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
-                AwesomeDialog.build(requireActivity())
-                    .title(getString(R.string.success))
-                    .body(getString(R.string.marked_as_ready))
-                    .icon(R.drawable.success)
-                    .onPositive(getString(R.string.close))
+                binding.srlJob.isRefreshing = false
 
-                intentMyService.putExtra("DELIVERY_ID", state.data._id)
-                requireActivity().startService(intentMyService)
+                if (state.data.status == DeliveryStatus.IN_TRANSIT) {
+                    AwesomeDialog.build(requireActivity())
+                        .title(getString(R.string.success))
+                        .body(getString(R.string.marked_as_in_transit))
+                        .icon(R.drawable.success)
+                        .onPositive(getString(R.string.close))
+
+                    intentMyService.putExtra("DELIVERY_ID", state.data._id)
+                    requireActivity().startService(intentMyService)
+                } else if (state.data.status == DeliveryStatus.DELIVERED) {
+                    requireActivity().stopService(intentMyService)
+
+                    RatingDialog(listener).show(childFragmentManager, "RATE")
+                }
+
+                refreshData()
             }
             is DeliveryState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
@@ -264,7 +297,8 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             .body(getString(R.string.marked_as_ready))
             .icon(R.drawable.success)
             .onPositive(getString(R.string.close))
-        viewModel.rateClient(selectedJob!!.delivery._id, rating).observe(viewLifecycleOwner
+        viewModel.rateClient(selectedJob!!._id, rating).observe(
+            viewLifecycleOwner
         ) { deliveryState ->
             userRated(deliveryState)
         }
@@ -278,6 +312,7 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             }
             is DeliveryState.deliveriesResponseSuccess -> {
                 loadingDialog.dismiss()
+                binding.srlJob.isRefreshing = false
                 AwesomeDialog.build(requireActivity())
                     .title(getString(R.string.success))
                     .body(getString(R.string.user_rated))
@@ -286,11 +321,20 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             }
             is DeliveryState.deliveriesResponseError -> {
                 loadingDialog.dismiss()
+                binding.srlJob.isRefreshing = false
                 AwesomeDialog.build(requireActivity())
                     .title(getString(R.string.error))
                     .body(state.exceptionMsg)
                     .icon(R.drawable.error)
                     .onPositive(getString(R.string.close))
+            }
+        }
+    }
+
+    private fun refreshData() {
+        selectedJob?.let {
+            viewModel.getDeliveryData(it._id).observe(viewLifecycleOwner) { deliveryState ->
+                deliveryRender(deliveryState)
             }
         }
     }
