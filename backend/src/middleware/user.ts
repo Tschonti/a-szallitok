@@ -1,6 +1,6 @@
 import { User, UserDoc } from '../model/User'
 import { NextFunction, Request, Response } from 'express'
-import { TransportRequest } from '../model/TransportRequest'
+import { TransportRequest, TransportRequestStatus } from '../model/TransportRequest'
 import { Delivery, DeliveryDoc, DeliveryStatus } from '../model/Delivery'
 
 interface AggregationResult {
@@ -154,7 +154,7 @@ export const getRequestedJobs = async (req: Request, res: Response) => {
 
 export const getJobRequests = async (req: Request, res: Response) => {
   const allRequests = await TransportRequest
-    .find({})
+    .find({ status: TransportRequestStatus.PENDING })
     .populate<{delivery: DeliveryDoc, user: UserDoc}>(['delivery', 'user'])
     .exec()
   return res.status(200).send(

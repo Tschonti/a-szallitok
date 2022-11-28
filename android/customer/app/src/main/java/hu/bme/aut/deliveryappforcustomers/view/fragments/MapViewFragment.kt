@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import hu.bme.aut.deliveryappforcustomers.R
 import hu.bme.aut.deliveryappforcustomers.viewmodel.MapViewViewModel
+import java.time.LocalTime
 
 class MapViewFragment : Fragment() {
 
@@ -21,6 +22,12 @@ class MapViewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        HistoryFragment.historyList.add(
+        HistoryFragment.Companion.HistoryItem(
+            HistoryFragment.Companion.HistoryType.CHECKED_MAP,
+            LocalTime.now()
+        )
+    )
         return inflater.inflate(R.layout.fragment_map_view, container, false)
     }
 

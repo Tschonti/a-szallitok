@@ -6,10 +6,12 @@ import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.model.User
 import hu.bme.aut.deliveryappforcustomers.model.DeliveryStatus
 import hu.bme.aut.deliveryappforcustomers.model.DeliveryWithUserAndStatus
+import hu.bme.aut.deliveryappforcustomers.model.Reply
 import hu.bme.aut.deliveryappforcustomers.repository.CurrentUser
 import hu.bme.aut.deliveryappforcustomers.view.JobDetailState
 import hu.bme.aut.deliveryappforcustomers.view.states.UserState
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,18 +48,33 @@ object DeliveryApi {
         return resultData
     }
 
-    suspend fun getJobRequests(): MutableLiveData<List<DeliveryWithUserAndStatus>?> {
+    fun getJobRequests(): MutableLiveData<List<DeliveryWithUserAndStatus>?> {
         val resultData = MutableLiveData<List<DeliveryWithUserAndStatus>?>()
 
-        val response = RetrofitClient.api.getJobRequests(CurrentUser.token)
-        val result = response.body()
-        Log.d("BODYSIZE in deliveryapi", result?.size.toString())
-        if (response.isSuccessful && result != null) {
+        GlobalScope.async {
+            val response = RetrofitClient.api.getJobRequests(CurrentUser.token)
             resultData.postValue(response.body())
-        } else {
-            resultData.postValue(response.body())
-            Log.d("DELIVERYAPI ERROR", "null or unsuccessful response, e: " + response.message())
-        }
+        }.start()
+//        val response = RetrofitClient.api.getJobRequests(CurrentUser.token)
+//        val result = response.body()
+//
+//        Log.d("BODYSIZE in deliveryapi", result?.size.toString())
+//        if (response.isSuccessful && result != null) {
+//            resultData.postValue(result)
+//        } else {
+//            resultData.postValue(response.body())
+//            Log.d("DELIVERYAPI ERROR", "null or unsuccessful response, e: " + response.message())
+//        }
+
+        return resultData
+    }
+
+    fun reply(deliveryID: String, reply: Reply): MutableLiveData<Delivery> {
+        val resultData = MutableLiveData<Delivery>()
+        GlobalScope.async {
+            val response = api.reply(CurrentUser.token, deliveryID, reply)
+            Log.d("RESPONSE", response.message().toString())
+        }.start()
 
         return resultData
     }

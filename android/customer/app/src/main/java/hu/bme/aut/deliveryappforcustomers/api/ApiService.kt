@@ -5,6 +5,7 @@ import hu.bme.aut.android.deliveryapp.model.JobDetails
 import hu.bme.aut.android.deliveryapp.model.User
 import hu.bme.aut.android.deliveryapp.model.Vehicle
 import hu.bme.aut.deliveryappforcustomers.model.DeliveryWithUserAndStatus
+import hu.bme.aut.deliveryappforcustomers.model.Reply
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -43,8 +44,10 @@ interface ApiService {
 
     @GET("user/jobRequests")
     suspend fun getJobRequests(@Header("Authorization") token: String): Response<List<DeliveryWithUserAndStatus>?>
-    //TODO response v call a return value?
 
     @GET("login")
     fun loginUser(@Header("Authorization") token: String): Call<User>
+
+    @PUT("delivery/{ID}/reply")
+    suspend fun reply(@Header("Authorization") token: String, @Path("ID") ID: String, @Body body: Reply): Response<Delivery>
 }

@@ -10,7 +10,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.adevinta.leku.*
+import com.adevinta.leku.LATITUDE
+import com.adevinta.leku.LONGITUDE
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator
 import com.google.android.material.datepicker.DateValidatorPointForward
@@ -24,6 +25,7 @@ import hu.bme.aut.deliveryappforcustomers.repository.CurrentUser
 import hu.bme.aut.deliveryappforcustomers.viewmodel.NewTransportViewModel
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -209,6 +211,12 @@ class NewTransportFragment : Fragment() {
             )
             Log.d("NewTransportFragment", "New transport created: {${returnValue}}")
             Toast.makeText(context, "Sikeres létrehozás!", Toast.LENGTH_SHORT).show()
+            HistoryFragment.historyList.add(
+                HistoryFragment.Companion.HistoryItem(
+                    HistoryFragment.Companion.HistoryType.NEW_TRANSPORT,
+                    LocalTime.now()
+                )
+            )
         }
     }
 }
