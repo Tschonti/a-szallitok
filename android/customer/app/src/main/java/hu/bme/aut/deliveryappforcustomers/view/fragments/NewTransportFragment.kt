@@ -1,6 +1,8 @@
 package hu.bme.aut.deliveryappforcustomers.view.fragments
 
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.CalendarConstraints.DateValidator
+import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.deliveryappforcustomers.databinding.FragmentNewTransportBinding
@@ -20,6 +25,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
+
 
 class NewTransportFragment : Fragment() {
 
@@ -82,6 +88,8 @@ class NewTransportFragment : Fragment() {
         return true
     }
 
+
+
     var pickupDate: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
     var deliveryDate: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -90,10 +98,14 @@ class NewTransportFragment : Fragment() {
         val dateFormat = "yyyy.MM.dd"
         val format = SimpleDateFormat(dateFormat)
         binding.pickupDate.setOnClickListener {
+            val dateValidator: DateValidator = DateValidatorPointForward.from(System.currentTimeMillis())
+            val constraintsBuilder = CalendarConstraints.Builder().setValidator(dateValidator)
             val datePicker =
                 MaterialDatePicker.Builder.datePicker()
                     .setTitleText("Válassz dátumot")
+                    .setCalendarConstraints(constraintsBuilder.build())
                     .build()
+
             datePicker.show(childFragmentManager, "DATE_PICKER")
             datePicker.addOnPositiveButtonClickListener {
                 pickupDate.timeInMillis = it
@@ -101,10 +113,15 @@ class NewTransportFragment : Fragment() {
             }
         }
         binding.deliveryDate.setOnClickListener {
+            val dateValidator: DateValidator = DateValidatorPointForward.from(pickupDate.timeInMillis)
+            val constraintsBuilder = CalendarConstraints.Builder().setValidator(dateValidator)
             val datePicker =
                 MaterialDatePicker.Builder.datePicker()
                     .setTitleText("Válassz dátumot")
+                    .setSelection(pickupDate.timeInMillis)
+                    .setCalendarConstraints(constraintsBuilder.build())
                     .build()
+
             datePicker.show(childFragmentManager, "DATE_PICKER")
             datePicker.addOnPositiveButtonClickListener {
                 deliveryDate.timeInMillis = it
