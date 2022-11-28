@@ -49,6 +49,7 @@ class ActiveTransportsFragment : Fragment(), ActiveTransportsAdapter.onTransport
 //                render(responseList)
 //            }
 //        }
+        binding.activeTransportsRecyclerView.adapter = adapter
         binding.swipeRefreshLayout.setOnRefreshListener {
             GlobalScope.launch {
                 val requestedJobs = GlobalScope.async {
@@ -61,13 +62,15 @@ class ActiveTransportsFragment : Fragment(), ActiveTransportsAdapter.onTransport
                 } else {
                     Log.i("activetransportsfragment", "requested jobs data arrived")
                     adapter.clear()
-                    adapter.addTransports(requestedJobs.value!!)
-                    binding.swipeRefreshLayout.isRefreshing = false
+                    requireActivity().runOnUiThread {
+                        adapter.addTransports(requestedJobs.value!!)
+                        binding.swipeRefreshLayout.isRefreshing = false
+                    }
+
                 }
             }
         }
 
-        binding.activeTransportsRecyclerView.adapter = adapter
     }
 
     fun render(responseList: List<DeliveryWithUserAndStatus>?) {
