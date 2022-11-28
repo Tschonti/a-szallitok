@@ -1,6 +1,7 @@
 package hu.bme.aut.deliveryappforcustomers.view.fragments
 
 import android.os.Bundle
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,9 @@ import hu.bme.aut.deliveryappforcustomers.databinding.FragmentActiveTransportsBi
 import hu.bme.aut.deliveryappforcustomers.model.DeliveryWithUserAndStatus
 import hu.bme.aut.deliveryappforcustomers.repository.CurrentUser
 import hu.bme.aut.deliveryappforcustomers.viewmodel.ActiveTransportsViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class ActiveTransportsFragment : Fragment(), ActiveTransportsAdapter.onTransportSelectedListener {
 
@@ -37,30 +41,32 @@ class ActiveTransportsFragment : Fragment(), ActiveTransportsAdapter.onTransport
 
         Log.d("USERID", "current user's id would be ${CurrentUser.user._id} (NOT YET USED)")
 
-        binding.swipeRefreshLayout.setOnRefreshListener {
-
-            viewModel.getJobRequests().observe(
-                viewLifecycleOwner
-            ) { responseList ->
-                render(responseList)
-            }
+//        binding.swipeRefreshLayout.setOnRefreshListener {
 //
-//            val requestedJobs = viewModel.getJobRequests().value
-//            if (requestedJobs == null) {
-//                Log.e("activetransportsfragment", "requested jobs is null")
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Egyik fuvarodra sincs jelentkező",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//                binding.swipeRefreshLayout.isRefreshing = false
-//            } else {
-//                Log.i("activetransportsfragment", "requested jobs data arrived")
-//                adapter.clear()
-//                adapter.addTransports(requestedJobs)
-//                binding.swipeRefreshLayout.isRefreshing = false
+//            viewModel.getJobRequests().observe(
+//                viewLifecycleOwner
+//            ) { responseList ->
+//                render(responseList)
 //            }
+//        }
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            GlobalScope.launch {
+                val requestedJobs = GlobalScope.async {
+                    viewModel.getJobRequests()
+                }.await()
+                if (requestedJobs.value == null) {
+                    Log.e("activetransportsfragment", "requested jobs is null")
+                    //TODO patch this
+                    binding.swipeRefreshLayout.isRefreshing = false
+                } else {
+                    Log.i("activetransportsfragment", "requested jobs data arrived")
+                    adapter.clear()
+                    adapter.addTransports(requestedJobs.value!!)
+                    binding.swipeRefreshLayout.isRefreshing = false
+                }
+            }
         }
+
         binding.activeTransportsRecyclerView.adapter = adapter
     }
 

@@ -13,9 +13,8 @@ class ApiRepository {
         return DeliveryApi.getUserHistory(id)
     }
 
-    fun getJobRequests(): MutableLiveData<List<DeliveryWithUserAndStatus>?> {
+    suspend fun getJobRequests(): MutableLiveData<List<DeliveryWithUserAndStatus>?> {
         val resultData = DeliveryApi.getJobRequests()
-        Log.d("BODYSIZE in repository", resultData.value?.size.toString())
         return resultData
     }
 

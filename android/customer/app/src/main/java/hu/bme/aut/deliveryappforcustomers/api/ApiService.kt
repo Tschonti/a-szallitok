@@ -42,7 +42,8 @@ interface ApiService {
     ): Call<Delivery>
 
     @GET("user/jobRequests")
-    fun getJobRequests(@Header("Authorization") token: String): Call<List<DeliveryWithUserAndStatus>?>
+    suspend fun getJobRequests(@Header("Authorization") token: String): Response<List<DeliveryWithUserAndStatus>?>
+    //TODO response v call a return value?
 
     @GET("login")
     fun loginUser(@Header("Authorization") token: String): Call<User>

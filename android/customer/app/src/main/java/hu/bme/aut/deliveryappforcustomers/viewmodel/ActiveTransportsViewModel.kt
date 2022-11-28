@@ -9,7 +9,8 @@ class ActiveTransportsViewModel : ViewModel() {
 
     private val apiRepository = ApiRepository()
 
-    fun getJobRequests(): MutableLiveData<List<DeliveryWithUserAndStatus>?> {
-        return apiRepository.getJobRequests()
+    suspend fun getJobRequests(): MutableLiveData<List<DeliveryWithUserAndStatus>?> {
+        val resultData = apiRepository.getJobRequests()
+        return resultData
     }
 }

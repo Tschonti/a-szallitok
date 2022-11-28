@@ -59,4 +59,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     implementation 'com.google.android.gms:play-services-base:18.1.0'
+
+    implementation ('com.adevinta.android:leku:9.1.4') {
+        exclude group: 'com.google.android.gms'
+        exclude group: 'androidx.appcompat'
+    }
 }

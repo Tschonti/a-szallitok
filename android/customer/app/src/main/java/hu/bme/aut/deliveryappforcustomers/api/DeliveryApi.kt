@@ -6,7 +6,6 @@ import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.model.User
 import hu.bme.aut.deliveryappforcustomers.model.DeliveryStatus
 import hu.bme.aut.deliveryappforcustomers.model.DeliveryWithUserAndStatus
-import hu.bme.aut.deliveryappforcustomers.model.DUSstate
 import hu.bme.aut.deliveryappforcustomers.repository.CurrentUser
 import hu.bme.aut.deliveryappforcustomers.view.JobDetailState
 import hu.bme.aut.deliveryappforcustomers.view.states.UserState
@@ -15,6 +14,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.math.log
 
 
 object DeliveryApi {
@@ -46,44 +46,19 @@ object DeliveryApi {
         return resultData
     }
 
-    fun getJobRequests(): MutableLiveData<DUSstate> {
-        val resultData = MutableLiveData<DUSstate>()
-        resultData.value = DUSstate.inProgress
+    suspend fun getJobRequests(): MutableLiveData<List<DeliveryWithUserAndStatus>?> {
+        val resultData = MutableLiveData<List<DeliveryWithUserAndStatus>?>()
 
-        api.getJobRequests(CurrentUser.token)
-            .enqueue(object : Callback<List<DeliveryWithUserAndStatus>?> {
-                override fun onResponse(
-                    call: Call<List<DUSstate>?>,
-                    response: Response<List<DUSstate>?>
-                ) {
-                    if (response.isSuccessful) {
-                        resultData.postValue(response.body()
-                            ?.let { DUSstate.deliveriesResponseSuccess(it) })
-                    } else {
-                        Log.d("ERROR", "e: " + response.message())
-                        resultData.postValue(
-                            DUSstate.deliveriesResponseError(
-                                response.message()
-                            )
-                        )
-                    }
-                }
+        val response = RetrofitClient.api.getJobRequests(CurrentUser.token)
+        val result = response.body()
+        Log.d("BODYSIZE in deliveryapi", result?.size.toString())
+        if (response.isSuccessful && result != null) {
+            resultData.postValue(response.body())
+        } else {
+            resultData.postValue(response.body())
+            Log.d("DELIVERYAPI ERROR", "null or unsuccessful response, e: " + response.message())
+        }
 
-                override fun onFailure(
-                    call: Call<List<DeliveryWithUserAndStatus>?>,
-                    throwable: Throwable
-                ) {
-                    Log.d("ERROR", "on failure, e: " + throwable.message.toString())
-
-                    resultData.postValue(
-                        DUSstate.deliveriesResponseError(
-                            throwable.message.toString()
-                        )
-                    )
-                }
-            })
-        //TODO prio ezt visszaírni a régire
-        // ÉS suspend functiont csinálni belőle a globalscope.launch helyett
         return resultData
     }
 

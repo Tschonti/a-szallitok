@@ -1,8 +1,8 @@
 package hu.bme.aut.deliveryappforcustomers.view.fragments
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.adevinta.leku.*
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator
 import com.google.android.material.datepicker.DateValidatorPointForward
@@ -73,22 +74,46 @@ class NewTransportFragment : Fragment() {
             binding.width.editText?.error = "A fuvar szélessége nem lehet üres"
             return false
         }
-        if (binding.pickupPlace.editText?.text.toString().isEmpty()) {
-            binding.pickupPlace.editText?.error = "A felvétel helye nem lehet üres"
-            return false
-        }
-        if (binding.deliveryPlace.editText?.text.toString().isEmpty()) {
-            binding.deliveryPlace.editText?.error = "A kiszállítás helye nem lehet üres"
-            return false
-        }
-        if(pickupDate.time > deliveryDate.time) {
-            Toast.makeText(context, "A felvétel dátuma nem lehet későbbi, mint a kiszállítás dátuma", Toast.LENGTH_SHORT).show()
+//        if (binding.pickupPlace.editText?.text.toString().isEmpty()) {
+//            binding.pickupPlace.editText?.error = "A felvétel helye nem lehet üres"
+//            return false
+//        }
+//        if (binding.deliveryPlace.editText?.text.toString().isEmpty()) {
+//            binding.deliveryPlace.editText?.error = "A kiszállítás helye nem lehet üres"
+//            return false
+//        }
+        if (pickupDate.time > deliveryDate.time) {
+            Toast.makeText(
+                context,
+                "A felvétel dátuma nem lehet későbbi, mint a kiszállítás dátuma",
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
         return true
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            Log.d("RESULT****", "OK")
+            if (requestCode == 1) {
+                val latitude = data.getDoubleExtra(LATITUDE, 0.0)
+                Log.d("LATITUDE****", latitude.toString())
+                val longitude = data.getDoubleExtra(LONGITUDE, 0.0)
+                Log.d("LONGITUDE****", longitude.toString())
 
+            }
+        } else if (requestCode == 2) {
+            val latitude = data!!.getDoubleExtra(LATITUDE, 0.0)
+            Log.d("LATITUDE****", latitude.toString())
+            val longitude = data.getDoubleExtra(LONGITUDE, 0.0)
+            Log.d("LONGITUDE****", longitude.toString())
+
+        }
+        if (resultCode == Activity.RESULT_CANCELED) {
+            Log.d("RESULT****", "CANCELLED")
+        }
+    }
 
     var pickupDate: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
     var deliveryDate: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
@@ -98,7 +123,8 @@ class NewTransportFragment : Fragment() {
         val dateFormat = "yyyy.MM.dd"
         val format = SimpleDateFormat(dateFormat)
         binding.pickupDate.setOnClickListener {
-            val dateValidator: DateValidator = DateValidatorPointForward.from(System.currentTimeMillis())
+            val dateValidator: DateValidator =
+                DateValidatorPointForward.from(System.currentTimeMillis())
             val constraintsBuilder = CalendarConstraints.Builder().setValidator(dateValidator)
             val datePicker =
                 MaterialDatePicker.Builder.datePicker()
@@ -113,7 +139,8 @@ class NewTransportFragment : Fragment() {
             }
         }
         binding.deliveryDate.setOnClickListener {
-            val dateValidator: DateValidator = DateValidatorPointForward.from(pickupDate.timeInMillis)
+            val dateValidator: DateValidator =
+                DateValidatorPointForward.from(pickupDate.timeInMillis)
             val constraintsBuilder = CalendarConstraints.Builder().setValidator(dateValidator)
             val datePicker =
                 MaterialDatePicker.Builder.datePicker()
@@ -128,6 +155,29 @@ class NewTransportFragment : Fragment() {
                 binding.deliveryDate.text = format.format(deliveryDate.time)
             }
         }
+
+        binding.pickupPlace.setOnClickListener {
+//            val locationPickerIntent = LocationPickerActivity.Builder()
+//                .withLocation(41.4036299, 2.1743558)
+//                .withGeolocApiKey("<PUT API KEY HERE>")
+//                .withGooglePlacesApiKey("<PUT API KEY HERE>")
+//                .withSearchZone("hu_HU")
+//                .withDefaultLocaleSearchZone()
+//                .shouldReturnOkOnBackPressed()
+//                .withStreetHidden()
+//                .withCityHidden()
+//                .withZipCodeHidden()
+//                .withSatelliteViewHidden()
+//                .withGooglePlacesEnabled()
+//                .withGoogleTimeZoneEnabled()
+//                .withVoiceSearchHidden()
+//                .withUnnamedRoadHidden()
+//                .withSearchBarHidden()
+//                .build(applicationContext)
+//
+//            startActivityForResult(locationPickerIntent, MAP_BUTTON_REQUEST_CODE)
+        }
+
 
         binding.submit.setOnClickListener {
             val testLocation = Location(
