@@ -55,16 +55,6 @@ object DeliveryApi {
             val response = RetrofitClient.api.getJobRequests(CurrentUser.token)
             resultData.postValue(response.body())
         }.start()
-//        val response = RetrofitClient.api.getJobRequests(CurrentUser.token)
-//        val result = response.body()
-//
-//        Log.d("BODYSIZE in deliveryapi", result?.size.toString())
-//        if (response.isSuccessful && result != null) {
-//            resultData.postValue(result)
-//        } else {
-//            resultData.postValue(response.body())
-//            Log.d("DELIVERYAPI ERROR", "null or unsuccessful response, e: " + response.message())
-//        }
 
         return resultData
     }
