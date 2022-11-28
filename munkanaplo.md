@@ -77,6 +77,11 @@
 - ScrollRefresh a lista nézetekre
 - Broadcast receiver bootolásra, így újraindul a LocationService a telefon újraindításakor
 
+## 12. hét
+- Supplier alkalmazás befejezése
+-	Dokumentáció írás
+-	Customer alkalmazás javítása
+
 # Raisz Olivér
 ## 4. hét
 - Specifikáció kidolgozása közösen
