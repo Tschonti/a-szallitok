@@ -158,7 +158,7 @@ class NewTransportFragment : Fragment() {
             }
         }
 
-        binding.pickupPlace.setOnClickListener {
+//        binding.pickupPlace.setOnClickListener {
 //            val locationPickerIntent = LocationPickerActivity.Builder()
 //                .withLocation(41.4036299, 2.1743558)
 //                .withGeolocApiKey("<PUT API KEY HERE>")
@@ -178,7 +178,7 @@ class NewTransportFragment : Fragment() {
 //                .build(applicationContext)
 //
 //            startActivityForResult(locationPickerIntent, MAP_BUTTON_REQUEST_CODE)
-        }
+//        }
 
 
         binding.submit.setOnClickListener {
