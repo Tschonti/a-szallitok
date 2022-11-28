@@ -64,4 +64,6 @@ dependencies {
         exclude group: 'com.google.android.gms'
         exclude group: 'androidx.appcompat'
     }
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 }

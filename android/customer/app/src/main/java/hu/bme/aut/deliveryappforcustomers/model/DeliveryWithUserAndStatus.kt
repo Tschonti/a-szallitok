@@ -6,6 +6,6 @@ import java.io.Serializable
 
 data class DeliveryWithUserAndStatus(
     val delivery: Delivery,
-    val user: User,
-    val userStatus: String,
+    val user: User?,
+    val userStatus: String?,
 ) : Serializable

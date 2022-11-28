@@ -1,7 +1,6 @@
 package hu.bme.aut.deliveryappforcustomers.view.fragments
 
 import android.os.Bundle
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,10 @@ import androidx.fragment.app.viewModels
 import hu.bme.aut.deliveryappforcustomers.adapter.ActiveTransportsAdapter
 import hu.bme.aut.deliveryappforcustomers.databinding.FragmentActiveTransportsBinding
 import hu.bme.aut.deliveryappforcustomers.model.DeliveryWithUserAndStatus
+import hu.bme.aut.deliveryappforcustomers.model.Reply
 import hu.bme.aut.deliveryappforcustomers.repository.CurrentUser
 import hu.bme.aut.deliveryappforcustomers.viewmodel.ActiveTransportsViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import java.time.LocalTime
 
 class ActiveTransportsFragment : Fragment(), ActiveTransportsAdapter.onTransportSelectedListener {
 
@@ -51,55 +49,70 @@ class ActiveTransportsFragment : Fragment(), ActiveTransportsAdapter.onTransport
 //        }
         binding.activeTransportsRecyclerView.adapter = adapter
         binding.swipeRefreshLayout.setOnRefreshListener {
-            GlobalScope.launch {
-                val requestedJobs = GlobalScope.async {
-                    viewModel.getJobRequests()
-                }.await()
-                if (requestedJobs.value == null) {
-                    Log.e("activetransportsfragment", "requested jobs is null")
-                    //TODO patch this
-                    binding.swipeRefreshLayout.isRefreshing = false
-                } else {
-                    Log.i("activetransportsfragment", "requested jobs data arrived")
-                    adapter.clear()
-                    requireActivity().runOnUiThread {
-                        adapter.addTransports(requestedJobs.value!!)
+            viewModel.getJobRequests().observe(
+                viewLifecycleOwner
+            ) { responseList ->
+                requireActivity().runOnUiThread {
+                    if (responseList != null) {
+                        adapter.clear()
+                        adapter.addTransports(responseList!!)
                         binding.swipeRefreshLayout.isRefreshing = false
                     }
 
                 }
             }
-        }
 
-    }
-
-    fun render(responseList: List<DeliveryWithUserAndStatus>?) {
-        if (responseList == null) {
-            Log.e("activetransportsfragment", "requested jobs is null")
-            Toast.makeText(
-                requireContext(),
-                "Egyik fuvarodra sincs jelentkező",
-                Toast.LENGTH_SHORT
-            ).show()
-            binding.swipeRefreshLayout.isRefreshing = false
-        } else {
-            Log.i("activetransportsfragment", "requested jobs data arrived")
-            adapter.clear()
-            adapter.addTransports(responseList)
-            //binding.swipeRefreshLayout.isRefreshing = false
+//            GlobalScope.launch {
+//                val requestedJobs = GlobalScope.async {
+//                    viewModel.getJobRequests()
+//                }.await()
+//                if (requestedJobs.value == null) {
+//                    Log.e("activetransportsfragment", "requested jobs is null")
+//                    //TODO patch this
+//                    binding.swipeRefreshLayout.isRefreshing = false
+//                } else {
+//                    Log.i("activetransportsfragment", "requested jobs data arrived")
+//                    requireActivity().runOnUiThread {
+//                        adapter.clear()
+//                        adapter.addTransports(requestedJobs.value!!)
+//                        binding.swipeRefreshLayout.isRefreshing = false
+//                    }
+//
+//                }
+//            }
         }
     }
 
     override fun onJobDetailAccepted(transporterCandidate: DeliveryWithUserAndStatus?) {
         Log.d("TRANSPORT", transporterCandidate.toString())
         adapter.removeTransportAt(adapter.getTransportPosition(transporterCandidate!!))
-        // TODO: send "accepted" to the server
+        Log.d("DELIVERYID", transporterCandidate.delivery._id!!)
+        viewModel.reply(
+            transporterCandidate.delivery._id,
+            Reply(transporterCandidate.user!!._id, true)
+        )
+        Toast.makeText(context, "Job accepted", Toast.LENGTH_SHORT).show()
+        HistoryFragment.historyList.add(
+            HistoryFragment.Companion.HistoryItem(
+                HistoryFragment.Companion.HistoryType.ACCEPTED_TRANSPORT,
+                LocalTime.now()
+            )
+        )
     }
 
     override fun onJobDetailDeclined(transporterCandidate: DeliveryWithUserAndStatus?) {
         Log.d("TRANSPORT", "declined the ${transporterCandidate.toString()}")
         adapter.removeTransportAt(adapter.getTransportPosition(transporterCandidate!!))
-        // TODO: send "declined" to the server function
+        viewModel.reply(
+            transporterCandidate.delivery._id!!,
+            Reply(transporterCandidate.user!!._id, false)
+        )
+        Toast.makeText(context, "Job declined", Toast.LENGTH_SHORT).show()
+        HistoryFragment.historyList.add(
+            HistoryFragment.Companion.HistoryItem(
+                HistoryFragment.Companion.HistoryType.DECLINED_TRANSPORT,
+                LocalTime.now()
+            )
+        )
     }
-
 }

@@ -121,6 +121,14 @@
 - adatok megjelenítése ezekhez a deliverykhez
 - lehetőség van elfogadni/elutasítani a deliveryt (wip)
 
+## 12. hét
+- Alkalmazás befejezése 
+- Fuvarok elfogadása és/vagy elutasítása  a backenddel összekötve 
+- Új fuvar létrehozásánál a helyválasztás implementálása 
+- Dokumentumírás 
+
+
+
 # Farkasházi Levente
 ## 4. hét
 - Discord szerver elkészítése

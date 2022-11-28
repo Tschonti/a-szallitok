@@ -19,8 +19,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import hu.bme.aut.deliveryappforcustomers.databinding.ActivityLoginBinding
 import hu.bme.aut.deliveryappforcustomers.repository.CurrentUser
+import hu.bme.aut.deliveryappforcustomers.view.fragments.HistoryFragment
 import hu.bme.aut.deliveryappforcustomers.view.states.UserState
 import hu.bme.aut.deliveryappforcustomers.viewmodel.LoginViewModel
+import java.time.LocalTime
 
 class LoginActivity : AppCompatActivity() {
 
@@ -34,6 +36,12 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        HistoryFragment.historyList.add(
+            HistoryFragment.Companion.HistoryItem(
+                HistoryFragment.Companion.HistoryType.OPENED_APP,
+                LocalTime.now()
+            )
+        )
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)

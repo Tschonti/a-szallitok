@@ -72,9 +72,8 @@ class ActiveTransportsAdapter(
 
         fun bind(newCandidate: DeliveryWithUserAndStatus) {
             item = newCandidate
-            binding.tvTransporterName.text = newCandidate.userStatus
-            binding.tvPrice.text = newCandidate.userStatus.toString() //TODO kikeresni a vállalás árát
-            //TODO set image
+            binding.tvTransporterName.text = newCandidate.delivery.title
+            //binding.tvPrice.text = newCandidate.userStatus.toString()
         }
     }
 }
