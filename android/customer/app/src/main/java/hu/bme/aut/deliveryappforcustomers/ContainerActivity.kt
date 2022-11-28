@@ -29,7 +29,7 @@ class ContainerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         binding.navView.setNavigationItemSelectedListener(this)
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, ActiveTransportsFragment()).commit()
-        binding.navView.setCheckedItem(R.id.new_transport)
+        binding.navView.setCheckedItem(R.id.active_transports)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
