@@ -61,7 +61,7 @@ class ApiRepository {
         return DeliveryApi.updateVehicle(vehicleId, vehicle)
     }
 
-    fun updateLocation(deliveryId: String, location: LocationUpdate): MutableLiveData<DeliveryState> {
-        return DeliveryApi.updateLocation(deliveryId, location)
+    fun updateLocation(token: String, deliveryId: String, location: LocationUpdate): MutableLiveData<DeliveryState> {
+        return DeliveryApi.updateLocation(token, deliveryId, location)
     }
 }

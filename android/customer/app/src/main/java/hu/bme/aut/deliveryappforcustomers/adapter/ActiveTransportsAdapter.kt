@@ -73,7 +73,7 @@ class ActiveTransportsAdapter(
         fun bind(newCandidate: DeliveryWithUserAndStatus) {
             item = newCandidate
             binding.tvTransporterName.text = newCandidate.delivery.title
-            //binding.tvPrice.text = newCandidate.userStatus.toString()
+            binding.tvPrice.text = newCandidate.user?.name
         }
     }
 }

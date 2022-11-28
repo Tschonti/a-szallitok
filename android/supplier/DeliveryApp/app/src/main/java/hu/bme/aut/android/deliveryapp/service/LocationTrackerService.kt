@@ -23,6 +23,7 @@ import hu.bme.aut.android.deliveryapp.MainActivity
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.model.LocationUpdate
 import hu.bme.aut.android.deliveryapp.repository.ApiRepository
+import hu.bme.aut.android.deliveryapp.repository.CurrentUser
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryState
 
 class LocationTrackerService : LifecycleService() {
@@ -38,46 +39,35 @@ class LocationTrackerService : LifecycleService() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
 
-        startForeground(NOTIF_FOREGROUND_ID, getMyNotification(47.toDouble(), 19.toDouble()))
+        val token = CurrentUser.token
+        val deliveryId = intent?.extras?.get("DELIVERY_ID") as String
+
+        startForeground(NOTIF_FOREGROUND_ID, getMyNotification())
 
         val locationLiveData = LocationLiveData(this)
         locationLiveData.observe(this, object: Observer<Location> {
             override fun onChanged(t: Location) {
-                updateNotification(t.latitude, t.longitude)
 
-                ApiRepository().updateLocation(intent?.extras?.get("DELIVERY_ID") as String, LocationUpdate(t.latitude.toFloat(), t.longitude.toFloat()))
+                ApiRepository().updateLocation(token, deliveryId, LocationUpdate(t.latitude.toFloat(), t.longitude.toFloat()))
             }
         })
 
-        return START_STICKY_COMPATIBILITY
+        return START_STICKY
     }
 
 
-    private fun updateNotification(lat: Double, lng: Double) {
-        val notification = getMyNotification(lat, lng)
-        val notifMan = getSystemService(NOTIFICATION_SERVICE) as NotificationManager?
-        notifMan?.notify(NOTIF_FOREGROUND_ID, notification)
-    }
-
-    private fun getMyNotification(lat: Double, lng: Double): Notification {
+    private fun getMyNotification(): Notification {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel()
         }
 
         val notificationIntent = Intent(this, MainActivity::class.java)
-        val contentIntent = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S)
+        val contentIntent =
             PendingIntent.getActivity(
                 this,
                 NOTIF_FOREGROUND_ID,
                 notificationIntent,
-                PendingIntent.FLAG_MUTABLE
-            )
-        else
-            PendingIntent.getActivity(
-                this,
-                NOTIF_FOREGROUND_ID,
-                notificationIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT
+                PendingIntent.FLAG_IMMUTABLE
             )
 
         return NotificationCompat.Builder(

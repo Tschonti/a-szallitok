@@ -1,6 +1,8 @@
 package hu.bme.aut.android.deliveryapp.model
 
-enum class InProgressStatus {
+import java.io.Serializable
+
+enum class InProgressStatus : Serializable {
     ACCEPTED,
     REJECTED,
     PENDING,

@@ -6,4 +6,4 @@ data class Location(
     val address: String,
     val city: String,
     val postalCode: Int,
-)
+) : java.io.Serializable

@@ -39,14 +39,6 @@ class ActiveTransportsFragment : Fragment(), ActiveTransportsAdapter.onTransport
 
         Log.d("USERID", "current user's id would be ${CurrentUser.user._id} (NOT YET USED)")
 
-//        binding.swipeRefreshLayout.setOnRefreshListener {
-//
-//            viewModel.getJobRequests().observe(
-//                viewLifecycleOwner
-//            ) { responseList ->
-//                render(responseList)
-//            }
-//        }
         binding.activeTransportsRecyclerView.adapter = adapter
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.getJobRequests().observe(
@@ -55,31 +47,11 @@ class ActiveTransportsFragment : Fragment(), ActiveTransportsAdapter.onTransport
                 requireActivity().runOnUiThread {
                     if (responseList != null) {
                         adapter.clear()
-                        adapter.addTransports(responseList!!)
+                        adapter.addTransports(responseList)
                         binding.swipeRefreshLayout.isRefreshing = false
                     }
-
                 }
             }
-
-//            GlobalScope.launch {
-//                val requestedJobs = GlobalScope.async {
-//                    viewModel.getJobRequests()
-//                }.await()
-//                if (requestedJobs.value == null) {
-//                    Log.e("activetransportsfragment", "requested jobs is null")
-//                    //TODO patch this
-//                    binding.swipeRefreshLayout.isRefreshing = false
-//                } else {
-//                    Log.i("activetransportsfragment", "requested jobs data arrived")
-//                    requireActivity().runOnUiThread {
-//                        adapter.clear()
-//                        adapter.addTransports(requestedJobs.value!!)
-//                        binding.swipeRefreshLayout.isRefreshing = false
-//                    }
-//
-//                }
-//            }
         }
     }
 

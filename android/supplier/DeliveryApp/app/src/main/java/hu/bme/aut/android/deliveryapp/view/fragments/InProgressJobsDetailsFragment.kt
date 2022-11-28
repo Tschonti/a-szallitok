@@ -65,6 +65,27 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
 
         loadingDialog = LoadingDialogManager.getLoadingDialog(requireContext())
 
+        binding.btnMarkAsInTransit.isEnabled = false
+        if (allPermissionsGranted()) {
+            binding.btnMarkAsInTransit.isEnabled = true
+        } else {
+            val permissionLauncher = registerForActivityResult(
+                ActivityResultContracts.RequestPermission()
+            ) { isGranted ->
+                if (isGranted) {
+                    binding.btnMarkAsInTransit.isEnabled = true
+                } else {
+                    AwesomeDialog.build(requireActivity())
+                        .title(getString(R.string.error))
+                        .body(getString(R.string.need_permission))
+                        .icon(R.drawable.error)
+                        .onPositive(getString(R.string.close))
+                }
+            }
+
+            permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+
         initView()
 
         binding.srlJob.setOnRefreshListener {
@@ -116,27 +137,6 @@ class InProgressJobsDetailsFragment : Fragment(), RatingDialog.RateDialogSubmitt
             ) { deliveryState ->
                 deliveryResponseRender(deliveryState)
             }
-        }
-
-        binding.btnMarkAsInTransit.isEnabled = false
-        if (allPermissionsGranted()) {
-            binding.btnMarkAsInTransit.isEnabled = true
-        } else {
-            val permissionLauncher = registerForActivityResult(
-                ActivityResultContracts.RequestPermission()
-            ) { isGranted ->
-                if (isGranted) {
-                    binding.btnMarkAsInTransit.isEnabled = true
-                } else {
-                    AwesomeDialog.build(requireActivity())
-                        .title(getString(R.string.error))
-                        .body(getString(R.string.need_permission))
-                        .icon(R.drawable.error)
-                        .onPositive(getString(R.string.close))
-                }
-            }
-
-            permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
     }
 

@@ -146,6 +146,40 @@
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pickup_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/pickup_place"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/length">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/delivery_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/delivery_place"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pickup_place">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.button.MaterialButton
@@ -153,7 +187,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/date_of_pickup"
-            app:layout_constraintTop_toBottomOf="@id/length"
+            app:layout_constraintTop_toBottomOf="@id/delivery_place"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_margin="16dp"/>
 
@@ -162,27 +196,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/date_of_delivery"
-            app:layout_constraintTop_toBottomOf="@id/length"
+            app:layout_constraintTop_toBottomOf="@id/delivery_place"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="16dp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/pickup_place"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pickup_place"
-            app:layout_constraintTop_toBottomOf="@id/delivery_date"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_margin="16dp"/>
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/pickup_place"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/pickup_place"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/delivery_date"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:layout_margin="16dp"/>-->
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/delivery_place"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/delivery_place"
-            app:layout_constraintTop_toBottomOf="@id/delivery_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="16dp"/>
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/delivery_place"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/delivery_place"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/delivery_date"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:layout_margin="16dp"/>-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/submit"
@@ -195,6 +229,6 @@
             android:text="@string/submit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/delivery_place" />
+            app:layout_constraintTop_toBottomOf="@id/delivery_date" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

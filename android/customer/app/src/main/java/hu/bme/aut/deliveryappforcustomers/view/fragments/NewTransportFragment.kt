@@ -2,6 +2,7 @@ package hu.bme.aut.deliveryappforcustomers.view.fragments
 
 import android.app.Activity
 import android.content.Intent
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -158,34 +159,37 @@ class NewTransportFragment : Fragment() {
             }
         }
 
-        binding.pickupPlace.setOnClickListener {
-//            val locationPickerIntent = LocationPickerActivity.Builder()
-//                .withLocation(41.4036299, 2.1743558)
-//                .withGeolocApiKey("<PUT API KEY HERE>")
-//                .withGooglePlacesApiKey("<PUT API KEY HERE>")
-//                .withSearchZone("hu_HU")
-//                .withDefaultLocaleSearchZone()
-//                .shouldReturnOkOnBackPressed()
-//                .withStreetHidden()
-//                .withCityHidden()
-//                .withZipCodeHidden()
-//                .withSatelliteViewHidden()
-//                .withGooglePlacesEnabled()
-//                .withGoogleTimeZoneEnabled()
-//                .withVoiceSearchHidden()
-//                .withUnnamedRoadHidden()
-//                .withSearchBarHidden()
-//                .build(applicationContext)
-//
-//            startActivityForResult(locationPickerIntent, MAP_BUTTON_REQUEST_CODE)
-        }
-
-
         binding.submit.setOnClickListener {
-            val testLocation = Location(
+            val geocoder = Geocoder(requireContext(), Locale.getDefault())
+            var latitude_pickup = 0.0f
+            var longtitude_pickup = 0.0f
+            val adresses_pickup = geocoder.getFromLocationName(binding.pickupPlace.editText?.text.toString(), 1);
+            if (adresses_pickup != null) {
+                if(adresses_pickup.size > 0) {
+                    latitude_pickup= adresses_pickup[0]?.latitude!!.toFloat()
+                    longtitude_pickup= adresses_pickup[0]?.longitude!!.toFloat()
+                }
+            }
+            var latitude_delivery = 0.0f
+            var longtitude_delivery = 0.0f
+            val adresses_delivery = geocoder.getFromLocationName(binding.deliveryPlace.editText?.text.toString(), 1);
+            if (adresses_delivery != null) {
+                if(adresses_delivery.size > 0) {
+                    latitude_delivery= adresses_delivery[0]?.latitude!!.toFloat()
+                    longtitude_delivery= adresses_delivery[0]?.longitude!!.toFloat()
+                }
+            }
+            val pickupLocation = Location(
                 "Hungary",
-                Coordinate(0.0f, 0.0f),
-                "example street 1",
+                Coordinate(latitude_pickup, longtitude_pickup),
+                binding.pickupPlace.editText?.text.toString(),
+                "Budapest",
+                1111
+            )
+            val deliveryLocation = Location(
+                "Hungary",
+                Coordinate(latitude_delivery, longtitude_delivery),
+                binding.deliveryPlace.editText?.text.toString(),
                 "Budapest",
                 1111
             )
@@ -200,8 +204,8 @@ class NewTransportFragment : Fragment() {
                         length = binding.length.editText?.text.toString().toFloat(),
                         weight = binding.weight.editText?.text.toString().toFloat()
                     ),
-                    sourceLocation = testLocation,
-                    destinationLocation = testLocation,
+                    sourceLocation = pickupLocation,
+                    destinationLocation = deliveryLocation,
                     clientUser = CurrentUser.user._id,
                     description = binding.description.editText?.text.toString(),
                     createdAt = LocalDate.now().format(DateTimeFormatter.ofPattern(dateFormat)),

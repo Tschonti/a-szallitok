@@ -340,11 +340,11 @@ object DeliveryApi {
         return resultData
     }
 
-    fun updateLocation(deliveryId: String, location: LocationUpdate): MutableLiveData<DeliveryState> {
+    fun updateLocation(token: String, deliveryId: String, location: LocationUpdate): MutableLiveData<DeliveryState> {
         val resultData = MutableLiveData<DeliveryState>()
         resultData.value = DeliveryState.inProgress
 
-        api.updateLocation(CurrentUser.token, deliveryId, location).enqueue(object : Callback<Delivery> {
+        api.updateLocation(token, deliveryId, location).enqueue(object : Callback<Delivery> {
             override fun onResponse(
                 call: Call<Delivery>,
                 response: Response<Delivery>
