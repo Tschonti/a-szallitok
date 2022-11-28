@@ -49,7 +49,7 @@ class LocationTrackerService : LifecycleService() {
             }
         })
 
-        return START_STICKY_COMPATIBILITY
+        return START_STICKY
     }
 
 
