@@ -1,38 +1,38 @@
 package hu.bme.aut.deliveryappforcustomers.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import hu.bme.aut.android.deliveryapp.model.JobDetails
 import hu.bme.aut.deliveryappforcustomers.R
 import hu.bme.aut.deliveryappforcustomers.databinding.ItemPendingDeliveryBinding
+import hu.bme.aut.deliveryappforcustomers.model.DeliveryWithUserAndStatus
 
-class ActiveTransportsAdapter(private val context: Context, private val listener: onTransportSelectedListener)
-    : RecyclerView.Adapter<ActiveTransportsAdapter.ActiveTransportsViewHolder>() {
-    //private val transports: MutableList<Delivery> = ArrayList()
-    private val jobDetails: MutableList<JobDetails> = ArrayList()
+class ActiveTransportsAdapter(
+    private val listener: onTransportSelectedListener
+) : RecyclerView.Adapter<ActiveTransportsAdapter.ActiveTransportsViewHolder>() {
+    private val transporterCandidates: MutableList<DeliveryWithUserAndStatus> = ArrayList()
 
     interface onTransportSelectedListener {
-        fun onJobDetailAccepted(jobDetail: JobDetails?)
-        fun onJobDetailDeclined(jobDetail: JobDetails?)
+        fun onJobDetailAccepted(transporterCandidate: DeliveryWithUserAndStatus?)
+        fun onJobDetailDeclined(transporterCandidate: DeliveryWithUserAndStatus?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActiveTransportsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_pending_delivery, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_pending_delivery, parent, false)
         return ActiveTransportsViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ActiveTransportsViewHolder, position: Int) {
-        val item = jobDetails[position]
+        val item = transporterCandidates[position]
         holder.bind(item)
     }
 
-    override fun getItemCount(): Int = jobDetails.size
+    override fun getItemCount(): Int = transporterCandidates.size
 
-    fun getTransportPosition(jobDetail: JobDetails): Int{
-        return jobDetails.indexOf(jobDetail)
+    fun getTransportPosition(transporterCandidate: DeliveryWithUserAndStatus): Int {
+        return transporterCandidates.indexOf(transporterCandidate)
     }
 
 //    fun addTransport(newTransport: Delivery) {
@@ -40,35 +40,40 @@ class ActiveTransportsAdapter(private val context: Context, private val listener
 //        notifyItemInserted(transports.size - 1)
 //    }
 
-    fun addTransports(newJobDetails: List<JobDetails>) {
-        jobDetails.clear()
-        jobDetails.addAll(newJobDetails)
+    fun addTransports(deliveryWithUserAndStatusList: List<DeliveryWithUserAndStatus>) {
+        transporterCandidates.clear()
+        transporterCandidates.addAll(deliveryWithUserAndStatusList.map { it })
         notifyDataSetChanged()
     }
 
     fun removeTransportAt(position: Int) {
-        jobDetails.removeAt(position)
+        transporterCandidates.removeAt(position)
         notifyItemRemoved(position)
-        if (position < jobDetails.size) {
-            notifyItemRangeChanged(position, jobDetails.size - position)
+        if (position < transporterCandidates.size) {
+            notifyItemRangeChanged(position, transporterCandidates.size - position)
         }
     }
 
+    fun clear() {
+        transporterCandidates.clear()
+        notifyDataSetChanged()
+    }
 
-    inner class ActiveTransportsViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    inner class ActiveTransportsViewHolder(private val itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
         var binding = ItemPendingDeliveryBinding.bind(itemView)
-        var item: JobDetails? = null
+        var item: DeliveryWithUserAndStatus? = null
 
         init {
             binding.btnAccept.setOnClickListener { listener.onJobDetailAccepted(item) }
             binding.btnDecline.setOnClickListener { listener.onJobDetailDeclined(item) }
         }
 
-        fun bind(newJobDetail: JobDetails) {
-            item = newJobDetail
-            binding.tvTransporterName.text = newJobDetail.name
-            binding.tvPrice.text = newJobDetail.deliveryCost
-            //TODO set image
+        fun bind(newCandidate: DeliveryWithUserAndStatus) {
+            item = newCandidate
+            binding.tvTransporterName.text = newCandidate.delivery.title
+            //binding.tvPrice.text = newCandidate.userStatus.toString()
         }
     }
 }

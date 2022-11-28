@@ -60,5 +60,10 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-base:18.1.0'
 
-    //implementation 'com.github.welcome2c:LottieProgressDialog:1.0.1'
+    implementation ('com.adevinta.android:leku:9.1.4') {
+        exclude group: 'com.google.android.gms'
+        exclude group: 'androidx.appcompat'
+    }
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 }

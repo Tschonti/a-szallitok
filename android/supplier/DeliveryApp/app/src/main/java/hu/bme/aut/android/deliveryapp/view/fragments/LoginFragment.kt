@@ -81,8 +81,9 @@ class LoginFragment : Fragment() {
                 }
                 if (result!!.isSuccess) {
                     val idToken = result?.signInAccount?.idToken
-                    auth.signInWithCredential(GoogleAuthProvider.getCredential(idToken, null))
-                    actionForAuthUser()
+                    auth.signInWithCredential(GoogleAuthProvider.getCredential(idToken, null)).addOnCompleteListener {
+                        actionForAuthUser()
+                    }
                 } else {
                     Toast.makeText(requireContext(), "Login Unsuccessful", Toast.LENGTH_SHORT).show()
                 }
@@ -102,6 +103,7 @@ class LoginFragment : Fragment() {
 
     private fun actionForAuthUser() {
         //findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
+        Log.d("LOGIN", "ACTION")
         auth.currentUser?.getIdToken(true)?.addOnSuccessListener {
             CurrentUser.token = it.token!!
             Log.d("TOKEN", it.token!!)

@@ -77,6 +77,11 @@
 - ScrollRefresh a lista nézetekre
 - Broadcast receiver bootolásra, így újraindul a LocationService a telefon újraindításakor
 
+## 12. hét
+- Supplier alkalmazás befejezése
+-	Dokumentáció írás
+-	Customer alkalmazás javítása
+
 # Raisz Olivér
 ## 4. hét
 - Specifikáció kidolgozása közösen
@@ -115,6 +120,14 @@
 - pending deliveryk listázása
 - adatok megjelenítése ezekhez a deliverykhez
 - lehetőség van elfogadni/elutasítani a deliveryt (wip)
+
+## 12. hét
+- Alkalmazás befejezése 
+- Fuvarok elfogadása és/vagy elutasítása  a backenddel összekötve 
+- Új fuvar létrehozásánál a helyválasztás implementálása 
+- Dokumentumírás 
+
+
 
 # Farkasházi Levente
 ## 4. hét

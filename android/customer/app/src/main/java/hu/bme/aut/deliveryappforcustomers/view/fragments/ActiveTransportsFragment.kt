@@ -5,14 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import hu.bme.aut.android.deliveryapp.model.JobDetails
 import hu.bme.aut.deliveryappforcustomers.adapter.ActiveTransportsAdapter
 import hu.bme.aut.deliveryappforcustomers.databinding.FragmentActiveTransportsBinding
+import hu.bme.aut.deliveryappforcustomers.model.DeliveryWithUserAndStatus
+import hu.bme.aut.deliveryappforcustomers.model.Reply
 import hu.bme.aut.deliveryappforcustomers.repository.CurrentUser
-import hu.bme.aut.deliveryappforcustomers.view.JobDetailState
 import hu.bme.aut.deliveryappforcustomers.viewmodel.ActiveTransportsViewModel
+import java.time.LocalTime
 
 class ActiveTransportsFragment : Fragment(), ActiveTransportsAdapter.onTransportSelectedListener {
 
@@ -33,61 +35,84 @@ class ActiveTransportsFragment : Fragment(), ActiveTransportsAdapter.onTransport
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ActiveTransportsAdapter(requireContext(), this)
+        adapter = ActiveTransportsAdapter(this)
 
-        //TODO change to valid id - CurrentUser.user._id
         Log.d("USERID", "current user's id would be ${CurrentUser.user._id} (NOT YET USED)")
 
-        binding.swipeRefreshLayout.setOnRefreshListener() {
-            viewModel.getActiveTransports(0).observe(viewLifecycleOwner) { jobDetailState ->
-                render(jobDetailState)
-            }
-        }
-
+//        binding.swipeRefreshLayout.setOnRefreshListener {
+//
+//            viewModel.getJobRequests().observe(
+//                viewLifecycleOwner
+//            ) { responseList ->
+//                render(responseList)
+//            }
+//        }
         binding.activeTransportsRecyclerView.adapter = adapter
-    }
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getJobRequests().observe(
+                viewLifecycleOwner
+            ) { responseList ->
+                requireActivity().runOnUiThread {
+                    if (responseList != null) {
+                        adapter.clear()
+                        adapter.addTransports(responseList!!)
+                        binding.swipeRefreshLayout.isRefreshing = false
+                    }
 
-    private fun render(state: JobDetailState/*DeliveryListState volt*/) {
-        /*when (state) {
-            is DeliveryListState.inProgress -> {
-                //loadingDialog.show()
+                }
             }
-            is DeliveryListState.deliveriesResponseSuccess -> {
-                //loadingDialog.dismiss()
-                Log.i("DATA ARRIVED", state.data.toString())
-                adapter.addTransports(state.data)
-            }
-            is DeliveryListState.deliveriesResponseError -> {
-                //loadingDialog.dismiss()
-                Log.e("ERROR", state.exceptionMsg)
-            }
-        }*/
-        when (state) {
-            is JobDetailState.inProgress -> {
-                //loadingDialog.show()
-            }
-            is JobDetailState.jobDetailsResponseSuccess -> {
-                //loadingDialog.dismiss()
-                Log.i("DATA ARRIVED", state.data.toString())
-                adapter.addTransports(state.data)
-            }
-            is JobDetailState.jobDetailsResponseError -> {
-                //loadingDialog.dismiss()
-                Log.e("ERROR", state.exceptionMsg)
-            }
+
+//            GlobalScope.launch {
+//                val requestedJobs = GlobalScope.async {
+//                    viewModel.getJobRequests()
+//                }.await()
+//                if (requestedJobs.value == null) {
+//                    Log.e("activetransportsfragment", "requested jobs is null")
+//                    //TODO patch this
+//                    binding.swipeRefreshLayout.isRefreshing = false
+//                } else {
+//                    Log.i("activetransportsfragment", "requested jobs data arrived")
+//                    requireActivity().runOnUiThread {
+//                        adapter.clear()
+//                        adapter.addTransports(requestedJobs.value!!)
+//                        binding.swipeRefreshLayout.isRefreshing = false
+//                    }
+//
+//                }
+//            }
         }
     }
 
-    override fun onJobDetailAccepted(jobDetail: JobDetails?) {
-        Log.d("TRANSPORT", jobDetail.toString())
-        adapter.removeTransportAt(adapter.getTransportPosition(jobDetail!!))
-        // TODO: send "accepted" to the server
+    override fun onJobDetailAccepted(transporterCandidate: DeliveryWithUserAndStatus?) {
+        Log.d("TRANSPORT", transporterCandidate.toString())
+        adapter.removeTransportAt(adapter.getTransportPosition(transporterCandidate!!))
+        Log.d("DELIVERYID", transporterCandidate.delivery._id!!)
+        viewModel.reply(
+            transporterCandidate.delivery._id,
+            Reply(transporterCandidate.user!!._id, true)
+        )
+        Toast.makeText(context, "Job accepted", Toast.LENGTH_SHORT).show()
+        HistoryFragment.historyList.add(
+            HistoryFragment.Companion.HistoryItem(
+                HistoryFragment.Companion.HistoryType.ACCEPTED_TRANSPORT,
+                LocalTime.now()
+            )
+        )
     }
 
-    override fun onJobDetailDeclined(jobDetail: JobDetails?) {
-        Log.d("TRANSPORT", "declined the ${jobDetail.toString()}")
-        adapter.removeTransportAt(adapter.getTransportPosition(jobDetail!!))
-        // TODO: send "declined" to the server function
+    override fun onJobDetailDeclined(transporterCandidate: DeliveryWithUserAndStatus?) {
+        Log.d("TRANSPORT", "declined the ${transporterCandidate.toString()}")
+        adapter.removeTransportAt(adapter.getTransportPosition(transporterCandidate!!))
+        viewModel.reply(
+            transporterCandidate.delivery._id!!,
+            Reply(transporterCandidate.user!!._id, false)
+        )
+        Toast.makeText(context, "Job declined", Toast.LENGTH_SHORT).show()
+        HistoryFragment.historyList.add(
+            HistoryFragment.Companion.HistoryItem(
+                HistoryFragment.Companion.HistoryType.DECLINED_TRANSPORT,
+                LocalTime.now()
+            )
+        )
     }
-
 }

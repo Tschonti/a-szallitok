@@ -58,9 +58,10 @@
     <string name="error">Error</string>
     <string name="in_pending">Now it\'s in pending status</string>
     <string name="need_permission">You have to grant the permissions to start the delivery!</string>
-    <string name="marked_as_ready">Delivery marked as in transit</string>
+    <string name="marked_as_in_transit">Delivery marked as in transit</string>
+    <string name="marked_as_ready">Delivery marked as ready</string>
     <string name="user_rated">User successfully rated</string>
     <string name="vehicle_capacity">width: %1$s x length: %2$s x height: %3$s</string>
     <string name="vehicle_capacity_weight">%1$s kg</string>
-    <string name="delivery_status">Status: %1$s: %2$s</string>
+    <string name="delivery_status">Status: %1$s - %2$s</string>
 </resources>
