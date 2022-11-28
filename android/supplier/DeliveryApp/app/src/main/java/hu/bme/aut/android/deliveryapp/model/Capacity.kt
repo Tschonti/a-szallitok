@@ -5,4 +5,4 @@ data class Capacity (
     val height: Float,
     val length: Float,
     val width: Float,
-)
+) : java.io.Serializable
