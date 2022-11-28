@@ -1,5 +1,6 @@
 package hu.bme.aut.android.deliveryapp.view.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +15,14 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.Polyline
+import com.google.android.gms.maps.model.PolylineOptions
 import hu.bme.aut.android.deliveryapp.R
 import hu.bme.aut.android.deliveryapp.model.Delivery
 import hu.bme.aut.android.deliveryapp.view.LoadingDialogManager
 import hu.bme.aut.android.deliveryapp.view.states.DeliveryListState
 import hu.bme.aut.android.deliveryapp.viewmodel.AvailableJobsMapFragmentViewModel
+
 
 class AvailableJobsMapFragment : Fragment() {
 
@@ -81,9 +85,23 @@ class AvailableJobsMapFragment : Fragment() {
     }
 
     private fun addMarker(job: Delivery) {
+        val source = job.sourceLocation!!.coordinate
+        val destination = job.destinationLocation!!.coordinate
+
         val markerOptions = MarkerOptions()
-        markerOptions.position(LatLng(job.sourceLocation!!.coordinate.latitude.toDouble(), job.sourceLocation.coordinate.longitude.toDouble()))
+        markerOptions.position(LatLng(source.latitude.toDouble(), source.longitude.toDouble()))
         markerOptions.title(job.title)
         googleMap.addMarker(markerOptions)
+
+        markerOptions.position(LatLng(destination.latitude.toDouble(), destination.longitude.toDouble()))
+        markerOptions.title(job.title)
+        googleMap.addMarker(markerOptions)
+
+        val line: Polyline = googleMap.addPolyline(
+            PolylineOptions()
+                .add(LatLng(source.latitude.toDouble(), source.longitude.toDouble()), LatLng(destination.latitude.toDouble(), destination.longitude.toDouble()))
+                .width(5f)
+                .color(Color.RED)
+        )
     }
 }
